@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>成為服務商 — GC 跨境服務</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23F5F5F5'/%3E%3Ctext x='16' y='23' font-family='Arial Black,sans-serif' font-weight='900' font-size='18' fill='%231B1B1D' text-anchor='middle'%3EG%3Ctspan fill='%237C8799'%3EC%3C/tspan%3E%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#121620;
+  --bg-2:#181c28;
+  --bg-3:#1d2130;
+  --border:rgba(255,255,255,0.11);
+  --accent:#C8CDD6;
+  --text:#f0f2f5;
+  --text-dim:rgba(240,242,245,0.58);
+  --grid:rgba(255,255,255,0.04);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Noto Sans TC',sans-serif;font-weight:400;overflow-x:hidden;}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 5vw;height:68px;
+  background:rgba(18,22,32,0.92);backdrop-filter:blur(24px);
+  border-bottom:1px solid rgba(255,255,255,0.07);
+}
+.nav-logo{display:flex;align-items:center;text-decoration:none;}
+.nav-logo img{height:30px;display:block;filter:invert(1);}
+.nav-links{display:flex;gap:2.2rem;list-style:none;align-items:center;}
+.nav-links a{color:rgba(236,238,242,0.5);text-decoration:none;font-size:0.87rem;letter-spacing:0.03em;transition:color 0.2s;position:relative;}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--accent);transform:scaleX(0);transition:transform 0.25s;}
+.nav-links a:hover{color:#ffffff;}
+.nav-links a:hover::after{transform:scaleX(1);}
+.nav-cta{background:#ffffff!important;color:#06080e!important;padding:0.45rem 1.2rem;border-radius:5px;font-weight:600;}
+.nav-cta::after{display:none!important;}
+.nav-cta:hover{background:rgba(255,255,255,0.85)!important;}
+.nav-active{color:var(--accent)!important;}
+.nav-active::after{transform:scaleX(1)!important;}
+
+/* HAMBURGER */
+.nav-right{display:none;align-items:center;gap:0.8rem;}
+.nav-hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;width:38px;height:38px;cursor:pointer;background:none;border:none;padding:4px;}
+.nav-hamburger span{display:block;width:22px;height:2px;background:#F5F5F5;border-radius:2px;transition:all 0.28s ease;transform-origin:center;}
+.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.nav-mobile-menu{display:none;position:fixed;top:68px;left:0;right:0;z-index:99;background:rgba(20,24,36,0.97);backdrop-filter:blur(24px);border-bottom:1px solid rgba(255,255,255,0.08);padding:1.2rem 5vw 1.6rem;flex-direction:column;gap:0;}
+.nav-mobile-menu.open{display:flex;}
+.nav-mobile-menu a{display:block;padding:0.85rem 0;color:rgba(236,238,242,0.6);text-decoration:none;font-size:0.95rem;border-bottom:1px solid rgba(255,255,255,0.06);transition:color 0.2s;}
+.nav-mobile-menu a:last-child{border:none;margin-top:0.6rem;}
+.nav-mobile-menu a:hover{color:#ffffff;}
+.nav-mobile-menu .m-cta{display:inline-flex;margin-top:0.8rem;background:#ffffff;color:#06080e!important;padding:0.7rem 1.4rem;border-radius:6px;font-weight:600;font-size:0.9rem;text-align:center;justify-content:center;}
+
+@media(max-width:900px){
+  .nav-links{display:none;}
+  .nav-right{display:flex;}
+  .nav-hamburger{display:flex;}
+}
+
+/* HERO */
+.partner-hero{
+  min-height:100vh;
+  display:flex;align-items:center;
+  padding:120px 5vw 80px;
+  position:relative;overflow:hidden;
+  background:var(--bg);
+}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 60% 40%,rgba(191,195,201,0.04) 0%,transparent 70%);}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:56px 56px;}
+.hero-glow{position:absolute;width:800px;height:800px;right:-200px;top:50%;transform:translateY(-50%);background:radial-gradient(circle,rgba(191,195,201,0.04) 0%,transparent 65%);pointer-events:none;}
+.hero-glow2{display:none;}
+
+.partner-hero-inner{position:relative;z-index:2;max-width:680px;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);border-radius:100px;padding:0.3rem 1rem;font-size:0.73rem;letter-spacing:0.12em;color:var(--accent);margin-bottom:1.8rem;animation:fadeUp 0.8s ease both;}
+.hero-badge-dot{width:5px;height:5px;background:var(--accent);border-radius:50%;animation:blink 2.2s ease infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.2;}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:none;}}
+
+.partner-hero h1{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(2.4rem,4.5vw,4.2rem);
+  font-weight:800;line-height:1.08;letter-spacing:-0.03em;
+  margin-bottom:1.4rem;
+  animation:fadeUp 0.8s 0.1s ease both;
+}
+.partner-hero h1 .line1{display:block;color:#ffffff;}
+.partner-hero h1 .line2{display:block;color:rgba(191,195,201,0.7);}
+
+.partner-hero-desc{font-size:1rem;line-height:1.88;color:var(--text-dim);margin-bottom:2.5rem;animation:fadeUp 0.8s 0.2s ease both;}
+.hero-scroll-hint{display:flex;align-items:center;gap:10px;font-size:0.78rem;color:rgba(236,238,242,0.3);letter-spacing:0.1em;animation:fadeUp 0.8s 0.4s ease both;}
+.hero-scroll-hint::before{content:'';width:32px;height:1px;background:rgba(191,195,201,0.3);}
+
+/* BENEFITS */
+#benefits{padding:100px 5vw;background:var(--bg-2);position:relative;}
+#benefits::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.1),transparent);}
+
+.benefits-layout{display:grid;grid-template-columns:1fr 1fr;gap:5vw;align-items:start;}
+.benefits-left{}
+.section-label{font-size:0.72rem;letter-spacing:0.22em;color:var(--accent);text-transform:uppercase;margin-bottom:0.9rem;font-weight:500;}
+.section-title{font-family:'Syne',sans-serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:800;line-height:1.1;letter-spacing:-0.03em;margin-bottom:1.2rem;color:#ffffff;}
+.section-sub{font-size:0.95rem;color:var(--text-dim);line-height:1.88;margin-bottom:2.5rem;}
+
+.benefit-list{display:flex;flex-direction:column;gap:1rem;}
+.benefit-item{
+  display:flex;gap:1.2rem;align-items:flex-start;
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:12px;padding:1.3rem 1.4rem;
+  opacity:0;transform:translateX(-20px);
+  transition:opacity 0.55s ease,transform 0.55s ease,border-color 0.3s,background 0.3s;
+}
+.benefit-item.visible{opacity:1;transform:none;}
+.benefit-item:hover{border-color:rgba(191,195,201,0.2);background:rgba(255,255,255,0.06);}
+.benefit-icon{
+  width:42px;height:42px;flex-shrink:0;
+  background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);
+  border-radius:10px;display:flex;align-items:center;justify-content:center;
+}
+.benefit-icon svg{width:20px;height:20px;stroke:var(--accent);fill:none;stroke-width:1.7;}
+.benefit-body h3{font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:700;margin-bottom:0.35rem;color:#ffffff;}
+.benefit-body p{font-size:0.8rem;color:var(--text-dim);line-height:1.72;}
+
+/* STATS STRIP */
+.stats-strip{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;
+  margin-top:2.5rem;
+  opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease;
+}
+.stats-strip.visible{opacity:1;transform:none;}
+.stat-cell{background:rgba(255,255,255,0.03);padding:1.4rem;text-align:center;}
+.stat-num{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:#ffffff;line-height:1;}
+.stat-lbl{font-size:0.7rem;color:var(--text-dim);letter-spacing:0.06em;margin-top:0.3rem;}
+
+/* FORM SIDE */
+.benefits-right{}
+
+/* FORM CARD */
+.form-card{
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.09);
+  border-radius:18px;padding:2.5rem 2.2rem;
+  position:sticky;top:90px;
+}
+.form-card-head{margin-bottom:1.8rem;}
+.form-card-head h2{font-family:'Syne',sans-serif;font-size:1.35rem;font-weight:800;margin-bottom:0.4rem;letter-spacing:-0.02em;color:#ffffff;}
+.form-card-head p{font-size:0.82rem;color:var(--text-dim);line-height:1.6;}
+
+.form-divider{height:1px;background:linear-gradient(90deg,rgba(255,255,255,0.1),transparent);margin:1.5rem 0;}
+
+.field-group{margin-bottom:1.15rem;}
+.field-label{font-size:0.75rem;font-weight:500;letter-spacing:0.07em;color:rgba(236,238,242,0.45);text-transform:uppercase;margin-bottom:0.45rem;display:flex;align-items:center;gap:5px;}
+.field-label .req{color:var(--accent);font-size:0.7rem;}
+.field-input{
+  width:100%;background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:8px;padding:0.72rem 1rem;
+  color:var(--text);font-family:'Noto Sans TC',sans-serif;font-size:0.88rem;
+  transition:border-color 0.25s,box-shadow 0.25s;
+  outline:none;
+}
+.field-input::placeholder{color:rgba(236,238,242,0.2);}
+.field-input:focus{border-color:rgba(191,195,201,0.5);box-shadow:0 0 0 3px rgba(191,195,201,0.08);}
+
+textarea.field-input{resize:vertical;min-height:90px;line-height:1.6;}
+.field-hint{font-size:0.68rem;color:rgba(236,238,242,0.3);margin-top:0.3rem;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:0.9rem;}
+
+.submit-btn{
+  width:100%;margin-top:1.5rem;
+  background:#ffffff;
+  color:#06080e;padding:0.95rem 2rem;
+  border:none;border-radius:8px;
+  font-family:'Noto Sans TC',sans-serif;font-size:0.95rem;font-weight:600;
+  cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  transition:all 0.28s;
+  letter-spacing:0.02em;
+}
+.submit-btn:hover{transform:translateY(-2px);background:rgba(255,255,255,0.88);}
+.submit-btn:active{transform:translateY(0);}
+.submit-btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.2;transition:transform 0.25s;}
+.submit-btn:hover svg{transform:translateX(3px);}
+
+.form-note{font-size:0.7rem;color:rgba(236,238,242,0.25);text-align:center;margin-top:1rem;line-height:1.6;}
+
+/* SUCCESS STATE */
+.form-success{display:none;text-align:center;padding:2rem 0;}
+.form-success .success-icon{width:64px;height:64px;background:rgba(42,157,92,0.1);border:1px solid rgba(42,157,92,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.2rem;}
+.form-success .success-icon svg{width:28px;height:28px;stroke:#2a9d5c;fill:none;stroke-width:2;}
+.form-success h3{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;margin-bottom:0.6rem;color:#ffffff;}
+.form-success p{font-size:0.85rem;color:var(--text-dim);line-height:1.72;}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal.visible{opacity:1;transform:none;}
+
+/* RESPONSIVE */
+@media(max-width:960px){
+  .benefits-layout{grid-template-columns:1fr;}
+  .form-card{position:static;}
+}
+@media(max-width:560px){
+  .form-row{grid-template-columns:1fr;}
+  .stats-strip{grid-template-columns:1fr;}
+  .partner-hero{padding:110px 5vw 60px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo"><img src="../../品牌 LOGO/淺色背景-深色.png" alt="GC" style="height:30px;filter:invert(1);"></a>
+  <ul class="nav-links">
+    <li><a href="index.html#why">為何選擇我們</a></li>
+    <li><a href="index.html#services">顧問服務</a></li>
+    <li><a href="index.html#process">合作流程</a></li>
+    <li><a href="partner.html" class="nav-active">成為服務商</a></li>
+    <li><a href="gc-form.html" class="nav-cta">立即諮詢</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="gc-form.html" class="nav-cta" style="text-decoration:none;padding:0.45rem 1.2rem;border-radius:5px;font-size:0.87rem;font-weight:500;">立即諮詢</a>
+    <button class="nav-hamburger" id="navHamburger" onclick="toggleMobileMenu()" aria-label="選單">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="nav-mobile-menu" id="navMobileMenu">
+  <a href="index.html#why" onclick="closeMobileMenu()">為何選擇我們</a>
+  <a href="index.html#services" onclick="closeMobileMenu()">顧問服務</a>
+  <a href="index.html#process" onclick="closeMobileMenu()">合作流程</a>
+  <a href="partner.html" style="color:var(--cyan)!important;" onclick="closeMobileMenu()">成為服務商</a>
+  <a href="gc-form.html" class="m-cta" onclick="closeMobileMenu()">立即諮詢</a>
+</div>
+
+<!-- HERO -->
+<section class="partner-hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="partner-hero-inner">
+    <div class="hero-badge"><span class="hero-badge-dot"></span>JOIN GC PARTNER NETWORK</div>
+    <h1>
+      <span class="line1">加入 GC，</span>
+      <span class="line2">拓展您的商業版圖</span>
+    </h1>
+    <p class="partner-hero-desc">GC 跨境服務商網絡持續擴大，誠邀具備專業能力的服務商加入。與我們攜手，為品牌客戶提供最優質的跨境解決方案，共同開創更大的商業機會。</p>
+    <div class="hero-scroll-hint">向下了解更多好處並填寫申請</div>
+  </div>
+</section>
+
+<!-- BENEFITS + FORM -->
+<section id="benefits">
+  <div class="benefits-layout">
+
+    <!-- LEFT: Benefits -->
+    <div class="benefits-left">
+      <div class="reveal">
+        <div class="section-label">Why Partner With Us</div>
+        <h2 class="section-title">成為 GC 服務商的好處</h2>
+        <p class="section-sub">加入我們的合作網絡，享有穩定的客戶來源、專業的品牌背書與完整的資源支援。</p>
+      </div>
+
+      <div class="benefit-list">
+
+        <div class="benefit-item">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <div class="benefit-body">
+            <h3>精準客戶媒合</h3>
+            <p>GC 依照您的專業領域與服務範疇，為您精準媒合有真實需求的品牌客戶，節省開發時間，提高成單機率。</p>
+          </div>
+        </div>
+
+        <div class="benefit-item">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+          </div>
+          <div class="benefit-body">
+            <h3>跨境資源整合</h3>
+            <p>接觸 GC 廣泛的亞洲與歐美市場網絡，與其他服務商共享資源，擴大業務規模與市場覆蓋率。</p>
+          </div>
+        </div>
+
+        <div class="benefit-item">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          </div>
+          <div class="benefit-body">
+            <h3>品牌信譽加持</h3>
+            <p>成為 GC 認證合作夥伴，享有 GC 品牌背書，提升市場公信力，讓客戶對您的服務更有信心。</p>
+          </div>
+        </div>
+
+        <div class="benefit-item">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <div class="benefit-body">
+            <h3>快速上手支援</h3>
+            <p>GC 團隊全程協助新夥伴快速熟悉合作流程，提供完整的對接支援，讓您的服務順暢啟動。</p>
+          </div>
+        </div>
+
+        <div class="benefit-item">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          </div>
+          <div class="benefit-body">
+            <h3>資訊安全保障</h3>
+            <p>嚴格保護服務商資訊，商業機密與客戶資料受到完整保護，讓您安心合作、無後顧之憂。</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="stats-strip">
+        <div class="stat-cell">
+          <div class="stat-num">15+</div>
+          <div class="stat-lbl">市場覆蓋</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">500+</div>
+          <div class="stat-lbl">合作品牌</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">3天</div>
+          <div class="stat-lbl">快速對接</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Form -->
+    <div class="benefits-right">
+      <div class="form-card reveal">
+        <div class="form-card-head">
+          <h2>填寫服務商申請</h2>
+          <p>請填寫以下基本資訊，GC 團隊將在 3 個工作天內與您聯繫。</p>
+        </div>
+        <div class="form-divider"></div>
+
+        <!-- FORM SUCCESS -->
+        <div class="form-success" id="formSuccess">
+          <div class="success-icon">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <h3>申請已送出！</h3>
+          <p>感謝您的申請，GC 團隊將在 3 個工作天內與您聯繫。<br>期待與您攜手開創更大的商業版圖！</p>
+        </div>
+
+        <form id="partnerForm" action="https://formspree.io/f/mwvjkawn" method="POST">
+          <!-- 公司名稱 必填 -->
+          <div class="field-group">
+            <div class="field-label">公司名稱 <span class="req">*</span></div>
+            <input type="text" name="company_name" class="field-input" placeholder="請輸入公司全名" required>
+          </div>
+
+          <!-- 負責人 必填 -->
+          <div class="field-group">
+            <div class="field-label">負責人 <span class="req">*</span></div>
+            <input type="text" name="owner_name" class="field-input" placeholder="負責人姓名" required>
+          </div>
+
+          <!-- 聯絡人 必填 -->
+          <div class="field-group">
+            <div class="field-label">聯絡人 <span class="req">*</span></div>
+            <input type="text" name="contact_name" class="field-input" placeholder="主要聯絡人姓名" required>
+          </div>
+
+          <!-- 聯絡電話 選填 -->
+          <div class="field-group">
+            <div class="field-label">聯絡電話</div>
+            <input type="tel" name="phone" class="field-input" placeholder="例：0912-345-678（選填）">
+          </div>
+
+          <!-- 電子信箱 必填 -->
+          <div class="field-group">
+            <div class="field-label">電子信箱 <span class="req">*</span></div>
+            <input type="email" name="email" class="field-input" placeholder="example@company.com" required>
+          </div>
+
+          <!-- 其他聯絡方式 必填 -->
+          <div class="field-group">
+            <div class="field-label">其他聯絡方式 <span class="req">*</span></div>
+            <input type="text" name="other_contact" class="field-input" placeholder="LINE ID、WeChat、WhatsApp 等" required>
+            <div class="field-hint">可填寫 LINE ID、WeChat ID、WhatsApp 號碼等</div>
+          </div>
+
+          <!-- 提供服務 必填 -->
+          <div class="field-group">
+            <div class="field-label">提供服務 <span class="req">*</span></div>
+            <textarea name="services_provided" class="field-input" placeholder="請描述您能提供的主要服務項目，例如：直播帶貨、海外通路開發、數位行銷、供應鏈管理…" required></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn" id="submitBtn">
+            送出申請
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+
+          <p class="form-note">提交即表示您同意 GC 使用上述資訊進行服務媒合與聯繫。所有資料受到嚴格保護。</p>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer style="background:rgba(14,18,26,0.95);padding:2.8rem 5vw;border-top:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+  <a href="index.html" style="display:flex;align-items:center;text-decoration:none;"><img src="../../品牌 LOGO/淺色背景-深色.png" alt="GC" style="height:28px;filter:invert(1);"></a>
+  <span style="font-size:0.78rem;color:rgba(236,238,242,0.28);">© 2026 GC 跨境服務. All rights reserved.</span>
+</footer>
+
+<script>
+// Reveal on scroll
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting) e.target.classList.add('visible');
+  });
+},{threshold:0.12});
+document.querySelectorAll('.reveal,.benefit-item,.stats-strip').forEach(el=>observer.observe(el));
+
+// Stagger benefit items
+document.querySelectorAll('.benefit-item').forEach((el,i)=>{
+  el.style.transitionDelay = `${i*0.1}s`;
+});
+
+// Form submit — AJAX with Formspree
+const form = document.getElementById('partnerForm');
+const successDiv = document.getElementById('formSuccess');
+const submitBtn = document.getElementById('submitBtn');
+
+form.addEventListener('submit', async function(e){
+  e.preventDefault();
+  submitBtn.textContent = '送出中…';
+  submitBtn.disabled = true;
+
+  const data = new FormData(form);
+  try{
+    const res = await fetch(form.action, {
+      method:'POST',
+      body: data,
+      headers:{'Accept':'application/json'}
+    });
+    if(res.ok){
+      form.style.display='none';
+      successDiv.style.display='block';
+    } else {
+      submitBtn.textContent='送出失敗，請再試一次';
+      submitBtn.disabled=false;
+    }
+  } catch(err){
+    submitBtn.textContent='送出失敗，請再試一次';
+    submitBtn.disabled=false;
+  }
+});
+
+// Mobile menu
+function toggleMobileMenu(){
+  const btn=document.getElementById('navHamburger');
+  const menu=document.getElementById('navMobileMenu');
+  btn.classList.toggle('open');
+  menu.classList.toggle('open');
+}
+function closeMobileMenu(){
+  document.getElementById('navHamburger').classList.remove('open');
+  document.getElementById('navMobileMenu').classList.remove('open');
+}
+document.addEventListener('click',function(e){
+  const btn=document.getElementById('navHamburger');
+  const menu=document.getElementById('navMobileMenu');
+  if(menu.classList.contains('open')&&!menu.contains(e.target)&&!btn.contains(e.target)){
+    closeMobileMenu();
+  }
+});
+</script>
+</body>
+</html>
