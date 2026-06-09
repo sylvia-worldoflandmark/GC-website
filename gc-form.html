@@ -11,15 +11,15 @@
 <style>
 :root {
   color-scheme: dark;
-  --bg: #121620;
-  --bg-2: #181c28;
-  --blue-bright: #9aa3b2;
+  --bg: #06080e;
+  --bg-2: #06080e;
+  --blue-bright: #a8b0c0;
   --blue-electric: #C8CDD6;
   --accent: #C8CDD6;
-  --white: #f0f2f5;
-  --white-dim: rgba(240,242,245,0.58);
-  --border: rgba(255,255,255,0.13);
-  --border-focus: rgba(200,205,214,0.6);
+  --white: #f2f4f8;
+  --white-dim: rgba(242,244,248,0.82);
+  --border: rgba(255,255,255,0.16);
+  --border-focus: rgba(200,205,214,0.7);
   --error: #f06072;
   --success: #2a9d5c;
   --input-bg: rgba(255,255,255,0.07);
@@ -67,19 +67,19 @@ nav {
 /* SIDEBAR */
 .sidebar {
   width: 260px; flex-shrink: 0;
-  background: rgba(255,255,255,0.03); border-right: 1px solid rgba(255,255,255,0.07);
+  background: #f4f5f7; border-right: 1px solid rgba(0,0,0,0.08);
   padding: 2.5rem 1.8rem; position: sticky; top: 64px; height: calc(100vh - 64px);
   overflow-y: auto;
 }
-.sidebar-title { font-size: 0.7rem; letter-spacing: 0.14em; color: var(--blue-electric); text-transform: uppercase; margin-bottom: 1.6rem; font-weight: 500; }
+.sidebar-title { font-size: 0.7rem; letter-spacing: 0.14em; color: #555e6e; text-transform: uppercase; margin-bottom: 1.6rem; font-weight: 500; }
 .sidebar-steps { list-style: none; }
 .sidebar-step {
   display: flex; align-items: flex-start; gap: 12px;
   padding: 0.75rem 0.6rem; border-radius: 7px; cursor: pointer;
   transition: background 0.2s; margin-bottom: 2px;
 }
-.sidebar-step:hover { background: rgba(255,255,255,0.05); }
-.sidebar-step.active { background: rgba(255,255,255,0.08); }
+.sidebar-step:hover { background: rgba(0,0,0,0.05); }
+.sidebar-step.active { background: rgba(0,0,0,0.08); }
 .sidebar-step.completed .s-num { background: var(--blue-bright); }
 .sidebar-step.completed .s-num svg { display: block; }
 .sidebar-step.completed .s-num span { display: none; }
@@ -94,16 +94,21 @@ nav {
 .s-num svg { display: none; width: 12px; height: 12px; stroke: white; fill: none; stroke-width: 3; }
 .s-text {}
 .s-name { font-size: 0.83rem; font-weight: 500; line-height: 1.3; }
-.sidebar-step.active .s-name { color: var(--white); }
-.sidebar-step:not(.active) .s-name { color: rgba(240,242,245,0.65); }
+.sidebar-step.active .s-name { color: #0d1117; }
+.sidebar-step:not(.active) .s-name { color: rgba(13,17,23,0.55); }
 .sidebar-step.locked { opacity: 0.38; cursor: not-allowed; pointer-events: none; }
 .sidebar-step.locked:hover { background: transparent; }
-.s-desc { font-size: 0.72rem; color: rgba(240,242,245,0.45); margin-top: 2px; line-height: 1.4; }
+.s-desc { font-size: 0.72rem; color: rgba(13,17,23,0.4); margin-top: 2px; line-height: 1.4; }
 
 /* MAIN */
 .main-content {
   flex: 1; padding: 3rem 4vw 4rem;
   max-width: 720px;
+  background: #ffffff;
+}
+/* Fill remaining space to the right with white */
+.page-wrapper {
+  background: #ffffff;
 }
 
 .step-page { display: none; animation: fadeIn 0.3s ease; }
@@ -134,48 +139,48 @@ nav {
 .field-group label {
   display: block; font-size: 0.85rem; font-weight: 500;
   margin-bottom: 0.55rem; letter-spacing: 0.02em;
-  color: var(--white) !important;
+  color: #0d1117 !important;
 }
-.required-star { color: var(--blue-electric); margin-left: 3px; }
-.field-hint { font-size: 0.75rem; color: var(--white-dim); margin-top: 4px; }
+.required-star { color: #555e6e; margin-left: 3px; }
+.field-hint { font-size: 0.75rem; color: #6b7280; margin-top: 4px; }
 /* Step title / desc */
-.step-title { color: #ffffff !important; }
-.step-desc { color: var(--white-dim) !important; }
+.step-title { color: #0d1117 !important; }
+.step-desc { color: #4b5263 !important; }
 
 input[type=text], input[type=email], textarea, select {
   width: 100%;
-  background: var(--input-bg);
+  background: #f4f5f7;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  border: 1px solid var(--border);
+  border: 1px solid rgba(0,0,0,0.15);
   border-radius: 6px;
-  color: var(--white);
+  color: #0d1117;
   font-family: 'Noto Sans TC', sans-serif;
   font-size: 0.9rem;
   transition: border-color 0.2s, box-shadow 0.2s;
   outline: none;
   padding: 0.7rem 1rem;
-  caret-color: var(--accent);
+  caret-color: #3a4152;
 }
-/* Autofill for dark */
+/* Autofill for light */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 100px #181c28 inset !important;
-  -webkit-text-fill-color: #eceef2 !important;
+  -webkit-box-shadow: 0 0 0 100px #f4f5f7 inset !important;
+  -webkit-text-fill-color: #0d1117 !important;
 }
 /* Placeholder */
-input::placeholder, textarea::placeholder { color: rgba(236,238,242,0.22); }
-::-webkit-input-placeholder { color: rgba(236,238,242,0.22); }
-::-moz-placeholder { color: rgba(236,238,242,0.22); opacity: 1; }
+input::placeholder, textarea::placeholder { color: rgba(13,17,23,0.3); }
+::-webkit-input-placeholder { color: rgba(13,17,23,0.3); }
+::-moz-placeholder { color: rgba(13,17,23,0.3); opacity: 1; }
 input[type=text]:focus, input[type=email]:focus, textarea:focus, select:focus {
-  border-color: var(--border-focus);
-  box-shadow: 0 0 0 3px rgba(124,135,153,0.2);
+  border-color: rgba(13,17,23,0.4);
+  box-shadow: 0 0 0 3px rgba(13,17,23,0.08);
 }
 /* Select option bg */
-select option { background: #FFFFFF; color: var(--white); }
+select option { background: #f4f5f7; color: #0d1117; }
 input.error, textarea.error, select.error { border-color: var(--error); }
 .error-msg { font-size: 0.75rem; color: var(--error); margin-top: 5px; display: none; }
 .error-msg.show { display: block; }
@@ -196,22 +201,22 @@ select { appearance: none; -webkit-appearance: none; background-image: url("data
 .chip {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 0.55rem 1.1rem;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
+  background: #f4f5f7;
+  border: 1px solid rgba(0,0,0,0.14);
   border-radius: 8px;
   cursor: pointer;
   font-size: 0.86rem;
   font-family: 'Noto Sans TC', sans-serif;
-  color: var(--white-dim);
+  color: #4b5263;
   user-select: none;
   transition: border-color 0.18s, background 0.18s, color 0.18s;
   position: relative;
   white-space: nowrap;
 }
 .chip:hover {
-  border-color: rgba(191,195,201,0.35);
-  color: var(--white);
-  background: rgba(255,255,255,0.09);
+  border-color: rgba(0,0,0,0.28);
+  color: #0d1117;
+  background: #eceef2;
 }
 .chip-icon {
   width: 15px; height: 15px;
@@ -529,6 +534,17 @@ select { appearance: none; -webkit-appearance: none; background-image: url("data
         <div class="step-badge">Step 1 / 6</div>
         <h1 class="step-title">公司與品牌資料</h1>
         <p class="step-desc">請填寫基本的公司聯絡與品牌資訊，以便 GC 顧問為您提供精準的服務評估。</p>
+      </div>
+
+      <div class="field-group">
+        <label>介紹方</label>
+        <select id="f_referrer">
+          <option value="">請選擇介紹方</option>
+          <option value="七海商事 - 工藤七海">七海商事 - 工藤七海</option>
+          <option value="新樹國際貿易 - Albert">新樹國際貿易 - Albert</option>
+          <option value="頂宏生技 - Jordan">頂宏生技 - Jordan</option>
+          <option value="Tonic Home And Appliances - Yongyee">Tonic Home And Appliances - Yongyee</option>
+        </select>
       </div>
 
       <div class="field-group">
