@@ -4,7 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GC 跨境服務 — 全球市場拓銷顧問</title>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2306080e'/%3E%3Ctext x='16' y='23' font-family='Arial Black,sans-serif' font-weight='900' font-size='18' fill='%23ffffff' text-anchor='middle'%3EG%3Ctspan fill='%23BFC3C9'%3EC%3C/tspan%3E%3C/text%3E%3C/svg%3E">
+<meta property="og:image" content="images/og-logo.png">
+<meta property="og:image:type" content="image/png">
+<link rel="icon" type="image/png" href="images/favicon-logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -13,8 +15,8 @@
   --bg-2:     #06080e;
   --bg-3:     #06080e;
   --border:   rgba(255,255,255,0.12);
-  --accent:   #4d8eff;
-  --accent-2: #2563eb;
+  --accent:   #1460A8;
+  --accent-2: #003D79;
   --text:     #f0f2f6;
   --text-dim: rgba(240,242,246,0.78);
   --grid:     rgba(255,255,255,0.03);
@@ -44,8 +46,8 @@ nav.scrolled{
 .nav-logo span{color:var(--accent);}
 .nav-links{display:flex;gap:2.2rem;list-style:none;align-items:center;}
 .nav-links a{color:rgba(236,238,242,0.72);text-decoration:none;font-size:0.87rem;letter-spacing:0.03em;transition:color 0.2s;position:relative;}
-.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--accent);transform:scaleX(0);transition:transform 0.25s;}
-.nav-links a:hover{color:#ffffff;}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;background:var(--accent);transform:scaleX(0);transition:transform 0.25s;border-radius:2px;}
+.nav-links a:hover{color:#ffffff;}.nav-active{color:#ffffff!important;}.nav-active::after{transform:scaleX(1)!important;}
 .nav-links a:hover::after{transform:scaleX(1);}
 .nav-cta{background:#ffffff!important;color:#06080e!important;padding:0.45rem 1.2rem;border-radius:5px;font-weight:600;border:none!important;}
 .nav-cta::after{display:none!important;}
@@ -86,7 +88,7 @@ nav.scrolled{
   font-size:0.73rem;letter-spacing:0.12em;color:rgba(191,195,201,0.9);
   margin-bottom:1.8rem;animation:fadeUp 0.8s ease both;
 }
-.hero-badge-dot{width:5px;height:5px;background:#4d8eff;border-radius:50%;animation:blink 2.2s ease infinite;}
+.hero-badge-dot{width:5px;height:5px;background:#1460A8;border-radius:50%;animation:blink 2.2s ease infinite;}
 @keyframes blink{0%,100%{opacity:1;}50%{opacity:0.2;}}
 .hero-title{
   font-family:'Syne',sans-serif;
@@ -150,24 +152,28 @@ section{padding:110px 5vw;}
 #why{background:var(--bg-2);position:relative;}
 #why::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.1),transparent);}
 .why-header{margin-bottom:2.5rem;}
-.why-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.1);border-radius:14px;overflow:hidden;}
+.why-row{display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:#d0d2d6;border:1px solid rgba(0,0,0,0.1);border-radius:14px;overflow:hidden;}
 .why-card{
   background:#f4f5f7;
-  padding:1.8rem 1.4rem;
+  padding:1.8rem 1.5rem;
   transition:background 0.3s;
   position:relative;
   display:flex;flex-direction:column;
+  border-right:1px solid rgba(0,0,0,0.08);
 }
+.why-card:last-child{border-right:none;}
 .why-card:hover{background:#eceef2;}
-.why-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#2563eb,#4d8eff);transform:scaleX(0);transform-origin:left;transition:transform 0.35s;}
+.why-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#003D79,#1460A8);transform:scaleX(0);transform-origin:left;transition:transform 0.35s;}
 .why-card:hover::after{transform:scaleX(1);}
 .why-card-icon{width:38px;height:38px;background:rgba(0,0,0,0.06);border:1px solid rgba(0,0,0,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;}
 .why-card-icon svg{width:18px;height:18px;stroke:#3a4152;fill:none;stroke-width:1.8;}
-.why-card-stat-num{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:#1a56db;line-height:1;margin-bottom:0.15rem;}
-.why-card-stat-lbl{font-size:0.65rem;color:#6b7280;letter-spacing:0.04em;margin-bottom:0.9rem;}
-.why-card-title{font-family:'Syne',sans-serif;font-size:0.9rem;font-weight:800;margin-bottom:0.4rem;letter-spacing:-0.01em;color:#0d1117;}
-.why-card-desc{font-size:0.78rem;color:#4b5263;line-height:1.72;flex:1;}
-.why-card-tag{display:inline-block;margin-top:0.9rem;font-size:0.62rem;letter-spacing:0.1em;color:#555e6e;background:rgba(0,0,0,0.06);border:1px solid rgba(0,0,0,0.12);border-radius:100px;padding:0.15rem 0.55rem;text-transform:uppercase;align-self:flex-start;}
+
+.why-card-stat{display:flex;flex-direction:row;align-items:baseline;gap:0.4rem;padding-bottom:1rem;margin-bottom:1rem;border-bottom:1px solid rgba(0,0,0,0.12);}
+.why-card-stat-num{font-family:'Syne',sans-serif;font-size:2.4rem;font-weight:700;color:#003D79;line-height:1;}
+.why-card-stat-lbl{font-size:0.68rem;color:#6b7280;letter-spacing:0.04em;line-height:1.3;}
+.why-card-title{font-family:'Syne',sans-serif;font-size:0.92rem;font-weight:600;margin-bottom:0.6rem;color:#0d1117;}
+.why-card-desc{font-size:0.75rem;color:#4b5263;line-height:1.7;flex:1;}
+.why-card-tag{display:inline-block;margin-top:1.2rem;font-size:0.62rem;letter-spacing:0.12em;color:#555e6e;background:rgba(0,0,0,0.06);border:1px solid rgba(0,0,0,0.12);border-radius:100px;padding:0.25rem 0.75rem;text-transform:uppercase;align-self:flex-start;}
 
 @media(max-width:900px){.why-row{grid-template-columns:1fr 1fr;}}
 @media(max-width:520px){.why-row{grid-template-columns:1fr 1fr;}}
@@ -184,11 +190,11 @@ section{padding:110px 5vw;}
   transition:all 0.3s;
   position:relative;overflow:hidden;
 }
-.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#2563eb,#4d8eff);transform:scaleX(0);transform-origin:left;transition:transform 0.38s;}
+.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#003D79,#1460A8);transform:scaleX(0);transform-origin:left;transition:transform 0.38s;}
 .service-card:hover::before{transform:scaleX(1);}
 .service-card:hover{background:#eceef2;}
 .service-card-num{font-family:'Syne',sans-serif;font-size:0.68rem;font-weight:700;color:#6b7280;letter-spacing:0.1em;margin-bottom:0.8rem;}
-.service-card h3{font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:700;margin-bottom:0.5rem;color:#0d1117;}
+.service-card h3{font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:700;margin-bottom:0.5rem;color:#003D79;}
 .service-card p{font-size:0.78rem;color:#4b5263;line-height:1.7;}
 .service-tag{display:inline-block;margin-top:0.9rem;font-size:0.64rem;letter-spacing:0.09em;color:#555e6e;background:rgba(0,0,0,0.06);border:1px solid rgba(0,0,0,0.12);border-radius:100px;padding:0.15rem 0.6rem;}
 .services-footer{text-align:center;margin-top:2.5rem;}
@@ -218,9 +224,9 @@ section{padding:110px 5vw;}
 }
 .p-step-num{
   width:52px;height:52px;flex-shrink:0;
-  background:#BFC3C9;border:1px solid #BFC3C9;border-radius:50%;
+  background:#1460A8;border:1px solid #1460A8;border-radius:50%;
   display:flex;align-items:center;justify-content:center;
-  font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;color:#06080e;
+  font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;color:#ffffff;
   position:relative;z-index:2;margin-bottom:1.2rem;
 }
 .p-step-body h3{font-size:0.95rem;font-weight:700;color:#f0f2f6;margin-bottom:0.5rem;line-height:1.4;}
@@ -291,7 +297,7 @@ section{padding:110px 5vw;}
 .partner-card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;gap:1rem;}
 .partner-card-top-left{display:flex;flex-direction:column;}
 .partner-logo{height:48px;max-width:130px;object-fit:contain;display:block;flex-shrink:0;}
-.partner-name{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:#1a56db;letter-spacing:-0.02em;margin-bottom:0.15rem;}
+.partner-name{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:#002D5C;letter-spacing:-0.02em;margin-bottom:0.15rem;}
 .partner-sub{font-size:0.76rem;color:rgba(20,24,36,0.55);margin-bottom:0;}
 .partner-desc{font-size:0.85rem;color:rgba(20,24,36,0.78);line-height:1.75;margin-bottom:1.2rem;}
 .partner-provides{margin-bottom:1.2rem;}
@@ -302,7 +308,7 @@ section{padding:110px 5vw;}
 .partner-bottom-title{font-size:0.62rem;font-weight:700;letter-spacing:0.1em;color:#555e6e;text-transform:uppercase;margin-bottom:0.5rem;}
 .partner-list{list-style:none;display:flex;flex-direction:column;gap:0.32rem;}
 .partner-list li{font-size:0.78rem;color:rgba(20,24,36,0.72);line-height:1.5;padding-left:1.1em;position:relative;}
-.partner-list--check li::before{content:'✔';position:absolute;left:0;color:#2563eb;font-size:0.6rem;top:0.22em;}
+.partner-list--check li::before{content:'✔';position:absolute;left:0;color:#003D79;font-size:0.6rem;top:0.22em;}
 /* Nav dots */
 .partners-nav{display:flex;justify-content:center;align-items:center;gap:0.5rem;margin-top:1.8rem;}
 .partners-dots{display:flex;gap:0.5rem;align-items:center;}
@@ -339,7 +345,7 @@ footer{background:rgba(6,8,14,0.9);padding:2.8rem 5vw;border-top:1px solid rgba(
   background:#F5F5F5;border-radius:2px;
   transition:all 0.28s ease;transform-origin:center;
 }
-nav.scrolled .nav-hamburger span{background:#1B1B1D;}
+nav.scrolled .nav-hamburger span{background:#ffffff;}
 .nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
 .nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
 .nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
@@ -432,32 +438,32 @@ nav.scrolled .nav-hamburger span{background:#1B1B1D;}
   <div class="why-row reveal">
 
     <div class="why-card">
-      <div class="why-card-stat-num">15+</div>
-      <div class="why-card-stat-lbl">覆蓋市場</div>
+      <div class="why-card-stat"><div class="why-card-stat-num">15+</div>
+      <div class="why-card-stat-lbl">覆蓋市場</div></div>
       <div class="why-card-title">多市場覆蓋能力</div>
       <div class="why-card-desc">深耕大中華、東南亞、東北亞、歐美等市場，提供精準在地化服務，讓您的品牌找到最合適的切入策略。</div>
       <span class="why-card-tag">Global Reach</span>
     </div>
 
     <div class="why-card">
-      <div class="why-card-stat-num">3天</div>
-      <div class="why-card-stat-lbl">快速回覆</div>
+      <div class="why-card-stat"><div class="why-card-stat-num">3天</div>
+      <div class="why-card-stat-lbl">快速回覆</div></div>
       <div class="why-card-title">快速媒合服務</div>
       <div class="why-card-desc">提交需求後 3 個工作天內回覆，從合作夥伴庫精選最適合的服務商，省去尋找與篩選的時間成本。</div>
       <span class="why-card-tag">Fast Matching</span>
     </div>
 
     <div class="why-card">
-      <div class="why-card-stat-num">500+</div>
-      <div class="why-card-stat-lbl">服務品牌</div>
+      <div class="why-card-stat"><div class="why-card-stat-num">500+</div>
+      <div class="why-card-stat-lbl">服務品牌</div></div>
       <div class="why-card-title">數家顧問服務商</div>
       <div class="why-card-desc">整合多家專業跨境顧問服務商，依品牌需求精準媒合，確保每個合作都由最適合的團隊執行。</div>
       <span class="why-card-tag">Expert Network</span>
     </div>
 
     <div class="why-card">
-      <div class="why-card-stat-num">100%</div>
-      <div class="why-card-stat-lbl">資料保密</div>
+      <div class="why-card-stat"><div class="why-card-stat-num">100%</div>
+      <div class="why-card-stat-lbl">資料保密</div></div>
       <div class="why-card-title">資料安全保障</div>
       <div class="why-card-desc">嚴格執行資料保護措施，所有診斷表資料僅供服務媒合使用，確保您的商業機密不外洩。</div>
       <span class="why-card-tag">Secure & Private</span>
@@ -475,7 +481,7 @@ nav.scrolled .nav-hamburger span{background:#1B1B1D;}
   </div>
   <div class="services-grid reveal">
     <div class="service-card"><div class="service-card-num">01</div><h3>直播帶貨</h3><p>透過 KOL、主播、直播活動協助品牌進行即時銷售，快速打入目標市場。</p><span class="service-tag">LIVE COMMERCE</span></div>
-    <div class="service-card"><div class="service-card-num">02</div><h3>海外拓銷</h3><p>開發代理商、經銷商、批發商與買手，建立穩固的海外銷售網絡。</p><span class="service-tag">DISTRIBUTION</span></div>
+    <div class="service-card"><div class="service-card-num">02</div><h3>海外拓銷</h3><p>開發代理商、經銷商、批發商與買手，建立穩固的海外銷售網絡。</p><span class="service-tag">EXPORT PROMOTION</span></div>
     <div class="service-card"><div class="service-card-num">03</div><h3>跨境電商</h3><p>協助品牌上架並經營海外主流電商平台，提升線上銷售業績與品牌曝光。</p><span class="service-tag">E-COMMERCE</span></div>
     <div class="service-card"><div class="service-card-num">04</div><h3>實體通路</h3><p>協助進入超市、藥妝店、選品店、百貨等海外實體零售通路。</p><span class="service-tag">RETAIL</span></div>
     <div class="service-card"><div class="service-card-num">05</div><h3>市場調研</h3><p>深入分析目標市場消費趨勢與競爭環境，為品牌制定精準進入策略。</p><span class="service-tag">RESEARCH</span></div>
@@ -996,6 +1002,30 @@ document.addEventListener('click',function(e){
     closeMobileMenu();
   }
 });
+</script>
+
+<script>
+// Active nav highlight based on scroll position
+(function(){
+  const sections = ['why','services','partners','process'];
+  const links = {};
+  sections.forEach(id => {
+    const el = document.querySelector('.nav-links a[href="#'+id+'"]');
+    if(el) links[id] = el;
+  });
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting && links[e.target.id]){
+        Object.values(links).forEach(a => a.classList.remove('nav-active'));
+        links[e.target.id].classList.add('nav-active');
+      }
+    });
+  },{rootMargin:'-40% 0px -55% 0px'});
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if(el) obs.observe(el);
+  });
+})();
 </script>
 </body>
 </html>
