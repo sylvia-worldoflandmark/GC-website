@@ -932,7 +932,7 @@ select { appearance: none; -webkit-appearance: none; background-image: url("data
       </div>
 
       <div class="field-group">
-        <label>預計每月投入營運成本<span class="required-star">*</span></label>
+        <label>預計每月品牌項目投入預算（不含行銷費用）<span class="required-star">*</span></label>
         <div class="radio-group">
           <div class="chip" onclick="selectRadioChip(this,'f_opex','每月新台幣100萬以下')"><div class="chip-icon"></div>每月新台幣 100 萬以下</div>
           <div class="chip" onclick="selectRadioChip(this,'f_opex','每月新台幣100萬至500萬')"><div class="chip-icon"></div>每月新台幣 100 萬至 500 萬</div>
@@ -1610,22 +1610,59 @@ async function submitForm(){
       row('其他補充說明',data.otherNotes),
     ].join('');
 
-    await fetch('https://formspree.io/f/xbderpnp',{
+    await fetch('https://script.google.com/macros/s/AKfycbwEjNSAHS-78EDJcelFLdsGbm_xcvBsOQGxDe7kqKzfz0nx9OKS4rWTjYqqSozs3sEZyw/exec',{
       method:'POST',
-      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
-        _subject:`[GC診斷表] ${data.company} — ${code}`,
-        _replyto:data.email,
-        診斷編號:code,
-        介紹方:data.referrer,
-        公司名稱:data.company,
-        聯絡人:`${data.contact}${data.title?' / '+data.title:''}`,
-        電子信箱:data.email,
-        其他聯絡方式:otherContact,
-        message:message
+        '診斷編號':code,
+        '提交時間':data.submittedAt,
+        '介紹方':data.referrer,
+        '公司名稱':data.company,
+        '聯絡人':data.contact,
+        '職稱':data.title,
+        '電子信箱':data.email,
+        '其他聯絡方式':otherContact,
+        '公司登記地':country,
+        '品牌名稱':data.brands,
+        '產品類別':data.categories,
+        '類別補充說明':data.categoryOther,
+        '商品特性':data.tags,
+        '出口國家／地區':data.exportCountries,
+        '產品說明':data.productDesc,
+        '是否有外銷經驗':data.exportExp,
+        '過去外銷國家':data.expCountries,
+        '過去外銷主力產品':data.expProducts,
+        '年度外銷營收':data.expRevenue,
+        '過去外銷方式':data.expMethods,
+        '現有SKU數量':data.sku,
+        '產品平均售價':data.price,
+        '目標市場':data.markets,
+        '已有經銷商／進口商':data.distributor,
+        '每月可負擔營運成本':data.opex,
+        '每月行銷預算':data.marketing,
+        '年度營收目標':data.revenueTarget,
+        '樣品提供':data.sample,
+        '啟動時間':data.launchTime,
+        '希望拓銷方式':data.channels,
+        '直播帶貨經驗':data.liveExp,
+        '廠商代表（直播）':data.liveRep,
+        '海外參展經驗':data.overseasExp,
+        '參展國家':data.overseasCountries,
+        '當地語言代表':data.localRep,
+        '電商經驗':data.ecomExp,
+        '現有電商平台':data.ecomPlatforms,
+        '自有電商營運團隊':data.ecomTeam,
+        '電商產品認證':data.ecomCert,
+        '實體通路經驗':data.retailExp,
+        '實體通路國家':data.retailCountries,
+        '合作通路類型':data.retailChannels,
+        '實體通路認證':data.retailCert,
+        '接受寄賣':data.consign,
+        '可提供寄賣數量':data.consignQty,
+        '其他補充說明':data.otherNotes
       })
     });
-  }catch(e){console.warn('Formspree error',e);}
+  }catch(e){console.warn('Apps Script error',e);}
   setTimeout(()=>{
     document.getElementById('submittingOverlay').classList.remove('show');
     document.getElementById('diagnosisCode').textContent=code;
