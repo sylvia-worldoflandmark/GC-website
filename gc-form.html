@@ -1612,7 +1612,8 @@ async function submitForm(){
 
     await fetch('https://script.google.com/macros/s/AKfycbwEjNSAHS-78EDJcelFLdsGbm_xcvBsOQGxDe7kqKzfz0nx9OKS4rWTjYqqSozs3sEZyw/exec',{
       method:'POST',
-      headers:{'Content-Type':'application/json'},
+      headers:{'Content-Type':'text/plain'},
+      mode:'no-cors',
       body:JSON.stringify({
         '診斷編號':code,
         '提交時間':data.submittedAt,
