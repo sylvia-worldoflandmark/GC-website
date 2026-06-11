@@ -483,6 +483,43 @@ select { appearance: none; -webkit-appearance: none; background-image: url("data
   .sidebar { display: none; }
   .main-content { padding: 2rem 5vw; }
 }
+
+/* Searchable select */
+.searchable-select { position: relative; }
+.ss-input-wrap {
+  position: relative;
+  display: flex; align-items: center;
+}
+.ss-search {
+  width: 100%; padding: 0.72rem 2.5rem 0.72rem 1rem;
+  background: #f4f5f7; border: 1.5px solid #dde1e9;
+  border-radius: 8px; font-size: 0.95rem; color: #0d1117;
+  cursor: pointer; transition: border-color 0.18s;
+  box-sizing: border-box;
+}
+.ss-search:focus { outline: none; border-color: #1460A8; background: #fff; }
+.ss-search.has-value { color: #0d1117; }
+.ss-arrow {
+  position: absolute; right: 1rem; font-size: 1.1rem;
+  color: #7C8799; pointer-events: none; transition: transform 0.2s;
+}
+.searchable-select.open .ss-arrow { transform: rotate(180deg); }
+.ss-list {
+  display: none; position: absolute; top: calc(100% + 4px); left: 0; right: 0;
+  background: #fff; border: 1.5px solid #dde1e9; border-radius: 8px;
+  max-height: 220px; overflow-y: auto; z-index: 200;
+  list-style: none; padding: 0.3rem 0; margin: 0;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+}
+.searchable-select.open .ss-list { display: block; }
+.ss-list li {
+  padding: 0.6rem 1rem; font-size: 0.93rem; color: #0d1117;
+  cursor: pointer; transition: background 0.15s;
+}
+.ss-list li:hover, .ss-list li.ss-focused { background: #eef3fb; }
+.ss-list li.ss-selected { color: #1460A8; font-weight: 500; }
+.ss-list li.ss-placeholder { color: #7C8799; }
+.ss-list li.ss-hidden { display: none; }
 </style>
 </head>
 <body>
@@ -540,13 +577,25 @@ select { appearance: none; -webkit-appearance: none; background-image: url("data
 
       <div class="field-group">
         <label>介紹方</label>
-        <select id="f_referrer">
-          <option value="">請選擇介紹方</option>
-          <option value="七海商事 - 工藤七海">七海商事 - 工藤七海</option>
-          <option value="新樹國際貿易 - Albert">新樹國際貿易 - Albert</option>
-          <option value="頂宏生技 - Jordan">頂宏生技 - Jordan</option>
-          <option value="Tonic Home And Appliances - Yongyee">Tonic Home And Appliances - Yongyee</option>
-        </select>
+        <!-- hidden real input for form submission -->
+        <input type="hidden" id="f_referrer" value="">
+        <div class="searchable-select" id="ss_referrer">
+          <div class="ss-input-wrap">
+            <input type="text" class="ss-search" placeholder="請選擇或搜尋介紹方" autocomplete="off" id="ss_referrer_input">
+            <span class="ss-arrow">&#8964;</span>
+          </div>
+          <ul class="ss-list" id="ss_referrer_list">
+            <li data-value="" class="ss-placeholder">請選擇介紹方</li>
+            <li data-value="周澐(地標) - landmark">周澐(地標) - landmark</li>
+            <li data-value="何亞芳 - bora">何亞芳 - bora</li>
+            <li data-value="工藤七海 - Kudou Nanami">工藤七海 - Kudou Nanami</li>
+            <li data-value="莊婷歡 - Sage">莊婷歡 - Sage</li>
+            <li data-value="黃英豪 - Albert Huang">黃英豪 - Albert Huang</li>
+            <li data-value="江享訓 - Jordan">江享訓 - Jordan</li>
+            <li data-value="黃用孜 - Yungtzu">黃用孜 - Yungtzu</li>
+            <li data-value="黃楚瑩 - Yongyee">黃楚瑩 - Yongyee</li>
+          </ul>
+        </div>
       </div>
 
       <div class="field-group">
@@ -1606,6 +1655,50 @@ document.addEventListener('DOMContentLoaded', function(){
     }
   });
 });
+</script>
+
+<script>
+(function(){
+  const wrap = document.getElementById('ss_referrer');
+  const input = document.getElementById('ss_referrer_input');
+  const list  = document.getElementById('ss_referrer_list');
+  const hidden = document.getElementById('f_referrer');
+  const items = Array.from(list.querySelectorAll('li:not(.ss-placeholder)'));
+
+  function openList(){ wrap.classList.add('open'); }
+  function closeList(){ wrap.classList.remove('open'); }
+
+  input.addEventListener('focus', openList);
+  input.addEventListener('click', openList);
+
+  input.addEventListener('input', function(){
+    const q = this.value.toLowerCase();
+    items.forEach(li => {
+      li.classList.toggle('ss-hidden', !li.textContent.toLowerCase().includes(q));
+    });
+    // clear selection if user types new text
+    if(this.value === '') hidden.value = '';
+  });
+
+  list.addEventListener('mousedown', function(e){
+    const li = e.target.closest('li');
+    if(!li) return;
+    e.preventDefault();
+    const val = li.dataset.value;
+    hidden.value = val;
+    input.value = val ? li.textContent.trim() : '';
+    input.classList.toggle('has-value', !!val);
+    items.forEach(l => l.classList.remove('ss-selected'));
+    if(val) li.classList.add('ss-selected');
+    // reset filter
+    items.forEach(l => l.classList.remove('ss-hidden'));
+    closeList();
+  });
+
+  document.addEventListener('mousedown', function(e){
+    if(!wrap.contains(e.target)) closeList();
+  });
+})();
 </script>
 </body>
 </html>
