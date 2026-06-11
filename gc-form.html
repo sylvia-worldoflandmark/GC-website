@@ -1253,7 +1253,6 @@ select { appearance: none; -webkit-appearance: none; background-image: url("data
       <div class="success-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
       <div class="step-badge">提交成功</div>
       <h1 class="step-title" style="margin-bottom:0.3rem">診斷表單已送出</h1>
-      <div class="diagnosis-code" id="diagnosisCode">GC-EXD-202606-0501</div>
       <p style="font-size:0.9rem;color:var(--white-dim);line-height:1.8;max-width:520px;margin-bottom:0.5rem">感謝您提交 GC 跨境服務需求診斷表。GC 顧問團隊將於 3 個工作天內透過電子信箱或您提供的聯絡方式與您聯繫。</p>
       <ul class="timeline-list">
         <li><div class="tl-num">1</div><div>GC 團隊審閱診斷資料</div></li>
@@ -1263,7 +1262,7 @@ select { appearance: none; -webkit-appearance: none; background-image: url("data
         <li><div class="tl-num">5</div><div>根據您的需求提供初步服務建議與報價</div></li>
       </ul>
       <div class="success-actions">
-        <a href="mailto:sylvia@worldoflandmark.com" class="btn-next" style="text-decoration:none;display:inline-flex;align-items:center;gap:8px;">
+        <a href="mailto:support@worldoflandmark.com" class="btn-next" style="text-decoration:none;display:inline-flex;align-items:center;gap:8px;">
           <span>直接聯繫 GC 業務團隊</span>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         </a>
@@ -1539,7 +1538,8 @@ function collectData(){
     retailExp:getRadioVal('f_retail_exp'),retailCountries:g('f_retail_countries'),retailChannels:g('f_retail_channels'),retailCert:getRadioVal('f_retail_cert'),
     consign:getRadioVal('f_consign'),consignQty:g('f_consign_qty'),
     otherNotes:g('f_other_notes'),
-    submittedAt:new Date().toISOString()
+    submittedAt:(()=>{const n=new Date();const pad=v=>String(v).padStart(2,'0');return `${n.getFullYear()}-${pad(n.getMonth()+1)}-${pad(n.getDate())} ${pad(n.getHours())}:${pad(n.getMinutes())}:${pad(n.getSeconds())}`;})()
+
   };
 }
 
@@ -1557,7 +1557,6 @@ async function submitForm(){
     const country=data.country==='其他'?data.countryOther:data.country;
     const otherContact=data.otherContactType?`${data.otherContactType}: ${data.otherContactVal}`:'';
     const message=[
-      `診斷編號: ${code}`,
       `提交時間: ${data.submittedAt}`,
       section('基本資料'),
       row('介紹方',data.referrer),
@@ -1615,7 +1614,6 @@ async function submitForm(){
       headers:{'Content-Type':'text/plain'},
       mode:'no-cors',
       body:JSON.stringify({
-        '診斷編號':code,
         '提交時間':data.submittedAt,
         '介紹方':data.referrer,
         '公司名稱':data.company,
@@ -1666,7 +1664,6 @@ async function submitForm(){
   }catch(e){console.warn('Apps Script error',e);}
   setTimeout(()=>{
     document.getElementById('submittingOverlay').classList.remove('show');
-    document.getElementById('diagnosisCode').textContent=code;
     document.querySelectorAll('.step-page').forEach(p=>p.classList.remove('active'));
     document.getElementById('step-success').classList.add('active');
     document.getElementById('progressBar').style.width='100%';
