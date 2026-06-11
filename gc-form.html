@@ -1170,6 +1170,7 @@ select { appearance: none; -webkit-appearance: none; background-image: url("data
       <!-- STEP 1 -->
       <div class="summary-block">
         <h4>基本資料</h4>
+        <div class="summary-row"><div class="summary-key">介紹方</div><div class="summary-val" id="sum_referrer">—</div></div>
         <div class="summary-row"><div class="summary-key">公司名稱</div><div class="summary-val" id="sum_company">—</div></div>
         <div class="summary-row"><div class="summary-key">聯絡人</div><div class="summary-val" id="sum_contact">—</div></div>
         <div class="summary-row"><div class="summary-key">職稱</div><div class="summary-val" id="sum_title">—</div></div>
@@ -1436,6 +1437,7 @@ function buildSummary(){
   const sv=(id,val)=>{const el=document.getElementById(id);if(el)el.textContent=val||'—';};
   const hide=(rowId,show)=>{const el=document.getElementById(rowId);if(el)el.style.display=show?'':'none';};
 
+  sv('sum_referrer',g('f_referrer'));
   sv('sum_company',g('f_company'));
   sv('sum_contact',g('f_contact'));
   sv('sum_title',g('f_title'));
@@ -1517,7 +1519,7 @@ function buildSummary(){
 function collectData(){
   const g=id=>{const el=document.getElementById(id);return el?el.value.trim():'';};
   return{
-    company:g('f_company'),contact:g('f_contact'),title:g('f_title'),email:g('f_email'),
+    referrer:g('f_referrer'),company:g('f_company'),contact:g('f_contact'),title:g('f_title'),email:g('f_email'),
     otherContactType:getRadioVal('f_other_contact_type'),otherContactVal:g('f_other_contact_val'),
     country:getRadioVal('f_country'),countryOther:g('f_country_other'),
     brands:getBrands().join('、'),
@@ -1558,6 +1560,7 @@ async function submitForm(){
       `診斷編號: ${code}`,
       `提交時間: ${data.submittedAt}`,
       section('基本資料'),
+      row('介紹方',data.referrer),
       row('公司名稱',data.company),
       row('聯絡人',data.contact),
       row('職稱',data.title),
@@ -1614,6 +1617,7 @@ async function submitForm(){
         _subject:`[GC診斷表] ${data.company} — ${code}`,
         _replyto:data.email,
         診斷編號:code,
+        介紹方:data.referrer,
         公司名稱:data.company,
         聯絡人:`${data.contact}${data.title?' / '+data.title:''}`,
         電子信箱:data.email,
