@@ -796,7 +796,31 @@ render();
     .faq-answer-inner p:last-child{margin-bottom:0;}
     .faq-answer-inner ol,.faq-answer-inner ul{padding-left:1.4rem;margin:0.4rem 0 0.7rem;}
     .faq-answer-inner li{margin-bottom:0.3rem;}
-  </style>
+  
+@media(max-width:768px){
+  .ptnr-wrap{padding:0 4vw;gap:10px;}
+  .ptnr-arrow{width:34px;height:34px;}
+  .ptnr-arrow svg{width:14px;height:14px;}
+  .ptnr-stage{
+    grid-template-columns:1fr;
+    grid-template-rows:auto;
+    min-height:auto;
+  }
+  .ptnr-stage > :nth-child(2){
+    display:block;height:1px;width:auto;background:rgba(30,41,59,0.08);
+  }
+  .ptnr-card-left{padding:1.6rem 1.4rem 1.4rem;}
+  .ptnr-card-left > div:first-child > div:first-child{
+    flex-direction:column-reverse;align-items:flex-start;gap:10px;
+  }
+  .ptnr-logo-wrap{max-width:120px;max-height:56px;}
+  .ptnr-name{font-size:1.15rem;}
+  .ptnr-desc{font-size:0.8rem;}
+  .ptnr-dots-row{padding-top:1.2rem;}
+  .ptnr-right{padding:1.4rem 1.4rem 1.6rem;}
+  .ptnr-svc-row{font-size:0.8rem;}
+}
+</style>
   <div class="faq-wrap">
     <h2 class="faq-title" style="text-align:center;">常見問題</h2>
     <p class="faq-subtitle" style="text-align:center;">關於 GC 平台，您最常想了解的事</p>
