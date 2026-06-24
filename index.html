@@ -677,7 +677,7 @@ function render(){
   if(p.logoUrl){
     lw.style.cssText='background:none;border:none;padding:0;';
     lw.style.display='flex';
-    lw.innerHTML='<img src="'+p.logoUrl+'" alt="logo" style="max-height:80px;max-width:150px;width:auto;height:auto;object-fit:contain;display:block;">';
+    lw.innerHTML='<img src="'+p.logoUrl+'" alt="logo" style="max-height:68px;max-width:100%;width:auto;height:auto;object-fit:contain;display:block;">';
   } else {
     lw.style.cssText='display:none';
     lw.innerHTML='';
@@ -813,7 +813,7 @@ render();
   .ptnr-card-left > div:first-child > div:first-child{
     flex-direction:column-reverse;align-items:flex-start;gap:10px;
   }
-  .ptnr-logo-wrap{max-width:120px;max-height:56px;}
+  .ptnr-logo-wrap{max-width:200px;max-height:72px;padding:8px 12px;}
   .ptnr-name{font-size:1.15rem;}
   .ptnr-desc{font-size:0.8rem;}
   .ptnr-dots-row{padding-top:1.2rem;}
