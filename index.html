@@ -374,6 +374,7 @@ nav.scrolled .nav-hamburger span{background:#FFFAFA;}
 }
 
 @media(max-width:900px){
+  nav{justify-content:flex-start;}
   .nav-links{display:none;}
   .nav-right{display:flex;}
   .nav-hamburger{display:flex;}
@@ -486,6 +487,83 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
 .ptnr-svc-row, .ptnr-svc-num, .ptnr-prob-tag,
 .ptnr-count, .ptnr-rlabel, .ptnr-right-inner {
   font-family: 'Inter', 'Noto Sans TC', 'M PLUS 1p', sans-serif;
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE — TABLET & MOBILE FIXES
+   ═══════════════════════════════════════════ */
+
+/* ── Tablet (≤900px) ── */
+@media(max-width:900px){
+  /* Section vertical padding */
+  section{padding:80px 5vw;}
+  #cta-section{padding:80px 5vw;}
+
+  /* Hero */
+  #hero{padding:100px 6vw 80px;}
+  .hero-content{max-width:100%;}
+
+  /* Lang switcher: push right next to CTA */
+  .gc-lang-switcher{margin-left:auto;margin-right:0.4rem;}
+}
+
+/* ── Small tablet / large phone (≤768px) ── */
+@media(max-width:768px){
+  section{padding:64px 5vw;}
+  #cta-section{padding:64px 5vw;}
+  #partners{padding:48px 0 80px;}
+
+  /* Partners v6: stack left/right panels vertically */
+  .ptnr-wrap{flex-direction:column;gap:0;padding:0 4vw;}
+  .ptnr-arrow{display:none;}
+  .ptnr-stage{
+    grid-template-columns:1fr;
+    min-height:auto;
+    width:100%;
+  }
+  .ptnr-divider{display:none;}
+  .ptnr-card-left{padding:1.6rem 1.4rem 1.4rem;}
+  .ptnr-card-right{padding:1.4rem 1.4rem 1.6rem;gap:1.2rem;}
+  .ptnr-name{font-size:1.15rem;}
+  .ptnr-dots-row{padding-top:1rem;}
+
+  /* Partner dots nav row below stage */
+  .ptnr-dots-nav{margin-top:1.2rem;}
+
+  /* Why: keep 2-col on tablet but reduce card padding */
+  .why-card{padding:1.4rem 1.1rem;}
+
+  /* Hero adjustments */
+  #hero{padding:96px 5vw 64px;}
+  .hero-content{max-width:100%;}
+
+  /* Footer stack */
+  footer{flex-direction:column;align-items:flex-start;padding:2rem 5vw;}
+}
+
+/* ── Mobile (≤520px) ── */
+@media(max-width:520px){
+  section{padding:56px 4vw;}
+  #cta-section{padding:56px 4vw;}
+  #partners{padding:40px 0 64px;}
+
+  /* Partners v6 */
+  .ptnr-wrap{padding:0 3vw;}
+  .ptnr-card-left{padding:1.4rem 1.2rem 1.2rem;}
+  .ptnr-card-right{padding:1.2rem 1.2rem 1.4rem;gap:1rem;}
+  .ptnr-name{font-size:1.05rem;}
+
+  /* Services: keep 2 columns but smaller padding */
+  .service-card{padding:1.2rem 1rem;}
+
+  /* Hero */
+  #hero{padding:88px 4vw 56px;}
+  .hero-actions{flex-direction:column;}
+  .hero-actions .btn-primary,
+  .hero-actions .btn-secondary{width:100%;justify-content:center;}
+
+  /* Process section center the timeline */
+  .process-timeline{margin:0 auto;}
 }
 </style>
 </head>
