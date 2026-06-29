@@ -1349,12 +1349,32 @@ function gcToggleLangMenu() {
 
 function gcSetLang(lang) {
   gcApplyLang(lang);
+  // Desktop dropdown
   const dd   = document.getElementById('gcLangDropdown');
   const btn  = document.getElementById('gcLangBtn');
   const chev = document.getElementById('gcLangChev');
   if (dd)   dd.classList.remove('gc-open');
   if (btn)  btn.classList.remove('gc-btn-active');
   if (chev) chev.classList.remove('gc-chev-open');
+  // Mobile dropdown (partner.html)
+  const ddM   = document.getElementById('gcLangDropdownM');
+  const btnM  = document.getElementById('gcLangBtnM');
+  const chevM = document.getElementById('gcLangChevM');
+  if (ddM)   ddM.classList.remove('gc-open');
+  if (btnM)  btnM.classList.remove('gc-btn-active');
+  if (chevM) chevM.classList.remove('gc-chev-open');
+  // Notify other scripts (e.g. partner card re-render)
+  document.dispatchEvent(new CustomEvent('gc:langchange', { detail: { lang } }));
+}
+
+function gcToggleLangMenuM() {
+  const dd   = document.getElementById('gcLangDropdownM');
+  const btn  = document.getElementById('gcLangBtnM');
+  const chev = document.getElementById('gcLangChevM');
+  if (!dd) return;
+  const open = dd.classList.toggle('gc-open');
+  if (btn)  btn.classList.toggle('gc-btn-active', open);
+  if (chev) chev.classList.toggle('gc-chev-open', open);
 }
 
 // Close dropdown on outside click
