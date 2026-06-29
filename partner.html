@@ -222,9 +222,8 @@ textarea.field-input{resize:vertical;min-height:90px;line-height:1.6;}
 /* Lang switcher always visible */
 .gc-lang-switcher{display:flex;align-items:center;}
 @media(max-width:900px){
-  /* hide desktop-only switcher, show one inside mobile menu instead */
-  nav > .gc-lang-switcher{display:none;}
-  .gc-lang-switcher-mobile{display:flex !important;}
+  /* Lang switcher: push right next to CTA, same as index.html */
+  .gc-lang-switcher{margin-left:auto;margin-right:0.4rem;}
 }
 
 .gc-lang-switcher{position:relative;}
@@ -283,6 +282,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
     <li><a href="index.html#services" data-i18n="nav.services">顧問服務</a></li>
     <li><a href="index.html#partners" data-i18n="nav.partners">服務商介紹</a></li>
     <li><a href="index.html#process" data-i18n="nav.process">合作流程</a></li>
+    <li><a href="index.html#faq" data-i18n="nav.faq">常見問題</a></li>
     <li><a href="partner.html" class="nav-active" data-i18n="nav.become">成為服務商</a></li>
     <li><a href="gc-form.html" class="nav-cta" data-i18n="nav.cta">立即諮詢</a></li>
   </ul>
@@ -334,6 +334,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
   <a href="index.html#services" onclick="closeMobileMenu()" data-i18n="nav.services">顧問服務</a>
   <a href="index.html#partners" onclick="closeMobileMenu()" data-i18n="nav.partners">服務商介紹</a>
   <a href="index.html#process" onclick="closeMobileMenu()" data-i18n="nav.process">合作流程</a>
+  <a href="index.html#faq" onclick="closeMobileMenu()" data-i18n="nav.faq">常見問題</a>
   <a href="partner.html" style="color:var(--cyan)!important;" onclick="closeMobileMenu()" data-i18n="nav.become">成為服務商</a>
   <a href="gc-form.html" class="m-cta" onclick="closeMobileMenu()" data-i18n="nav.cta">立即諮詢</a>
 </div>
