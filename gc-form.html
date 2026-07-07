@@ -724,6 +724,25 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
         <div class="error-msg" id="e_brand" data-i18n="form.err.brand">請至少填寫一個品牌名稱</div>
       </div>
 
+      <div class="field-group">
+        <label data-i18n="form.lbl.source">您是從哪裡得知 GC 服務？</label>
+        <div class="radio-group horizontal">
+          <div class="chip" onclick="selectRadioChip(this,'f_source','Facebook');toggleCond('cond_source_other',false)"><div class="chip-icon"></div>Facebook</div>
+          <div class="chip" onclick="selectRadioChip(this,'f_source','Instagram');toggleCond('cond_source_other',false)"><div class="chip-icon"></div>Instagram</div>
+          <div class="chip" onclick="selectRadioChip(this,'f_source','Threads');toggleCond('cond_source_other',false)"><div class="chip-icon"></div>Threads</div>
+          <div class="chip" onclick="selectRadioChip(this,'f_source','朋友同業介紹');toggleCond('cond_source_other',false)"><div class="chip-icon"></div><span data-i18n="form.chip.source.friend">朋友同業介紹</span></div>
+          <div class="chip" onclick="selectRadioChip(this,'f_source','Google 搜尋');toggleCond('cond_source_other',false)"><div class="chip-icon"></div><span data-i18n="form.chip.source.google">Google 搜尋</span></div>
+          <div class="chip" onclick="selectRadioChip(this,'f_source','展覽活動現場');toggleCond('cond_source_other',false)"><div class="chip-icon"></div><span data-i18n="form.chip.source.event">展覽活動現場</span></div>
+          <div class="chip" onclick="selectRadioChip(this,'f_source','其他');toggleCond('cond_source_other',true)"><div class="chip-icon"></div><span data-i18n="form.chip.source.other">其他</span></div>
+        </div>
+        <div class="conditional" id="cond_source_other">
+          <div class="field-group" style="margin:0">
+            <label data-i18n="form.lbl.source_other">請說明得知管道</label>
+            <input type="text" id="f_source_other" data-i18n-ph="form.ph.source_other" placeholder="請簡述您得知 GC 服務的管道">
+          </div>
+        </div>
+      </div>
+
       <div class="step-nav">
         <div></div>
         <button class="btn-next" onclick="nextStep(1)"><span data-i18n="form.btn.next">下一步</span><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
@@ -1235,6 +1254,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
         <div class="summary-row"><div class="summary-key" data-i18n="form.sum.k.other_contact">其他聯絡方式</div><div class="summary-val" id="sum_other_contact">—</div></div>
         <div class="summary-row"><div class="summary-key" data-i18n="form.sum.k.reg_country">公司登記地</div><div class="summary-val" id="sum_country">—</div></div>
         <div class="summary-row"><div class="summary-key" data-i18n="form.sum.k.brands">品牌名稱</div><div class="summary-val" id="sum_brands">—</div></div>
+        <div class="summary-row"><div class="summary-key" data-i18n="form.sum.k.source">得知管道</div><div class="summary-val" id="sum_source">—</div></div>
       </div>
 
       <!-- STEP 2 -->
@@ -1494,6 +1514,7 @@ function buildSummary(){
   const hide=(rowId,show)=>{const el=document.getElementById(rowId);if(el)el.style.display=show?'':'none';};
 
   sv('sum_referrer',g('f_referrer'));
+  sv('sum_source',getRadioVal('f_source')==='其他'?g('f_source_other'):getRadioVal('f_source'));
   sv('sum_company',g('f_company'));
   sv('sum_contact',g('f_contact'));
   sv('sum_title',g('f_title'));
@@ -1575,7 +1596,7 @@ function buildSummary(){
 function collectData(){
   const g=id=>{const el=document.getElementById(id);return el?el.value.trim():'';};
   return{
-    referrer:g('f_referrer'),company:g('f_company'),contact:g('f_contact'),title:g('f_title'),email:g('f_email'),
+    referrer:g('f_referrer'),source:(getRadioVal('f_source')==='其他'?g('f_source_other'):getRadioVal('f_source')),company:g('f_company'),contact:g('f_contact'),title:g('f_title'),email:g('f_email'),
     otherContactType:getRadioVal('f_other_contact_type'),otherContactVal:g('f_other_contact_val'),
     country:getRadioVal('f_country'),countryOther:g('f_country_other'),
     brands:getBrands().join('、'),
@@ -1624,6 +1645,7 @@ async function submitForm(){
       row('其他聯絡方式',otherContact),
       row('公司登記地',country),
       row('品牌名稱',data.brands),
+      row('得知管道',data.source),
       section('產品類別與商品特性'),
       row('產品類別',data.categories),
       row('類別補充說明',data.categoryOther),
@@ -1680,6 +1702,7 @@ async function submitForm(){
         '其他聯絡方式':otherContact,
         '公司登記地':country,
         '品牌名稱':data.brands,
+        '得知管道':data.source,
         '產品類別':data.categories,
         '類別補充說明':data.categoryOther,
         '商品特性':data.tags,
