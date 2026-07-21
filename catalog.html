@@ -556,7 +556,9 @@ async function submitInquiry(){
   const email=(document.getElementById('iq-email').value||'').trim();
   if(!company||!contact||!email){ alert(t.needContact); return; }
   const btn=document.getElementById('iqSubmit'); btn.disabled=true; btn.textContent=t.sending;
+  const subId=(self.crypto&&crypto.randomUUID)?crypto.randomUUID():('inq-'+Date.now()+'-'+Math.random().toString(36).slice(2,10));
   const payload={
+    submission_id:subId,
     company_name:company, contact_name:contact, email:email,
     other_contact:(document.getElementById('iq-other').value||'').trim(),
     message:(document.getElementById('iq-note').value||'').trim(),

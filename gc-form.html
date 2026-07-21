@@ -1733,24 +1733,29 @@ async function submitForm(){
         '可提供寄賣數量':data.consignQty,
         '其他補充說明':data.otherNotes
     };
-    await fetch('https://script.google.com/macros/s/AKfycbwEjNSAHS-78EDJcelFLdsGbm_xcvBsOQGxDe7kqKzfz0nx9OKS4rWTjYqqSozs3sEZyw/exec',{
-      method:'POST',
-      headers:{'Content-Type':'text/plain'},
-      mode:'no-cors',
-      body:JSON.stringify(sheetPayload)
-    });
-    // 同時寫入 Supabase 供後台「需求診斷表」檢視
+    // 這筆送出的唯一識別碼：讓 Apps Script 產生 PDF 後能回填到同一筆後台紀錄
+    const subId=(self.crypto&&crypto.randomUUID)?crypto.randomUUID():('sub-'+Date.now()+'-'+Math.random().toString(36).slice(2,10));
+    // 先寫入 Supabase 供後台「需求診斷表」檢視（成敗以此為準）
     try{
       const _K='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ0emZlb2FocHN1dHlpa3V0c3lzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA5ODU2NTAsImV4cCI6MjA5NjU2MTY1MH0.1ouoDmHrmetOc_qsvPrXiKsKx8eDEebbsXr2Fk2Sy-o';
       const sbRes=await fetch('https://rtzfeoahpsutyikutsys.supabase.co/rest/v1/form_submissions',{
         method:'POST',
         headers:{apikey:_K,Authorization:'Bearer '+_K,'Content-Type':'application/json',Prefer:'return=minimal'},
-        body:JSON.stringify([{ company_name:data.company||null, contact_name:data.contact||null, email:data.email||null, brand_name:data.brands||null, data:sheetPayload }])
+        body:JSON.stringify([{ submission_id:subId, company_name:data.company||null, contact_name:data.contact||null, email:data.email||null, brand_name:data.brands||null, data:sheetPayload }])
       });
       sbOk=sbRes.ok;
       if(!sbRes.ok)console.warn('Supabase insert failed',await sbRes.text());
     }catch(sbErr){ console.warn('Supabase error',sbErr); }
-  }catch(e){console.warn('Apps Script error',e);}
+    // 再通知 Apps Script：產生 PDF、寄信給客服＋填寫者、並回填 pdf_url 到後台這筆紀錄
+    try{
+      await fetch('https://script.google.com/macros/s/AKfycbwEVkNRdzZPVOCA8y0DUE_8C0qpikQ3fk1A643UVfPCkFoYWQc_AzPHrSd8O0NythwVxg/exec',{
+        method:'POST',
+        headers:{'Content-Type':'text/plain'},
+        mode:'no-cors',
+        body:JSON.stringify(Object.assign({ submission_id:subId }, sheetPayload))
+      });
+    }catch(asErr){ console.warn('Apps Script error',asErr); }
+  }catch(e){console.warn('submit error',e);}
   if(!sbOk){
     /* Supabase 寫入失敗：不顯示成功頁，恢復按鈕讓使用者重試 */
     document.getElementById('submittingOverlay').classList.remove('show');
