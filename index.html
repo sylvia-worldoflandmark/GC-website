@@ -605,6 +605,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
     <li><a href="#partners" data-i18n="nav.partners">服務商介紹</a></li>
     <li><a href="#process" data-i18n="nav.process">合作流程</a></li>
     <li><a href="#faq" data-i18n="nav.faq">常見問題</a></li>
+    <li><a href="catalog.html" data-i18n="nav.catalog">商品貨盤</a></li>
     <li><a href="partner.html" data-i18n="nav.become">成為服務商</a></li>
     <li><a href="gc-form.html" class="nav-cta" data-i18n="nav.cta">立即諮詢</a></li>
   </ul>
@@ -642,6 +643,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
   <a href="#partners" onclick="closeMobileMenu()" data-i18n="nav.partners">服務商介紹</a>
   <a href="#process" onclick="closeMobileMenu()" data-i18n="nav.process">合作流程</a>
   <a href="#faq" onclick="closeMobileMenu()" data-i18n="nav.faq">常見問題</a>
+  <a href="catalog.html" onclick="closeMobileMenu()" data-i18n="nav.catalog">商品貨盤</a>
   <a href="partner.html" onclick="closeMobileMenu()" data-i18n="nav.become">成為服務商</a>
   <div style="border-top:1px solid rgba(255,255,255,0.08);margin-top:0.6rem;padding-top:0.8rem;display:flex;gap:0.5rem;">
     <div class="gc-lang-option" data-lang="zh" onclick="gcSetLang('zh');closeMobileMenu()" style="flex:1;justify-content:center;border:1px solid rgba(255,255,255,0.1);border-radius:6px;">
@@ -1014,24 +1016,6 @@ render();
 window._gcPtnrRender=render;
 })();
 </script>
-<script>
-  function toggleFaq(btn){
-    var item=btn.closest('.faq-item');
-    var ans=item.querySelector('.faq-answer');
-    var isOpen=item.classList.contains('open');
-    // close all
-    document.querySelectorAll('.faq-item.open').forEach(function(el){
-      el.classList.remove('open');
-      el.querySelector('.faq-answer').style.maxHeight='';
-      el.querySelector('.faq-answer').style.padding='';
-    });
-    if(!isOpen){
-      item.classList.add('open');
-      ans.style.maxHeight=ans.scrollHeight+'px';
-      ans.style.padding='0 1.5rem';
-    }
-  }
-  </script>
 </section>
 <section id="process" style="padding:100px 6vw;">
   <div class="process-header reveal">

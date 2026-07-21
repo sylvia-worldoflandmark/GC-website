@@ -656,12 +656,12 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
       </div>
 
       <div class="field-group">
-        <label data-i18n="form.lbl.company">公司名稱<span class="required-star">*</span></label>
+        <label><span data-i18n="form.lbl.company">公司名稱</span><span class="required-star">*</span></label>
         <input type="text" id="f_company" maxlength="100" data-i18n-ph="form.ph.company" placeholder="請輸入公司名稱">
         <div class="error-msg" data-i18n="form.err.company" id="e_company">請填寫公司名稱</div>
       </div>
       <div class="field-group">
-        <label data-i18n="form.lbl.contact">聯絡人姓名<span class="required-star">*</span></label>
+        <label><span data-i18n="form.lbl.contact">聯絡人姓名</span><span class="required-star">*</span></label>
         <input type="text" id="f_contact" maxlength="50" data-i18n-ph="form.ph.contact" placeholder="請輸入聯絡人姓名">
         <div class="error-msg" id="e_contact" data-i18n="form.err.contact">請填寫聯絡人姓名</div>
       </div>
@@ -670,7 +670,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
         <input type="text" id="f_title" maxlength="50" data-i18n-ph="form.ph.jobtitle" placeholder="例如：品牌總監、業務經理">
       </div>
       <div class="field-group">
-        <label data-i18n="form.lbl.email">電子信箱<span class="required-star">*</span></label>
+        <label><span data-i18n="form.lbl.email">電子信箱</span><span class="required-star">*</span></label>
         <input type="email" id="f_email" placeholder="example@company.com">
         <div class="error-msg" id="e_email" data-i18n="form.err.email">請填寫有效的電子信箱</div>
       </div>
@@ -685,7 +685,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
         </div>
         <div class="conditional" id="cond_other_contact">
           <div class="field-group" style="margin:0">
-            <label data-i18n="form.lbl.contact_acc">聯絡帳號 / 號碼<span class="required-star">*</span></label>
+            <label><span data-i18n="form.lbl.contact_acc">聯絡帳號 / 號碼</span><span class="required-star">*</span></label>
             <input type="text" id="f_other_contact_val" data-i18n-ph="form.ph.contact_acc" placeholder="請輸入帳號或號碼">
             <div class="error-msg" id="e_other_contact_val" data-i18n="form.err.other_contact">請填寫帳號或號碼</div>
           </div>
@@ -693,7 +693,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
       </div>
 
       <div class="field-group">
-        <label data-i18n="form.lbl.reg_country">公司登記地<span class="required-star">*</span></label>
+        <label><span data-i18n="form.lbl.reg_country">公司登記地</span><span class="required-star">*</span></label>
         <div class="radio-group horizontal">
           <div class="chip" onclick="selectRadioChip(this,'f_country','台灣');toggleCond('cond_country',false)"><div class="chip-icon"></div><span data-i18n="form.chip.country.tw">台灣</span></div>
           <div class="chip" onclick="selectRadioChip(this,'f_country','中國');toggleCond('cond_country',false)"><div class="chip-icon"></div><span data-i18n="form.chip.country.cn">中國</span></div>
@@ -706,7 +706,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
         <div class="error-msg" id="e_country" data-i18n="form.err.country">請選擇公司登記地</div>
         <div class="conditional" id="cond_country">
           <div class="field-group" style="margin:0">
-            <label data-i18n="form.lbl.reg_other">請說明登記地<span class="required-star">*</span></label>
+            <label><span data-i18n="form.lbl.reg_other">請說明登記地</span><span class="required-star">*</span></label>
             <input type="text" id="f_country_other" data-i18n-ph="form.ph.reg_other" placeholder="請填寫公司登記地">
             <div class="error-msg" id="e_country_other" data-i18n="form.err.country_other">請填寫登記地說明</div>
           </div>
@@ -714,7 +714,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
       </div>
 
       <div class="field-group">
-        <label data-i18n="form.lbl.brands">品牌名稱<span class="required-star">*</span>（最多 5 個）</label>
+        <label><span data-i18n="form.lbl.brands">品牌名稱（最多 5 個）</span><span class="required-star">*</span></label>
         <div class="brand-list" id="brandList">
           <div class="brand-row"><input type="text" class="brand-input" data-i18n-ph="form.ph.brand1" placeholder="品牌名稱 1" maxlength="100"></div>
         </div>
@@ -758,7 +758,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
       </div>
 
       <div class="field-group">
-        <label data-i18n="form.lbl.product_cat">產品類別<span class="required-star">*</span>（可複選）</label>
+        <label><span data-i18n="form.lbl.product_cat">產品類別（可複選）</span><span class="required-star">*</span></label>
         <div class="category-section">
           <div class="category-section-title" data-i18n="form.cat.food_health">食品與健康</div>
           <div class="cat-grid" id="catGrid1">
@@ -794,7 +794,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
         <div class="error-msg" id="e_cat" data-i18n="form.err.cat">請至少選擇一個產品類別</div>
         <div class="conditional" id="cond_cat_other">
           <div class="field-group" style="margin:0">
-            <label data-i18n="form.lbl.cat_other">其他類別說明<span class="required-star">*</span></label>
+            <label><span data-i18n="form.lbl.cat_other">其他類別說明</span><span class="required-star">*</span></label>
             <input type="text" id="f_cat_other" data-i18n-ph="form.ph.cat_other" placeholder="請說明產品類別">
             <div class="error-msg" id="e_cat_other" data-i18n="form.err.cat_other">請填寫類別說明</div>
           </div>
@@ -822,7 +822,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
       <hr class="field-divider">
 
       <div class="field-group">
-        <label data-i18n="form.lbl.export_dest">產品預計出口國 / 出貨地<span class="required-star">*</span>（可複選）</label>
+        <label><span data-i18n="form.lbl.export_dest">產品預計出口國 / 出貨地（可複選）</span><span class="required-star">*</span></label>
         <div class="checkbox-group horizontal">
           <div class="chip" onclick="toggleCheckChip(this,'f_export','台灣')"><div class="chip-icon sq"></div>台灣</div>
           <div class="chip" onclick="toggleCheckChip(this,'f_export','中國')"><div class="chip-icon sq"></div>中國</div>
@@ -862,7 +862,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
       </div>
 
       <div class="field-group">
-        <label data-i18n="form.lbl.export_exp">是否曾有外銷經驗<span class="required-star">*</span></label>
+        <label><span data-i18n="form.lbl.export_exp">是否曾有外銷經驗</span><span class="required-star">*</span></label>
         <div class="radio-group horizontal">
           <div class="chip" onclick="selectRadioChip(this,'f_export_exp','沒有');toggleCond('cond_export_exp',false)"><div class="chip-icon"></div><span data-i18n="form.opt.no">沒有</span></div>
           <div class="chip" onclick="selectRadioChip(this,'f_export_exp','有');toggleCond('cond_export_exp',true)"><div class="chip-icon"></div><span data-i18n="form.opt.yes">有</span></div>
@@ -870,17 +870,17 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
         <div class="error-msg" id="e_export_exp" data-i18n="form.err.export_exp">請選擇是否有外銷經驗</div>
         <div class="conditional" id="cond_export_exp">
           <div class="field-group">
-            <label data-i18n="form.lbl.exp_countries">過去主要外銷國家<span class="required-star">*</span></label>
+            <label><span data-i18n="form.lbl.exp_countries">過去主要外銷國家</span><span class="required-star">*</span></label>
             <input type="text" id="f_exp_countries" maxlength="500" data-i18n-ph="form.ph.exp_countries" placeholder="例如：日本、新加坡、馬來西亞">
             <div class="error-msg" id="e_exp_countries" data-i18n="form.err.exp_countries">請填寫外銷國家</div>
           </div>
           <div class="field-group">
-            <label data-i18n="form.lbl.exp_products">過去外銷主力產品<span class="required-star">*</span></label>
+            <label><span data-i18n="form.lbl.exp_products">過去外銷主力產品</span><span class="required-star">*</span></label>
             <input type="text" id="f_exp_products" maxlength="500" data-i18n-ph="form.ph.exp_products" placeholder="請描述主力出口的產品">
             <div class="error-msg" id="e_exp_products" data-i18n="form.err.exp_products">請填寫主力產品</div>
           </div>
           <div class="field-group" style="margin:0">
-            <label data-i18n="form.lbl.exp_rev">過去年度外銷營收<span class="required-star">*</span></label>
+            <label><span data-i18n="form.lbl.exp_rev">過去年度外銷營收</span><span class="required-star">*</span></label>
             <div class="radio-group">
               <div class="chip" onclick="selectRadioChip(this,'f_exp_rev','未滿新台幣100萬')"><div class="chip-icon"></div>未滿新台幣 100 萬</div>
               <div class="chip" onclick="selectRadioChip(this,'f_exp_rev','新台幣100萬至500萬')"><div class="chip-icon"></div>新台幣 100 萬至 500 萬</div>
@@ -907,7 +907,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
       <hr class="field-divider">
 
       <div class="field-group">
-        <label data-i18n="form.lbl.sku">現有產品 SKU 數量<span class="required-star">*</span></label>
+        <label><span data-i18n="form.lbl.sku">現有產品 SKU 數量</span><span class="required-star">*</span></label>
         <div class="radio-group horizontal">
           <div class="chip" onclick="selectRadioChip(this,'f_sku','1至5個')"><div class="chip-icon"></div>1 至 5 個</div>
           <div class="chip" onclick="selectRadioChip(this,'f_sku','6至10個')"><div class="chip-icon"></div>6 至 10 個</div>
@@ -918,7 +918,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
       </div>
 
       <div class="field-group">
-        <label data-i18n="form.lbl.price">現有產品單個平均售價<span class="required-star">*</span></label>
+        <label><span data-i18n="form.lbl.price">現有產品單個平均售價</span><span class="required-star">*</span></label>
         <div class="radio-group horizontal">
           <div class="chip" onclick="selectRadioChip(this,'f_price','新台幣1至500')"><div class="chip-icon"></div>新台幣 1–500</div>
           <div class="chip" onclick="selectRadioChip(this,'f_price','新台幣500至1000')"><div class="chip-icon"></div>新台幣 500–1,000</div>
@@ -943,7 +943,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
       </div>
 
       <div class="field-group">
-        <label data-i18n="form.lbl.markets">目標市場<span class="required-star">*</span>（可複選）</label>
+        <label><span data-i18n="form.lbl.markets">目標市場（可複選）</span><span class="required-star">*</span></label>
         <div class="category-section">
           <div class="category-section-title" data-i18n="form.region.greater_china">大中華區</div>
           <div class="tag-group">
@@ -985,7 +985,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
           </div>
           <div class="conditional" id="cond_market_other">
             <div class="field-group" style="margin:0;margin-top:0.8rem">
-              <label data-i18n="form.lbl.market_other">其他地區說明<span class="required-star">*</span></label>
+              <label><span data-i18n="form.lbl.market_other">其他地區說明</span><span class="required-star">*</span></label>
               <input type="text" id="f_market_other" data-i18n-ph="form.ph.market_other" placeholder="請填寫目標地區">
               <div class="error-msg" id="e_market_other" data-i18n="form.err.market_other">請填寫目標地區說明</div>
             </div>
@@ -997,7 +997,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
       <hr class="field-divider">
 
       <div class="field-group">
-        <label data-i18n="form.lbl.distributor">目標市場是否已有經銷商或進口商<span class="required-star">*</span></label>
+        <label><span data-i18n="form.lbl.distributor">目標市場是否已有經銷商或進口商</span><span class="required-star">*</span></label>
         <div class="radio-group">
           <div class="chip" onclick="selectRadioChip(this,'f_distributor','已有')"><div class="chip-icon"></div>已有</div>
           <div class="chip" onclick="selectRadioChip(this,'f_distributor','洽談中')"><div class="chip-icon"></div>洽談中</div>
@@ -1008,7 +1008,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
       </div>
 
       <div class="field-group">
-        <label data-i18n="form.lbl.opex">預計每月品牌項目投入預算（不含行銷費用）<span class="required-star">*</span></label>
+        <label><span data-i18n="form.lbl.opex">預計每月品牌項目投入預算（不含行銷費用）</span><span class="required-star">*</span></label>
         <div class="radio-group">
           <div class="chip" onclick="selectRadioChip(this,'f_opex','每月新台幣100萬以下')"><div class="chip-icon"></div>每月新台幣 100 萬以下</div>
           <div class="chip" onclick="selectRadioChip(this,'f_opex','每月新台幣100萬至500萬')"><div class="chip-icon"></div>每月新台幣 100 萬至 500 萬</div>
@@ -1019,7 +1019,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
       </div>
 
       <div class="field-group">
-        <label data-i18n="form.lbl.mktg">預計每月投入行銷預算<span class="required-star">*</span></label>
+        <label><span data-i18n="form.lbl.mktg">預計每月投入行銷預算</span><span class="required-star">*</span></label>
         <div class="radio-group">
           <div class="chip" onclick="selectRadioChip(this,'f_mktg','每月新台幣10萬以下')"><div class="chip-icon"></div>每月新台幣 10 萬以下</div>
           <div class="chip" onclick="selectRadioChip(this,'f_mktg','每月新台幣10萬至30萬')"><div class="chip-icon"></div>每月新台幣 10 萬至 30 萬</div>
@@ -1030,7 +1030,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
       </div>
 
       <div class="field-group">
-        <label data-i18n="form.lbl.rev_target">預估每月額外創造營收目標<span class="required-star">*</span></label>
+        <label><span data-i18n="form.lbl.rev_target">預估每月額外創造營收目標</span><span class="required-star">*</span></label>
         <div class="radio-group">
           <div class="chip" onclick="selectRadioChip(this,'f_rev_target','每月新台幣50萬以下')"><div class="chip-icon"></div>每月新台幣 50 萬以下</div>
           <div class="chip" onclick="selectRadioChip(this,'f_rev_target','每月新台幣50萬至200萬')"><div class="chip-icon"></div>每月新台幣 50 萬至 200 萬</div>
@@ -1093,7 +1093,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
       <div class="conditional" id="cond_live">
         <div style="font-family:'Syne',sans-serif;font-size:0.82rem;font-weight:700;color:var(--blue-electric);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:1.2rem" data-i18n="form.ch.live.adv">直播帶貨 — 進階問題</div>
         <div class="field-group">
-          <label data-i18n="form.lbl.live_exp">是否有直播銷售經驗<span class="required-star">*</span></label>
+          <label><span data-i18n="form.lbl.live_exp">是否有直播銷售經驗</span><span class="required-star">*</span></label>
           <div class="radio-group horizontal">
             <div class="chip" onclick="selectRadioChip(this,'f_live_exp','有')"><div class="chip-icon"></div><span data-i18n="form.opt.yes">有</span></div>
             <div class="chip" onclick="selectRadioChip(this,'f_live_exp','沒有')"><div class="chip-icon"></div><span data-i18n="form.opt.no">沒有</span></div>
@@ -1101,7 +1101,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
           <div class="error-msg" id="e_live_exp" data-i18n="form.err.live_exp">請選擇</div>
         </div>
         <div class="field-group" style="margin:0">
-          <label data-i18n="form.lbl.live_rep">是否能提供廠商代表或助播<span class="required-star">*</span></label>
+          <label><span data-i18n="form.lbl.live_rep">是否能提供廠商代表或助播</span><span class="required-star">*</span></label>
           <div class="radio-group horizontal">
             <div class="chip" onclick="selectRadioChip(this,'f_live_rep','能提供')"><div class="chip-icon"></div><span data-i18n="form.opt.can">能提供</span></div>
             <div class="chip" onclick="selectRadioChip(this,'f_live_rep','無法提供')"><div class="chip-icon"></div><span data-i18n="form.opt.cannot">無法提供</span></div>
@@ -1114,7 +1114,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
       <div class="conditional" id="cond_overseas">
         <div style="font-family:'Syne',sans-serif;font-size:0.82rem;font-weight:700;color:var(--blue-electric);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:1.2rem" data-i18n="form.ch.overseas.adv">海外拓銷 — 進階問題</div>
         <div class="field-group">
-          <label data-i18n="form.lbl.overseas_exp">是否已有海外參展經驗<span class="required-star">*</span></label>
+          <label><span data-i18n="form.lbl.overseas_exp">是否已有海外參展經驗</span><span class="required-star">*</span></label>
           <div class="radio-group horizontal">
             <div class="chip" onclick="selectRadioChip(this,'f_overseas_exp','有');toggleCond('cond_overseas_exp',getRadioVal('f_overseas_exp')==='有')"><div class="chip-icon"></div><span data-i18n="form.opt.yes">有</span></div>
             <div class="chip" onclick="selectRadioChip(this,'f_overseas_exp','沒有');toggleCond('cond_overseas_exp',false)"><div class="chip-icon"></div><span data-i18n="form.opt.no">沒有</span></div>
@@ -1122,14 +1122,14 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
           <div class="error-msg" id="e_overseas_exp" data-i18n="form.err.overseas_exp">請選擇</div>
           <div class="conditional" id="cond_overseas_exp">
             <div class="field-group" style="margin:0">
-              <label data-i18n="form.lbl.overseas_ctry">參展國家<span class="required-star">*</span></label>
+              <label><span data-i18n="form.lbl.overseas_ctry">參展國家</span><span class="required-star">*</span></label>
               <input type="text" id="f_overseas_countries" data-i18n-ph="form.ph.overseas_ctry" placeholder="例如：日本、泰國">
               <div class="error-msg" id="e_overseas_countries" data-i18n="form.err.overseas_ctry">請填寫參展國家</div>
             </div>
           </div>
         </div>
         <div class="field-group" style="margin:0">
-          <label data-i18n="form.lbl.local_rep">公司是否有目標市場當地語言代表<span class="required-star">*</span></label>
+          <label><span data-i18n="form.lbl.local_rep">公司是否有目標市場當地語言代表</span><span class="required-star">*</span></label>
           <div class="radio-group horizontal">
             <div class="chip" onclick="selectRadioChip(this,'f_local_rep','有')"><div class="chip-icon"></div><span data-i18n="form.opt.yes">有</span></div>
             <div class="chip" onclick="selectRadioChip(this,'f_local_rep','沒有')"><div class="chip-icon"></div><span data-i18n="form.opt.no">沒有</span></div>
@@ -1142,7 +1142,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
       <div class="conditional" id="cond_ecom">
         <div style="font-family:'Syne',sans-serif;font-size:0.82rem;font-weight:700;color:var(--blue-electric);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:1.2rem" data-i18n="form.ch.ecom.adv">跨境電商 — 進階問題</div>
         <div class="field-group">
-          <label data-i18n="form.lbl.ecom_exp">是否有電商經驗<span class="required-star">*</span></label>
+          <label><span data-i18n="form.lbl.ecom_exp">是否有電商經驗</span><span class="required-star">*</span></label>
           <div class="radio-group horizontal">
             <div class="chip" onclick="selectRadioChip(this,'f_ecom_exp','有');toggleCond('cond_ecom_exp',getRadioVal('f_ecom_exp')==='有')"><div class="chip-icon"></div><span data-i18n="form.opt.yes">有</span></div>
             <div class="chip" onclick="selectRadioChip(this,'f_ecom_exp','沒有');toggleCond('cond_ecom_exp',false)"><div class="chip-icon"></div><span data-i18n="form.opt.no">沒有</span></div>
@@ -1150,14 +1150,14 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
           <div class="error-msg" id="e_ecom_exp" data-i18n="form.err.ecom_exp">請選擇</div>
           <div class="conditional" id="cond_ecom_exp">
             <div class="field-group" style="margin:0">
-              <label data-i18n="form.lbl.ecom_plats">曾經營的電商平台<span class="required-star">*</span></label>
+              <label><span data-i18n="form.lbl.ecom_plats">曾經營的電商平台</span><span class="required-star">*</span></label>
               <input type="text" id="f_ecom_platforms" data-i18n-ph="form.ph.ecom_plats" placeholder="例如：蝦皮、Lazada、Amazon">
               <div class="error-msg" id="e_ecom_platforms" data-i18n="form.err.ecom_platforms">請填寫電商平台</div>
             </div>
           </div>
         </div>
         <div class="field-group">
-          <label data-i18n="form.lbl.ecom_team">是否有自己的電商營運團隊<span class="required-star">*</span></label>
+          <label><span data-i18n="form.lbl.ecom_team">是否有自己的電商營運團隊</span><span class="required-star">*</span></label>
           <div class="radio-group horizontal">
             <div class="chip" onclick="selectRadioChip(this,'f_ecom_team','是')"><div class="chip-icon"></div><span data-i18n="form.opt.yes_yn">是</span></div>
             <div class="chip" onclick="selectRadioChip(this,'f_ecom_team','否')"><div class="chip-icon"></div><span data-i18n="form.opt.no_yn">否</span></div>
@@ -1165,7 +1165,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
           <div class="error-msg" id="e_ecom_team" data-i18n="form.err.ecom_team">請選擇</div>
         </div>
         <div class="field-group" style="margin:0">
-          <label data-i18n="form.lbl.ecom_cert">是否已完成目標市場的產品認證<span class="required-star">*</span></label>
+          <label><span data-i18n="form.lbl.ecom_cert">是否已完成目標市場的產品認證</span><span class="required-star">*</span></label>
           <div class="radio-group horizontal">
             <div class="chip" onclick="selectRadioChip(this,'f_ecom_cert','是')"><div class="chip-icon"></div><span data-i18n="form.opt.yes_yn">是</span></div>
             <div class="chip" onclick="selectRadioChip(this,'f_ecom_cert','否')"><div class="chip-icon"></div><span data-i18n="form.opt.no_yn">否</span></div>
@@ -1178,7 +1178,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
       <div class="conditional" id="cond_retail">
         <div style="font-family:'Syne',sans-serif;font-size:0.82rem;font-weight:700;color:var(--blue-electric);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:1.2rem" data-i18n="form.ch.retail.adv">實體通路 — 進階問題</div>
         <div class="field-group">
-          <label data-i18n="form.lbl.retail_exp">是否有實體通路經驗<span class="required-star">*</span></label>
+          <label><span data-i18n="form.lbl.retail_exp">是否有實體通路經驗</span><span class="required-star">*</span></label>
           <div class="radio-group horizontal">
             <div class="chip" onclick="selectRadioChip(this,'f_retail_exp','有');toggleCond('cond_retail_exp',getRadioVal('f_retail_exp')==='有')"><div class="chip-icon"></div><span data-i18n="form.opt.yes">有</span></div>
             <div class="chip" onclick="selectRadioChip(this,'f_retail_exp','沒有');toggleCond('cond_retail_exp',false)"><div class="chip-icon"></div><span data-i18n="form.opt.no">沒有</span></div>
@@ -1186,12 +1186,12 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
           <div class="error-msg" id="e_retail_exp" data-i18n="form.err.retail_exp">請選擇</div>
           <div class="conditional" id="cond_retail_exp">
             <div class="field-group">
-              <label data-i18n="form.lbl.retail_ctry">曾進入的國家<span class="required-star">*</span></label>
+              <label><span data-i18n="form.lbl.retail_ctry">曾進入的國家</span><span class="required-star">*</span></label>
               <input type="text" id="f_retail_countries" data-i18n-ph="form.ph.retail_ctry" placeholder="例如：日本、新加坡">
               <div class="error-msg" id="e_retail_countries" data-i18n="form.err.retail_countries">請填寫</div>
             </div>
             <div class="field-group" style="margin:0">
-              <label data-i18n="form.lbl.retail_chan">曾合作的通路<span class="required-star">*</span></label>
+              <label><span data-i18n="form.lbl.retail_chan">曾合作的通路</span><span class="required-star">*</span></label>
               <input type="text" id="f_retail_channels" data-i18n-ph="form.ph.retail_chan" placeholder="例如：唐吉訶德、屈臣氏、LOFT">
               <div class="error-msg" id="e_retail_channels" data-i18n="form.err.retail_channels">請填寫</div>
             </div>
@@ -1206,7 +1206,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
           <div class="error-msg" id="e_retail_cert" data-i18n="form.err.retail_cert">請選擇</div>
         </div>
         <div class="field-group">
-          <label data-i18n="form.lbl.consign">是否可接受寄賣<span class="required-star">*</span></label>
+          <label><span data-i18n="form.lbl.consign">是否可接受寄賣</span><span class="required-star">*</span></label>
           <div class="radio-group horizontal">
             <div class="chip" onclick="selectRadioChip(this,'f_consign','可以接受');toggleCond('cond_consign',getRadioVal('f_consign')==='可以接受')"><div class="chip-icon"></div>可以接受</div>
             <div class="chip" onclick="selectRadioChip(this,'f_consign','無法接受');toggleCond('cond_consign',false)"><div class="chip-icon"></div>無法接受</div>
@@ -1214,7 +1214,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
           <div class="error-msg" id="e_consign" data-i18n="form.err.consign">請選擇</div>
           <div class="conditional" id="cond_consign">
             <div class="field-group" style="margin:0">
-              <label data-i18n="form.lbl.consign_qty">可提供寄賣數量<span class="required-star">*</span></label>
+              <label><span data-i18n="form.lbl.consign_qty">可提供寄賣數量</span><span class="required-star">*</span></label>
               <input type="text" id="f_consign_qty" placeholder="例如：每款 50 件">
               <div class="error-msg" id="e_consign_qty" data-i18n="form.err.consign_qty">請填寫寄賣數量</div>
             </div>
@@ -1321,7 +1321,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
       <div class="error-msg" data-i18n="form.err.privacy" id="e_privacy" style="margin-bottom:1rem">請勾選同意隱私權聲明</div>
       <div class="step-nav">
         <button class="btn-prev" onclick="prevStep(6)"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>上一步</button>
-        <button class="btn-next" onclick="submitForm()" style="background:linear-gradient(135deg,#00aa66,#00e5a0);box-shadow:0 4px 18px rgba(0,180,100,0.4)"><span data-i18n="form.btn.submit">提交給 GC 顧問</span><svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></button>
+        <button class="btn-next" id="submitFormBtn" onclick="submitForm()" style="background:linear-gradient(135deg,#00aa66,#00e5a0);box-shadow:0 4px 18px rgba(0,180,100,0.4)"><span data-i18n="form.btn.submit">提交給 GC 顧問</span><svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></button>
       </div>
     </div>
 
@@ -1398,8 +1398,6 @@ function toggleChannelChip(el,type,val){
   const eCh=document.getElementById('e_channel');
   if(eCh)eCh.classList.remove('show');
 }
-function selectRadio(el,name){selectRadioChip(el,name,el?.dataset?.radioVal||'');}
-function toggleCheck(el){el.classList.toggle('selected');}
 function toggleTag(el){el.classList.toggle('selected');selectedTags[el.classList.contains('selected')?'add':'delete'](el.textContent.trim());}
 function toggleCat(el,val){el.classList.toggle('selected');selectedCats[el.classList.contains('selected')?'add':'delete'](val);if(val==='其他類別')toggleCond('cond_cat_other',el.classList.contains('selected'));const em=document.getElementById('e_cat');if(em)em.classList.remove('show');}
 function toggleMarket(el){el.classList.toggle('selected');const v=el.textContent.trim();selectedMarkets[el.classList.contains('selected')?'add':'delete'](v);if(v==='其他地區')toggleCond('cond_market_other',el.classList.contains('selected'));const em=document.getElementById('e_markets');if(em)em.classList.remove('show');}
@@ -1408,7 +1406,6 @@ let brandCount=1;
 function addBrand(){if(brandCount>=5)return;brandCount++;const row=document.createElement('div');row.className='brand-row';row.innerHTML=`<input type="text" class="brand-input" placeholder="品牌名稱 ${brandCount}" maxlength="100"><button type="button" class="btn-icon" onclick="removeBrand(this)"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>`;document.getElementById('brandList').appendChild(row);if(brandCount>=5)document.getElementById('addBrandBtn').style.display='none';}
 function removeBrand(btn){btn.closest('.brand-row').remove();brandCount--;document.getElementById('addBrandBtn').style.display='';document.querySelectorAll('.brand-input').forEach((inp,i)=>inp.placeholder=`品牌名稱 ${i+1}`);}
 function getBrands(){return[...document.querySelectorAll('.brand-input')].map(i=>i.value.trim()).filter(Boolean);}
-function toggleChannel(el,type){el.classList.toggle('selected');if(type)toggleCond('cond_'+type,el.classList.contains('selected'));}
 function togglePrivacy(){const el=document.getElementById('privacyCheck');el.classList.toggle('checked');document.getElementById('f_privacy').checked=el.classList.contains('checked');}
 
 // Track the highest step the user has legitimately reached via nextStep
@@ -1624,11 +1621,11 @@ function collectData(){
 async function submitForm(){
   if(!document.getElementById('f_privacy').checked){showError('e_privacy',true);return;}
   showError('e_privacy',false);
+  const submitBtn=document.getElementById('submitFormBtn');
+  if(submitBtn){ if(submitBtn.disabled)return; submitBtn.disabled=true; } /* 防止連點重複送出 */
   document.getElementById('submittingOverlay').classList.add('show');
   const data=collectData();
-  const now=new Date();
-  const ym=`${now.getFullYear()}${String(now.getMonth()+1).padStart(2,'0')}`;
-  const code=`GC-EXD-${ym}-0501`;
+  let sbOk=false; /* 以 Supabase 寫入結果判斷成敗（Apps Script 為 no-cors 無法判斷） */
   try{
     const row=(label,val)=>val?`${label}: ${val}\n`:'';
     const section=(title)=>`\n【${title}】\n`;
@@ -1688,11 +1685,7 @@ async function submitForm(){
       row('其他補充說明',data.otherNotes),
     ].join('');
 
-    await fetch('https://script.google.com/macros/s/AKfycbwEjNSAHS-78EDJcelFLdsGbm_xcvBsOQGxDe7kqKzfz0nx9OKS4rWTjYqqSozs3sEZyw/exec',{
-      method:'POST',
-      headers:{'Content-Type':'text/plain'},
-      mode:'no-cors',
-      body:JSON.stringify({
+    const sheetPayload = {
         '提交時間':data.submittedAt,
         '介紹方':data.referrer,
         '公司名稱':data.company,
@@ -1739,9 +1732,33 @@ async function submitForm(){
         '接受寄賣':data.consign,
         '可提供寄賣數量':data.consignQty,
         '其他補充說明':data.otherNotes
-      })
+    };
+    await fetch('https://script.google.com/macros/s/AKfycbwEjNSAHS-78EDJcelFLdsGbm_xcvBsOQGxDe7kqKzfz0nx9OKS4rWTjYqqSozs3sEZyw/exec',{
+      method:'POST',
+      headers:{'Content-Type':'text/plain'},
+      mode:'no-cors',
+      body:JSON.stringify(sheetPayload)
     });
+    // 同時寫入 Supabase 供後台「需求診斷表」檢視
+    try{
+      const _K='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ0emZlb2FocHN1dHlpa3V0c3lzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA5ODU2NTAsImV4cCI6MjA5NjU2MTY1MH0.1ouoDmHrmetOc_qsvPrXiKsKx8eDEebbsXr2Fk2Sy-o';
+      const sbRes=await fetch('https://rtzfeoahpsutyikutsys.supabase.co/rest/v1/form_submissions',{
+        method:'POST',
+        headers:{apikey:_K,Authorization:'Bearer '+_K,'Content-Type':'application/json',Prefer:'return=minimal'},
+        body:JSON.stringify([{ company_name:data.company||null, contact_name:data.contact||null, email:data.email||null, brand_name:data.brands||null, data:sheetPayload }])
+      });
+      sbOk=sbRes.ok;
+      if(!sbRes.ok)console.warn('Supabase insert failed',await sbRes.text());
+    }catch(sbErr){ console.warn('Supabase error',sbErr); }
   }catch(e){console.warn('Apps Script error',e);}
+  if(!sbOk){
+    /* Supabase 寫入失敗：不顯示成功頁，恢復按鈕讓使用者重試 */
+    document.getElementById('submittingOverlay').classList.remove('show');
+    if(submitBtn)submitBtn.disabled=false;
+    const _t=(typeof GC_I18N!=='undefined'&&GC_I18N[typeof GC_LANG!=='undefined'?GC_LANG:'zh'])||{};
+    alert(_t['form.err.submit']||'送出失敗，請稍後再試');
+    return;
+  }
   setTimeout(()=>{
     document.getElementById('submittingOverlay').classList.remove('show');
     document.querySelectorAll('.step-page').forEach(p=>p.classList.remove('active'));
@@ -1751,9 +1768,6 @@ async function submitForm(){
     window.scrollTo({top:0,behavior:'smooth'});
   },1500);
 }
-
-document.querySelectorAll('input[name="f_other_contact_type"]').forEach(r=>{r.addEventListener('change',()=>toggleCond('cond_other_contact',true));});
-document.querySelectorAll('input[name="f_country"]').forEach(r=>{r.addEventListener('change',()=>toggleCond('cond_country',r.value==='其他'&&r.checked));});
 
 
 

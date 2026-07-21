@@ -8,14 +8,15 @@ const GC_I18N = {
      繁體中文（預設）
   ════════════════════════════════ */
   zh: {
-    // 頁面標題
-    'page.title.partner': '成為服務商 — GC 跨境服務',
-    'page.title.index':   'GC 跨境服務',
-    'page.title.form':    'GC 跨境服務需求診斷表',
+    // 頁面標題（與各頁 HTML 靜態 <title> 完全一致，避免 JS 覆蓋時降級 SEO 標題）
+    'page.title.partner': '成為 GC 服務商夥伴 — 共同拓展全球市場',
+    'page.title.index':   'GC 跨境服務 — 全球市場拓銷顧問平台',
+    'page.title.form':    'GC 跨境服務需求診斷表 — 填寫需求開始合作',
 
     // 導覽列
     'nav.why':     '為何選擇我們',
     'nav.services':'顧問服務',
+    'nav.catalog': '商品貨盤',
     'nav.partners':'服務商介紹',
     'nav.process': '合作流程',
     'nav.become':  '成為服務商',
@@ -194,7 +195,7 @@ const GC_I18N = {
     'form.lbl.product_cat':   '產品類別（可複選）',
     'form.lbl.cat_other':     '其他類別說明',
     'form.lbl.product_tags':  '商品特性標籤（可複選）',
-    'form.lbl.export_dest':   '產品預計出口國 / 出貨地',
+    'form.lbl.export_dest':   '產品預計出口國 / 出貨地（可複選）',
     'form.lbl.product_desc':  '產品簡介',
     'form.lbl.export_exp':    '是否曾有外銷經驗',
     'form.lbl.exp_countries': '過去主要外銷國家',
@@ -290,6 +291,7 @@ const GC_I18N = {
     'form.err.consign':       '請選擇',
     'form.err.consign_qty':   '請填寫可提供寄賣數量',
     'form.err.privacy':       '請勾選同意隱私權聲明',
+    'form.err.submit':        '送出失敗，請稍後再試',
 
     'form.opt.yes':       '有',
     'form.opt.no':        '沒有',
@@ -443,12 +445,13 @@ const GC_I18N = {
      English
   ════════════════════════════════ */
   en: {
-    'page.title.partner': 'Become a Partner — GC Cross-Border Services',
-    'page.title.index':   'GC Cross-Border Services',
-    'page.title.form':    'GC Cross-Border Service Diagnostic Form',
+    'page.title.partner': 'Become a GC Partner — Expanding Global Markets Together',
+    'page.title.index':   'GC Cross-Border Services — Global Market Expansion Consulting Platform',
+    'page.title.form':    'GC Cross-Border Service Diagnostic Form — Start Your Partnership',
 
     'nav.why':     'Why GC',
     'nav.services':'Consulting',
+    'nav.catalog': 'Catalog',
     'nav.partners':'Partners',
     'nav.process': 'How It Works',
     'nav.become':  'Become a Partner',
@@ -626,7 +629,7 @@ const GC_I18N = {
     'form.lbl.product_cat':   'Product Categories (multiple choice)',
     'form.lbl.cat_other':     'Other Category (please describe)',
     'form.lbl.product_tags':  'Product Trait Tags (multiple choice)',
-    'form.lbl.export_dest':   'Planned Export Destinations',
+    'form.lbl.export_dest':   'Planned Export Destinations (multiple choice)',
     'form.lbl.product_desc':  'Product Overview',
     'form.lbl.export_exp':    'Any prior export experience?',
     'form.lbl.exp_countries': 'Past Main Export Countries',
@@ -722,6 +725,7 @@ const GC_I18N = {
     'form.err.consign':       'Please select',
     'form.err.consign_qty':   'Please fill in consignment quantity',
     'form.err.privacy':       'Please check the privacy consent box',
+    'form.err.submit':        'Submission failed. Please try again later.',
 
     'form.opt.yes':       'Yes',
     'form.opt.no':        'No',
@@ -875,12 +879,13 @@ const GC_I18N = {
      日本語
   ════════════════════════════════ */
   ja: {
-    'page.title.partner': 'パートナーになる — GCクロスボーダーサービス',
-    'page.title.index':   'GCクロスボーダーサービス',
-    'page.title.form':    'GCクロスボーダーサービス診断フォーム',
+    'page.title.partner': 'GCサービスパートナーになる — 共にグローバル市場を拓く',
+    'page.title.index':   'GCクロスボーダーサービス — グローバル市場開拓コンサルティングプラットフォーム',
+    'page.title.form':    'GCクロスボーダーサービス診断フォーム — ニーズを記入して協業を始める',
 
     'nav.why':     'なぜGCか',
     'nav.services':'コンサルティング',
+    'nav.catalog': 'カタログ',
     'nav.partners':'パートナー紹介',
     'nav.process': '流れ',
     'nav.become':  'パートナーになる',
@@ -1058,7 +1063,7 @@ const GC_I18N = {
     'form.lbl.product_cat':   '製品カテゴリ（複数選択可）',
     'form.lbl.cat_other':     'その他カテゴリの説明',
     'form.lbl.product_tags':  '商品特性タグ（複数選択可）',
-    'form.lbl.export_dest':   '輸出予定国・地域',
+    'form.lbl.export_dest':   '輸出予定国・地域（複数選択可）',
     'form.lbl.product_desc':  '製品概要',
     'form.lbl.export_exp':    '輸出経験はありますか',
     'form.lbl.exp_countries': '過去の主要輸出先',
@@ -1154,6 +1159,7 @@ const GC_I18N = {
     'form.err.consign':       '選択してください',
     'form.err.consign_qty':   '委託数量を記入してください',
     'form.err.privacy':       'プライバシーポリシーへの同意にチェックを入れてください',
+    'form.err.submit':        '送信に失敗しました。しばらくしてからもう一度お試しください。',
 
     'form.opt.yes':       'あり',
     'form.opt.no':        'なし',
@@ -1380,25 +1386,8 @@ function gcSetLang(lang) {
   if (dd)   dd.classList.remove('gc-open');
   if (btn)  btn.classList.remove('gc-btn-active');
   if (chev) chev.classList.remove('gc-chev-open');
-  // Mobile dropdown (partner.html)
-  const ddM   = document.getElementById('gcLangDropdownM');
-  const btnM  = document.getElementById('gcLangBtnM');
-  const chevM = document.getElementById('gcLangChevM');
-  if (ddM)   ddM.classList.remove('gc-open');
-  if (btnM)  btnM.classList.remove('gc-btn-active');
-  if (chevM) chevM.classList.remove('gc-chev-open');
   // Notify other scripts (e.g. partner card re-render)
   document.dispatchEvent(new CustomEvent('gc:langchange', { detail: { lang } }));
-}
-
-function gcToggleLangMenuM() {
-  const dd   = document.getElementById('gcLangDropdownM');
-  const btn  = document.getElementById('gcLangBtnM');
-  const chev = document.getElementById('gcLangChevM');
-  if (!dd) return;
-  const open = dd.classList.toggle('gc-open');
-  if (btn)  btn.classList.toggle('gc-btn-active', open);
-  if (chev) chev.classList.toggle('gc-chev-open', open);
 }
 
 // Close dropdown on outside click
