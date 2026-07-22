@@ -353,7 +353,8 @@ const COUNTRY_I18N={
   '台灣':{en:'Taiwan',ja:'台湾'},'日本':{en:'Japan',ja:'日本'},'韓國':{en:'Korea',ja:'韓国'},
   '馬來西亞':{en:'Malaysia',ja:'マレーシア'},'新加坡':{en:'Singapore',ja:'シンガポール'},'泰國':{en:'Thailand',ja:'タイ'},
   '美國':{en:'USA',ja:'アメリカ'},'歐洲':{en:'Europe',ja:'ヨーロッパ'},'中國':{en:'China',ja:'中国'},
-  '香港':{en:'Hong Kong',ja:'香港'},'越南':{en:'Vietnam',ja:'ベトナム'}
+  '香港':{en:'Hong Kong',ja:'香港'},'越南':{en:'Vietnam',ja:'ベトナム'},
+  '法國':{en:'France',ja:'フランス'},'加拿大':{en:'Canada',ja:'カナダ'},'西班牙':{en:'Spain',ja:'スペイン'}
 };
 function trCat(v){ const l=LANG(); if(l==='zh'||!v)return v||''; return (CAT_I18N[v]&&CAT_I18N[v][l])||v; }
 function trCountry(v){ const l=LANG(); if(l==='zh'||!v)return v||''; return (COUNTRY_I18N[v]&&COUNTRY_I18N[v][l])||v; }
@@ -497,7 +498,6 @@ function openDetail(id){
     <div class="detail-body">
       <div class="detail-cat">${esc(trCat(p.category))}　·　${esc(p.brand||'')}</div>
       <h2>${esc(pName(p))}</h2>
-      <div class="detail-langs">${esc(p.name_en||'')}${p.name_ja?'<br>'+esc(p.name_ja):''}</div>
       ${desc?`<div class="detail-desc">${esc(desc)}</div>`:''}
       <div class="spec"><span class="k">${t.origin}</span><span class="v">${esc(trCountry(p.origin))}</span></div>
       ${shelf?`<div class="spec"><span class="k">${t.shelf}</span><span class="v">${esc(shelf)}</span></div>`:''}
