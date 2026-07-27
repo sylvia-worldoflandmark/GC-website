@@ -179,7 +179,7 @@ const GC_I18N = {
     'form.step6.title': '診斷結果與送出確認',
     'form.step6.desc':  '請確認您填寫的資料，確認無誤後勾選隱私同意並提交。',
 
-    'form.lbl.referrer':      '介紹方',
+    'form.lbl.referrer':      '介紹人（選填）',
     'form.lbl.source':        '您是從哪裡得知 GC 服務？',
     'form.lbl.source_other':  '請說明得知管道',
     'form.lbl.company':       '公司名稱',
@@ -613,7 +613,7 @@ const GC_I18N = {
     'form.step6.title': 'Review & Submit',
     'form.step6.desc':  'Please review your information, check the privacy consent box, then submit.',
 
-    'form.lbl.referrer':      'Referrer',
+    'form.lbl.referrer':      'Referrer (Optional)',
     'form.lbl.source':        'How did you hear about GC?',
     'form.lbl.source_other':  'Please specify',
     'form.lbl.company':       'Company Name',
@@ -1047,7 +1047,7 @@ const GC_I18N = {
     'form.step6.title': '確認と送信',
     'form.step6.desc':  '入力内容をご確認の上、プライバシー同意にチェックを入れて送信してください。',
 
-    'form.lbl.referrer':      '紹介者',
+    'form.lbl.referrer':      '紹介者（任意）',
     'form.lbl.source':        'GCのサービスをどこで知りましたか？',
     'form.lbl.source_other':  'ご説明ください',
     'form.lbl.company':       '会社名',
