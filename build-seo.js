@@ -23,10 +23,19 @@ const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&am
 (async () => {
   let products;
   try {
-    const url = SB_URL + '/rest/v1/public_products?select=sku,name_zh,name_en,brand,category,origin,shelf_life_months,stock_regions,photo_url&order=category.asc,name_zh.asc';
-    const res = await fetch(url, { headers: { apikey: SB_KEY, Authorization: 'Bearer ' + SB_KEY } });
-    if (!res.ok) throw new Error('HTTP ' + res.status + ' ' + (await res.text()));
-    products = await res.json();
+    const cols = 'select=sku,name_zh,name_en,brand,category,origin,shelf_life_months,stock_regions,photo_url&order=category.asc,name_zh.asc';
+    const chunk = 1000; let all = [], from = 0;
+    while (true) {   // Supabase 單次上限 1000 筆，分批抓到抓完
+      const url = SB_URL + '/rest/v1/public_products?' + cols + '&limit=' + chunk + '&offset=' + from;
+      const res = await fetch(url, { headers: { apikey: SB_KEY, Authorization: 'Bearer ' + SB_KEY } });
+      if (!res.ok) throw new Error('HTTP ' + res.status + ' ' + (await res.text()));
+      const data = await res.json();
+      all = all.concat(data);
+      if (data.length < chunk) break;
+      from += chunk;
+      if (from > 200000) break;
+    }
+    products = all;
   } catch (e) {
     console.warn('[seo] 無法取得商品，略過預渲染（前端仍會即時載入）：', e.message);
     process.exit(0);

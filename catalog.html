@@ -310,7 +310,7 @@ const UI={
     priceNote:'💬 售價與合作條件不公開，請加入詢價向 GC 顧問索取',
     okTitle:'詢價需求已送出',okBody:n=>`我們已收到您對 ${n} 件商品的詢價，顧問團隊將於 3 個工作日內與您聯繫，提供完整報價與合作條件。`,
     back:'回到型錄',empty:'找不到符合條件的商品',err:'商品載入失敗，請稍後再試或聯絡我們。',
-    needContact:'請填寫公司名稱、聯絡人與 Email',sending:'送出中…',sendErr:'詢價送出失敗，請稍後再試。'},
+    needContact:'請填寫公司名稱、聯絡人與 Email',sending:'送出中…'},
   en:{title:'Product Catalog',sub:'Browse cross-border brand products represented by GC. Select the items you are interested in and submit an inquiry — our consultants will provide full pricing and partnership terms.',nav:'Catalog',
     search:'Search product / brand…',allCat:'All Categories',allBrand:'All Brands',allRegion:'All Stock',selall:n=>`Select all ${n}`,unsel:'Deselect all',count:n=>`${n} products`,
     prod:'Product',cat:'Category',origin:'Origin',shelf:'Shelf life',stock:'Stock',add:'＋ Add',added:'✓ Added',
@@ -324,7 +324,7 @@ const UI={
     priceNote:'💬 Pricing and terms are not public — add to inquiry to request them from GC.',
     okTitle:'Inquiry submitted',okBody:n=>`We have received your inquiry for ${n} products. Our team will contact you within 3 business days with full pricing and terms.`,
     back:'Back to catalog',empty:'No matching products',err:'Failed to load products. Please try again later.',
-    needContact:'Please fill in company, contact and email',sending:'Sending…',sendErr:'Failed to send the inquiry. Please try again later.'},
+    needContact:'Please fill in company, contact and email',sending:'Sending…'},
   ja:{title:'商品カタログ',sub:'GC が取り扱う越境ブランド商品を閲覧できます。気になる商品を選択してお問い合わせいただくと、担当が価格と取引条件をご案内します。',nav:'カタログ',
     search:'商品・ブランド名で検索…',allCat:'すべてのカテゴリー',allBrand:'すべてのブランド',allRegion:'すべての在庫地',selall:n=>`すべて選択 ${n}`,unsel:'選択解除',count:n=>`全 ${n} 商品`,
     prod:'商品',cat:'カテゴリー',origin:'原産国',shelf:'賞味期限',stock:'在庫地',add:'＋ 追加',added:'✓ 追加済',
@@ -338,7 +338,7 @@ const UI={
     priceNote:'💬 価格・条件は非公開です。お問い合わせに追加して GC 担当にご請求ください。',
     okTitle:'お問い合わせを送信しました',okBody:n=>`${n} 商品のお問い合わせを受け付けました。3 営業日以内に担当よりご連絡いたします。`,
     back:'カタログへ戻る',empty:'該当する商品がありません',err:'商品の読み込みに失敗しました。',
-    needContact:'会社名・ご担当者・メールをご記入ください',sending:'送信中…',sendErr:'送信に失敗しました。しばらくしてからもう一度お試しください。'}
+    needContact:'会社名・ご担当者・メールをご記入ください',sending:'送信中…'}
 };
 function T(){ return UI[LANG()]||UI.zh; }
 const CAT_I18N={
@@ -353,8 +353,7 @@ const COUNTRY_I18N={
   '台灣':{en:'Taiwan',ja:'台湾'},'日本':{en:'Japan',ja:'日本'},'韓國':{en:'Korea',ja:'韓国'},
   '馬來西亞':{en:'Malaysia',ja:'マレーシア'},'新加坡':{en:'Singapore',ja:'シンガポール'},'泰國':{en:'Thailand',ja:'タイ'},
   '美國':{en:'USA',ja:'アメリカ'},'歐洲':{en:'Europe',ja:'ヨーロッパ'},'中國':{en:'China',ja:'中国'},
-  '香港':{en:'Hong Kong',ja:'香港'},'越南':{en:'Vietnam',ja:'ベトナム'},
-  '法國':{en:'France',ja:'フランス'},'加拿大':{en:'Canada',ja:'カナダ'},'西班牙':{en:'Spain',ja:'スペイン'}
+  '香港':{en:'Hong Kong',ja:'香港'},'越南':{en:'Vietnam',ja:'ベトナム'}
 };
 function trCat(v){ const l=LANG(); if(l==='zh'||!v)return v||''; return (CAT_I18N[v]&&CAT_I18N[v][l])||v; }
 function trCountry(v){ const l=LANG(); if(l==='zh'||!v)return v||''; return (COUNTRY_I18N[v]&&COUNTRY_I18N[v][l])||v; }
@@ -366,8 +365,6 @@ function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;',
 
 /* ====== 狀態 ====== */
 let PRODUCTS=[];
-let LOADED=false;   /* 商品是否已從 Supabase 載入完成 */
-let LOADERR=null;   /* 載入失敗時的錯誤訊息 */
 const selected=new Set();
 let inqExpanded=false;
 let curPage=1;
@@ -375,13 +372,19 @@ let detailId=null;
 
 async function load(){
   try{
-    const res=await fetch(REST+'public_products?select=*&order=category.asc,name_zh.asc',{headers:SB_HEADERS});
-    if(!res.ok)throw new Error('HTTP '+res.status+' '+(await res.text()));
-    PRODUCTS=await res.json();
-    LOADED=true; LOADERR=null;
+    const chunk=1000; let all=[], from=0;
+    while(true){
+      const res=await fetch(REST+'public_products?select=*&order=category.asc,name_zh.asc&limit='+chunk+'&offset='+from,{headers:SB_HEADERS});
+      if(!res.ok)throw new Error('HTTP '+res.status+' '+(await res.text()));
+      const data=await res.json();
+      all=all.concat(data);
+      if(data.length<chunk) break;      // 抓完了
+      from+=chunk;
+      if(from>200000) break;            // 安全上限，避免意外無限迴圈
+    }
+    PRODUCTS=all;
     buildFilters(); render();
   }catch(e){
-    LOADERR=e.message;
     document.getElementById('rows').innerHTML='<div class="empty">'+T().err+'<br><span style="font-size:0.75rem;opacity:0.6;">'+esc(e.message)+'</span></div>';
     console.error('load error',e);
   }
@@ -413,18 +416,11 @@ function thumbStyle(p){ return p.photo_url?`background-image:url('${esc(p.photo_
 function onFilter(){ curPage=1; render(); }
 
 function render(){
-  const t=T();
-  if(!LOADED){
-    /* 載入完成前不重繪列表：保留「載入商品中…」或 SEO 預渲染內容，
-       避免 i18n 初始化提早呼叫 render() 時閃現「找不到符合條件的商品」 */
-    if(LOADERR) document.getElementById('rows').innerHTML='<div class="empty">'+t.err+'<br><span style="font-size:0.75rem;opacity:0.6;">'+esc(LOADERR)+'</span></div>';
-    return;
-  }
-  const list=filtered();
+  const t=T(), list=filtered();
   const total=list.length, pages=Math.max(1,Math.ceil(total/PAGE_SIZE));
   if(curPage>pages)curPage=pages; if(curPage<1)curPage=1;
   const pageItems=list.slice((curPage-1)*PAGE_SIZE, curPage*PAGE_SIZE);
-  const allSel=list.length>0 && list.every(p=>selected.has(String(p.id)));
+  const allSel=list.length>0 && list.every(p=>selected.has(p.id));
   document.getElementById('selAllChk').classList.toggle('on',allSel);
   document.getElementById('selAllTxt').textContent=allSel?t.unsel:t.selall(total);
   document.getElementById('count').innerHTML='<span>'+t.count('<b>'+total+'</b>')+'</span>';
@@ -433,7 +429,7 @@ function render(){
   const rows=document.getElementById('rows');
   if(!total){ rows.innerHTML='<div class="empty">'+t.empty+'</div>'; document.getElementById('pager').innerHTML=''; return; }
   rows.innerHTML=pageItems.map(p=>{
-    const on=selected.has(String(p.id));
+    const on=selected.has(p.id);
     const regions=(p.stock_regions||[]).map(trCountry);
     const chips=regions.map(r=>`<span class="chip">${esc(r)}</span>`).join('');
     const shelf=pShelf(p), shelfTxt=shelf||'—';
@@ -476,9 +472,8 @@ function renderPager(total,pages){
 function goPage(n){ curPage=n; render(); var w=document.querySelector('.list-wrap'); window.scrollTo({top:w.offsetTop-80,behavior:'smooth'}); }
 
 function P(id){ return PRODUCTS.find(x=>String(x.id)===String(id)); }
-/* selected 一律存 String(id)，避免 Supabase id 為數字時與 onclick 傳入的字串比對不到 */
-function toggle(id){ id=String(id); selected.has(id)?selected.delete(id):selected.add(id); render(); syncBar(); }
-function toggleAll(){ const list=filtered(); const all=list.length>0&&list.every(p=>selected.has(String(p.id))); if(all)list.forEach(p=>selected.delete(String(p.id))); else list.forEach(p=>selected.add(String(p.id))); render(); syncBar(); }
+function toggle(id){ selected.has(id)?selected.delete(id):selected.add(id); render(); syncBar(); }
+function toggleAll(){ const list=filtered(); const all=list.length>0&&list.every(p=>selected.has(p.id)); if(all)list.forEach(p=>selected.delete(p.id)); else list.forEach(p=>selected.add(p.id)); render(); syncBar(); }
 function clearSel(){ selected.clear(); render(); syncBar(); }
 function syncBar(){
   const items=[...selected].map(id=>P(id)).filter(Boolean);
@@ -489,7 +484,6 @@ function syncBar(){
 }
 
 function openDetail(id){
-  id=String(id);
   detailId=id;
   const p=P(id), t=T(), on=selected.has(id);
   const shelf=pShelf(p), th=thumbStyle(p), desc=pDesc(p);
@@ -498,6 +492,7 @@ function openDetail(id){
     <div class="detail-body">
       <div class="detail-cat">${esc(trCat(p.category))}　·　${esc(p.brand||'')}</div>
       <h2>${esc(pName(p))}</h2>
+      <div class="detail-langs">${esc(p.name_en||'')}${p.name_ja?'<br>'+esc(p.name_ja):''}</div>
       ${desc?`<div class="detail-desc">${esc(desc)}</div>`:''}
       <div class="spec"><span class="k">${t.origin}</span><span class="v">${esc(trCountry(p.origin))}</span></div>
       ${shelf?`<div class="spec"><span class="k">${t.shelf}</span><span class="v">${esc(shelf)}</span></div>`:''}
@@ -513,13 +508,9 @@ function closeLightbox(){ document.getElementById('lightbox').classList.remove('
 
 function openInquiryFresh(){ inqExpanded=false; openInquiry(); }
 function toggleInqExpand(){ inqExpanded=!inqExpanded; openInquiry(); }
-const INQ_FIELDS=['iq-company','iq-contact','iq-email','iq-other','iq-note'];
 function openInquiry(){
   const t=T(), items=[...selected].map(id=>P(id)).filter(Boolean);
   const many=items.length>5, shown=(many&&!inqExpanded)?items.slice(0,5):items;
-  /* 重繪前保存使用者已填的聯絡資料，重繪後回填（展開清單／移除商品不清空表單） */
-  const keep={};
-  INQ_FIELDS.forEach(fid=>{ const el=document.getElementById(fid); if(el)keep[fid]=el.value; });
   document.getElementById('inqContent').innerHTML=`
     <div class="inq">
       <h2>${t.selTitle(items.length)}${items.length?` <span onclick="clearSel();closeInquiry();" style="font-size:0.76rem;font-weight:500;color:var(--text-dim);cursor:pointer;margin-left:8px;">${t.clearAll}</span>`:''}</h2>
@@ -543,7 +534,6 @@ function openInquiry(){
       <button class="inq-submit" id="iqSubmit" onclick="submitInquiry()" ${items.length?'':'disabled'}>${t.submit(items.length)}</button>
       <div class="inq-mailnote">📧 ${t.mailNote}</div>
     </div>`;
-  INQ_FIELDS.forEach(fid=>{ const el=document.getElementById(fid); if(el&&keep[fid]!==undefined)el.value=keep[fid]; });
   document.getElementById('inqOverlay').classList.add('show');
 }
 function closeInquiry(){ document.getElementById('inqOverlay').classList.remove('show'); }
@@ -556,9 +546,7 @@ async function submitInquiry(){
   const email=(document.getElementById('iq-email').value||'').trim();
   if(!company||!contact||!email){ alert(t.needContact); return; }
   const btn=document.getElementById('iqSubmit'); btn.disabled=true; btn.textContent=t.sending;
-  const subId=(self.crypto&&crypto.randomUUID)?crypto.randomUUID():('inq-'+Date.now()+'-'+Math.random().toString(36).slice(2,10));
   const payload={
-    submission_id:subId,
     company_name:company, contact_name:contact, email:email,
     other_contact:(document.getElementById('iq-other').value||'').trim(),
     message:(document.getElementById('iq-note').value||'').trim(),
@@ -567,16 +555,9 @@ async function submitInquiry(){
   };
   try{
     const r=await fetch(REST+'inquiries',{method:'POST',headers:Object.assign({'Content-Type':'application/json',Prefer:'return=minimal'},SB_HEADERS),body:JSON.stringify([payload])});
-    if(!r.ok){ console.warn('inquiry insert failed',await r.text()); throw new Error('inquiry insert failed: HTTP '+r.status); }
-    /* 寄信端點失敗不阻斷流程（Supabase 已留底） */
+    if(!r.ok)console.warn('inquiry insert failed',await r.text());
     if(INQUIRY_ENDPOINT){ try{ await fetch(INQUIRY_ENDPOINT,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)}); }catch(mailErr){ console.warn('mail endpoint failed',mailErr); } }
-  }catch(e){
-    /* Supabase 留底失敗：不顯示成功畫面，恢復按鈕讓使用者重試 */
-    console.error(e);
-    btn.disabled=false; btn.textContent=t.submit(items.length);
-    alert(t.sendErr);
-    return;
-  }
+  }catch(e){ console.error(e); }
   document.getElementById('inqContent').innerHTML=`
     <div class="success"><div class="ico">✓</div><h2>${t.okTitle}</h2><p>${t.okBody(items.length)}</p>
     <button class="btn-primary" onclick="closeInquiry();clearSel();">${t.back}</button></div>`;
