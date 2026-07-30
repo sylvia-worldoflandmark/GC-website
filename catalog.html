@@ -310,7 +310,9 @@ const UI={
     priceNote:'💬 售價與合作條件不公開，請加入詢價向 GC 顧問索取',
     okTitle:'詢價需求已送出',okBody:n=>`我們已收到您對 ${n} 件商品的詢價，顧問團隊將於 3 個工作日內與您聯繫，提供完整報價與合作條件。`,
     back:'回到型錄',empty:'找不到符合條件的商品',err:'商品載入失敗，請稍後再試或聯絡我們。',
-    needContact:'請填寫公司名稱、聯絡人與 Email',sending:'送出中…'},
+    needContact:'請填寫公司名稱、聯絡人與 Email',sending:'送出中…',
+    badEmail:'Email 格式不正確，請確認後再送出',
+    sendFail:'送出失敗，您的詢價尚未送達。請檢查網路後再按一次送出；若持續失敗，請直接聯絡 GC 業務。'},
   en:{title:'Product Catalog',sub:'Browse cross-border brand products represented by GC. Select the items you are interested in and submit an inquiry — our consultants will provide full pricing and partnership terms.',nav:'Catalog',
     search:'Search product / brand…',allCat:'All Categories',allBrand:'All Brands',allRegion:'All Stock',selall:n=>`Select all ${n}`,unsel:'Deselect all',count:n=>`${n} products`,
     prod:'Product',cat:'Category',origin:'Origin',shelf:'Shelf life',stock:'Stock',add:'＋ Add',added:'✓ Added',
@@ -324,7 +326,9 @@ const UI={
     priceNote:'💬 Pricing and terms are not public — add to inquiry to request them from GC.',
     okTitle:'Inquiry submitted',okBody:n=>`We have received your inquiry for ${n} products. Our team will contact you within 3 business days with full pricing and terms.`,
     back:'Back to catalog',empty:'No matching products',err:'Failed to load products. Please try again later.',
-    needContact:'Please fill in company, contact and email',sending:'Sending…'},
+    needContact:'Please fill in company, contact and email',sending:'Sending…',
+    badEmail:'That email address looks invalid. Please check it and try again.',
+    sendFail:'Submission failed — your inquiry was NOT sent. Please check your connection and press submit again; if it keeps failing, contact the GC team directly.'},
   ja:{title:'商品カタログ',sub:'GC が取り扱う越境ブランド商品を閲覧できます。気になる商品を選択してお問い合わせいただくと、担当が価格と取引条件をご案内します。',nav:'カタログ',
     search:'商品・ブランド名で検索…',allCat:'すべてのカテゴリー',allBrand:'すべてのブランド',allRegion:'すべての在庫地',selall:n=>`すべて選択 ${n}`,unsel:'選択解除',count:n=>`全 ${n} 商品`,
     prod:'商品',cat:'カテゴリー',origin:'原産国',shelf:'賞味期限',stock:'在庫地',add:'＋ 追加',added:'✓ 追加済',
@@ -338,7 +342,9 @@ const UI={
     priceNote:'💬 価格・条件は非公開です。お問い合わせに追加して GC 担当にご請求ください。',
     okTitle:'お問い合わせを送信しました',okBody:n=>`${n} 商品のお問い合わせを受け付けました。3 営業日以内に担当よりご連絡いたします。`,
     back:'カタログへ戻る',empty:'該当する商品がありません',err:'商品の読み込みに失敗しました。',
-    needContact:'会社名・ご担当者・メールをご記入ください',sending:'送信中…'}
+    needContact:'会社名・ご担当者・メールをご記入ください',sending:'送信中…',
+    badEmail:'メールアドレスの形式が正しくありません。ご確認ください。',
+    sendFail:'送信に失敗しました。お問い合わせは送信されていません。通信状況をご確認のうえ、もう一度送信してください。改善しない場合は GC 担当へ直接ご連絡ください。'}
 };
 function T(){ return UI[LANG()]||UI.zh; }
 const CAT_I18N={
@@ -531,6 +537,7 @@ function openInquiry(){
         <div class="field"><label>${t.fOther}</label><input id="iq-other" placeholder="${t.other_ph}"></div>
         <div class="field full"><label>${t.fNote}</label><textarea id="iq-note" placeholder="${t.note_ph}"></textarea></div>
       </div>
+      <div id="iqError" style="display:none;margin:10px 0 0;padding:10px 13px;border-radius:8px;background:#fef2f2;border:1px solid #fecaca;color:#b91c1c;font-size:13px;line-height:1.6;"></div>
       <button class="inq-submit" id="iqSubmit" onclick="submitInquiry()" ${items.length?'':'disabled'}>${t.submit(items.length)}</button>
       <div class="inq-mailnote">📧 ${t.mailNote}</div>
     </div>`;
@@ -544,7 +551,12 @@ async function submitInquiry(){
   const company=(document.getElementById('iq-company').value||'').trim();
   const contact=(document.getElementById('iq-contact').value||'').trim();
   const email=(document.getElementById('iq-email').value||'').trim();
-  if(!company||!contact||!email){ alert(t.needContact); return; }
+  const errBox=document.getElementById('iqError');
+  const showErr=m=>{ if(errBox){ errBox.textContent=m; errBox.style.display='block'; } else { alert(m); } };
+  const clearErr=()=>{ if(errBox) errBox.style.display='none'; };
+  clearErr();
+  if(!company||!contact||!email){ showErr(t.needContact); return; }
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){ showErr(t.badEmail); return; }
   const btn=document.getElementById('iqSubmit'); btn.disabled=true; btn.textContent=t.sending;
   const payload={
     company_name:company, contact_name:contact, email:email,
@@ -553,11 +565,23 @@ async function submitInquiry(){
     item_count:items.length,
     products:items.map(p=>({sku:p.sku,name:p.name_zh,name_en:p.name_en,brand:p.brand,category:p.category,origin:p.origin,stock_regions:p.stock_regions}))
   };
+  // 寫入 Supabase 是「詢價是否真的送達」的唯一判準（與 gc-form.html 一致）；
+  // 寄信端點（Apps Script）只是通知,失敗不影響詢價已留底。
+  let sbOk=false;
   try{
     const r=await fetch(REST+'inquiries',{method:'POST',headers:Object.assign({'Content-Type':'application/json',Prefer:'return=minimal'},SB_HEADERS),body:JSON.stringify([payload])});
+    sbOk=r.ok;
     if(!r.ok)console.warn('inquiry insert failed',await r.text());
-    if(INQUIRY_ENDPOINT){ try{ await fetch(INQUIRY_ENDPOINT,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)}); }catch(mailErr){ console.warn('mail endpoint failed',mailErr); } }
-  }catch(e){ console.error(e); }
+  }catch(e){ console.error('inquiry insert error',e); }
+  if(sbOk && INQUIRY_ENDPOINT){
+    try{ await fetch(INQUIRY_ENDPOINT,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)}); }catch(mailErr){ console.warn('mail endpoint failed',mailErr); }
+  }
+  if(!sbOk){
+    // 未送達 → 不顯示成功頁,保留使用者已填內容並恢復按鈕讓其重試
+    btn.disabled=false; btn.textContent=t.submit(items.length);
+    showErr(t.sendFail);
+    return;
+  }
   document.getElementById('inqContent').innerHTML=`
     <div class="success"><div class="ico">✓</div><h2>${t.okTitle}</h2><p>${t.okBody(items.length)}</p>
     <button class="btn-primary" onclick="closeInquiry();clearSel();">${t.back}</button></div>`;
