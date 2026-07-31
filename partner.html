@@ -438,6 +438,11 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
         </div>
 
         <form id="partnerForm" action="https://formspree.io/f/mwvjkawn" method="POST">
+          <!-- 防垃圾用隱藏欄位（honeypot）：真人看不到也不會填；aria-hidden + tabindex=-1 讓螢幕閱讀器與鍵盤跳過 -->
+          <div aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">
+            <label for="p_referral">Referral code</label>
+            <input type="text" id="p_referral" name="referral_code" tabindex="-1" autocomplete="off">
+          </div>
           <!-- 公司名稱 必填 -->
           <div class="field-group">
             <div class="field-label"><span data-i18n="partner.field.company">公司名稱</span> <span class="req">*</span></div>
@@ -500,6 +505,16 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
 </footer>
 
 <script>
+/* ── 防垃圾表單:頁面載入時間 + 判定函式 ──
+   判定結果只寫入 suspect_reason 欄位供後台篩選,不會擋下或丟棄任何送出。 */
+const GC_LOADED_AT=Date.now();
+const GC_MIN_SECONDS=3;
+function gcSuspectReason(honeypotValue){
+  const r=[];
+  if(String(honeypotValue||'').trim()!=='') r.push('honeypot');
+  if((Date.now()-GC_LOADED_AT)/1000 < GC_MIN_SECONDS) r.push('too_fast');
+  return r.length?r.join(','):null;
+}
 // Reveal on scroll
 const observer = new IntersectionObserver(entries=>{
   entries.forEach(e=>{
@@ -539,7 +554,7 @@ form.addEventListener('submit', async function(e){
     const sbRes = await fetch('https://rtzfeoahpsutyikutsys.supabase.co/rest/v1/partner_applications',{
       method:'POST',
       headers:{apikey:_K,Authorization:'Bearer '+_K,'Content-Type':'application/json',Prefer:'return=minimal'},
-      body:JSON.stringify([{ company_name:_pd.company_name||null, owner_name:_pd.owner_name||null, contact_name:_pd.contact_name||null, phone:_pd.phone||null, email:_pd.email||null, other_contact:_pd.other_contact||null, services_provided:_pd.services_provided||null, raw:_pd }])
+      body:JSON.stringify([{ company_name:_pd.company_name||null, owner_name:_pd.owner_name||null, contact_name:_pd.contact_name||null, phone:_pd.phone||null, email:_pd.email||null, other_contact:_pd.other_contact||null, services_provided:_pd.services_provided||null, raw:_pd, suspect_reason:gcSuspectReason(_pd.referral_code) }])
     });
     if(!sbRes.ok) console.warn('Supabase insert failed', await sbRes.text());
   }catch(sbErr){ console.warn('Supabase error',sbErr); }

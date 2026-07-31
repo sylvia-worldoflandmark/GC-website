@@ -655,6 +655,11 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
         </div>
       </div>
 
+      <!-- 防垃圾用隱藏欄位（honeypot）：真人看不到也不會填；aria-hidden + tabindex=-1 讓螢幕閱讀器與鍵盤跳過 -->
+      <div aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">
+        <label for="f_referral">Referral code</label>
+        <input type="text" id="f_referral" name="referral_code" tabindex="-1" autocomplete="off">
+      </div>
       <div class="field-group">
         <label><span data-i18n="form.lbl.company">公司名稱</span><span class="required-star">*</span></label>
         <input type="text" id="f_company" maxlength="100" data-i18n-ph="form.ph.company" placeholder="請輸入公司名稱">
@@ -806,16 +811,16 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
       <div class="field-group">
         <label data-i18n="form.lbl.product_tags">商品特性標籤（可複選）</label>
         <div class="tag-group" id="tagGroup">
-          <div class="tag-item" onclick="toggleTag(this)">含液體</div>
-          <div class="tag-item" onclick="toggleTag(this)">含酒精</div>
-          <div class="tag-item" onclick="toggleTag(this)">粉末</div>
-          <div class="tag-item" onclick="toggleTag(this)">噴霧</div>
-          <div class="tag-item" onclick="toggleTag(this)">玻璃包裝</div>
-          <div class="tag-item" onclick="toggleTag(this)">需效期管理</div>
-          <div class="tag-item" onclick="toggleTag(this)">需成分標示</div>
-          <div class="tag-item" onclick="toggleTag(this)">需品牌授權</div>
-          <div class="tag-item" onclick="toggleTag(this)">含電池 / 電子元件</div>
-          <div class="tag-item" onclick="toggleTag(this)">需溫控</div>
+          <div class="tag-item" onclick="toggleTag(this)" data-val="含液體" data-i18n="form.tag.liquid">含液體</div>
+          <div class="tag-item" onclick="toggleTag(this)" data-val="含酒精" data-i18n="form.tag.alcohol">含酒精</div>
+          <div class="tag-item" onclick="toggleTag(this)" data-val="粉末" data-i18n="form.tag.powder">粉末</div>
+          <div class="tag-item" onclick="toggleTag(this)" data-val="噴霧" data-i18n="form.tag.spray">噴霧</div>
+          <div class="tag-item" onclick="toggleTag(this)" data-val="玻璃包裝" data-i18n="form.tag.glass">玻璃包裝</div>
+          <div class="tag-item" onclick="toggleTag(this)" data-val="需效期管理" data-i18n="form.tag.expiry">需效期管理</div>
+          <div class="tag-item" onclick="toggleTag(this)" data-val="需成分標示" data-i18n="form.tag.ingredient">需成分標示</div>
+          <div class="tag-item" onclick="toggleTag(this)" data-val="需品牌授權" data-i18n="form.tag.brandauth">需品牌授權</div>
+          <div class="tag-item" onclick="toggleTag(this)" data-val="含電池 / 電子元件" data-i18n="form.tag.battery">含電池 / 電子元件</div>
+          <div class="tag-item" onclick="toggleTag(this)" data-val="需溫控" data-i18n="form.tag.tempctrl">需溫控</div>
         </div>
       </div>
 
@@ -836,15 +841,15 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
         <div class="conditional" id="cond_export_other">
           <div class="field-group" style="margin:0">
             <label>其他出口國說明<span class="required-star">*</span></label>
-            <input type="text" id="f_export_other" placeholder="請填寫出口國">
+            <input type="text" id="f_export_other" data-i18n-ph="form.ph.export_other" placeholder="請填寫出口國">
             <div class="error-msg" id="e_export_other" data-i18n="form.err.export_other">請填寫出口國說明</div>
           </div>
         </div>
       </div>
 
       <div class="field-group">
-        <label>產品整體說明</label>
-        <textarea id="f_product_desc" maxlength="5000" placeholder="簡要描述您的產品特色、目標客群或其他需要補充的資訊（最多 5,000 字）" rows="4"></textarea>
+        <label data-i18n="form.lbl.product_desc">產品整體說明</label>
+        <textarea id="f_product_desc" maxlength="5000" data-i18n-ph="form.ph.product_desc" placeholder="簡要描述您的產品特色、目標客群或其他需要補充的資訊（最多 5,000 字）" rows="4"></textarea>
       </div>
 
       <div class="step-nav">
@@ -947,41 +952,41 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
         <div class="category-section">
           <div class="category-section-title" data-i18n="form.region.greater_china">大中華區</div>
           <div class="tag-group">
-            <div class="tag-item" onclick="toggleMarket(this)">台灣</div>
-            <div class="tag-item" onclick="toggleMarket(this)">香港</div>
-            <div class="tag-item" onclick="toggleMarket(this)">澳門</div>
+            <div class="tag-item" onclick="toggleMarket(this)" data-val="台灣" data-i18n="form.mk.tw">台灣</div>
+            <div class="tag-item" onclick="toggleMarket(this)" data-val="香港" data-i18n="form.mk.hk">香港</div>
+            <div class="tag-item" onclick="toggleMarket(this)" data-val="澳門" data-i18n="form.mk.mo">澳門</div>
           </div>
         </div>
         <div class="category-section">
           <div class="category-section-title" data-i18n="form.region.ne_asia">東北亞</div>
           <div class="tag-group">
-            <div class="tag-item" onclick="toggleMarket(this)">日本</div>
-            <div class="tag-item" onclick="toggleMarket(this)">韓國</div>
+            <div class="tag-item" onclick="toggleMarket(this)" data-val="日本" data-i18n="form.mk.jp">日本</div>
+            <div class="tag-item" onclick="toggleMarket(this)" data-val="韓國" data-i18n="form.mk.kr">韓國</div>
           </div>
         </div>
         <div class="category-section">
           <div class="category-section-title" data-i18n="form.region.se_asia">東南亞</div>
           <div class="tag-group">
-            <div class="tag-item" onclick="toggleMarket(this)">新加坡</div>
-            <div class="tag-item" onclick="toggleMarket(this)">馬來西亞</div>
-            <div class="tag-item" onclick="toggleMarket(this)">泰國</div>
-            <div class="tag-item" onclick="toggleMarket(this)">印尼</div>
-            <div class="tag-item" onclick="toggleMarket(this)">越南</div>
-            <div class="tag-item" onclick="toggleMarket(this)">菲律賓</div>
+            <div class="tag-item" onclick="toggleMarket(this)" data-val="新加坡" data-i18n="form.mk.sg">新加坡</div>
+            <div class="tag-item" onclick="toggleMarket(this)" data-val="馬來西亞" data-i18n="form.mk.my">馬來西亞</div>
+            <div class="tag-item" onclick="toggleMarket(this)" data-val="泰國" data-i18n="form.mk.th">泰國</div>
+            <div class="tag-item" onclick="toggleMarket(this)" data-val="印尼" data-i18n="form.mk.id">印尼</div>
+            <div class="tag-item" onclick="toggleMarket(this)" data-val="越南" data-i18n="form.mk.vn">越南</div>
+            <div class="tag-item" onclick="toggleMarket(this)" data-val="菲律賓" data-i18n="form.mk.ph">菲律賓</div>
           </div>
         </div>
         <div class="category-section">
           <div class="category-section-title" data-i18n="form.region.west">歐美澳</div>
           <div class="tag-group">
-            <div class="tag-item" onclick="toggleMarket(this)">美國</div>
-            <div class="tag-item" onclick="toggleMarket(this)">歐洲</div>
-            <div class="tag-item" onclick="toggleMarket(this)">澳洲 / 紐西蘭</div>
+            <div class="tag-item" onclick="toggleMarket(this)" data-val="美國" data-i18n="form.mk.us">美國</div>
+            <div class="tag-item" onclick="toggleMarket(this)" data-val="歐洲" data-i18n="form.mk.eu">歐洲</div>
+            <div class="tag-item" onclick="toggleMarket(this)" data-val="澳洲 / 紐西蘭" data-i18n="form.mk.anz">澳洲 / 紐西蘭</div>
           </div>
         </div>
         <div class="category-section" style="margin:0">
-          <div class="category-section-title">其他</div>
+          <div class="category-section-title" data-i18n="form.region.other">其他</div>
           <div class="tag-group">
-            <div class="tag-item" id="marketOther" onclick="toggleMarket(this)">其他地區</div>
+            <div class="tag-item" id="marketOther" onclick="toggleMarket(this)" data-val="其他地區" data-i18n="form.mk.other_region">其他地區</div>
           </div>
           <div class="conditional" id="cond_market_other">
             <div class="field-group" style="margin:0;margin-top:0.8rem">
@@ -1215,7 +1220,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
           <div class="conditional" id="cond_consign">
             <div class="field-group" style="margin:0">
               <label><span data-i18n="form.lbl.consign_qty">可提供寄賣數量</span><span class="required-star">*</span></label>
-              <input type="text" id="f_consign_qty" placeholder="例如：每款 50 件">
+              <input type="text" id="f_consign_qty" data-i18n-ph="form.ph.consign_qty" placeholder="例如：每款 50 件">
               <div class="error-msg" id="e_consign_qty" data-i18n="form.err.consign_qty">請填寫寄賣數量</div>
             </div>
           </div>
@@ -1225,8 +1230,8 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
       <hr class="field-divider">
 
       <div class="field-group">
-        <label>其他相關困難點或補充說明</label>
-        <textarea id="f_other_notes" maxlength="5000" placeholder="請描述目前面臨的困難或其他需要補充的資訊（最多 5,000 字）" rows="4"></textarea>
+        <label data-i18n="form.lbl.other_notes">其他相關困難點或補充說明</label>
+        <textarea id="f_other_notes" maxlength="5000" data-i18n-ph="form.ph.other_notes" placeholder="請描述目前面臨的困難或其他需要補充的資訊（最多 5,000 字）" rows="4"></textarea>
       </div>
 
       <div class="step-nav">
@@ -1328,24 +1333,24 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
     <!-- SUCCESS -->
     <div id="step-success">
       <div class="success-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-      <div class="step-badge">提交成功</div>
-      <h1 class="step-title" style="margin-bottom:0.3rem">診斷表單已送出</h1>
-      <p style="font-size:0.9rem;color:var(--white-dim);line-height:1.8;max-width:520px;margin-bottom:0.5rem">感謝您提交 GC 跨境服務需求診斷表。GC 顧問團隊將於 3 個工作天內透過電子信箱或您提供的聯絡方式與您聯繫。</p>
+      <div class="step-badge" data-i18n="form.done.badge">提交成功</div>
+      <h1 class="step-title" style="margin-bottom:0.3rem" data-i18n="form.done.title">診斷表單已送出</h1>
+      <p style="font-size:0.9rem;color:var(--white-dim);line-height:1.8;max-width:520px;margin-bottom:0.5rem" data-i18n="form.done.desc">感謝您提交 GC 跨境服務需求診斷表。GC 顧問團隊將於 3 個工作天內透過電子信箱或您提供的聯絡方式與您聯繫。</p>
       <ul class="timeline-list">
-        <li><div class="tl-num">1</div><div>GC 團隊審閱診斷資料</div></li>
-        <li><div class="tl-num">2</div><div>安排 GC 團隊線上確認您的狀況及實際需求</div></li>
-        <li><div class="tl-num">3</div><div>確認客戶需求後，媒合適合的服務商</div></li>
-        <li><div class="tl-num">4</div><div>安排服務商與客戶進行線上會議</div></li>
-        <li><div class="tl-num">5</div><div>根據您的需求提供初步服務建議與報價</div></li>
+        <li><div class="tl-num">1</div><div data-i18n="form.done.step1">GC 團隊審閱診斷資料</div></li>
+        <li><div class="tl-num">2</div><div data-i18n="form.done.step2">安排 GC 團隊線上確認您的狀況及實際需求</div></li>
+        <li><div class="tl-num">3</div><div data-i18n="form.done.step3">確認客戶需求後，媒合適合的服務商</div></li>
+        <li><div class="tl-num">4</div><div data-i18n="form.done.step4">安排服務商與客戶進行線上會議</div></li>
+        <li><div class="tl-num">5</div><div data-i18n="form.done.step5">根據您的需求提供初步服務建議與報價</div></li>
       </ul>
       <div class="success-actions">
         <a href="mailto:support@worldoflandmark.com" class="btn-next" style="text-decoration:none;display:inline-flex;align-items:center;gap:8px;">
-          <span>直接聯繫 GC 業務團隊</span>
+          <span data-i18n="form.done.contact">直接聯繫 GC 業務團隊</span>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         </a>
         <a href="index.html" class="btn-prev" style="text-decoration:none;display:inline-flex;align-items:center;gap:8px;">
           <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-          返回官網
+          <span data-i18n="form.done.back">返回官網</span>
         </a>
       </div>
     </div>
@@ -1358,6 +1363,16 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
 </div>
 
 <script>
+/* ── 防垃圾表單:頁面載入時間 + 判定函式 ──
+   判定結果只寫入 suspect_reason 欄位供後台篩選,不會擋下或丟棄任何送出。 */
+const GC_LOADED_AT=Date.now();
+const GC_MIN_SECONDS=3;
+function gcSuspectReason(honeypotValue){
+  const r=[];
+  if(String(honeypotValue||'').trim()!=='') r.push('honeypot');
+  if((Date.now()-GC_LOADED_AT)/1000 < GC_MIN_SECONDS) r.push('too_fast');
+  return r.length?r.join(','):null;
+}
 let currentStep=1;
 const totalSteps=6;
 const selectedCats=new Set();
@@ -1375,10 +1390,22 @@ function selectRadioChip(el,name,val){
   const em=document.getElementById('e_'+name.replace('f_',''));
   if(em)em.classList.remove('show');
 }
+/* ── 條件式欄位可見性 ──────────────────────────────────────────
+   .conditional 預設 display:none，加上 .show 才顯示。
+   toggleCond() 只切換 class，不會清掉裡面已填的值 ——
+   使用者若先選「有」填了內容、再改選「沒有」，區塊雖然收合，
+   但送出時仍會把那些殘留值一併送出，造成「沒有出口經驗」卻附帶出口國家的矛盾資料。
+   這裡統一在讀取端判斷：位於已收合區塊內的欄位一律視為未填寫。 */
+function _condHidden(el){
+  if(!el) return false;
+  var c=el.closest ? el.closest('.conditional') : null;
+  return !!(c && !c.classList.contains('show'));
+}
 function getRadioVal(name){
   // Find the selected chip whose onclick contains selectRadioChip and the field name
   const all=document.querySelectorAll('.chip.selected');
   for(const c of all){
+    if(_condHidden(c)) continue;   // 收合的條件式區塊內的選擇不算數
     const oc=c.getAttribute('onclick')||'';
     // Match selectRadioChip(this,'NAME','VALUE') pattern
     const m=oc.match(/selectRadioChip\(this,'([^']+)','([^']+)'\)/);
@@ -1398,13 +1425,16 @@ function toggleChannelChip(el,type,val){
   const eCh=document.getElementById('e_channel');
   if(eCh)eCh.classList.remove('show');
 }
-function toggleTag(el){el.classList.toggle('selected');selectedTags[el.classList.contains('selected')?'add':'delete'](el.textContent.trim());}
+// 值一律取 data-val（固定中文），不再讀畫面文字，避免切換語言後送出翻譯後的字串
+function _tagVal(el){ return (el.getAttribute('data-val')||el.textContent||'').trim(); }
+function toggleTag(el){el.classList.toggle('selected');selectedTags[el.classList.contains('selected')?'add':'delete'](_tagVal(el));}
 function toggleCat(el,val){el.classList.toggle('selected');selectedCats[el.classList.contains('selected')?'add':'delete'](val);if(val==='其他類別')toggleCond('cond_cat_other',el.classList.contains('selected'));const em=document.getElementById('e_cat');if(em)em.classList.remove('show');}
-function toggleMarket(el){el.classList.toggle('selected');const v=el.textContent.trim();selectedMarkets[el.classList.contains('selected')?'add':'delete'](v);if(v==='其他地區')toggleCond('cond_market_other',el.classList.contains('selected'));const em=document.getElementById('e_markets');if(em)em.classList.remove('show');}
+function toggleMarket(el){el.classList.toggle('selected');const v=_tagVal(el);selectedMarkets[el.classList.contains('selected')?'add':'delete'](v);if(v==='其他地區')toggleCond('cond_market_other',el.classList.contains('selected'));const em=document.getElementById('e_markets');if(em)em.classList.remove('show');}
 
 let brandCount=1;
-function addBrand(){if(brandCount>=5)return;brandCount++;const row=document.createElement('div');row.className='brand-row';row.innerHTML=`<input type="text" class="brand-input" placeholder="品牌名稱 ${brandCount}" maxlength="100"><button type="button" class="btn-icon" onclick="removeBrand(this)"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>`;document.getElementById('brandList').appendChild(row);if(brandCount>=5)document.getElementById('addBrandBtn').style.display='none';}
-function removeBrand(btn){btn.closest('.brand-row').remove();brandCount--;document.getElementById('addBrandBtn').style.display='';document.querySelectorAll('.brand-input').forEach((inp,i)=>inp.placeholder=`品牌名稱 ${i+1}`);}
+function gcTxt(key,fb){try{var L=(typeof GC_LANG!=='undefined')?GC_LANG:'zh';var t=(typeof GC_I18N!=='undefined')&&GC_I18N[L];return (t&&t[key]!==undefined)?t[key]:fb;}catch(e){return fb;}}
+function addBrand(){if(brandCount>=5)return;brandCount++;const row=document.createElement('div');row.className='brand-row';row.innerHTML=`<input type="text" class="brand-input" placeholder="${gcTxt('form.ph.brand_name','品牌名稱')} ${brandCount}" maxlength="100"><button type="button" class="btn-icon" onclick="removeBrand(this)"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>`;document.getElementById('brandList').appendChild(row);if(brandCount>=5)document.getElementById('addBrandBtn').style.display='none';}
+function removeBrand(btn){btn.closest('.brand-row').remove();brandCount--;document.getElementById('addBrandBtn').style.display='';document.querySelectorAll('.brand-input').forEach((inp,i)=>inp.placeholder=`${gcTxt('form.ph.brand_name','品牌名稱')} ${i+1}`);}
 function getBrands(){return[...document.querySelectorAll('.brand-input')].map(i=>i.value.trim()).filter(Boolean);}
 function togglePrivacy(){const el=document.getElementById('privacyCheck');el.classList.toggle('checked');document.getElementById('f_privacy').checked=el.classList.contains('checked');}
 
@@ -1448,9 +1478,10 @@ function validateStep2(){
   let ok=true;
   if(!selectedCats.size){showError('e_cat',true);ok=false;}else{showError('e_cat',false);}
   if(selectedCats.has('其他類別')){const v=document.getElementById('f_cat_other').value.trim();if(!v){showError('e_cat_other',true);markInputError('f_cat_other',true);ok=false;}else{showError('e_cat_other',false);markInputError('f_cat_other',false);}}
-  const exportVals=[...document.querySelectorAll('#step-2 .chip.selected[onclick*="toggleCheckChip"],#step-2 .chip.selected[onclick*="toggleCheckChipOther"]')].map(e=>e.getAttribute('onclick')||'');
+  const exportVals=[...document.querySelectorAll('#step-2 .chip.selected[onclick*="toggleCheckChip"],#step-2 .chip.selected[onclick*="toggleCheckChipOther"]')].filter(function(e){return !_condHidden(e);}).map(e=>e.getAttribute('onclick')||'');
   if(!exportVals.length){showError('e_export',true);ok=false;}else{showError('e_export',false);}
-  const hasExportOther=document.querySelector('#step-2 .chip.selected[onclick*="toggleCheckChipOther"]');
+  var _heo=document.querySelector('#step-2 .chip.selected[onclick*="toggleCheckChipOther"]');
+  const hasExportOther=(_heo && !_condHidden(_heo)) ? _heo : null;
   if(hasExportOther){const v=document.getElementById('f_export_other').value.trim();if(!v){showError('e_export_other',true);markInputError('f_export_other',true);ok=false;}else{showError('e_export_other',false);markInputError('f_export_other',false);}}
   return ok;
 }
@@ -1475,7 +1506,7 @@ function validateStep4(){
 }
 function validateStep5(){
   let ok=true;
-  const channels=[...document.querySelectorAll('#step-5 .chip-multi.selected')].map(e=>{const m=e.getAttribute('onclick').match(/,'([^']+)'\)$/);return m?m[1]:'';});
+  const channels=[...document.querySelectorAll('#step-5 .chip-multi.selected')].filter(function(e){return !_condHidden(e);}).map(e=>{const m=e.getAttribute('onclick').match(/,'([^']+)'\)$/);return m?m[1]:'';});
   if(!channels.length){showError('e_channel',true);ok=false;}else{showError('e_channel',false);}
   if(channels.includes('直播帶貨')){if(!getRadioVal('f_live_exp')){showError('e_live_exp',true);ok=false;}else{showError('e_live_exp',false);}if(!getRadioVal('f_live_rep')){showError('e_live_rep',true);ok=false;}else{showError('e_live_rep',false);}}
   if(channels.includes('海外拓銷')){const oe=getRadioVal('f_overseas_exp');if(!oe){showError('e_overseas_exp',true);ok=false;}else{showError('e_overseas_exp',false);}if(oe==='有'){const v=document.getElementById('f_overseas_countries').value.trim();if(!v){showError('e_overseas_countries',true);markInputError('f_overseas_countries',true);ok=false;}else{showError('e_overseas_countries',false);markInputError('f_overseas_countries',false);}}if(!getRadioVal('f_local_rep')){showError('e_local_rep',true);ok=false;}else{showError('e_local_rep',false);}}
@@ -1506,7 +1537,7 @@ function updateSidebarLocks(){
 }
 
 function buildSummary(){
-  const g=id=>{const el=document.getElementById(id);return el?el.value.trim():'';};
+  const g=id=>{const el=document.getElementById(id);return (el&&!_condHidden(el))?el.value.trim():'';};
   const sv=(id,val)=>{const el=document.getElementById(id);if(el)el.textContent=val||'—';};
   const hide=(rowId,show)=>{const el=document.getElementById(rowId);if(el)el.style.display=show?'':'none';};
 
@@ -1524,7 +1555,7 @@ function buildSummary(){
   sv('sum_cats',[...selectedCats].join('、'));
   sv('sum_cat_other',selectedCats.has('其他類別')?g('f_cat_other'):'');
   sv('sum_tags',[...selectedTags].join('、'));
-  const exportChips=[...document.querySelectorAll('#step-2 .chip.selected[onclick*="toggleCheckChip"],#step-2 .chip.selected[onclick*="toggleCheckChipOther"]')];
+  const exportChips=[...document.querySelectorAll('#step-2 .chip.selected[onclick*="toggleCheckChip"],#step-2 .chip.selected[onclick*="toggleCheckChipOther"]')].filter(function(e){return !_condHidden(e);});
   const exportVals=exportChips.map(e=>{
     const oc=e.getAttribute('onclick');
     if(oc.includes('toggleCheckChipOther')){
@@ -1541,7 +1572,7 @@ function buildSummary(){
   sv('sum_exp_countries',expVal==='有'?g('f_exp_countries'):'');
   sv('sum_exp_products',expVal==='有'?g('f_exp_products'):'');
   sv('sum_exp_rev',expVal==='有'?getRadioVal('f_exp_rev'):'');
-  const expMethods=[...document.querySelectorAll('#step-3 .chip.selected[onclick*="toggleCheckChip"]')].map(e=>{const m=e.getAttribute('onclick').match(/,'([^']+)'\)/);return m?m[1]:'';});
+  const expMethods=[...document.querySelectorAll('#step-3 .chip.selected[onclick*="toggleCheckChip"]')].filter(function(e){return !_condHidden(e);}).map(e=>{const m=e.getAttribute('onclick').match(/,'([^']+)'\)/);return m?m[1]:'';});
   sv('sum_exp_methods',expMethods.join('、'));
   sv('sum_sku',getRadioVal('f_sku'));
   sv('sum_price',getRadioVal('f_price'));
@@ -1557,7 +1588,7 @@ function buildSummary(){
   sv('sum_sample',getRadioVal('f_sample'));
   sv('sum_launch',getRadioVal('f_launch'));
 
-  const channels=[...document.querySelectorAll('#step-5 .chip-multi.selected')].map(e=>{const m=e.getAttribute('onclick').match(/,'([^']+)'\)$/);return m?m[1]:'';});
+  const channels=[...document.querySelectorAll('#step-5 .chip-multi.selected')].filter(function(e){return !_condHidden(e);}).map(e=>{const m=e.getAttribute('onclick').match(/,'([^']+)'\)$/);return m?m[1]:'';});
   sv('sum_channels',channels.join('、'));
   const hasLive=channels.includes('直播帶貨');
   const hasOverseas=channels.includes('海外拓銷');
@@ -1591,7 +1622,7 @@ function buildSummary(){
 }
 
 function collectData(){
-  const g=id=>{const el=document.getElementById(id);return el?el.value.trim():'';};
+  const g=id=>{const el=document.getElementById(id);return (el&&!_condHidden(el))?el.value.trim():'';};
   return{
     referrer:g('f_referrer'),source:(getRadioVal('f_source')==='其他'?g('f_source_other'):getRadioVal('f_source')),company:g('f_company'),contact:g('f_contact'),title:g('f_title'),email:g('f_email'),
     otherContactType:getRadioVal('f_other_contact_type'),otherContactVal:g('f_other_contact_val'),
@@ -1599,14 +1630,14 @@ function collectData(){
     brands:getBrands().join('、'),
     categories:[...selectedCats].join('、'),categoryOther:g('f_cat_other'),
     tags:[...selectedTags].join('、'),
-    exportCountries:(()=>{const chips=[...document.querySelectorAll('#step-2 .chip.selected[onclick*="toggleCheckChip"],#step-2 .chip.selected[onclick*="toggleCheckChipOther"]')];return chips.map(e=>{const oc=e.getAttribute('onclick');if(oc.includes('toggleCheckChipOther')){return g('f_export_other')||'其他';}const m=oc.match(/,'([^']+)'\)/);return m?m[1]:'';}).filter(Boolean).join('、');})(),productDesc:g('f_product_desc'),
+    exportCountries:(()=>{const chips=[...document.querySelectorAll('#step-2 .chip.selected[onclick*="toggleCheckChip"],#step-2 .chip.selected[onclick*="toggleCheckChipOther"]')].filter(function(e){return !_condHidden(e);});return chips.map(e=>{const oc=e.getAttribute('onclick');if(oc.includes('toggleCheckChipOther')){return g('f_export_other')||'其他';}const m=oc.match(/,'([^']+)'\)/);return m?m[1]:'';}).filter(Boolean).join('、');})(),productDesc:g('f_product_desc'),
     exportExp:getRadioVal('f_export_exp'),expCountries:g('f_exp_countries'),expProducts:g('f_exp_products'),expRevenue:getRadioVal('f_exp_rev'),
-    expMethods:[...document.querySelectorAll('#step-3 .chip.selected[onclick*="toggleCheckChip"]')].map(e=>{const m=e.getAttribute('onclick').match(/,'([^']+)'\)/);return m?m[1]:'';}).join('、'),
+    expMethods:[...document.querySelectorAll('#step-3 .chip.selected[onclick*="toggleCheckChip"]')].filter(function(e){return !_condHidden(e);}).map(e=>{const m=e.getAttribute('onclick').match(/,'([^']+)'\)/);return m?m[1]:'';}).join('、'),
     sku:getRadioVal('f_sku'),price:getRadioVal('f_price'),
     markets:[...selectedMarkets].map(v=>v==='其他地區'?(g('f_market_other')||'其他地區'):v).join('、'),
     distributor:getRadioVal('f_distributor'),opex:getRadioVal('f_opex'),marketing:getRadioVal('f_mktg'),
     revenueTarget:getRadioVal('f_rev_target'),sample:getRadioVal('f_sample'),launchTime:getRadioVal('f_launch'),
-    channels:[...document.querySelectorAll('#step-5 .chip-multi.selected')].map(e=>{const m=e.getAttribute('onclick').match(/,'([^']+)'\)$/);return m?m[1]:'';}).join('、'),
+    channels:[...document.querySelectorAll('#step-5 .chip-multi.selected')].filter(function(e){return !_condHidden(e);}).map(e=>{const m=e.getAttribute('onclick').match(/,'([^']+)'\)$/);return m?m[1]:'';}).join('、'),
     liveExp:getRadioVal('f_live_exp'),liveRep:getRadioVal('f_live_rep'),
     overseasExp:getRadioVal('f_overseas_exp'),overseasCountries:g('f_overseas_countries'),localRep:getRadioVal('f_local_rep'),
     ecomExp:getRadioVal('f_ecom_exp'),ecomPlatforms:g('f_ecom_platforms'),ecomTeam:getRadioVal('f_ecom_team'),ecomCert:getRadioVal('f_ecom_cert'),
@@ -1741,7 +1772,7 @@ async function submitForm(){
       const sbRes=await fetch('https://rtzfeoahpsutyikutsys.supabase.co/rest/v1/form_submissions',{
         method:'POST',
         headers:{apikey:_K,Authorization:'Bearer '+_K,'Content-Type':'application/json',Prefer:'return=minimal'},
-        body:JSON.stringify([{ submission_id:subId, company_name:data.company||null, contact_name:data.contact||null, email:data.email||null, brand_name:data.brands||null, data:sheetPayload }])
+        body:JSON.stringify([{ submission_id:subId, company_name:data.company||null, contact_name:data.contact||null, email:data.email||null, brand_name:data.brands||null, data:sheetPayload, suspect_reason:gcSuspectReason((document.getElementById('f_referral')||{}).value) }])
       });
       sbOk=sbRes.ok;
       if(!sbRes.ok)console.warn('Supabase insert failed',await sbRes.text());
@@ -1801,7 +1832,8 @@ document.addEventListener('DOMContentLoaded', function(){
   const input = document.getElementById('ss_referrer_input');
   const list  = document.getElementById('ss_referrer_list');
   const hidden = document.getElementById('f_referrer');
-  const items = Array.from(list.querySelectorAll('li:not(.ss-placeholder)'));
+  // 名單可能被下面的動態載入替換,所以 items 必須可更新（原本是 const，替換後搜尋過濾會失效）
+  let items = Array.from(list.querySelectorAll('li:not(.ss-placeholder)'));
 
   function openList(){ wrap.classList.add('open'); }
   function closeList(){ wrap.classList.remove('open'); }
@@ -1836,6 +1868,32 @@ document.addEventListener('DOMContentLoaded', function(){
   document.addEventListener('mousedown', function(e){
     if(!wrap.contains(e.target)) closeList();
   });
+
+  /* ── 從資料庫載入介紹人名單 ──
+     讀 public_referrers 視圖（只含啟用中的人，只有 id/顯示名稱/排序）。
+     任何失敗都直接 return，保留 HTML 內建的靜態名單當後備 —— 最壞情況等同改版前的行為。 */
+  (async function loadReferrers(){
+    try{
+      const _K='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ0emZlb2FocHN1dHlpa3V0c3lzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA5ODU2NTAsImV4cCI6MjA5NjU2MTY1MH0.1ouoDmHrmetOc_qsvPrXiKsKx8eDEebbsXr2Fk2Sy-o';
+      const r=await fetch('https://rtzfeoahpsutyikutsys.supabase.co/rest/v1/public_referrers?select=display_name&order=sort_order.asc,id.asc',
+        {headers:{apikey:_K,Authorization:'Bearer '+_K}});
+      if(!r.ok){ console.warn('referrers load failed', r.status); return; }
+      const rows=await r.json();
+      if(!Array.isArray(rows) || !rows.length) return;   // 空名單也保留靜態後備
+      const ph=list.querySelector('li.ss-placeholder');
+      list.innerHTML='';
+      if(ph) list.appendChild(ph);
+      rows.forEach(function(x){
+        const name=String(x.display_name||'').trim();
+        if(!name) return;
+        const li=document.createElement('li');
+        li.setAttribute('data-value',name);
+        li.textContent=name;
+        list.appendChild(li);
+      });
+      items=Array.from(list.querySelectorAll('li:not(.ss-placeholder)'));
+    }catch(e){ console.warn('referrers load error', e); }
+  })();
 })();
 </script>
 <script src="i18n.js"></script>

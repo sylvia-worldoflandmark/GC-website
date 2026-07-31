@@ -292,6 +292,16 @@ const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZ
 const INQUIRY_ENDPOINT='https://script.google.com/macros/s/AKfycbwXKbLtD4xzCgrwkD29pqqBXbQtmiXYfG5mgbNq9HulXnkx9cUKxA6b4i-g9sYO_1Ujjw/exec';
 const REST=SB_URL+'/rest/v1/';
 const SB_HEADERS={apikey:SB_KEY,Authorization:'Bearer '+SB_KEY};
+/* ── 防垃圾表單:頁面載入時間 + 判定函式 ──
+   判定結果只寫入 suspect_reason 欄位供後台篩選,不會擋下或丟棄任何送出。 */
+const GC_LOADED_AT=Date.now();
+const GC_MIN_SECONDS=3;
+function gcSuspectReason(honeypotValue){
+  const r=[];
+  if(String(honeypotValue||'').trim()!=='') r.push('honeypot');
+  if((Date.now()-GC_LOADED_AT)/1000 < GC_MIN_SECONDS) r.push('too_fast');
+  return r.length?r.join(','):null;
+}
 const PAGE_SIZE=25;
 
 /* ====== 多語系 ====== */
@@ -537,6 +547,11 @@ function openInquiry(){
         <div class="field"><label>${t.fOther}</label><input id="iq-other" placeholder="${t.other_ph}"></div>
         <div class="field full"><label>${t.fNote}</label><textarea id="iq-note" placeholder="${t.note_ph}"></textarea></div>
       </div>
+      <!-- 防垃圾用隱藏欄位（honeypot）：真人看不到也不會填；aria-hidden + tabindex=-1 讓螢幕閱讀器與鍵盤跳過 -->
+      <div aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">
+        <label for="iq-referral">Referral code</label>
+        <input id="iq-referral" name="referral_code" type="text" tabindex="-1" autocomplete="off">
+      </div>
       <div id="iqError" style="display:none;margin:10px 0 0;padding:10px 13px;border-radius:8px;background:#fef2f2;border:1px solid #fecaca;color:#b91c1c;font-size:13px;line-height:1.6;"></div>
       <button class="inq-submit" id="iqSubmit" onclick="submitInquiry()" ${items.length?'':'disabled'}>${t.submit(items.length)}</button>
       <div class="inq-mailnote">📧 ${t.mailNote}</div>
@@ -563,7 +578,8 @@ async function submitInquiry(){
     other_contact:(document.getElementById('iq-other').value||'').trim(),
     message:(document.getElementById('iq-note').value||'').trim(),
     item_count:items.length,
-    products:items.map(p=>({sku:p.sku,name:p.name_zh,name_en:p.name_en,brand:p.brand,category:p.category,origin:p.origin,stock_regions:p.stock_regions}))
+    products:items.map(p=>({sku:p.sku,name:p.name_zh,name_en:p.name_en,brand:p.brand,category:p.category,origin:p.origin,stock_regions:p.stock_regions})),
+    suspect_reason:gcSuspectReason((document.getElementById('iq-referral')||{}).value)
   };
   // 寫入 Supabase 是「詢價是否真的送達」的唯一判準（與 gc-form.html 一致）；
   // 寄信端點（Apps Script）只是通知,失敗不影響詢價已留底。
