@@ -1,23 +1,141 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<!-- 每頁三個語言版本各有獨立網址（?lang=en / ?lang=ja），
+     並以 xhtml:link 互相標註 hreflang，讓搜尋引擎知道它們是同一頁的不同語言版本。 -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://worldoflandmark.com/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://worldoflandmark.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://worldoflandmark.com/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://worldoflandmark.com/?lang=ja"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://worldoflandmark.com/"/>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://worldoflandmark.com/?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://worldoflandmark.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://worldoflandmark.com/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://worldoflandmark.com/?lang=ja"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://worldoflandmark.com/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://worldoflandmark.com/?lang=ja</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://worldoflandmark.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://worldoflandmark.com/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://worldoflandmark.com/?lang=ja"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://worldoflandmark.com/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://worldoflandmark.com/catalog.html</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://worldoflandmark.com/catalog.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://worldoflandmark.com/catalog.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://worldoflandmark.com/catalog.html?lang=ja"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://worldoflandmark.com/catalog.html"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://worldoflandmark.com/catalog.html?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://worldoflandmark.com/catalog.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://worldoflandmark.com/catalog.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://worldoflandmark.com/catalog.html?lang=ja"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://worldoflandmark.com/catalog.html"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://worldoflandmark.com/catalog.html?lang=ja</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://worldoflandmark.com/catalog.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://worldoflandmark.com/catalog.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://worldoflandmark.com/catalog.html?lang=ja"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://worldoflandmark.com/catalog.html"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://worldoflandmark.com/partner.html</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://worldoflandmark.com/partner.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://worldoflandmark.com/partner.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://worldoflandmark.com/partner.html?lang=ja"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://worldoflandmark.com/partner.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://worldoflandmark.com/gc-form.html</loc>
+    <loc>https://worldoflandmark.com/partner.html?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://worldoflandmark.com/partner.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://worldoflandmark.com/partner.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://worldoflandmark.com/partner.html?lang=ja"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://worldoflandmark.com/partner.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://worldoflandmark.com/catalog.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://worldoflandmark.com/partner.html?lang=ja</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://worldoflandmark.com/partner.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://worldoflandmark.com/partner.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://worldoflandmark.com/partner.html?lang=ja"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://worldoflandmark.com/partner.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://worldoflandmark.com/gc-form.html</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://worldoflandmark.com/gc-form.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://worldoflandmark.com/gc-form.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://worldoflandmark.com/gc-form.html?lang=ja"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://worldoflandmark.com/gc-form.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://worldoflandmark.com/gc-form.html?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://worldoflandmark.com/gc-form.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://worldoflandmark.com/gc-form.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://worldoflandmark.com/gc-form.html?lang=ja"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://worldoflandmark.com/gc-form.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://worldoflandmark.com/gc-form.html?lang=ja</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://worldoflandmark.com/gc-form.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://worldoflandmark.com/gc-form.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://worldoflandmark.com/gc-form.html?lang=ja"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://worldoflandmark.com/gc-form.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://worldoflandmark.com/privacy.html</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://worldoflandmark.com/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://worldoflandmark.com/privacy.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://worldoflandmark.com/privacy.html?lang=ja"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://worldoflandmark.com/privacy.html"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://worldoflandmark.com/privacy.html?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://worldoflandmark.com/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://worldoflandmark.com/privacy.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://worldoflandmark.com/privacy.html?lang=ja"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://worldoflandmark.com/privacy.html"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://worldoflandmark.com/privacy.html?lang=ja</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://worldoflandmark.com/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://worldoflandmark.com/privacy.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://worldoflandmark.com/privacy.html?lang=ja"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://worldoflandmark.com/privacy.html"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
 </urlset>

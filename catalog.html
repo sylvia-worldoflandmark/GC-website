@@ -13,9 +13,16 @@
 <meta property="og:site_name" content="GC 跨境服務">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://worldoflandmark.com/images/logo.png">
+<!-- 語言版本：查詢字串 ?lang= 讓每個語言有各自的網址（可分享、可被索引）。
+     canonical 由 i18n.js 依目前語言即時更新；此處為預設（繁中）版本。 -->
+<link rel="canonical" href="https://worldoflandmark.com/catalog.html">
+<link rel="alternate" hreflang="zh-Hant" href="https://worldoflandmark.com/catalog.html">
+<link rel="alternate" hreflang="en" href="https://worldoflandmark.com/catalog.html?lang=en">
+<link rel="alternate" hreflang="ja" href="https://worldoflandmark.com/catalog.html?lang=ja">
+<link rel="alternate" hreflang="x-default" href="https://worldoflandmark.com/catalog.html">
+<meta property="og:url" content="https://worldoflandmark.com/catalog.html">
 <title>商品型錄 — GC 跨境服務</title>
 <link rel="icon" type="image/png" sizes="32x32" href="images/favicon.png">
-<link rel="canonical" href="https://worldoflandmark.com/catalog.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700&family=M+PLUS+1p:wght@400;500;700&display=swap" rel="stylesheet">
 <!-- 商品清單預渲染插入點（SEO）：build 腳本會把商品列表與 JSON-LD 注入這裡 -->
@@ -282,6 +289,8 @@ footer{background:rgba(6,8,14,0.9);padding:2.8rem 5vw;border-top:1px solid rgba(
 <footer>
   <a href="index.html" style="display:flex;align-items:center;"><img src="images/logo.png" alt="GC 跨境服務" style="height:28px;"></a>
   <div class="footer-copy" data-i18n="footer.copy">© 2026 GC Cross-Border Services. All rights reserved.</div>
+
+  <a href="privacy.html" data-i18n="footer.privacy" style="font-size:0.78rem;color:rgba(255,250,250,0.45);text-decoration:none;">隱私權政策</a>
 </footer>
 
 <script>
@@ -377,7 +386,23 @@ function pName(p){ const l=LANG(); return p['name_'+l]||p.name_zh||p.name_en||p.
 function pShelf(p){ if(p.shelf_life_months==null||p.shelf_life_months==='')return null; return T().months(p.shelf_life_months); }
 function pDesc(p){ var l=LANG(); return p['desc_'+l]||p.desc_zh||p.desc_en||''; }
 function normBrand(b){ return String(b==null?"":b).replace(/[​‌‍﻿]/g,"").replace(/　/g," ").replace(/\s+/g," ").trim(); }
-function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+/* ── 網址安全處理 ──────────────────────────────────────────────
+   注意：把資料放進 onclick="fn('…')" 這種「HTML 屬性裡的 JS 字串」時，
+   光把單引號轉成 &#39; 是沒有用的 —— HTML 解析器會先把 &#39; 還原成 '，
+   JS 才開始解析，字串照樣被關掉。正確做法是根本不要把資料放進 JS 字串：
+   改用 data-* 屬性承載、事件處理器從 this.dataset 讀取（下方已改成這種寫法）。 */
+// 只允許 http/https，且不得含引號、反斜線、角括號或空白。
+// 與後台匯入端的 _impSafePhotoUrl 同一套規則 —— 匯入端擋新資料，
+// 這裡擋「修補前就已經存在於資料庫的舊資料」。
+function safeUrl(u){
+  const v=String(u==null?'':u).trim();
+  if(!/^https?:\/\//i.test(v)) return '';
+  if(/["'`\\\s<>]/.test(v)) return '';
+  return v;
+}
+// CSS url() 內容：把可能提前關閉字串或括號的字元百分比編碼
+function cssUrl(u){ return safeUrl(u).replace(/[()'"\\\s]/g,c=>'%'+c.charCodeAt(0).toString(16).padStart(2,'0')); }
 
 /* ====== 狀態 ====== */
 let PRODUCTS=[];
@@ -427,7 +452,7 @@ function filtered(){
     return true;
   });
 }
-function thumbStyle(p){ return p.photo_url?`background-image:url('${esc(p.photo_url)}')`:''; }
+function thumbStyle(p){ const u=cssUrl(p.photo_url); return u?`background-image:url('${u}')`:''; }
 
 function onFilter(){ curPage=1; render(); }
 
@@ -450,8 +475,8 @@ function render(){
     const chips=regions.map(r=>`<span class="chip">${esc(r)}</span>`).join('');
     const shelf=pShelf(p), shelfTxt=shelf||'—';
     const th=thumbStyle(p);
-    return `<div class="lrow lbody ${on?'sel':''}" onclick="openDetail('${p.id}')">
-      <div class="cell c-chk" onclick="event.stopPropagation();toggle('${p.id}')"><div class="chk ${on?'on':''}"></div></div>
+    return `<div class="lrow lbody ${on?'sel':''}" data-pid="${esc(p.id)}" onclick="openDetail(this.dataset.pid)">
+      <div class="cell c-chk" data-pid="${esc(p.id)}" onclick="event.stopPropagation();toggle(this.dataset.pid)"><div class="chk ${on?'on':''}"></div></div>
       <div class="cell prod">
         <div class="thumb" style="${th}">${th?'':'📦'}</div>
         <div class="pname"><b>${esc(pName(p))}</b>
@@ -463,7 +488,7 @@ function render(){
       <div class="cell c-origin">${esc(trCountry(p.origin))}</div>
       <div class="cell c-shelf"><span class="muted">${esc(shelfTxt)}</span></div>
       <div class="cell c-region"><span class="chips">${chips}</span></div>
-      <div class="cell c-add" onclick="event.stopPropagation();toggle('${p.id}')"><button class="add-row ${on?'on':''}">${on?t.added:t.add}</button></div>
+      <div class="cell c-add" data-pid="${esc(p.id)}" onclick="event.stopPropagation();toggle(this.dataset.pid)"><button class="add-row ${on?'on':''}">${on?t.added:t.add}</button></div>
       <div class="mob-chips">
         <span class="chip">${t.cat} ${esc(trCat(p.category))}</span><span class="chip">${t.origin} ${esc(trCountry(p.origin))}</span>
         ${shelf?`<span class="chip">${t.shelf} ${esc(shelf)}</span>`:''}${regions.length?`<span class="chip">${t.stockp} ${esc(regions.join('/'))}</span>`:''}
@@ -495,7 +520,7 @@ function syncBar(){
   const items=[...selected].map(id=>P(id)).filter(Boolean);
   document.getElementById('fbCount').textContent=selected.size;
   const th=document.getElementById('fbThumbs');
-  if(th){ const show=items.slice(0,3); let h=show.map(p=>`<div class="t" style="${p.photo_url?`background-image:url('${esc(p.photo_url)}')`:''}"></div>`).join(''); if(items.length>3) h+=`<div class="more">+${items.length-3}</div>`; th.innerHTML=h; }
+  if(th){ const show=items.slice(0,3); let h=show.map(p=>`<div class="t" style="${cssUrl(p.photo_url)?`background-image:url('${cssUrl(p.photo_url)}')`:''}"></div>`).join(''); if(items.length>3) h+=`<div class="more">+${items.length-3}</div>`; th.innerHTML=h; }
   document.getElementById('floatbar').classList.toggle('show',selected.size>0);
 }
 
@@ -504,7 +529,7 @@ function openDetail(id){
   const p=P(id), t=T(), on=selected.has(id);
   const shelf=pShelf(p), th=thumbStyle(p), desc=pDesc(p);
   document.getElementById('detailContent').innerHTML=`
-    ${p.photo_url?`<div class="detail-img" onclick="openLightbox('${esc(p.photo_url)}')"><img src="${esc(p.photo_url)}" alt="${esc(pName(p))}"></div>`:'<div class="detail-img" style="cursor:default">📦</div>'}
+    ${safeUrl(p.photo_url)?`<div class="detail-img" data-src="${esc(safeUrl(p.photo_url))}" onclick="openLightbox(this.dataset.src)"><img src="${esc(safeUrl(p.photo_url))}" alt="${esc(pName(p))}"></div>`:'<div class="detail-img" style="cursor:default">📦</div>'}
     <div class="detail-body">
       <div class="detail-cat">${esc(trCat(p.category))}　·　${esc(p.brand||'')}</div>
       <h2>${esc(pName(p))}</h2>
@@ -514,7 +539,7 @@ function openDetail(id){
       ${shelf?`<div class="spec"><span class="k">${t.shelf}</span><span class="v">${esc(shelf)}</span></div>`:''}
       <div class="spec"><span class="k">${t.stock}</span><span class="v">${esc((p.stock_regions||[]).map(trCountry).join('、')||'—')}</span></div>
       <div class="price-box">${t.priceNote}</div>
-      <button class="detail-add ${on?'on':''}" onclick="toggle('${p.id}');openDetail('${p.id}')">${on?t.added:t.add}</button>
+      <button class="detail-add ${on?'on':''}" data-pid="${esc(p.id)}" onclick="toggle(this.dataset.pid);openDetail(this.dataset.pid)">${on?t.added:t.add}</button>
     </div>`;
   document.getElementById('detailOverlay').classList.add('show');
 }
@@ -535,7 +560,7 @@ function openInquiry(){
         ${items.length?shown.map(p=>`<div class="inq-item">
           <div class="inq-thumb" style="${thumbStyle(p)}"></div>
           <div class="nm">${esc(pName(p))}<span>${esc(p.brand||'')}｜${esc(trCat(p.category))}</span></div>
-          <button class="rm" onclick="toggle('${p.id}');openInquiry()">✕</button>
+          <button class="rm" data-pid="${esc(p.id)}" onclick="toggle(this.dataset.pid);openInquiry()">✕</button>
         </div>`).join(''):'<div style="padding:22px;text-align:center;color:var(--text-dim);font-size:0.85rem;">—</div>'}
       </div>
       ${many?`<button class="inq-toggle" onclick="toggleInqExpand()">${inqExpanded?t.collapse:t.showAll(items.length)}</button>`:''}

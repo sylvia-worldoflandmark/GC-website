@@ -1,4 +1,4 @@
-// i18n.js — GC 語系切換模組 v1.7.1
+// i18n.js — GC 語系切換模組 v1.7.2
 // 支援：繁中 / English / 日本語
 // 使用方式：data-i18n="key" / data-i18n-ph="key" / data-i18n-html="key"
 
@@ -8,6 +8,9 @@ const GC_I18N = {
      繁體中文（預設）
   ════════════════════════════════ */
   zh: {
+    'footer.privacy': '隱私權政策',
+    'privacy.title': '隱私權政策',
+    'privacy.updated': '最後更新日期',
 
     /* ── H9 診斷表補譯：選項／說明／成功頁（繁體中文） ── */
     'form.tag.liquid': '含液體',
@@ -483,13 +486,16 @@ const GC_I18N = {
     'form.chip.country.my': '馬來西亞',
     'form.chip.country.jp': '日本',
     'form.chip.country.other': '其他',
-    'form.privacy': '我已閱讀並同意 GC 依據隱私權政策蒐集、處理及使用我所提供的公司與聯絡資料，作為跨境服務需求評估、顧問聯繫與後續服務媒合之用途。',
+    'form.privacy': '我已閱讀並同意 GC 依據<a href="privacy.html" target="_blank" rel="noopener">隱私權政策</a>蒐集、處理及使用我所提供的公司與聯絡資料，作為跨境服務需求評估、顧問聯繫與後續服務媒合之用途。',
   },
 
   /* ════════════════════════════════
      English
   ════════════════════════════════ */
   en: {
+    'footer.privacy': 'Privacy Policy',
+    'privacy.title': 'Privacy Policy',
+    'privacy.updated': 'Last updated',
 
     /* ── H9 診斷表補譯：選項／說明／成功頁（English） ── */
     'form.tag.liquid': 'Contains liquid',
@@ -962,13 +968,16 @@ const GC_I18N = {
     'form.chip.country.my': 'Malaysia',
     'form.chip.country.jp': 'Japan',
     'form.chip.country.other': 'Other',
-    'form.privacy': 'I have read and agree that GC may collect, process, and use the company and contact information I have provided in accordance with its Privacy Policy, for the purposes of cross-border service needs assessment, advisor contact, and service matching.',
+    'form.privacy': 'I have read and agree that GC may collect, process, and use the company and contact information I have provided in accordance with its <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>, for the purposes of cross-border service needs assessment, advisor contact, and service matching.',
   },
 
   /* ════════════════════════════════
      日本語
   ════════════════════════════════ */
   ja: {
+    'footer.privacy': 'プライバシーポリシー',
+    'privacy.title': 'プライバシーポリシー',
+    'privacy.updated': '最終更新日',
 
     /* ── H9 診斷表補譯：選項／說明／成功頁（日本語） ── */
     'form.tag.liquid': '液体を含む',
@@ -1441,7 +1450,7 @@ const GC_I18N = {
     'form.chip.country.my': 'マレーシア',
     'form.chip.country.jp': '日本',
     'form.chip.country.other': 'その他',
-    'form.privacy': '私はGCのプライバシーポリシーに基づき、提供した会社情報および連絡先情報が、越境サービスのニーズ評価・アドバイザーとの連絡・サービスマッチングの目的で収集・処理・利用されることを読み、同意します。',
+    'form.privacy': '私はGCの<a href="privacy.html" target="_blank" rel="noopener">プライバシーポリシー</a>に基づき、提供した会社情報および連絡先情報が、越境サービスのニーズ評価・アドバイザーとの連絡・サービスマッチングの目的で収集・処理・利用されることを読み、同意します。',
   }
 };
 
@@ -1449,7 +1458,18 @@ const GC_I18N = {
    Core engine
 ══════════════════════════════════════════ */
 
-let GC_LANG = localStorage.getItem('gc_lang') || 'zh';
+/* 語言來源優先序：網址 ?lang= → localStorage → 預設繁中。
+   網址參數優先，是為了讓「寄一個日文版連結給客戶」真的有效 ——
+   對方即使先前看過中文版（localStorage 已存 zh），打開連結仍會看到日文。
+   搜尋引擎也才有各語言各自的網址可以索引。 */
+const GC_LANGS = ['zh','en','ja'];
+function gcLangFromUrl(){
+  try{
+    const v = new URLSearchParams(location.search).get('lang');
+    return (v && GC_LANGS.indexOf(v) >= 0) ? v : null;
+  }catch(e){ return null; }
+}
+let GC_LANG = gcLangFromUrl() || localStorage.getItem('gc_lang') || 'zh';
 
 function gcApplyLang(lang) {
   GC_LANG = lang;
@@ -1485,6 +1505,19 @@ function gcApplyLang(lang) {
   const langMap = { zh: 'zh-TW', en: 'en', ja: 'ja' };
   document.documentElement.lang = langMap[lang] || lang;
 
+  // canonical / og:url / og:locale 跟著目前語言走，
+  // 讓每個語言版本都自我指向正確的網址（避免被判為重複內容）
+  try{
+    const path = location.pathname.replace(/index\.html$/, '');
+    const selfUrl = location.origin + path + (lang === 'zh' ? '' : '?lang=' + lang);
+    const c = document.querySelector('link[rel="canonical"]');
+    if (c) c.href = selfUrl;
+    const ou = document.querySelector('meta[property="og:url"]');
+    if (ou) ou.setAttribute('content', selfUrl);
+    const ol = document.querySelector('meta[property="og:locale"]');
+    if (ol) ol.setAttribute('content', ({ zh:'zh_TW', en:'en_US', ja:'ja_JP' })[lang] || 'zh_TW');
+  }catch(e){}
+
   // Update switcher label
   const labelEl = document.getElementById('gcLangLabel');
   const labelMap = { zh: '繁中', en: 'EN', ja: '日本語' }; // button label (short)
@@ -1514,6 +1547,14 @@ function gcToggleLangMenu() {
 
 function gcSetLang(lang) {
   gcApplyLang(lang);
+  // 更新網址，讓目前語言可以直接複製分享。
+  // 切回繁中時移除參數，避免 base 與 ?lang=zh 兩個網址內容相同（重複內容）。
+  try{
+    const u = new URL(location.href);
+    if (lang === 'zh') u.searchParams.delete('lang');
+    else u.searchParams.set('lang', lang);
+    history.replaceState(null, '', u.pathname + (u.search || '') + (u.hash || ''));
+  }catch(e){}
   // Desktop dropdown
   const dd   = document.getElementById('gcLangDropdown');
   const btn  = document.getElementById('gcLangBtn');

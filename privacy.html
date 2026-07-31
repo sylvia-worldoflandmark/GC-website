@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-page="privacy">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="GC 跨境服務隱私權政策 — 說明本網站蒐集哪些個人資料、如何使用、與哪些服務供應商分享、保存多久，以及您可行使的權利。">
+<meta name="robots" content="index, follow">
+<meta name="author" content="GC 跨境服務">
+<meta property="og:type" content="website">
+<meta property="og:title" content="隱私權政策 — GC 跨境服務">
+<meta property="og:description" content="說明本網站蒐集哪些個人資料、如何使用、與誰分享、保存多久，以及您可行使的權利。">
+<meta property="og:site_name" content="GC 跨境服務">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://worldoflandmark.com/images/logo.png">
+<!-- 語言版本：查詢字串 ?lang= 讓每個語言有各自的網址（可分享、可被索引）。
+     canonical 由 i18n.js 依目前語言即時更新；此處為預設（繁中）版本。 -->
+<link rel="canonical" href="https://worldoflandmark.com/privacy.html">
+<link rel="alternate" hreflang="zh-Hant" href="https://worldoflandmark.com/privacy.html">
+<link rel="alternate" hreflang="en" href="https://worldoflandmark.com/privacy.html?lang=en">
+<link rel="alternate" hreflang="ja" href="https://worldoflandmark.com/privacy.html?lang=ja">
+<link rel="alternate" hreflang="x-default" href="https://worldoflandmark.com/privacy.html">
+<meta property="og:url" content="https://worldoflandmark.com/privacy.html">
+<title>隱私權政策 — GC 跨境服務</title>
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Noto+Sans+TC:wght@300;400;500;700&family=M+PLUS+1p:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --bg:#06080e;
+  --bg-2:#06080e;
+  --bg-3:#06080e;
+  --border:rgba(255,255,255,0.12);
+  --accent:#1460A8;
+  --text:#FFFAFA;
+  --text-dim:rgba(255,250,250,0.78);
+  --grid:rgba(255,255,255,0.04);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;scroll-padding-top:68px;}
+body{background:var(--bg);color:var(--text);font-family:'Noto Sans TC',sans-serif;font-weight:400;overflow-x:hidden;}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 5vw;height:68px;
+  background:rgba(30,41,59,0.92);backdrop-filter:blur(24px);
+  border-bottom:1px solid rgba(255,255,255,0.07);
+}
+.nav-logo{display:flex;align-items:center;text-decoration:none;}
+.nav-logo img{height:30px;display:block;border-radius:8px;}
+.nav-links{display:flex;gap:2.2rem;list-style:none;align-items:center;margin-left:auto;}
+.nav-links a{color:rgba(255,250,250,0.5);text-decoration:none;font-size:0.87rem;letter-spacing:0.03em;transition:color 0.2s;position:relative;}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--accent);transform:scaleX(0);transition:transform 0.25s;}
+.nav-links a:hover{color:#FFFAFA;}
+.nav-links a:hover::after{transform:scaleX(1);}
+.nav-cta{background:#FFFAFA!important;color:#06080e!important;padding:0.45rem 1.2rem;border-radius:5px;font-weight:600;}
+.nav-cta::after{display:none!important;}
+.nav-cta:hover{background:rgba(255,255,255,0.85)!important;}
+.nav-active{color:#FFFAFA!important;}
+.nav-active::after{transform:scaleX(1)!important;}
+
+/* HAMBURGER */
+.nav-right{display:none;align-items:center;gap:0.8rem;}
+.nav-hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;width:38px;height:38px;cursor:pointer;background:none;border:none;padding:4px;}
+.nav-hamburger span{display:block;width:22px;height:2px;background:#FFFAFA;border-radius:2px;transition:all 0.28s ease;transform-origin:center;}
+.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.nav-mobile-menu{display:none;position:fixed;top:68px;left:0;right:0;z-index:99;background:rgba(20,24,36,0.97);backdrop-filter:blur(24px);border-bottom:1px solid rgba(255,255,255,0.08);padding:1.2rem 5vw 1.6rem;flex-direction:column;gap:0;}
+.nav-mobile-menu.open{display:flex;}
+.nav-mobile-menu a{display:block;padding:0.85rem 0;color:rgba(255,250,250,0.6);text-decoration:none;font-size:0.95rem;border-bottom:1px solid rgba(255,255,255,0.06);transition:color 0.2s;}
+.nav-mobile-menu a:last-child{border:none;margin-top:0.6rem;}
+.nav-mobile-menu a:hover{color:#FFFAFA;}
+.nav-mobile-menu .m-cta{display:inline-flex;margin-top:0.8rem;background:#FFFAFA;color:#06080e!important;padding:0.7rem 1.4rem;border-radius:6px;font-weight:600;font-size:0.9rem;text-align:center;justify-content:center;}
+
+@media(max-width:900px){
+  .nav-links{display:none;}
+  .nav-right{display:flex;}
+  .nav-hamburger{display:flex;}
+}
+
+
+.gc-lang-switcher{display:flex;align-items:center;}
+@media(max-width:900px){
+  /* Lang switcher: push right next to CTA, same as index.html */
+  .gc-lang-switcher{margin-left:auto;margin-right:0.4rem;}
+}
+
+.gc-lang-switcher{position:relative;}
+.gc-lang-btn{
+  display:flex;align-items:center;gap:4px;
+  background:transparent;border:none;
+  padding:4px 6px;border-radius:4px;
+  cursor:pointer;color:rgba(255,255,255,0.55);font-size:14px;font-weight:600;letter-spacing:0.03em;
+  transition:all 0.15s;font-family:inherit;
+}
+.gc-lang-btn:hover,.gc-lang-btn.gc-btn-active{color:#fff;background:rgba(255,255,255,0.08);}
+.gc-lang-chev{transition:transform 0.18s;}
+.gc-chev-open{transform:rotate(180deg);}
+.gc-lang-dropdown{
+  position:absolute;top:calc(100% + 8px);right:0;min-width:160px;
+  background:#1e2535;border:1px solid rgba(255,255,255,0.12);border-radius:8px;
+  box-shadow:0 8px 24px rgba(0,0,0,0.3);overflow:hidden;
+  display:none;z-index:200;
+  animation:gcFadeIn 0.12s ease;
+}
+.gc-lang-dropdown.gc-open{display:block;}
+@keyframes gcFadeIn{from{opacity:0;transform:translateY(-4px);}to{opacity:1;transform:none;}}
+.gc-lang-option{
+  display:flex;align-items:center;gap:8px;padding:10px 14px;
+  font-size:12px;font-weight:500;cursor:pointer;transition:background 0.1s;
+  color:rgba(255,255,255,0.6);
+}
+.gc-lang-option:hover{background:rgba(255,255,255,0.07);color:#fff;}
+.gc-lang-option.gc-lang-active{color:#fff;}
+.gc-lang-name{font-weight:600;}
+.gc-lang-sub{font-size:10px;opacity:0.5;margin-left:2px;}
+.gc-lang-check{color:#4a9eff;margin-left:auto;font-size:11px;}
+.gc-lang-sep{height:1px;background:rgba(255,255,255,0.07);}
+
+/* ── 隱私政策頁 ── */
+.pp-wrap{max-width:860px;margin:0 auto;padding:120px 5vw 80px;}
+.pp-title{font-family:'Syne',Inter,sans-serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;letter-spacing:-0.02em;margin-bottom:0.6rem;}
+.pp-meta{font-size:0.82rem;color:rgba(255,250,250,0.45);margin-bottom:2.4rem;line-height:1.9;}
+.pp-body{font-size:0.94rem;line-height:2;color:rgba(255,250,250,0.82);}
+.pp-body h2{font-size:1.12rem;font-weight:700;color:#FFFAFA;margin:2.6rem 0 0.9rem;padding-bottom:0.5rem;border-bottom:1px solid rgba(255,255,255,0.10);}
+.pp-body h3{font-size:0.98rem;font-weight:600;color:rgba(255,250,250,0.94);margin:1.5rem 0 0.5rem;}
+.pp-body p{margin-bottom:0.95rem;}
+.pp-body ul{margin:0 0 1rem 1.15rem;}
+.pp-body li{margin-bottom:0.42rem;}
+.pp-body a{color:#4a9eff;text-decoration:none;}
+.pp-body a:hover{text-decoration:underline;}
+.pp-body strong{color:#FFFAFA;font-weight:600;}
+.pp-card{background:rgba(255,255,255,0.035);border:1px solid rgba(255,255,255,0.09);border-radius:10px;padding:1.1rem 1.3rem;margin:1rem 0 1.4rem;font-size:0.9rem;line-height:1.95;}
+.pp-table{width:100%;border-collapse:collapse;margin:0.8rem 0 1.4rem;font-size:0.87rem;}
+.pp-table th,.pp-table td{text-align:left;padding:0.6rem 0.7rem;border-bottom:1px solid rgba(255,255,255,0.09);vertical-align:top;}
+.pp-table th{color:#FFFAFA;font-weight:600;background:rgba(255,255,255,0.04);white-space:nowrap;}
+.pp-table td{color:rgba(255,250,250,0.78);}
+[data-policy-lang]{display:none;}
+[data-policy-lang].pp-on{display:block;}
+@media(max-width:600px){.pp-wrap{padding:100px 6vw 60px;}.pp-table{font-size:0.8rem;}}
+
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo"><img src="images/logo.png" alt="GC 跨境服務" style="width:50px;height:50px;"></a>
+  <a href="index.html" style="margin-left:auto;display:inline-flex;align-items:center;gap:6px;color:rgba(255,250,250,0.8);text-decoration:none;font-size:0.9rem;font-weight:500;">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    <span data-i18n="form.nav.back">返回官網</span>
+  </a>
+  <div id="gcLangSwitcher" class="gc-lang-switcher" style="margin-left:12px;">
+    <button id="gcLangBtn" class="gc-lang-btn" onclick="gcToggleLangMenu()">
+        <span id="gcLangLabel">繁中</span>
+      <svg id="gcLangChev" class="gc-lang-chev" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+    <div id="gcLangDropdown" class="gc-lang-dropdown">
+      <div class="gc-lang-option gc-lang-active" data-lang="zh" onclick="gcSetLang('zh')">
+        <span class="gc-lang-name">繁體中文</span>
+        <span class="gc-lang-check">✓</span>
+      </div>
+      <div class="gc-lang-sep"></div>
+      <div class="gc-lang-option" data-lang="en" onclick="gcSetLang('en')">
+        <span class="gc-lang-name">English</span>
+        <span class="gc-lang-check" style="display:none">✓</span>
+      </div>
+      <div class="gc-lang-sep"></div>
+      <div class="gc-lang-option" data-lang="ja" onclick="gcSetLang('ja')">
+        <span class="gc-lang-name">日本語</span>
+        <span class="gc-lang-check" style="display:none">✓</span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<main class="pp-wrap">
+  <h1 class="pp-title" data-i18n="privacy.title">隱私權政策</h1>
+  <div class="pp-meta">
+    <span data-i18n="privacy.updated">最後更新日期</span>：2026-07-31
+  </div>
+
+  <div class="pp-body">
+    <div data-policy-lang="zh" class="pp-on">
+<h2>一、關於本政策</h2>
+<p>世界之地標有限公司（以下稱「本公司」或「GC」）非常重視您的個人資料保護。本政策說明我們透過本網站（worldoflandmark.com）蒐集哪些資料、如何使用、與誰分享、保存多久，以及您可以行使哪些權利。</p>
+<p>本政策適用於本網站的所有頁面與表單，包含<strong>商品貨盤詢價</strong>、<strong>跨境服務需求診斷表</strong>與<strong>服務商夥伴申請</strong>。</p>
+
+<h2>二、我們蒐集哪些資料</h2>
+<p>我們只在您主動填寫表單時蒐集資料。您可以瀏覽本網站的所有內容而不提供任何個人資料。</p>
+<h3>1. 商品貨盤詢價</h3>
+<ul>
+  <li>公司名稱、聯絡人姓名、電子郵件</li>
+  <li>其他聯絡方式（LINE／WhatsApp／電話，選填）</li>
+  <li>您的需求備註與所勾選的商品清單</li>
+</ul>
+<h3>2. 跨境服務需求診斷表</h3>
+<ul>
+  <li>公司名稱、聯絡人姓名、職稱、電子郵件、其他聯絡方式</li>
+  <li>介紹人、得知本公司的來源</li>
+  <li>公司登記地、品牌名稱、產品類別與特性</li>
+  <li>目標市場、出口與海外經驗、電商與零售通路經驗</li>
+  <li>營收目標、上市時程、目前面臨的困難與其他補充說明</li>
+</ul>
+<h3>3. 服務商夥伴申請</h3>
+<ul>
+  <li>公司名稱、公司負責人姓名、聯絡人姓名</li>
+  <li>電話、電子郵件、其他聯絡方式</li>
+  <li>可提供的服務內容</li>
+</ul>
+<h3>4. 自動蒐集的技術性資料</h3>
+<p>本網站的主機服務供應商基於維運與資安目的，會記錄伺服器存取日誌，其中包含您的 IP 位址、瀏覽器類型與存取時間。我們不會將這些日誌與您填寫的表單資料進行連結比對。</p>
+
+<h2>三、蒐集目的與法律依據</h2>
+<p>我們蒐集上述資料的目的為：</p>
+<ul>
+  <li>評估您的跨境服務需求，並安排顧問與您聯繫</li>
+  <li>提供商品報價與合作條件</li>
+  <li>媒合適合的服務商夥伴</li>
+  <li>建立與維護客戶及夥伴關係，以及必要的帳務處理</li>
+</ul>
+<p>法律依據為《個人資料保護法》第 19 條之「與當事人有契約或類似契約之關係」及「當事人自行公開或已合法公開之個人資料」，並經您於表單上勾選同意。若您位於歐洲經濟區，處理依據為 GDPR 第 6 條第 1 項 (a) 同意及 (b) 履行契約前之必要措施。</p>
+
+<h2>四、資料的分享與委外處理</h2>
+<p><strong>我們不會將您的個人資料販售、出租或交換給第三方。</strong></p>
+<p>為了提供服務，我們使用下列受託處理的服務供應商。它們僅得依本公司指示處理資料：</p>
+<table class="pp-table">
+  <tr><th>服務供應商</th><th>用途</th><th>資料所在地</th></tr>
+  <tr><td>Supabase</td><td>資料庫與檔案儲存</td><td>境外雲端</td></tr>
+  <tr><td>Netlify</td><td>網站主機與伺服器日誌</td><td>境外雲端</td></tr>
+  <tr><td>Formspree</td><td>服務商夥伴申請表單轉寄</td><td>美國</td></tr>
+  <tr><td>Google Workspace／Apps Script</td><td>診斷表與詢價的通知信、PDF 產生</td><td>境外雲端</td></tr>
+  <tr><td>Google Fonts</td><td>網頁字型載入（會傳送您的 IP 位址至 Google）</td><td>境外雲端</td></tr>
+</table>
+<p>此外，在下列情形我們可能揭露您的資料：依法律、法院或主管機關要求；為行使或防禦法律上權利之必要；經您另行同意。</p>
+
+<h2>五、國際傳輸</h2>
+<p>上述服務供應商的伺服器位於臺灣境外。當您提交表單時，您的資料將被傳輸至境外並儲存於這些供應商的系統中。我們選擇具備業界標準安全措施的供應商，並要求其依委託目的處理資料。</p>
+
+<h2>六、保留期限</h2>
+<div class="pp-card">
+  <strong>已成立合作關係的客戶與夥伴</strong>：相關交易與帳務憑證依《商業會計法》規定保存 <strong>5 年</strong>。<br>
+  <strong>未成立合作關係的詢價與診斷資料</strong>：自最後一次聯繫日起保存 <strong>2 年</strong>，屆期後刪除。
+</div>
+<p>您亦可隨時要求我們提前刪除您的資料，但依法應保存之帳務憑證除外。</p>
+
+<h2>七、您的權利</h2>
+<p>依《個人資料保護法》第 3 條，您就本公司保有的您的個人資料，得行使下列權利：</p>
+<ul>
+  <li>查詢或請求閱覽</li>
+  <li>請求製給複製本</li>
+  <li>請求補充或更正</li>
+  <li>請求停止蒐集、處理或利用</li>
+  <li>請求刪除</li>
+</ul>
+<p>若您位於歐洲經濟區，您另有資料可攜權、反對處理權，以及向監理機關申訴的權利。</p>
+<p>行使權利請來信本頁最下方的聯絡信箱，我們將於收到請求後 <strong>15 個工作日</strong>內回覆。為保護您的資料，我們可能需要先確認您的身分。</p>
+
+<h2>八、Cookie 與追蹤技術</h2>
+<div class="pp-card">
+  <strong>本網站不使用任何分析或廣告追蹤工具</strong>，包含 Google Analytics、Google Tag Manager、Facebook Pixel 等，也不投放個人化廣告。
+</div>
+<p>我們僅使用瀏覽器的本機儲存（localStorage）記錄您選擇的<strong>語言偏好</strong>，該資料僅存在您自己的裝置上，不會傳送給我們或任何第三方。您可以隨時透過瀏覽器設定清除。</p>
+
+<h2>九、資料安全</h2>
+<p>我們採取合理的技術與管理措施保護您的資料，包含：全站 HTTPS 加密傳輸、資料庫層級的存取控制（僅授權人員可讀取）、後台帳號權限分級，以及對外服務僅開放必要的最小權限。</p>
+<p>惟請理解，網際網路傳輸無法保證絕對安全。若發生足以影響您權益的資料外洩事件，我們將依法通知您及主管機關。</p>
+
+<h2>十、未成年人</h2>
+<p>本網站為企業對企業（B2B）之商務服務，並非針對未成年人設計，我們不會刻意蒐集未滿 18 歲者的個人資料。</p>
+
+<h2>十一、本政策的變更</h2>
+<p>本政策如有修訂，我們將更新本頁面的「最後更新日期」。涉及重大變更時，我們會以電子郵件或網站公告通知您。</p>
+
+<h2>十二、聯絡我們</h2>
+<p>對本政策或您的個人資料有任何疑問，歡迎與我們聯繫：</p>
+<div class="pp-card" id="pp-contact-zh"></div>
+</div>
+    <div data-policy-lang="en">
+<h2>1. About This Policy</h2>
+<p>World Landmark CO., LTD. ("we", "us", or "GC") takes the protection of your personal data seriously. This policy explains what information we collect through this website (worldoflandmark.com), how we use it, who we share it with, how long we keep it, and what rights you have.</p>
+<p>This policy applies to all pages and forms on this website, including the <strong>Product Catalog inquiry</strong>, the <strong>Cross-Border Service Diagnostic Form</strong>, and the <strong>Service Partner application</strong>.</p>
+
+<h2>2. What We Collect</h2>
+<p>We only collect information that you actively submit through our forms. You may browse all content on this website without providing any personal data.</p>
+<h3>2.1 Product catalog inquiry</h3>
+<ul>
+  <li>Company name, contact person's name, email address</li>
+  <li>Other contact method (LINE / WhatsApp / phone, optional)</li>
+  <li>Your message and the list of products you selected</li>
+</ul>
+<h3>2.2 Cross-border service diagnostic form</h3>
+<ul>
+  <li>Company name, contact person's name, job title, email, other contact method</li>
+  <li>Referrer and how you heard about us</li>
+  <li>Country of company registration, brand names, product categories and characteristics</li>
+  <li>Target markets, export and overseas experience, e-commerce and retail channel experience</li>
+  <li>Revenue targets, launch timeline, current challenges and additional notes</li>
+</ul>
+<h3>2.3 Service partner application</h3>
+<ul>
+  <li>Company name, name of the company representative, contact person's name</li>
+  <li>Phone number, email address, other contact method</li>
+  <li>Services you can provide</li>
+</ul>
+<h3>2.4 Technical data collected automatically</h3>
+<p>Our hosting provider records server access logs for operational and security purposes, including your IP address, browser type and time of access. We do not cross-reference these logs with the data you submit through forms.</p>
+
+<h2>3. Purposes and Legal Basis</h2>
+<p>We collect the above data in order to:</p>
+<ul>
+  <li>Assess your cross-border service needs and arrange for a consultant to contact you</li>
+  <li>Provide product quotations and partnership terms</li>
+  <li>Match you with suitable service partners</li>
+  <li>Establish and maintain client and partner relationships, and carry out necessary accounting</li>
+</ul>
+<p>Our legal basis under Taiwan's Personal Data Protection Act is the existence of a contractual or quasi-contractual relationship, together with the consent you give when submitting a form. If you are located in the European Economic Area, we rely on GDPR Article 6(1)(a) consent and 6(1)(b) steps taken at your request prior to entering into a contract.</p>
+
+<h2>4. Sharing and Processing by Third Parties</h2>
+<p><strong>We do not sell, rent or trade your personal data to any third party.</strong></p>
+<p>We use the following service providers to operate our services. They may process your data only on our instructions:</p>
+<table class="pp-table">
+  <tr><th>Provider</th><th>Purpose</th><th>Data location</th></tr>
+  <tr><td>Supabase</td><td>Database and file storage</td><td>Overseas cloud</td></tr>
+  <tr><td>Netlify</td><td>Website hosting and server logs</td><td>Overseas cloud</td></tr>
+  <tr><td>Formspree</td><td>Forwarding of service partner applications</td><td>United States</td></tr>
+  <tr><td>Google Workspace / Apps Script</td><td>Notification emails and PDF generation</td><td>Overseas cloud</td></tr>
+  <tr><td>Google Fonts</td><td>Web font delivery (transmits your IP address to Google)</td><td>Overseas cloud</td></tr>
+</table>
+<p>We may also disclose your data where required by law, a court or a competent authority; where necessary to exercise or defend legal claims; or where you have separately consented.</p>
+
+<h2>5. International Transfers</h2>
+<p>The service providers listed above operate servers outside Taiwan. When you submit a form, your data is transferred to and stored on those providers' systems. We select providers that maintain industry-standard security measures and require them to process data only for the purposes we specify.</p>
+
+<h2>6. Retention Period</h2>
+<div class="pp-card">
+  <strong>Clients and partners with an established relationship</strong>: transaction and accounting records are retained for <strong>5 years</strong> as required by Taiwan's Business Entity Accounting Act.<br>
+  <strong>Inquiries and diagnostic submissions that do not lead to a relationship</strong>: retained for <strong>2 years</strong> from the date of last contact, then deleted.
+</div>
+<p>You may ask us to delete your data earlier at any time, except for accounting records we are legally required to keep.</p>
+
+<h2>7. Your Rights</h2>
+<p>Under Article 3 of Taiwan's Personal Data Protection Act, you may:</p>
+<ul>
+  <li>Enquire about and request to review your data</li>
+  <li>Request a copy of your data</li>
+  <li>Request correction or completion of your data</li>
+  <li>Request that we cease collecting, processing or using your data</li>
+  <li>Request deletion of your data</li>
+</ul>
+<p>If you are located in the European Economic Area, you additionally have the right to data portability, the right to object to processing, and the right to lodge a complaint with a supervisory authority.</p>
+<p>To exercise these rights, please email the address at the bottom of this page. We will respond within <strong>15 business days</strong> of receiving your request. We may need to verify your identity first in order to protect your data.</p>
+
+<h2>8. Cookies and Tracking</h2>
+<div class="pp-card">
+  <strong>This website does not use any analytics or advertising tracking tools</strong> — no Google Analytics, no Google Tag Manager, no Facebook Pixel — and we do not serve personalised advertising.
+</div>
+<p>We use your browser's local storage only to remember your <strong>language preference</strong>. That value stays on your own device and is never transmitted to us or to any third party. You can clear it at any time through your browser settings.</p>
+
+<h2>9. Data Security</h2>
+<p>We apply reasonable technical and organisational measures to protect your data, including site-wide HTTPS encryption, database-level access control so that only authorised personnel can read the data, role-based permissions in our administration system, and least-privilege access for public-facing services.</p>
+<p>Please note that no transmission over the internet can be guaranteed to be completely secure. In the event of a data breach that materially affects your rights, we will notify you and the competent authority as required by law.</p>
+
+<h2>10. Minors</h2>
+<p>This website provides business-to-business services and is not directed at minors. We do not knowingly collect personal data from anyone under the age of 18.</p>
+
+<h2>11. Changes to This Policy</h2>
+<p>If we revise this policy, we will update the "last updated" date on this page. Where changes are material, we will notify you by email or by a notice on this website.</p>
+
+<h2>12. Contact Us</h2>
+<p>If you have any question about this policy or about your personal data, please contact us:</p>
+<div class="pp-card" id="pp-contact-en"></div>
+</div>
+    <div data-policy-lang="ja">
+<h2>1. 本ポリシーについて</h2>
+<p>世界之地標有限公司（World Landmark CO., LTD.、以下「当社」または「GC」）は、お客様の個人情報の保護を重視しています。本ポリシーでは、当ウェブサイト（worldoflandmark.com）を通じて取得する情報の種類、利用方法、共有先、保存期間、およびお客様の権利について説明します。</p>
+<p>本ポリシーは、<strong>商品カタログのお問い合わせ</strong>、<strong>クロスボーダーサービス需要診断フォーム</strong>、<strong>サービスパートナー申請</strong>を含む、当ウェブサイトのすべてのページとフォームに適用されます。</p>
+
+<h2>2. 取得する情報</h2>
+<p>当社は、お客様がフォームに自ら入力された情報のみを取得します。個人情報を提供いただかなくても、当ウェブサイトのすべてのコンテンツをご覧いただけます。</p>
+<h3>2.1 商品カタログのお問い合わせ</h3>
+<ul>
+  <li>会社名、ご担当者様のお名前、メールアドレス</li>
+  <li>その他の連絡先（LINE／WhatsApp／電話番号、任意）</li>
+  <li>ご要望の内容および選択された商品リスト</li>
+</ul>
+<h3>2.2 クロスボーダーサービス需要診断フォーム</h3>
+<ul>
+  <li>会社名、ご担当者様のお名前、役職、メールアドレス、その他の連絡先</li>
+  <li>ご紹介者、当社を知ったきっかけ</li>
+  <li>会社登記国、ブランド名、製品カテゴリーおよび製品特性</li>
+  <li>対象市場、輸出・海外展開の経験、EC・小売チャネルの経験</li>
+  <li>売上目標、市場投入時期、現在の課題およびその他の補足事項</li>
+</ul>
+<h3>2.3 サービスパートナー申請</h3>
+<ul>
+  <li>会社名、代表者名、ご担当者様のお名前</li>
+  <li>電話番号、メールアドレス、その他の連絡先</li>
+  <li>提供可能なサービス内容</li>
+</ul>
+<h3>2.4 自動的に取得される技術情報</h3>
+<p>当ウェブサイトのホスティング事業者は、運用およびセキュリティ確保のため、IPアドレス、ブラウザの種類、アクセス日時を含むサーバーアクセスログを記録します。当社はこれらのログとフォーム入力情報を突合することはありません。</p>
+
+<h2>3. 利用目的と法的根拠</h2>
+<p>当社は以下の目的で情報を取得します。</p>
+<ul>
+  <li>クロスボーダーサービスに関するご要望の評価、および担当コンサルタントからのご連絡</li>
+  <li>商品のお見積りおよび取引条件のご提示</li>
+  <li>最適なサービスパートナーのマッチング</li>
+  <li>お客様およびパートナーとの関係構築・維持、ならびに必要な会計処理</li>
+</ul>
+<p>台湾の個人資料保護法に基づく法的根拠は、契約またはこれに準ずる関係の存在、およびフォーム送信時にいただく同意です。欧州経済領域にお住まいの場合は、GDPR第6条1項(a)（同意）および(b)（契約締結前の措置）を根拠とします。</p>
+
+<h2>4. 第三者への共有および委託</h2>
+<p><strong>当社はお客様の個人情報を第三者に販売、貸与、または交換することはありません。</strong></p>
+<p>サービス提供のため、以下の事業者に処理を委託しています。これらの事業者は当社の指示に基づいてのみ情報を取り扱います。</p>
+<table class="pp-table">
+  <tr><th>事業者</th><th>用途</th><th>データ所在地</th></tr>
+  <tr><td>Supabase</td><td>データベースおよびファイル保管</td><td>海外クラウド</td></tr>
+  <tr><td>Netlify</td><td>ウェブホスティングおよびサーバーログ</td><td>海外クラウド</td></tr>
+  <tr><td>Formspree</td><td>サービスパートナー申請の転送</td><td>米国</td></tr>
+  <tr><td>Google Workspace／Apps Script</td><td>通知メールの送信およびPDF生成</td><td>海外クラウド</td></tr>
+  <tr><td>Google Fonts</td><td>ウェブフォントの配信（お客様のIPアドレスがGoogleに送信されます）</td><td>海外クラウド</td></tr>
+</table>
+<p>このほか、法令、裁判所または監督官庁の要請がある場合、法的権利の行使または防御に必要な場合、お客様の別途の同意がある場合には、情報を開示することがあります。</p>
+
+<h2>5. 国外移転</h2>
+<p>上記の事業者のサーバーは台湾国外に所在します。フォームを送信された場合、お客様の情報は国外に移転され、これらの事業者のシステム上に保管されます。当社は業界標準のセキュリティ対策を備えた事業者を選定し、委託目的の範囲内でのみ情報を取り扱うよう求めています。</p>
+
+<h2>6. 保存期間</h2>
+<div class="pp-card">
+  <strong>取引関係が成立したお客様・パートナー</strong>：取引および会計に関する証憑は、台湾の商業会計法に基づき <strong>5年間</strong> 保存します。<br>
+  <strong>取引関係が成立しなかったお問い合わせ・診断情報</strong>：最終ご連絡日から <strong>2年間</strong> 保存し、その後削除します。
+</div>
+<p>法令上保存が義務付けられている会計証憑を除き、いつでも早期の削除をご請求いただけます。</p>
+
+<h2>7. お客様の権利</h2>
+<p>台湾の個人資料保護法第3条に基づき、お客様は以下の権利を行使できます。</p>
+<ul>
+  <li>照会および閲覧の請求</li>
+  <li>複製物の交付の請求</li>
+  <li>補充または訂正の請求</li>
+  <li>収集・処理・利用の停止の請求</li>
+  <li>削除の請求</li>
+</ul>
+<p>欧州経済領域にお住まいの場合は、加えてデータポータビリティの権利、処理に対する異議申立ての権利、および監督機関への苦情申立ての権利を有します。</p>
+<p>権利の行使をご希望の場合は、本ページ下部の連絡先までメールでご連絡ください。ご請求を受領後 <strong>15営業日以内</strong> にご回答いたします。情報保護のため、事前にご本人確認をお願いする場合があります。</p>
+
+<h2>8. Cookieおよびトラッキング</h2>
+<div class="pp-card">
+  <strong>当ウェブサイトは、分析・広告目的のトラッキングツールを一切使用していません。</strong>Google Analytics、Google Tag Manager、Facebook Pixel などは導入しておらず、パーソナライズド広告も配信していません。
+</div>
+<p>ブラウザのローカルストレージは、お客様が選択された<strong>言語設定</strong>の記憶のみに使用します。この値はお客様の端末内にのみ保存され、当社や第三者に送信されることはありません。ブラウザの設定からいつでも消去できます。</p>
+
+<h2>9. 情報セキュリティ</h2>
+<p>当社は、お客様の情報を保護するため、サイト全体のHTTPS暗号化通信、データベースレベルのアクセス制御（権限を有する担当者のみが閲覧可能）、管理画面の権限区分、公開サービスに対する最小権限の適用など、合理的な技術的・組織的措置を講じています。</p>
+<p>ただし、インターネット上の通信について完全な安全性を保証することはできません。お客様の権利に重大な影響を及ぼす情報漏えいが発生した場合には、法令に従いお客様および監督官庁に通知いたします。</p>
+
+<h2>10. 未成年者について</h2>
+<p>当ウェブサイトは企業向け（B2B）サービスを提供するものであり、未成年者を対象としていません。18歳未満の方の個人情報を意図的に取得することはありません。</p>
+
+<h2>11. 本ポリシーの変更</h2>
+<p>本ポリシーを改定する場合は、本ページの「最終更新日」を更新します。重要な変更を行う場合には、メールまたは当ウェブサイト上での告知によりお知らせします。</p>
+
+<h2>12. お問い合わせ</h2>
+<p>本ポリシーまたはお客様の個人情報に関するご質問は、以下までご連絡ください。</p>
+<div class="pp-card" id="pp-contact-ja"></div>
+</div>
+  </div>
+</main>
+
+<footer style="background:rgba(14,18,26,0.95);padding:2.8rem 5vw;border-top:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+  <a href="index.html" style="display:flex;align-items:center;text-decoration:none;"><img src="images/logo.png" alt="GC 跨境服務" style="height:28px;"></a>
+  <span style="font-size:0.78rem;color:rgba(255,250,250,0.28);"><span data-i18n="footer.copy">© 2026 GC 跨境服務. All rights reserved.</span></span>
+</footer>
+
+<script>
+/* ────────────────────────────────────────────────────────────────
+   公司資料：只要改這裡，三種語言的「聯絡我們」區塊都會同步更新。
+   ──────────────────────────────────────────────────────────────── */
+const GC_LEGAL = {
+  nameZh : '世界之地標有限公司',
+  nameEn : 'World Landmark CO., LTD.',
+  taxId  : '52341471',
+  rep    : '周澐',
+  addrZh : '臺北市松山區民族東路 679 之 1 號 6 樓',
+  addrEn : '6F., No. 679-1, Minzu E. Rd., Songshan Dist., Taipei City 105001, Taiwan (R.O.C.)',
+  email  : 'support@worldoflandmark.com'
+};
+
+(function(){
+  const L = GC_LEGAL;
+  const mail = '<a href="mailto:' + L.email + '">' + L.email + '</a>';
+  const blocks = {
+    zh: '<strong>' + L.nameZh + '</strong>（' + L.nameEn + '）<br>'
+       + '統一編號：' + L.taxId + '　｜　代表人：' + L.rep + '<br>'
+       + '地址：' + L.addrZh + '<br>'
+       + '個人資料保護聯絡信箱：' + mail,
+    en: '<strong>' + L.nameEn + '</strong>（' + L.nameZh + '）<br>'
+       + 'Business ID: ' + L.taxId + '　|　Representative: ' + L.rep + '<br>'
+       + 'Address: ' + L.addrEn + '<br>'
+       + 'Data protection contact: ' + mail,
+    ja: '<strong>' + L.nameZh + '</strong>（' + L.nameEn + '）<br>'
+       + '統一番号：' + L.taxId + '　｜　代表者：' + L.rep + '<br>'
+       + '所在地：' + L.addrEn + '<br>'
+       + '個人情報保護に関するお問い合わせ：' + mail
+  };
+  Object.keys(blocks).forEach(function(k){
+    const el = document.getElementById('pp-contact-' + k);
+    if (el) el.innerHTML = blocks[k];
+  });
+
+  // 依目前語言顯示對應版本的條文
+  function showPolicy(lang){
+    const l = (lang === 'en' || lang === 'ja') ? lang : 'zh';
+    document.querySelectorAll('[data-policy-lang]').forEach(function(el){
+      el.classList.toggle('pp-on', el.getAttribute('data-policy-lang') === l);
+    });
+  }
+  // i18n.js 載入後套用一次；之後跟著語言切換事件更新
+  window.addEventListener('load', function(){
+    showPolicy(typeof GC_LANG !== 'undefined' ? GC_LANG : 'zh');
+  });
+  document.addEventListener('gc:langchange', function(e){
+    showPolicy(e && e.detail && e.detail.lang);
+  });
+})();
+</script>
+<script src="i18n.js"></script>
+</body>
+</html>
