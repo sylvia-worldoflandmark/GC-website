@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="zh-TW" data-page="index">
 <head>
+<!-- Google tag (gtag.js) — GA4 G-WMDKSQRC81 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WMDKSQRC81"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-WMDKSQRC81');
+</script>
+
 <meta charset="UTF-8">
 <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -73,6 +82,42 @@ nav.scrolled{
 .nav-cta{background:#FFFAFA!important;color:#06080e!important;padding:0.45rem 1.2rem;border-radius:5px;font-weight:600;border:none!important;}
 .nav-cta::after{display:none!important;}
 .nav-cta:hover{background:rgba(255,255,255,0.85)!important;}
+
+/* NAV DROPDOWN — 關於 GC */
+.nav-dd{position:relative;}
+.nav-dd-btn{
+  display:inline-flex;align-items:center;gap:5px;
+  background:none;border:none;padding:0;cursor:pointer;
+  color:rgba(236,238,242,0.72);font-family:inherit;
+  font-size:0.87rem;letter-spacing:0.03em;transition:color 0.2s;position:relative;
+}
+.nav-dd-btn::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;background:var(--accent);transform:scaleX(0);transition:transform 0.25s;border-radius:2px;}
+.nav-dd:hover .nav-dd-btn,.nav-dd.dd-open .nav-dd-btn{color:#FFFAFA;}
+.nav-dd:hover .nav-dd-btn::after,.nav-dd.dd-open .nav-dd-btn::after{transform:scaleX(1);}
+.nav-dd-btn.nav-active{color:#FFFAFA!important;}
+.nav-dd-btn.nav-active::after{transform:scaleX(1)!important;}
+.nav-dd-btn svg{transition:transform 0.25s;opacity:0.8;}
+.nav-dd:hover .nav-dd-btn svg,.nav-dd.dd-open .nav-dd-btn svg{transform:rotate(180deg);}
+.nav-dd-panel{
+  position:absolute;top:calc(100% + 14px);left:50%;
+  transform:translateX(-50%) translateY(-6px);
+  min-width:186px;background:#1e2535;
+  border:1px solid rgba(255,255,255,0.12);border-radius:10px;
+  box-shadow:0 14px 34px rgba(0,0,0,0.45);
+  padding:6px;opacity:0;visibility:hidden;
+  transition:opacity 0.18s ease,transform 0.18s ease,visibility 0.18s;
+  z-index:110;
+}
+/* 補上父項與面板之間的滑鼠橋接區,避免中途收合 */
+.nav-dd-panel::before{content:'';position:absolute;top:-14px;left:0;right:0;height:14px;}
+.nav-dd:hover .nav-dd-panel,.nav-dd.dd-open .nav-dd-panel{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);}
+.nav-dd-panel a{
+  display:block;padding:9px 13px;border-radius:6px;
+  color:rgba(236,238,242,0.68);text-decoration:none;
+  font-size:0.83rem;letter-spacing:0.02em;white-space:nowrap;transition:all 0.15s;
+}
+.nav-dd-panel a::after{display:none;}
+.nav-dd-panel a:hover{background:rgba(255,255,255,0.07);color:#FFFAFA;}
 
 /* HERO */
 #hero{
@@ -394,6 +439,33 @@ nav.scrolled .nav-hamburger span{background:#FFFAFA;}
   text-align:center;justify-content:center;
 }
 
+/* MOBILE ACCORDION — 關於 GC */
+.m-acc-btn{
+  display:flex;align-items:center;justify-content:space-between;width:100%;
+  padding:0.85rem 0;background:none;border:none;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  color:rgba(236,238,242,0.82);font-family:inherit;font-size:0.95rem;
+  cursor:pointer;text-align:left;transition:color 0.2s;
+}
+.m-acc-btn svg{transition:transform 0.28s;opacity:0.65;}
+.m-acc-btn.open{color:#FFFAFA;}
+.m-acc-btn.open svg{transform:rotate(180deg);}
+.m-acc-panel{max-height:0;overflow:hidden;transition:max-height 0.32s ease;}
+.m-acc-panel.open{max-height:340px;}
+.nav-mobile-menu .m-acc-panel a{
+  padding:0.7rem 0 0.7rem 1.1rem;font-size:0.88rem;
+  color:rgba(236,238,242,0.62);
+  border-bottom:1px solid rgba(255,255,255,0.04);position:relative;
+}
+/* 蓋掉 .nav-mobile-menu a:last-child 的 border:none / margin-top,讓手風琴最後一項間距一致 */
+.nav-mobile-menu .m-acc-panel a:last-child{
+  margin-top:0;border-bottom:1px solid rgba(255,255,255,0.04);
+}
+.nav-mobile-menu .m-acc-panel a::before{
+  content:'';position:absolute;left:0;top:50%;width:4px;height:4px;
+  border-radius:50%;background:rgba(74,158,255,0.55);transform:translateY(-50%);
+}
+
 @media(max-width:900px){
   nav{justify-content:flex-start;}
   .nav-links{display:none;}
@@ -608,11 +680,19 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
 <nav>
   <a href="index.html" class="nav-logo"><img src="images/logo.png" alt="GC 跨境服務" style="width:50px;height:50px;display:block;"></a>
   <ul class="nav-links">
-    <li><a href="#why" data-i18n="nav.why">為何選擇我們</a></li>
-    <li><a href="#services" data-i18n="nav.services">顧問服務</a></li>
-    <li><a href="#partners" data-i18n="nav.partners">服務商介紹</a></li>
-    <li><a href="#process" data-i18n="nav.process">合作流程</a></li>
-    <li><a href="#faq" data-i18n="nav.faq">常見問題</a></li>
+    <li class="nav-dd" id="navAboutDd">
+      <button type="button" class="nav-dd-btn" id="navAboutBtn" aria-haspopup="true" aria-expanded="false">
+        <span data-i18n="nav.about">關於 GC</span>
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="nav-dd-panel">
+        <a href="#why" data-i18n="nav.why">為何選擇我們</a>
+        <a href="#services" data-i18n="nav.services">顧問服務</a>
+        <a href="#partners" data-i18n="nav.partners">服務商介紹</a>
+        <a href="#process" data-i18n="nav.process">合作流程</a>
+        <a href="#faq" data-i18n="nav.faq">常見問題</a>
+      </div>
+    </li>
     <li><a href="catalog.html" data-i18n="nav.catalog">商品貨盤</a></li>
     <li><a href="partner.html" data-i18n="nav.become">成為服務商</a></li>
     <li><a href="gc-form.html" class="nav-cta" data-i18n="nav.cta">立即諮詢</a></li>
@@ -646,11 +726,17 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
 
 <!-- Mobile Menu -->
 <div class="nav-mobile-menu" id="navMobileMenu">
-  <a href="#why" onclick="closeMobileMenu()" data-i18n="nav.why">為何選擇我們</a>
-  <a href="#services" onclick="closeMobileMenu()" data-i18n="nav.services">顧問服務</a>
-  <a href="#partners" onclick="closeMobileMenu()" data-i18n="nav.partners">服務商介紹</a>
-  <a href="#process" onclick="closeMobileMenu()" data-i18n="nav.process">合作流程</a>
-  <a href="#faq" onclick="closeMobileMenu()" data-i18n="nav.faq">常見問題</a>
+  <button type="button" class="m-acc-btn" id="mAccBtn" onclick="toggleMobileAbout()" aria-expanded="false">
+    <span data-i18n="nav.about">關於 GC</span>
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="m-acc-panel" id="mAccPanel">
+    <a href="#why" onclick="closeMobileMenu()" data-i18n="nav.why">為何選擇我們</a>
+    <a href="#services" onclick="closeMobileMenu()" data-i18n="nav.services">顧問服務</a>
+    <a href="#partners" onclick="closeMobileMenu()" data-i18n="nav.partners">服務商介紹</a>
+    <a href="#process" onclick="closeMobileMenu()" data-i18n="nav.process">合作流程</a>
+    <a href="#faq" onclick="closeMobileMenu()" data-i18n="nav.faq">常見問題</a>
+  </div>
   <a href="catalog.html" onclick="closeMobileMenu()" data-i18n="nav.catalog">商品貨盤</a>
   <a href="partner.html" onclick="closeMobileMenu()" data-i18n="nav.become">成為服務商</a>
   <div style="border-top:1px solid rgba(255,255,255,0.08);margin-top:0.6rem;padding-top:0.8rem;display:flex;gap:0.5rem;">
@@ -1402,25 +1488,44 @@ steps.forEach(s=>stepObs.observe(s));
 
 <script>
 // Active nav highlight based on scroll position
+// 五個區塊已收進「關於 GC」下拉,捲到其中任一區時改為點亮父項
 (function(){
-  const sections = ['why','services','partners','process'];
-  const links = {};
-  sections.forEach(id => {
-    const el = document.querySelector('.nav-links a[href="#'+id+'"]');
-    if(el) links[id] = el;
-  });
+  const sections = ['why','services','partners','process','faq'];
+  const aboutBtn = document.getElementById('navAboutBtn');
+  if(!aboutBtn) return;
+  const visible = new Set();
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => {
-      if(e.isIntersecting && links[e.target.id]){
-        Object.values(links).forEach(a => a.classList.remove('nav-active'));
-        links[e.target.id].classList.add('nav-active');
-      }
+      if(e.isIntersecting) visible.add(e.target.id);
+      else visible.delete(e.target.id);
     });
+    aboutBtn.classList.toggle('nav-active', visible.size > 0);
   },{rootMargin:'-40% 0px -55% 0px'});
   sections.forEach(id => {
     const el = document.getElementById(id);
     if(el) obs.observe(el);
   });
+})();
+
+// 桌機下拉:hover 展開,離開後 150ms 才收(避免滑向面板途中消失);亦支援點擊/鍵盤
+(function(){
+  const dd = document.getElementById('navAboutDd');
+  const btn = document.getElementById('navAboutBtn');
+  if(!dd || !btn) return;
+  let t = null;
+  function open(){ clearTimeout(t); dd.classList.add('dd-open'); btn.setAttribute('aria-expanded','true'); }
+  function close(){ dd.classList.remove('dd-open'); btn.setAttribute('aria-expanded','false'); }
+  dd.addEventListener('mouseenter', open);
+  dd.addEventListener('mouseleave', function(){ clearTimeout(t); t = setTimeout(close, 150); });
+  btn.addEventListener('click', function(e){
+    e.preventDefault();
+    if(dd.classList.contains('dd-open')) close(); else open();
+  });
+  dd.querySelectorAll('.nav-dd-panel a').forEach(function(a){
+    a.addEventListener('click', close);
+  });
+  document.addEventListener('click', function(e){ if(!dd.contains(e.target)) close(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') close(); });
 })();
 </script>
 <script src="i18n.js"></script>
@@ -1432,10 +1537,29 @@ function toggleMobileMenu(){
   var btn=document.getElementById('navHamburger');
   var open=menu.classList.toggle('open');
   btn.classList.toggle('open',open);
+  if(!open) closeMobileAbout();
 }
 function closeMobileMenu(){
   document.querySelector('.nav-mobile-menu').classList.remove('open');
   document.getElementById('navHamburger').classList.remove('open');
+  closeMobileAbout();
+}
+/* ── 手機版「關於 GC」手風琴 ── */
+function toggleMobileAbout(){
+  var btn=document.getElementById('mAccBtn');
+  var panel=document.getElementById('mAccPanel');
+  if(!btn||!panel) return;
+  var open=panel.classList.toggle('open');
+  btn.classList.toggle('open',open);
+  btn.setAttribute('aria-expanded',open?'true':'false');
+}
+function closeMobileAbout(){
+  var btn=document.getElementById('mAccBtn');
+  var panel=document.getElementById('mAccPanel');
+  if(!btn||!panel) return;
+  panel.classList.remove('open');
+  btn.classList.remove('open');
+  btn.setAttribute('aria-expanded','false');
 }
 
 /* gcSetLang / gcToggleLangMenu / language restore → handled by i18n.js */

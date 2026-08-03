@@ -62,6 +62,7 @@ const GC_I18N = {
     'page.title.form':    'GC 跨境服務需求診斷表 — 填寫需求開始合作',
 
     // 導覽列
+    'nav.about':   '關於 GC',
     'nav.why':     '為何選擇我們',
     'nav.services':'顧問服務',
     'nav.catalog': '商品貨盤',
@@ -545,6 +546,7 @@ const GC_I18N = {
     'page.title.index':   'GC Cross-Border Services — Global Market Expansion Consulting Platform',
     'page.title.form':    'GC Cross-Border Service Diagnostic Form — Start Your Partnership',
 
+    'nav.about':   'About GC',
     'nav.why':     'Why GC',
     'nav.services':'Consulting',
     'nav.catalog': 'Catalog',
@@ -1027,6 +1029,7 @@ const GC_I18N = {
     'page.title.index':   'GCクロスボーダーサービス — グローバル市場開拓コンサルティングプラットフォーム',
     'page.title.form':    'GCクロスボーダーサービス診断フォーム — ニーズを記入して協業を始める',
 
+    'nav.about':   'GCについて',
     'nav.why':     'なぜGCか',
     'nav.services':'コンサルティング',
     'nav.catalog': 'カタログ',
