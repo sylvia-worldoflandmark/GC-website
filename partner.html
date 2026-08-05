@@ -552,6 +552,19 @@ const form = document.getElementById('partnerForm');
 const successDiv = document.getElementById('formSuccess');
 const submitBtn = document.getElementById('submitBtn');
 
+/* GA4：第一次動到欄位才算開始填表(只送一次) */
+(function(){
+  var started=false;
+  function onFirst(){
+    if(started)return; started=true;
+    if(window.gcTrack) gcTrack('form_start',{form_type:'partner'});
+    form.removeEventListener('input',onFirst,true);
+    form.removeEventListener('change',onFirst,true);
+  }
+  form.addEventListener('input',onFirst,true);
+  form.addEventListener('change',onFirst,true);
+})();
+
 form.addEventListener('submit', async function(e){
   e.preventDefault();
   const btnLabel = submitBtn.querySelector('[data-i18n]') || submitBtn;
@@ -584,6 +597,9 @@ form.addEventListener('submit', async function(e){
       headers:{'Accept':'application/json'}
     });
     if(res.ok){
+      /* GA4 關鍵事件：不帶任何申請人資料。
+         注意：services_provided 是自由輸入的 textarea,可能含公司可識別資訊,故不送。 */
+      if(window.gcTrack) gcTrack('generate_lead',{form_type:'partner'});
       form.style.display='none';
       successDiv.style.display='block';
     } else {

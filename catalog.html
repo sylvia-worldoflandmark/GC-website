@@ -463,7 +463,51 @@ function filtered(){
 }
 function thumbStyle(p){ const u=cssUrl(p.photo_url); return u?`background-image:url('${u}')`:''; }
 
-function onFilter(){ curPage=1; render(); }
+function onFilter(){ curPage=1; render(); gcQueueListView(); }
+
+/* ══ GA4：catalog 專屬事件 ══════════════════════════════════════
+   view_item_list / search / filter_apply。搜尋與篩選都會呼叫 onFilter,
+   所以列表曝光統一用 debounce 送出,避免每打一個字就送一次。 */
+let _gcListTimer=null;
+function gcQueueListView(){
+  clearTimeout(_gcListTimer);
+  _gcListTimer=setTimeout(function(){
+    if(!window.gcTrack)return;
+    gcTrack('view_item_list',{
+      item_list_name:'catalog',
+      result_count:filtered().length,
+      has_search:!!(document.getElementById('q')||{}).value,
+      filter_category:(document.getElementById('fCat')||{}).value||'',
+      filter_brand:(document.getElementById('fBrand')||{}).value||'',
+      filter_region:(document.getElementById('fRegion')||{}).value||''
+    });
+  },800);
+}
+(function(){
+  /* 搜尋詞:停止輸入 900ms 後才送,且至少 2 個字。
+     使用者搜什麼卻搜不到(result_count=0),就是貨盤該補的品項。 */
+  const q=document.getElementById('q');
+  if(q){
+    let t=null;
+    q.addEventListener('input',function(){
+      clearTimeout(t);
+      t=setTimeout(function(){
+        const term=(q.value||'').trim();
+        if(term.length<2||!window.gcTrack)return;
+        gcTrack('search',{search_term:term.toLowerCase(),result_count:filtered().length});
+      },900);
+    });
+  }
+  /* 三個篩選下拉:各自記錄,才知道使用者最在意哪個維度 */
+  [['fCat','category'],['fBrand','brand'],['fRegion','region']].forEach(function(pair){
+    const el=document.getElementById(pair[0]);
+    if(!el)return;
+    el.addEventListener('change',function(){
+      if(!window.gcTrack)return;
+      gcTrack('filter_apply',{filter_type:pair[1],filter_value:el.value||'(全部)',result_count:filtered().length});
+    });
+  });
+})();
 
 function render(){
   const t=T(), list=filtered();
@@ -522,7 +566,13 @@ function renderPager(total,pages){
 function goPage(n){ curPage=n; render(); var w=document.querySelector('.list-wrap'); window.scrollTo({top:w.offsetTop-80,behavior:'smooth'}); }
 
 function P(id){ return PRODUCTS.find(x=>String(x.id)===String(id)); }
-function toggle(id){ selected.has(id)?selected.delete(id):selected.add(id); render(); syncBar(); }
+function toggle(id){
+  const adding=!selected.has(id);
+  adding?selected.add(id):selected.delete(id);
+  /* GA4：只記錄「加入選品」,取消不記 */
+  if(adding&&window.gcTrack){ const p=P(id); if(p) gcTrack('select_item',{item_id:String(p.id),item_name:p.name_zh,item_brand:p.brand,item_category:p.category,item_origin:p.origin}); }
+  render(); syncBar();
+}
 function toggleAll(){ const list=filtered(); const all=list.length>0&&list.every(p=>selected.has(p.id)); if(all)list.forEach(p=>selected.delete(p.id)); else list.forEach(p=>selected.add(p.id)); render(); syncBar(); }
 function clearSel(){ selected.clear(); render(); syncBar(); }
 function syncBar(){
@@ -535,6 +585,7 @@ function syncBar(){
 
 function openDetail(id){
   detailId=id;
+  if(window.gcTrack){ const _p=P(id); if(_p) gcTrack('view_item',{item_id:String(_p.id),item_name:_p.name_zh,item_brand:_p.brand,item_category:_p.category,item_origin:_p.origin}); }
   const p=P(id), t=T(), on=selected.has(id);
   const shelf=pShelf(p), th=thumbStyle(p), desc=pDesc(p);
   document.getElementById('detailContent').innerHTML=`
@@ -559,6 +610,7 @@ function closeLightbox(){ document.getElementById('lightbox').classList.remove('
 function openInquiryFresh(){ inqExpanded=false; openInquiry(); }
 function toggleInqExpand(){ inqExpanded=!inqExpanded; openInquiry(); }
 function openInquiry(){
+  if(window.gcTrack) gcTrack('begin_checkout',{item_count:selected.size});
   const t=T(), items=[...selected].map(id=>P(id)).filter(Boolean);
   const many=items.length>5, shown=(many&&!inqExpanded)?items.slice(0,5):items;
   document.getElementById('inqContent').innerHTML=`
@@ -631,6 +683,15 @@ async function submitInquiry(){
     btn.disabled=false; btn.textContent=t.submit(items.length);
     showErr(t.sendFail);
     return;
+  }
+  /* GA4 關鍵事件：Supabase 確認寫入後才送。只帶商品面的資訊,不帶填表人資料。 */
+  if(window.gcTrack){
+    gcTrack('generate_lead',{
+      form_type:'inquiry',
+      item_count:items.length,
+      brands:[...new Set(items.map(p=>p.brand).filter(Boolean))].join(', '),
+      categories:[...new Set(items.map(p=>p.category).filter(Boolean))].join(', ')
+    });
   }
   document.getElementById('inqContent').innerHTML=`
     <div class="success"><div class="ico">✓</div><h2>${t.okTitle}</h2><p>${t.okBody(items.length)}</p>

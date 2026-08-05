@@ -12,7 +12,7 @@
 
 <meta charset="UTF-8">
 <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="填寫 GC 需求診斷表，讓我們精準了解您的品牌現況、目標市場與拓銷方向，3 個工作天內安排顧問線上會議。">
 <meta name="keywords" content="跨境服務,需求診斷,品牌出海,GC顧問,市場拓銷">
 <meta name="robots" content="index, follow">
@@ -1532,15 +1532,28 @@ function validateStep5(){
   return ok;
 }
 
+/* GA4：步驟名稱固定用中文鍵,不隨語系變動,報表才好聚合 */
+const GC_STEP_NAMES={1:'公司與品牌資料',2:'產品類別與商品特性',3:'現況評估',4:'目標市場與銷售條件',5:'拓銷方式與進階問題',6:'診斷結果與送出'};
+function gcStepTrack(evt,n,extra){
+  if(!window.gcTrack)return;
+  gcTrack(evt,Object.assign({form_type:'diagnostic',step_number:n,step_name:GC_STEP_NAMES[n]||''},extra||{}));
+}
+
 function nextStep(n){
   const validators=[null,validateStep1,validateStep2,validateStep3,validateStep4,validateStep5];
-  if(validators[n]&&!validators[n]()){const firstErr=document.querySelector('.error-msg.show,.error');if(firstErr)firstErr.scrollIntoView({behavior:'smooth',block:'center'});return;}
+  if(validators[n]&&!validators[n]()){
+    /* GA4：記錄是哪些欄位擋下來的,用來找出說明不清楚的欄位 */
+    const badIds=[...document.querySelectorAll(`#step-${n} .error-msg.show`)].map(el=>el.id).filter(Boolean);
+    gcStepTrack('form_step_error',n,{error_fields:badIds.join(','),error_count:badIds.length});
+    const firstErr=document.querySelector('.error-msg.show,.error');if(firstErr)firstErr.scrollIntoView({behavior:'smooth',block:'center'});return;
+  }
+  gcStepTrack('form_step_complete',n);
   // Unlock the next step
   if(n+1 > maxUnlockedStep) maxUnlockedStep = n+1;
   updateSidebarLocks();
   showStepPage(n+1);
 }
-function prevStep(n){showStepPage(n-1);}
+function prevStep(n){ gcStepTrack('form_step_back',n); showStepPage(n-1);}
 
 function updateSidebarLocks(){
   document.querySelectorAll('.sidebar-step').forEach(function(s){
@@ -1812,6 +1825,24 @@ async function submitForm(){
     alert(_t['form.err.submit']||'送出失敗，請稍後再試');
     return;
   }
+  /* GA4 關鍵事件：只在 Supabase 確認寫入成功後才送,失敗的提交不算商機。
+     參數一律只放選項式答案,不含公司名/聯絡人/信箱/品牌/自由輸入文字。 */
+  if(window.gcTrack){
+    gcTrack('generate_lead',{
+      form_type:        'diagnostic',
+      service_channels: data.channels,
+      markets:          data.markets,
+      categories:       data.categories,
+      country:          data.country,
+      has_export_exp:   data.exportExp,
+      sku_range:        data.sku,
+      price_range:      data.price,
+      opex_range:       data.opex,
+      marketing_budget: data.marketing,
+      revenue_target:   data.revenueTarget,
+      launch_time:      data.launchTime
+    });
+  }
   setTimeout(()=>{
     document.getElementById('submittingOverlay').classList.remove('show');
     document.querySelectorAll('.step-page').forEach(p=>p.classList.remove('active'));
@@ -1827,6 +1858,21 @@ async function submitForm(){
 // Init
 document.addEventListener('DOMContentLoaded', function(){
   updateSidebarLocks();
+  /* GA4：使用者第一次動到任何欄位才算開始填表(只送一次) */
+  (function(){
+    var started=false;
+    function onFirst(){
+      if(started)return; started=true;
+      if(window.gcTrack) gcTrack('form_start',{form_type:'diagnostic'});
+      document.removeEventListener('input',onFirst,true);
+      document.removeEventListener('change',onFirst,true);
+      document.removeEventListener('click',onChip,true);
+    }
+    function onChip(e){ if(e.target&&e.target.closest&&e.target.closest('.chip,.chip-multi')) onFirst(); }
+    document.addEventListener('input',onFirst,true);
+    document.addEventListener('change',onFirst,true);
+    document.addEventListener('click',onChip,true);   /* 表單大量使用 chip,點 chip 也算開始 */
+  })();
   // Clear text field errors on input
   document.querySelectorAll('input[type=text],input[type=email],textarea').forEach(function(el){
     el.addEventListener('input',function(){

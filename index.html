@@ -1307,6 +1307,11 @@ window._gcPtnrRender=render;
     var item=btn.closest('.faq-item');
     var ans=item.querySelector('.faq-answer');
     var isOpen=item.classList.contains('open');
+    /* GA4：只在「展開」時送,收合不送 */
+    if(!isOpen && window.gcTrack){
+      var _q=btn.querySelector('[data-i18n]');
+      gcTrack('faq_expand',{ question: _q?_q.getAttribute('data-i18n'):undefined });
+    }
     // close all
     document.querySelectorAll('.faq-item.open').forEach(function(el){
       el.classList.remove('open');

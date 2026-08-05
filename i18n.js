@@ -1586,3 +1586,179 @@ document.addEventListener('click', function(e) {
 document.addEventListener('DOMContentLoaded', function() {
   gcApplyLang(GC_LANG);
 });
+
+
+/* ══════════════════════════════════════════════════════════════════
+   iOS 表單欄位聚焦時的自動縮放抑制
+   ------------------------------------------------------------------
+   iOS Safari 在「聚焦的欄位字級 < 16px」時會自動放大整個頁面,且離開
+   欄位後不會縮回。常見解法是把 viewport 常駐寫上 maximum-scale=1,
+   但那會連使用者「主動」的雙擊/雙指縮放也一起擋掉(Android 尤其嚴重)。
+
+   這裡改成「只在聚焦欄位的那一瞬間」暫時套用 maximum-scale=1,
+   離開欄位立刻還原 —— 自動縮放被擋掉,主動縮放完全不受影響。
+   並且只在 iOS 執行,Android 與桌機不會碰到 viewport。
+   ══════════════════════════════════════════════════════════════════ */
+(function () {
+  // iPadOS 13+ 會把 platform 報成 MacIntel,需靠 maxTouchPoints 區分真 Mac 與 iPad
+  var plat  = navigator.platform || '';
+  var isIOS = /iPad|iPhone|iPod/.test(plat) ||
+              (plat === 'MacIntel' && navigator.maxTouchPoints > 1);
+  if (!isIOS) return;
+
+  var vp = document.querySelector('meta[name="viewport"]');
+  if (!vp) return;
+
+  var original = vp.getAttribute('content') || 'width=device-width, initial-scale=1.0';
+  var locked   = original.replace(/,?\s*maximum-scale\s*=\s*[^,]*/gi, '').trim() + ', maximum-scale=1';
+
+  // 這些 input 類型不會觸發縮放,不需要處理
+  var SKIP = { checkbox:1, radio:1, button:1, submit:1, reset:1, file:1, range:1, color:1, hidden:1, image:1 };
+
+  function needsGuard(el) {
+    if (!el || !el.tagName) return false;
+    var tag = el.tagName.toUpperCase();
+    if (tag === 'TEXTAREA' || tag === 'SELECT') return true;
+    if (tag === 'INPUT') return !SKIP[(el.type || 'text').toLowerCase()];
+    return el.isContentEditable === true;
+  }
+
+  function lock(e)  { if (needsGuard(e.target)) vp.setAttribute('content', locked); }
+
+  function unlock(e) {
+    if (!needsGuard(e.target)) return;
+    // 延遲還原:欄位之間切換時不要來回改寫 viewport
+    setTimeout(function () {
+      if (!needsGuard(document.activeElement)) vp.setAttribute('content', original);
+    }, 100);
+  }
+
+  // touchstart 早於 focus 觸發,先鎖住才來得及擋掉 Safari 的縮放判斷
+  document.addEventListener('touchstart', lock,   true);
+  document.addEventListener('focusin',    lock,   true);
+  document.addEventListener('focusout',   unlock, true);
+})();
+
+
+/* ══════════════════════════════════════════════════════════════════
+   GA4 事件追蹤 — 跨頁共用層
+   ------------------------------------------------------------------
+   提供 window.gcTrack(事件名, 參數) 給五個頁面共用,並直接處理
+   導覽列、CTA、下拉選單、語系切換這四類跨頁事件。
+
+   兩個原則:
+   1. 絕不傳送個資。參數只能放選項式的答案,不放姓名/信箱/公司名/
+      自由輸入的文字(違反 GA4 服務條款,可能導致帳戶被停用)。
+   2. 追蹤失敗絕不能影響網站功能,所有呼叫都包在 try 裡。
+   ══════════════════════════════════════════════════════════════════ */
+(function () {
+  var MAX_LEN = 100;   // GA4 參數值上限 100 字元,超過會被截斷
+
+  function clean(v) {
+    if (v === undefined || v === null || v === '') return undefined;
+    if (typeof v === 'number' || typeof v === 'boolean') return v;
+    if (Array.isArray(v)) v = v.join(', ');
+    v = String(v).trim();
+    if (!v) return undefined;
+    return v.length > MAX_LEN ? v.slice(0, MAX_LEN) : v;
+  }
+
+  window.gcTrack = function (name, params) {
+    if (typeof gtag !== 'function' || !name) return;
+    try {
+      var out = {};
+      if (params) {
+        for (var k in params) {
+          if (!Object.prototype.hasOwnProperty.call(params, k)) continue;
+          var v = clean(params[k]);
+          if (v !== undefined) out[k] = v;
+        }
+      }
+      out.page_lang = (typeof GC_LANG !== 'undefined' ? GC_LANG : 'zh');
+      gtag('event', name, out);
+    } catch (e) { /* 靜默失敗 */ }
+  };
+
+  function deviceType() {
+    return window.matchMedia('(max-width:900px)').matches ? 'mobile' : 'desktop';
+  }
+  window.gcDeviceType = deviceType;
+
+  // 用 data-i18n 的鍵當識別字,這樣切語系不會產生不同的事件值
+  function labelOf(el) {
+    if (!el) return undefined;
+    var k = el.getAttribute && el.getAttribute('data-i18n');
+    if (k) return k;
+    var inner = el.querySelector && el.querySelector('[data-i18n]');
+    if (inner) return inner.getAttribute('data-i18n');
+    return ((el.textContent || '').trim().slice(0, 40)) || undefined;
+  }
+
+  /* ── 導覽列點擊 + CTA 點擊 ───────────────────────────── */
+  document.addEventListener('click', function (e) {
+    if (!e.target || !e.target.closest) return;
+    var a = e.target.closest('a[href]');
+    if (!a) return;
+    var href = a.getAttribute('href') || '';
+
+    if (a.closest('.nav-links, .nav-mobile-menu, .nav-dd-panel, .m-acc-panel')) {
+      gcTrack('nav_click', {
+        nav_item:  labelOf(a),
+        nav_href:  href,
+        nav_level: a.closest('.nav-dd-panel, .m-acc-panel') ? 'dropdown' : 'top',
+        device:    deviceType()
+      });
+      return;   // 導覽列連結不重複記成 CTA
+    }
+
+    var m = href.match(/(gc-form|catalog|partner)\.html/);
+    if (m) {
+      var sec = a.closest('section[id]');
+      gcTrack('cta_click', {
+        cta_target:   m[1],
+        cta_location: a.closest('footer') ? 'footer' : (sec ? sec.id : 'other'),
+        cta_text:     labelOf(a),
+        device:       deviceType()
+      });
+    }
+  }, true);
+
+  /* ── 「關於 GC」下拉開啟 ──────────────────────────────── */
+  var lastDd = 0;
+  function ddOpen(method) {
+    var now = new Date().getTime();
+    if (now - lastDd < 1500) return;   // 節流:滑鼠來回移動不重複計次
+    lastDd = now;
+    gcTrack('nav_dropdown_open', { method: method, device: deviceType() });
+  }
+
+  function bindNav() {
+    var dd  = document.getElementById('navAboutDd');
+    var btn = document.getElementById('navAboutBtn');
+    if (dd)  dd.addEventListener('mouseenter', function () { ddOpen('hover'); });
+    if (btn) btn.addEventListener('click',     function () { ddOpen('click'); });
+
+    var acc = document.getElementById('mAccBtn');
+    if (acc) acc.addEventListener('click', function () {
+      // 只在展開時送,收合不送
+      setTimeout(function () {
+        var panel = document.getElementById('mAccPanel');
+        if (panel && panel.classList.contains('open')) ddOpen('accordion');
+      }, 0);
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bindNav);
+  } else {
+    bindNav();
+  }
+
+  /* ── 語系切換 ─────────────────────────────────────────── */
+  var prevLang = (typeof GC_LANG !== 'undefined' ? GC_LANG : 'zh');
+  document.addEventListener('gc:langchange', function (e) {
+    var to = (e.detail && e.detail.lang) || prevLang;
+    if (to === prevLang) return;   // 頁面初次套用語系時不算切換
+    gcTrack('language_switch', { from_lang: prevLang, to_lang: to });
+    prevLang = to;
+  });
+})();
