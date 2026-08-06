@@ -1,4 +1,4 @@
-// i18n.js — GC 語系切換模組 v1.7.2
+// i18n.js — GC 語系切換模組 v1.7.4
 // 支援：繁中 / English / 日本語
 // 使用方式：data-i18n="key" / data-i18n-ph="key" / data-i18n-html="key"
 
@@ -60,6 +60,8 @@ const GC_I18N = {
     'page.title.partner': '成為 GC 服務商夥伴 — 共同拓展全球市場',
     'page.title.index':   'GC 跨境服務 — 全球市場拓銷顧問平台',
     'page.title.form':    'GC 跨境服務需求診斷表 — 填寫需求開始合作',
+    'page.title.blog':    '洞察文章 — GC 跨境服務',
+    'page.title.blogpost':'洞察文章 — GC 跨境服務',
 
     // 導覽列
     'nav.about':   '關於 GC',
@@ -69,6 +71,9 @@ const GC_I18N = {
     'nav.partners':'服務商介紹',
     'nav.process': '合作流程',
     'nav.become':  '成為服務商',
+    'nav.blog':    '洞察文章',
+    'footer.col.services': '服務與資源',
+    'footer.col.start':    '開始合作',
     'nav.cta':     '立即諮詢',
     'nav.faq':     '常見問題',
 
@@ -545,6 +550,8 @@ const GC_I18N = {
     'page.title.partner': 'Become a GC Partner — Expanding Global Markets Together',
     'page.title.index':   'GC Cross-Border Services — Global Market Expansion Consulting Platform',
     'page.title.form':    'GC Cross-Border Service Diagnostic Form — Start Your Partnership',
+    'page.title.blog':    'Insights — GC Cross-Border Services',
+    'page.title.blogpost':'Insights — GC Cross-Border Services',
 
     'nav.about':   'About GC',
     'nav.why':     'Why GC',
@@ -553,6 +560,9 @@ const GC_I18N = {
     'nav.partners':'Partners',
     'nav.process': 'How It Works',
     'nav.become':  'Become a Partner',
+    'nav.blog':    'Insights',
+    'footer.col.services': 'Services & Resources',
+    'footer.col.start':    'Get Started',
     'nav.cta':     'Get Started',
     'nav.faq':     'FAQ',
 
@@ -1028,6 +1038,8 @@ const GC_I18N = {
     'page.title.partner': 'GCサービスパートナーになる — 共にグローバル市場を拓く',
     'page.title.index':   'GCクロスボーダーサービス — グローバル市場開拓コンサルティングプラットフォーム',
     'page.title.form':    'GCクロスボーダーサービス診断フォーム — ニーズを記入して協業を始める',
+    'page.title.blog':    'インサイト記事 — GCクロスボーダーサービス',
+    'page.title.blogpost':'インサイト記事 — GCクロスボーダーサービス',
 
     'nav.about':   'GCについて',
     'nav.why':     'なぜGCか',
@@ -1036,6 +1048,9 @@ const GC_I18N = {
     'nav.partners':'パートナー紹介',
     'nav.process': '流れ',
     'nav.become':  'パートナーになる',
+    'nav.blog':    'インサイト記事',
+    'footer.col.services': 'サービスと資料',
+    'footer.col.start':    'はじめる',
     'nav.cta':     'お問い合わせ',
     'nav.faq':     'よくある質問',
 

@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-page="blogpost">
+<head>
+<!-- Google tag (gtag.js) — GA4 G-WMDKSQRC81 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WMDKSQRC81"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-WMDKSQRC81');
+</script>
+
+<script>
+/* 這一頁會在兩種網址下被服務：
+     /blog-post.html            （轉址 fallback、後台預覽）
+     /blog/<網址代稱>/           （正式文章網址、部署時預渲染的實體檔）
+   兩者的相對路徑基準不同，所以在載入任何資源之前先算出正確的 <base>。
+   連本機直接雙擊開啟預渲染出來的檔案也能正確找到 logo 與 i18n.js。 */
+(function(){
+  var m = location.pathname.match(/^(.*?)\/blog\/[^\/]+\/(?:index\.html)?$/);
+  var b = document.createElement('base');
+  b.href = m ? ((m[1] || '') + '/') : './';
+  document.head.appendChild(b);
+})();
+</script>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="GC 洞察文章：跨境電商法規、市場趨勢與通路實務的第一手觀察。">
+<meta name="robots" content="index, follow">
+<meta name="author" content="GC 跨境服務">
+<meta property="og:type" content="article">
+<meta property="og:title" content="洞察文章 — GC 跨境服務">
+<meta property="og:description" content="跨境電商法規、市場趨勢與通路實務的第一手觀察。">
+<meta property="og:site_name" content="GC 跨境服務">
+<meta property="og:locale" content="zh_TW">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="洞察文章 — GC 跨境服務">
+<meta name="twitter:description" content="跨境電商法規、市場趨勢與通路實務的第一手觀察。">
+<link rel="canonical" href="https://worldoflandmark.com/blog.html">
+<meta property="og:url" content="https://worldoflandmark.com/blog.html">
+<title>洞察文章 — GC 跨境服務</title>
+<meta property="og:image" content="https://worldoflandmark.com/images/logo.png">
+<meta property="og:image:type" content="image/png">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@400;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700&family=M+PLUS+1p:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<!-- 單篇文章預渲染插入點（SEO）：build-blog.js 產生實體靜態頁時會用到 -->
+<!-- GC_BLOGPOST_SLOT -->
+<style>
+:root{
+  --bg:#06080e; --panel:#0d1119; --panel-2:#121826;
+  --border:rgba(255,255,255,0.12);
+  --accent:#1460A8; --accent-2:#003D79; --accent-lite:#3b82f6; --accent-lite2:#7db3e8;
+  --text:#FFFAFA; --text-dim:rgba(255,250,250,0.78);
+  --grid:rgba(255,255,255,0.03);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;scroll-padding-top:68px;}
+body{background:var(--bg);color:var(--text);font-family:'Noto Sans TC',sans-serif;font-weight:400;overflow-x:hidden;}
+html[lang="en"] body{font-family:'Inter','Noto Sans TC',sans-serif;}
+html[lang="en"] .nav-logo,html[lang="en"] h1,html[lang="en"] h2,html[lang="en"] h3{font-family:'Inter','Syne',sans-serif;}
+html[lang="ja"] body{font-family:'M PLUS 1p','Noto Sans TC',sans-serif;}
+html[lang="ja"] h1,html[lang="ja"] h2,html[lang="ja"] h3{font-family:'M PLUS 1p','Syne',sans-serif;}
+img{max-width:100%;display:block;}
+
+/* ===== NAV ===== */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;height:68px;background:rgba(6,8,14,0.72);backdrop-filter:blur(24px);border-bottom:1px solid rgba(255,255,255,0.07);transition:background 0.4s,border-color 0.4s;}
+nav.scrolled{background:rgba(11,14,26,0.96);border-bottom:1px solid rgba(255,255,255,0.1);}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.7rem;letter-spacing:-0.03em;color:#FFFAFA;}
+.nav-logo img{border-radius:8px;}
+.nav-links{display:flex;gap:2.2rem;list-style:none;align-items:center;margin-left:auto;}
+.nav-links a{color:rgba(236,238,242,0.72);text-decoration:none;font-size:0.87rem;letter-spacing:0.03em;transition:color 0.2s;position:relative;}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;background:var(--accent);transform:scaleX(0);transition:transform 0.25s;border-radius:2px;}
+.nav-links a:hover{color:#FFFAFA;}
+.nav-active{color:#FFFAFA!important;}.nav-active::after{transform:scaleX(1)!important;}
+.nav-links a:hover::after{transform:scaleX(1);}
+.nav-cta{background:#FFFAFA!important;color:#06080e!important;padding:0.45rem 1.2rem;border-radius:5px;font-weight:600;border:none!important;}
+.nav-cta::after{display:none!important;}
+.nav-cta:hover{background:rgba(255,255,255,0.85)!important;}
+.nav-dd{position:relative;}
+.nav-dd-btn{display:inline-flex;align-items:center;gap:5px;background:none;border:none;padding:0;cursor:pointer;color:rgba(236,238,242,0.72);font-family:inherit;font-size:0.87rem;letter-spacing:0.03em;transition:color 0.2s;position:relative;}
+.nav-dd-btn::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;background:var(--accent);transform:scaleX(0);transition:transform 0.25s;border-radius:2px;}
+.nav-dd:hover .nav-dd-btn,.nav-dd.dd-open .nav-dd-btn{color:#FFFAFA;}
+.nav-dd:hover .nav-dd-btn::after,.nav-dd.dd-open .nav-dd-btn::after{transform:scaleX(1);}
+.nav-dd-btn svg{transition:transform 0.25s;opacity:0.8;}
+.nav-dd:hover .nav-dd-btn svg,.nav-dd.dd-open .nav-dd-btn svg{transform:rotate(180deg);}
+.nav-dd-panel{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%) translateY(-6px);min-width:186px;background:#1e2535;border:1px solid rgba(255,255,255,0.12);border-radius:10px;box-shadow:0 14px 34px rgba(0,0,0,0.45);padding:6px;opacity:0;visibility:hidden;transition:opacity 0.18s ease,transform 0.18s ease,visibility 0.18s;z-index:110;}
+.nav-dd-panel::before{content:'';position:absolute;top:-14px;left:0;right:0;height:14px;}
+.nav-dd:hover .nav-dd-panel,.nav-dd.dd-open .nav-dd-panel{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);}
+.nav-dd-panel a{display:block;padding:9px 13px;border-radius:6px;color:rgba(236,238,242,0.68);text-decoration:none;font-size:0.83rem;letter-spacing:0.02em;white-space:nowrap;transition:all 0.15s;}
+.nav-dd-panel a::after{display:none;}
+.nav-dd-panel a:hover{background:rgba(255,255,255,0.07);color:#FFFAFA;}
+.nav-right{display:none;align-items:center;gap:0.5rem;}
+.nav-hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;width:38px;height:38px;cursor:pointer;background:none;border:none;padding:4px;}
+.nav-hamburger span{display:block;width:22px;height:2px;background:#FFFAFA;border-radius:2px;transition:all 0.28s ease;transform-origin:center;}
+.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.nav-mobile-menu{display:none;position:fixed;top:68px;left:0;right:0;z-index:99;background:rgba(10,13,22,0.97);backdrop-filter:blur(24px);border-bottom:1px solid rgba(255,255,255,0.08);padding:1.2rem 5vw 1.6rem;flex-direction:column;gap:0;}
+.nav-mobile-menu.open{display:flex;}
+.nav-mobile-menu a{display:block;padding:0.85rem 0;color:rgba(236,238,242,0.82);text-decoration:none;font-size:0.95rem;border-bottom:1px solid rgba(255,255,255,0.06);transition:color 0.2s;}
+.m-acc-btn{display:flex;align-items:center;justify-content:space-between;width:100%;padding:0.85rem 0;background:none;border:none;border-bottom:1px solid rgba(255,255,255,0.06);color:rgba(236,238,242,0.82);font-family:inherit;font-size:0.95rem;cursor:pointer;}
+.m-acc-btn svg{transition:transform 0.25s;opacity:0.7;}
+.m-acc-btn[aria-expanded="true"] svg{transform:rotate(180deg);}
+.m-acc-panel{display:none;padding-left:0.9rem;}
+.m-acc-panel.open{display:block;}
+@keyframes gcFadeIn{from{opacity:0;transform:translateY(-4px);}to{opacity:1;transform:none;}}
+.gc-lang-switcher{display:flex;align-items:center;margin-left:12px;}
+.gc-lang-btn{display:flex;align-items:center;gap:4px;background:transparent;border:none;padding:4px 6px;border-radius:4px;cursor:pointer;color:rgba(255,255,255,0.55);font-size:14px;font-weight:600;letter-spacing:0.03em;transition:all 0.15s;font-family:inherit;}
+.gc-lang-btn:hover,.gc-lang-btn.gc-btn-active{color:#fff;background:rgba(255,255,255,0.08);}
+.gc-lang-chev{transition:transform 0.18s;}
+.gc-chev-open{transform:rotate(180deg);}
+.gc-lang-dropdown{position:absolute;top:calc(100% + 8px);right:0;min-width:160px;background:#1e2535;border:1px solid rgba(255,255,255,0.12);border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,0.3);overflow:hidden;display:none;z-index:200;animation:gcFadeIn 0.12s ease;}
+.gc-lang-dropdown.gc-open{display:block;}
+.gc-lang-option{display:flex;align-items:center;gap:8px;padding:10px 14px;font-size:12px;font-weight:500;cursor:pointer;transition:background 0.1s;color:rgba(255,255,255,0.6);}
+.gc-lang-option:hover{background:rgba(255,255,255,0.07);color:#fff;}
+.gc-lang-option.gc-lang-active{color:#fff;}
+.gc-lang-name{font-weight:600;}
+.gc-lang-check{color:#4a9eff;margin-left:auto;font-size:11px;}
+.gc-lang-sep{height:1px;background:rgba(255,255,255,0.07);}
+
+/* ===== 版面 ===== */
+.po-wrap{max-width:1180px;margin:0 auto;padding:118px 5vw 20px;display:grid;grid-template-columns:minmax(0,1fr) 268px;gap:56px;align-items:start;}
+.po-main{min-width:0;}
+.po-back{display:inline-flex;align-items:center;gap:7px;color:rgba(255,250,250,0.55);text-decoration:none;font-size:0.83rem;margin-bottom:22px;transition:color 0.2s;}
+.po-back:hover{color:#FFFAFA;}
+
+/* 標題 → 標籤 → 摘要 */
+.po-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px;}
+.po-chip{background:rgba(20,96,168,0.18);color:var(--accent-lite2);font-size:0.7rem;padding:3px 11px;border-radius:20px;}
+.po-h1{font-family:'Syne',sans-serif;font-size:clamp(1.7rem,3.2vw,2.55rem);font-weight:800;line-height:1.28;letter-spacing:-0.02em;color:#FFFAFA;}
+html[lang="zh-TW"] .po-h1{font-family:'Noto Sans TC',sans-serif;font-weight:700;letter-spacing:-0.01em;}
+.po-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px;}
+.po-tags span{border:1px solid rgba(255,255,255,0.13);border-radius:100px;padding:3px 11px;font-size:0.74rem;color:rgba(236,238,242,0.58);}
+.po-sum{margin-top:20px;padding:18px 22px;background:rgba(255,255,255,0.035);border-left:2px solid var(--accent);border-radius:0 10px 10px 0;font-size:0.95rem;line-height:1.95;color:var(--text-dim);}
+
+/* 輪播 */
+.po-car{margin:34px 0 10px;position:relative;}
+.po-carbox{position:relative;border-radius:14px;overflow:hidden;background:#0d1119;border:1px solid rgba(255,255,255,0.08);}
+.po-carbox.r169{aspect-ratio:16/9;}
+.po-carbox.r45{aspect-ratio:4/5;}
+.po-carbox.r11{aspect-ratio:1/1;}
+.po-track{display:flex;height:100%;transition:transform 0.42s cubic-bezier(0.4,0,0.2,1);}
+.po-slide{flex:0 0 100%;height:100%;background:#0d1119 center/cover no-repeat;position:relative;}
+.po-slide.vid{cursor:pointer;}
+.po-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
+.po-play i{width:62px;height:62px;border-radius:50%;background:rgba(6,8,14,0.62);border:1px solid rgba(255,255,255,0.28);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px);transition:all 0.2s;}
+.po-slide.vid:hover .po-play i{background:rgba(20,96,168,0.85);transform:scale(1.06);}
+.po-slide iframe{width:100%;height:100%;border:0;display:block;}
+.po-arrow{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,0.16);background:rgba(6,8,14,0.6);backdrop-filter:blur(8px);color:rgba(255,250,250,0.75);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:3;transition:all 0.2s;}
+.po-arrow:hover{background:rgba(20,96,168,0.8);color:#fff;border-color:transparent;}
+.po-arrow.prev{left:12px;} .po-arrow.next{right:12px;}
+.po-dots{display:flex;justify-content:center;gap:6px;margin-top:12px;}
+.po-dots button{width:7px;height:7px;border-radius:50%;border:none;background:rgba(255,255,255,0.22);cursor:pointer;padding:0;transition:all 0.22s;}
+.po-dots button.on{width:20px;border-radius:20px;background:var(--accent-lite);}
+.po-cap{margin-top:11px;font-size:0.8rem;line-height:1.8;color:rgba(255,250,250,0.55);}
+.po-src{margin-top:4px;font-size:0.74rem;color:rgba(255,250,250,0.38);display:flex;align-items:flex-start;gap:5px;}
+.po-src svg{flex:none;opacity:0.55;}
+
+/* 內文 */
+.po-body{margin-top:36px;font-size:0.95rem;line-height:2.05;color:rgba(255,250,250,0.82);}
+.po-body p{margin:0 0 1.35em;}
+.po-body h2{font-size:1.32rem;font-weight:700;line-height:1.6;color:#FFFAFA;margin:2.1em 0 0.85em;padding-left:14px;border-left:3px solid var(--accent);}
+.po-body h3{font-size:1.08rem;font-weight:700;line-height:1.65;color:#FFFAFA;margin:1.8em 0 0.7em;}
+.po-body ul,.po-body ol{margin:0 0 1.35em;padding-left:1.5em;}
+.po-body li{margin-bottom:0.55em;}
+.po-body li::marker{color:var(--accent-lite);}
+.po-body blockquote{margin:1.8em 0;padding:20px 24px;background:rgba(20,96,168,0.08);border-radius:12px;border:1px solid rgba(59,130,246,0.16);font-size:1.02rem;line-height:1.95;color:#FFFAFA;}
+.po-body blockquote cite{display:block;margin-top:10px;font-style:normal;font-size:0.78rem;color:rgba(255,250,250,0.45);}
+.po-body hr{border:none;height:1px;background:rgba(255,255,255,0.1);margin:2.6em 0;}
+.po-body a{color:var(--accent-lite2);text-decoration:underline;text-underline-offset:2px;}
+.po-body a:hover{color:#fff;}
+.po-body code{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);border-radius:4px;padding:1px 6px;font-family:Inter,ui-monospace,monospace;font-size:0.9em;}
+.po-body s{opacity:0.65;}
+.po-body figure{margin:2em 0;}
+.po-body figure img{width:100%;border-radius:12px;border:1px solid rgba(255,255,255,0.08);}
+.po-body figcaption{margin-top:11px;font-size:0.8rem;line-height:1.8;color:rgba(255,250,250,0.55);}
+.po-body .po-fsrc{margin-top:4px;font-size:0.74rem;color:rgba(255,250,250,0.38);display:flex;align-items:flex-start;gap:5px;}
+.po-body .po-fsrc svg{flex:none;opacity:0.55;}
+
+/* 發布時間 + 分享 */
+.po-foot{margin-top:44px;padding-top:22px;border-top:1px solid rgba(255,255,255,0.09);display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+.po-pub{font-size:0.8rem;color:rgba(255,250,250,0.45);}
+.po-share{display:flex;align-items:center;gap:8px;}
+.po-share span{font-size:0.78rem;color:rgba(255,250,250,0.42);margin-right:2px;}
+.po-share button{width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,0.14);background:rgba(255,255,255,0.04);color:rgba(255,250,250,0.7);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.2s;padding:0;}
+.po-share button:hover{background:rgba(20,96,168,0.75);color:#fff;border-color:transparent;}
+.po-copied{font-size:0.74rem;color:#4ade80;}
+
+/* CTA */
+#po-cta{position:relative;overflow:hidden;background:#06080e;text-align:center;padding:82px 5vw;margin-top:60px;border-top:1px solid rgba(255,255,255,0.07);}
+.cta-bg{position:absolute;inset:0;background:radial-gradient(ellipse 65% 80% at 50% 50%,rgba(255,255,255,0.06) 0%,transparent 70%);}
+.cta-grid{position:absolute;inset:0;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:64px 64px;}
+.cta-content{position:relative;z-index:2;}
+.section-label{font-family:'Syne',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent-lite);margin-bottom:1rem;}
+.cta-title{font-family:'Syne',sans-serif;font-size:clamp(1.6rem,3vw,2.5rem);font-weight:800;line-height:1.2;margin-bottom:1.1rem;letter-spacing:-0.03em;color:#FFFAFA;}
+html[lang="zh-TW"] .cta-title{font-family:'Noto Sans TC',sans-serif;font-weight:700;}
+.cta-sub{font-size:0.95rem;color:var(--text-dim);max-width:560px;margin:0 auto 2.2rem;line-height:1.78;}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:#FFFAFA;color:#06080e;padding:0.85rem 1.8rem;border-radius:5px;text-decoration:none;font-size:0.9rem;font-weight:600;transition:all 0.25s;}
+.btn-primary:hover{transform:translateY(-2px);background:rgba(255,255,255,0.88);}
+
+/* 其他熱門文章 */
+.po-side{position:sticky;top:92px;}
+.po-sh{font-family:'Syne',sans-serif;font-size:0.66rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,250,250,0.42);margin:0 0 14px;display:flex;align-items:center;gap:8px;}
+.po-sh::before{content:'';width:14px;height:1px;background:var(--accent);flex:none;}
+.po-rel{display:flex;flex-direction:column;gap:2px;}
+.po-rel a{display:flex;gap:11px;padding:11px 10px;border-radius:10px;text-decoration:none;color:inherit;transition:background 0.18s;}
+.po-rel a:hover{background:rgba(255,255,255,0.05);}
+.po-rel .t{width:56px;height:44px;border-radius:7px;flex:none;background:#101725 center/cover no-repeat;border:1px solid rgba(255,255,255,0.08);}
+.po-rel .x{min-width:0;}
+.po-rel .x b{display:block;font-size:0.82rem;font-weight:500;line-height:1.6;color:rgba(255,250,250,0.86);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.po-rel a:hover .x b{color:var(--accent-lite2);}
+.po-rel .x i{font-style:normal;display:block;margin-top:4px;font-family:Inter,monospace;font-size:0.68rem;color:rgba(255,250,250,0.38);}
+.po-relbottom{max-width:1180px;margin:0 auto;padding:0 5vw 80px;display:none;}
+.po-relbottom .po-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px;}
+.po-relbottom .po-card{background:rgba(255,255,255,0.035);border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;text-decoration:none;color:inherit;transition:all 0.22s;}
+.po-relbottom .po-card:hover{border-color:rgba(59,130,246,0.4);transform:translateY(-2px);}
+.po-relbottom .po-card .t{width:100%;aspect-ratio:16/9;background:#101725 center/cover no-repeat;}
+.po-relbottom .po-card .x{padding:14px 15px 17px;}
+.po-relbottom .po-card b{display:block;font-size:0.88rem;font-weight:500;line-height:1.65;color:rgba(255,250,250,0.9);}
+.po-relbottom .po-card i{font-style:normal;display:block;margin-top:7px;font-family:Inter,monospace;font-size:0.7rem;color:rgba(255,250,250,0.38);}
+
+/* 狀態頁（維護中／找不到／載入中） */
+.po-state{max-width:640px;margin:0 auto;padding:150px 5vw 110px;text-align:center;}
+.po-state .ic{display:flex;justify-content:center;margin-bottom:20px;}
+.po-state .ic i{width:62px;height:62px;border-radius:50%;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.03);display:flex;align-items:center;justify-content:center;color:rgba(255,250,250,0.45);}
+.po-state h2{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:#FFFAFA;margin-bottom:12px;}
+html[lang="zh-TW"] .po-state h2{font-family:'Noto Sans TC',sans-serif;font-weight:700;}
+.po-state p{font-size:0.92rem;line-height:1.95;color:var(--text-dim);margin-bottom:26px;}
+.po-state small{display:block;margin-top:14px;font-size:0.75rem;opacity:0.55;}
+
+/* 預覽橫幅 */
+.po-preview{position:sticky;top:68px;z-index:90;background:#d97706;color:#fff;padding:9px 5vw;font-size:0.8rem;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.po-preview b{font-weight:700;}
+.po-langnote{max-width:1180px;margin:0 auto;padding:100px 5vw 0;}
+body.po-hasnote .po-wrap{padding-top:24px;}
+body.po-hasnote .po-state{padding-top:60px;}
+.po-langnote div{background:rgba(20,96,168,0.1);border:1px solid rgba(59,130,246,0.22);border-radius:10px;padding:11px 16px;font-size:0.8rem;color:var(--text-dim);line-height:1.7;}
+
+/* 頁尾 */
+footer{background:rgba(6,8,14,0.9);padding:2.8rem 5vw;border-top:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.footer-copy{font-size:0.78rem;color:rgba(236,238,242,0.55);}
+.footer-links{display:flex;gap:1.2rem;align-items:center;}
+.footer-links a{font-size:0.78rem;color:rgba(255,250,250,0.45);text-decoration:none;}
+.footer-links a:hover{color:rgba(255,250,250,0.8);}
+
+@media(max-width:1000px){
+  .po-wrap{grid-template-columns:minmax(0,1fr);gap:0;}
+  .po-side{display:none;}
+  .po-relbottom{display:block;}
+}
+@media(max-width:900px){
+  .nav-links{display:none;}
+  nav{justify-content:flex-start;}
+  .nav-right{display:flex;}
+  .nav-hamburger{display:flex;}
+  .gc-lang-switcher{margin-left:auto;margin-right:0.4rem;}
+  .po-wrap{padding:96px 5vw 10px;}
+  .po-body{font-size:0.92rem;line-height:1.95;}
+  .po-body h2{font-size:1.16rem;}
+  #po-cta{padding:60px 5vw;margin-top:40px;}
+  .po-relbottom .po-grid{grid-template-columns:1fr;}
+  footer{flex-direction:column;align-items:flex-start;padding:2rem 5vw;}
+}
+</style>
+<style>
+/* ── 全站共用頁尾 ───────────────────────────────────────────────
+   class 一律用 gcf- 前綴，避免撞到各頁既有的樣式。
+   footer.gc-footer 用「元素＋class」提高優先序，蓋掉舊的 footer{display:flex}。 */
+footer.gc-footer{display:block;background:rgba(6,8,14,0.94);border-top:1px solid rgba(255,255,255,0.07);padding:3.4rem 5vw 1.8rem;}
+.gcf-top{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:minmax(210px,1.3fr) repeat(3,minmax(0,1fr));gap:38px;align-items:start;}
+.gcf-brand img{width:56px;height:56px;display:block;border-radius:12px;margin-bottom:1.6rem;}
+.gcf-social{display:flex;gap:10px;}
+.gcf-social a{width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;color:rgba(255,250,250,0.6);transition:all 0.2s;text-decoration:none;}
+.gcf-social a:hover{background:rgba(255,255,255,0.08);color:#FFFAFA;border-color:rgba(255,255,255,0.3);transform:translateY(-2px);}
+.gcf-col h4{font-family:inherit;font-size:0.82rem;font-weight:600;color:#FFFAFA;margin:0 0 0.9rem;letter-spacing:0.02em;}
+.gcf-col a{display:block;font-size:0.82rem;line-height:1.6;color:rgba(236,238,242,0.55);text-decoration:none;padding:0.34rem 0;transition:color 0.18s;}
+.gcf-col a:hover{color:#FFFAFA;}
+.gcf-bottom{max-width:1240px;margin:2.4rem auto 0;padding-top:1.4rem;border-top:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
+.gcf-copy{font-size:0.76rem;color:rgba(236,238,242,0.4);}
+@media(max-width:900px){
+  .gcf-top{grid-template-columns:1fr 1fr;gap:30px 26px;}
+  .gcf-brand{grid-column:1 / -1;}
+}
+@media(max-width:520px){
+  footer.gc-footer{padding:2.6rem 5vw 1.5rem;}
+  .gcf-top{grid-template-columns:1fr;gap:24px;}
+  .gcf-bottom{flex-direction:column;align-items:flex-start;gap:0.5rem;}
+}
+</style>
+</head>
+<body>
+
+<nav id="siteNav">
+  <a href="index.html" class="nav-logo"><img src="images/logo.png" alt="GC 跨境服務" style="width:50px;height:50px;display:block;"></a>
+  <ul class="nav-links">
+    <li class="nav-dd" id="navAboutDd">
+      <button type="button" class="nav-dd-btn" id="navAboutBtn" aria-haspopup="true" aria-expanded="false">
+        <span data-i18n="nav.about">關於 GC</span>
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="nav-dd-panel">
+        <a href="index.html#why" data-i18n="nav.why">為何選擇我們</a>
+        <a href="index.html#services" data-i18n="nav.services">顧問服務</a>
+        <a href="index.html#partners" data-i18n="nav.partners">服務商介紹</a>
+        <a href="index.html#process" data-i18n="nav.process">合作流程</a>
+        <a href="index.html#faq" data-i18n="nav.faq">常見問題</a>
+      </div>
+    </li>
+    <li><a href="catalog.html" data-i18n="nav.catalog">商品貨盤</a></li>
+    <li><a href="partner.html" data-i18n="nav.become">成為服務商</a></li>
+    <li><a href="blog.html" class="nav-active" data-i18n="nav.blog">洞察文章</a></li>
+    <li><a href="gc-form.html" class="nav-cta" data-i18n="nav.cta">立即諮詢</a></li>
+  </ul>
+  <div id="gcLangSwitcher" class="gc-lang-switcher" style="position:relative;">
+    <button id="gcLangBtn" class="gc-lang-btn" onclick="gcToggleLangMenu()">
+      <span id="gcLangLabel">繁中</span>
+      <svg id="gcLangChev" class="gc-lang-chev" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+    <div id="gcLangDropdown" class="gc-lang-dropdown">
+      <div class="gc-lang-option gc-lang-active" data-lang="zh" onclick="gcSetLang('zh')"><span class="gc-lang-name">繁體中文</span><span class="gc-lang-check">✓</span></div>
+      <div class="gc-lang-sep"></div>
+      <div class="gc-lang-option" data-lang="en" onclick="gcSetLang('en')"><span class="gc-lang-name">English</span><span class="gc-lang-check" style="display:none">✓</span></div>
+      <div class="gc-lang-sep"></div>
+      <div class="gc-lang-option" data-lang="ja" onclick="gcSetLang('ja')"><span class="gc-lang-name">日本語</span><span class="gc-lang-check" style="display:none">✓</span></div>
+    </div>
+  </div>
+  <div class="nav-right">
+    <a href="gc-form.html" class="nav-cta" data-i18n="nav.cta" style="text-decoration:none;padding:0.45rem 1.2rem;border-radius:5px;font-size:0.87rem;font-weight:600;">立即諮詢</a>
+    <button class="nav-hamburger" id="navHamburger" onclick="toggleMobileMenu()" aria-label="選單"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="nav-mobile-menu" id="navMobileMenu">
+  <button type="button" class="m-acc-btn" id="mAccBtn" onclick="toggleMobileAbout()" aria-expanded="false">
+    <span data-i18n="nav.about">關於 GC</span>
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="m-acc-panel" id="mAccPanel">
+    <a href="index.html#why" onclick="closeMobileMenu()" data-i18n="nav.why">為何選擇我們</a>
+    <a href="index.html#services" onclick="closeMobileMenu()" data-i18n="nav.services">顧問服務</a>
+    <a href="index.html#partners" onclick="closeMobileMenu()" data-i18n="nav.partners">服務商介紹</a>
+    <a href="index.html#process" onclick="closeMobileMenu()" data-i18n="nav.process">合作流程</a>
+    <a href="index.html#faq" onclick="closeMobileMenu()" data-i18n="nav.faq">常見問題</a>
+  </div>
+  <a href="catalog.html" onclick="closeMobileMenu()" data-i18n="nav.catalog">商品貨盤</a>
+  <a href="partner.html" onclick="closeMobileMenu()" data-i18n="nav.become">成為服務商</a>
+  <a href="blog.html" onclick="closeMobileMenu()" data-i18n="nav.blog">洞察文章</a>
+  <div style="border-top:1px solid rgba(255,255,255,0.08);margin-top:0.6rem;padding-top:0.8rem;display:flex;gap:0.5rem;">
+    <div class="gc-lang-option" data-lang="zh" onclick="gcSetLang('zh');closeMobileMenu()" style="flex:1;justify-content:center;border:1px solid rgba(255,255,255,0.1);border-radius:6px;"><span class="gc-lang-name">繁中</span><span class="gc-lang-check" style="display:none">✓</span></div>
+    <div class="gc-lang-option" data-lang="en" onclick="gcSetLang('en');closeMobileMenu()" style="flex:1;justify-content:center;border:1px solid rgba(255,255,255,0.1);border-radius:6px;"><span class="gc-lang-name">EN</span><span class="gc-lang-check" style="display:none">✓</span></div>
+    <div class="gc-lang-option" data-lang="ja" onclick="gcSetLang('ja');closeMobileMenu()" style="flex:1;justify-content:center;border:1px solid rgba(255,255,255,0.1);border-radius:6px;"><span class="gc-lang-name">日本語</span><span class="gc-lang-check" style="display:none">✓</span></div>
+  </div>
+</div>
+
+<div id="poPreview" class="po-preview" style="display:none;"></div>
+<div class="po-langnote" id="poLangNote" style="display:none;"><div id="poLangNoteTxt"></div></div>
+
+<div id="poState" class="po-state" style="display:none;"></div>
+
+<div id="poArticle" style="display:none;">
+  <div class="po-wrap">
+    <main class="po-main">
+      <a class="po-back" href="blog.html" id="poBack">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        <span id="poBackTxt">回到洞察文章</span>
+      </a>
+      <div class="po-meta" id="poMeta"></div>
+      <h1 class="po-h1" id="poTitle"></h1>
+      <div class="po-tags" id="poTags"></div>
+      <div class="po-sum" id="poSum"></div>
+      <div class="po-car" id="poCar" style="display:none;"></div>
+      <div class="po-body" id="poBody"></div>
+      <div class="po-foot">
+        <div class="po-pub" id="poPub"></div>
+        <div class="po-share" id="poShare"></div>
+      </div>
+    </main>
+    <aside class="po-side" id="poSide" style="display:none;">
+      <div class="po-sh" id="poRelTitle">熱門文章</div>
+      <div class="po-rel" id="poRel"></div>
+    </aside>
+  </div>
+
+  <section id="po-cta">
+    <div class="cta-bg"></div><div class="cta-grid"></div>
+    <div class="cta-content">
+      <div class="section-label" id="poCtaLabel">Get Started Today</div>
+      <h2 class="cta-title" id="poCtaTitle">正在尋找可靠且高效的跨境解決方案嗎？</h2>
+      <p class="cta-sub" id="poCtaSub">立即填寫需求診斷表，GC 顧問將為您量身規劃最適合的全球拓銷策略。</p>
+      <a href="gc-form.html" class="btn-primary" id="poCtaBtn">
+        <span id="poCtaBtnTxt">立即填寫需求診斷表</span>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <div class="po-relbottom" id="poRelBottom" style="display:none;">
+    <div class="po-sh" id="poRelTitle2">熱門文章</div>
+    <div class="po-grid" id="poRelGrid"></div>
+  </div>
+</div>
+
+<footer class="gc-footer">
+  <div class="gcf-top">
+    <div class="gcf-brand">
+      <a href="index.html"><img src="images/logo.png" alt="GC 跨境服務"></a>
+      <div class="gcf-social">
+        <a href="https://www.facebook.com/gcosc.co" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.3v7A10 10 0 0022 12z"/></svg></a>
+        <a href="https://www.instagram.com/gcosc.co" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3.5" y="3.5" width="17" height="17" rx="4.6"/><circle cx="12" cy="12" r="3.8"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://www.threads.com/@gcosc.co" target="_blank" rel="noopener" aria-label="Threads" title="Threads"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.291 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.96-.065-1.19.408-2.285 1.33-3.082.88-.76 2.119-1.207 3.583-1.291a13.853 13.853 0 0 1 3.02.142c-.126-.742-.375-1.332-.75-1.757-.513-.586-1.308-.883-2.359-.89h-.029c-.844 0-1.992.232-2.721 1.32L7.734 7.42c.98-1.454 2.568-2.256 4.478-2.256h.044c3.194.02 5.097 1.975 5.287 5.388.108.046.216.094.321.142 1.49.7 2.58 1.761 3.154 3.07.797 1.82.871 4.79-1.548 7.158-1.85 1.81-4.094 2.628-7.277 2.65Zm1.003-11.69c-.242 0-.487.007-.739.021-1.836.103-2.98.946-2.916 2.143.067 1.256 1.452 1.839 2.784 1.767 1.224-.065 2.818-.543 3.086-3.71a10.5 10.5 0 0 0-2.215-.221z"/></svg></a>
+      </div>
+    </div>
+    <div class="gcf-col">
+      <h4 data-i18n="nav.about">關於 GC</h4>
+        <a href="index.html#why" data-i18n="nav.why">為何選擇我們</a>
+        <a href="index.html#services" data-i18n="nav.services">顧問服務</a>
+        <a href="index.html#partners" data-i18n="nav.partners">服務商介紹</a>
+        <a href="index.html#process" data-i18n="nav.process">合作流程</a>
+        <a href="index.html#faq" data-i18n="nav.faq">常見問題</a>
+    </div>
+    <div class="gcf-col">
+      <h4 data-i18n="footer.col.services">服務與資源</h4>
+        <a href="catalog.html" data-i18n="nav.catalog">商品貨盤</a>
+        <a href="partner.html" data-i18n="nav.become">成為服務商</a>
+        <a href="blog.html" data-i18n="nav.blog">洞察文章</a>
+    </div>
+    <div class="gcf-col">
+      <h4 data-i18n="footer.col.start">開始合作</h4>
+        <a href="gc-form.html" data-i18n="nav.cta">立即諮詢</a>
+        <a href="privacy.html" data-i18n="footer.privacy">隱私權政策</a>
+    </div>
+  </div>
+  <div class="gcf-bottom">
+    <span class="gcf-copy" data-i18n="footer.copy">© 2026 GC Cross-Border Services. All rights reserved.</span>
+  </div>
+</footer>
+
+<script>
+/* ══════════════════════════════════════════════════════════════════════
+   洞察文章 — 單篇內頁
+   網址：/blog/<slug>/    （netlify.toml 把 /blog/* rewrite 到這一頁）
+   內容順序（依規格）：
+     標題 → 標籤 → 摘要 → 圖片輪播 → 內文 → 發布時間 → 分享 → CTA → 熱門文章
+   封面圖只用在列表縮圖與分享預覽，內頁不重複顯示。
+   ══════════════════════════════════════════════════════════════════════ */
+
+const SB_URL = 'https://rtzfeoahpsutyikutsys.supabase.co';
+const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ0emZlb2FocHN1dHlpa3V0c3lzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA5ODU2NTAsImV4cCI6MjA5NjU2MTY1MH0.1ouoDmHrmetOc_qsvPrXiKsKx8eDEebbsXr2Fk2Sy-o';
+const REST = SB_URL + '/rest/v1/';
+const SB_HEADERS = { apikey: SB_KEY, Authorization: 'Bearer ' + SB_KEY };
+const SITE = 'https://worldoflandmark.com';
+
+/* 狀態頁與來源標記的圖示。全站都用線條 SVG，不用 emoji。 */
+const ICON = {
+  search: '<i><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M20 20l-4.7-4.7" stroke-linecap="round"/></svg></i>',
+  maint: '<i><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a3.8 3.8 0 004.9 4.9l-8.4 8.4a1.9 1.9 0 01-2.7 0l-2.2-2.2a1.9 1.9 0 010-2.7z"/><path d="M17.2 3.8l3 3" stroke-linecap="round"/></svg></i>',
+  warn: '<i><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 4.5l8.5 15h-17z" stroke-linejoin="round"/><path d="M12 10v4M12 16.6v.1" stroke-linecap="round"/></svg></i>',
+  info: '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="flex:none;margin-top:3px"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8v.1" stroke-linecap="round"/></svg>'
+};
+
+function LANG(){
+  try{
+    const v = new URLSearchParams(location.search).get('lang');
+    if (v === 'zh' || v === 'en' || v === 'ja') return v;
+  }catch(e){}
+  return localStorage.getItem('gc_lang') || 'zh';
+}
+
+const UI = {
+  zh:{
+    back:'回到洞察文章', rel:'其他熱門文章', pub:d=>'發布於 '+d, updated:d=>'更新於 '+d,
+    share:'分享這篇', copied:'已複製連結',
+    ctaLabel:'Get Started Today',
+    ctaTitle:'正在尋找可靠且高效的跨境解決方案嗎？',
+    ctaSub:'立即填寫需求診斷表，GC 顧問將為您量身規劃最適合的全球拓銷策略。',
+    ctaBtn:'立即填寫需求診斷表',
+    loading:'載入文章中…',
+    maintTitle:'這篇文章維護中，下次再來看看吧！',
+    maintDesc:'我們正在補充與修正內容，很快就會重新上架。這段期間可以先看看其他文章。',
+    nfTitle:'找不到這篇文章', nfDesc:'網址可能有誤，或這篇文章已經被移除了。',
+    errTitle:'文章載入失敗', errDesc:'請稍後重新整理頁面；若持續發生，再麻煩告訴我們。',
+    toList:'瀏覽所有文章', preview:'預覽模式', previewNote:'這是後台預覽，內容尚未對外發布。',
+    langnote:''
+  },
+  en:{
+    back:'Back to Insights', rel:'More popular articles', pub:d=>'Published '+d, updated:d=>'Updated '+d,
+    share:'Share', copied:'Link copied',
+    ctaLabel:'Get Started Today',
+    ctaTitle:'Looking for a reliable, efficient cross-border solution?',
+    ctaSub:'Fill in the needs assessment form and a GC advisor will map out a global expansion plan tailored to you.',
+    ctaBtn:'Fill in the needs assessment form',
+    loading:'Loading article…',
+    maintTitle:'This article is being updated — do check back soon!',
+    maintDesc:'We are revising the content and it will be back shortly. In the meantime, feel free to browse our other articles.',
+    nfTitle:'Article not found', nfDesc:'The address may be wrong, or this article has been removed.',
+    errTitle:'Could not load the article', errDesc:'Please refresh in a moment. If it keeps happening, do let us know.',
+    toList:'Browse all articles', preview:'Preview mode', previewNote:'This is an admin preview. The content is not published yet.',
+    langnote:'This article is published in Traditional Chinese only. The interface follows your language setting.'
+  },
+  ja:{
+    back:'インサイト記事へ戻る', rel:'その他の人気記事', pub:d=>d+' 公開', updated:d=>d+' 更新',
+    share:'シェア', copied:'リンクをコピーしました',
+    ctaLabel:'Get Started Today',
+    ctaTitle:'信頼できる越境ソリューションをお探しですか？',
+    ctaSub:'ニーズ診断フォームにご記入ください。GCのコンサルタントが最適なグローバル展開プランをご提案します。',
+    ctaBtn:'ニーズ診断フォームに記入する',
+    loading:'記事を読み込み中…',
+    maintTitle:'この記事は現在メンテナンス中です。またのぞいてみてください！',
+    maintDesc:'内容の追記・修正を行っています。まもなく再公開しますので、それまで他の記事もご覧ください。',
+    nfTitle:'記事が見つかりません', nfDesc:'URLが間違っているか、記事が削除された可能性があります。',
+    errTitle:'記事を読み込めませんでした', errDesc:'しばらくしてから再読み込みしてください。繰り返す場合はご連絡ください。',
+    toList:'すべての記事を見る', preview:'プレビューモード', previewNote:'管理画面のプレビューです。まだ公開されていません。',
+    langnote:'記事本文は繁体字中国語のみで公開しています。画面表示は選択された言語に従います。'
+  }
+};
+function T(){ return UI[LANG()] || UI.zh; }
+
+let POST = null, RELATED = [], IS_PREVIEW = false, CAR_I = 0;
+
+function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function safeUrl(u){
+  const v = String(u==null?'':u).trim();
+  if(!/^https?:\/\//i.test(v)) return '';
+  if(/["'`\\\s<>]/.test(v)) return '';
+  return v;
+}
+function cssUrl(u){ return safeUrl(u).replace(/[()'"\\\s]/g, c=>'%'+c.charCodeAt(0).toString(16).padStart(2,'0')); }
+
+/* 後台存進來的行內 HTML 白名單。後台自己已經過濾過一次，
+   這裡是第二道 —— 官網不該無條件相信資料庫裡的字串。 */
+const OK_TAGS = ['B','STRONG','I','EM','U','S','A','BR','SPAN','CODE'];
+function safeStyle(v){
+  const out = [];
+  String(v||'').split(';').forEach(part=>{
+    const i = part.indexOf(':'); if(i<0) return;
+    const k = part.slice(0,i).trim().toLowerCase();
+    const val = part.slice(i+1).trim();
+    if(k!=='color' && k!=='background-color') return;
+    if(!/^(#[0-9a-f]{3,8}|rgba?\(\s*[\d.\s,%]+\))$/i.test(val)) return;
+    out.push(k+':'+val);
+  });
+  return out.join(';');
+}
+function clean(html){
+  const d = document.createElement('div');
+  d.innerHTML = String(html||'');
+  (function walk(node){
+    [...node.childNodes].forEach(n=>{
+      if(n.nodeType === 3) return;
+      if(n.nodeType !== 1){ n.remove(); return; }
+      const tag = n.tagName;
+      if(['SCRIPT','STYLE','IFRAME','OBJECT','EMBED','TEMPLATE','NOSCRIPT'].includes(tag)){ n.remove(); return; }
+      if(!OK_TAGS.includes(tag)){
+        while(n.firstChild) n.parentNode.insertBefore(n.firstChild, n);
+        n.remove(); return;
+      }
+      const keep = safeStyle(n.getAttribute('style'));
+      const href = tag === 'A' ? safeUrl(n.getAttribute('href')) : '';
+      [...n.attributes].forEach(a=>n.removeAttribute(a.name));
+      if(keep) n.setAttribute('style', keep);
+      if(tag === 'A'){
+        if(href){ n.setAttribute('href', href); n.setAttribute('rel','noopener nofollow'); n.setAttribute('target','_blank'); }
+      }
+      walk(n);
+    });
+  })(d);
+  return d.innerHTML;
+}
+
+function fmtDate(iso){
+  if(!iso) return '';
+  const d = new Date(iso);
+  if(isNaN(d)) return '';
+  const l = LANG();
+  try{
+    return new Intl.DateTimeFormat(l==='en'?'en-US':(l==='ja'?'ja-JP':'zh-TW'), { year:'numeric', month:'long', day:'numeric' }).format(d);
+  }catch(e){ return iso.slice(0,10); }
+}
+function langQ(){ const l = LANG(); return l==='zh' ? '' : '?lang='+l; }
+function postUrl(p){ return 'blog/' + encodeURIComponent(p.slug) + '/' + langQ(); }
+
+/* ── 網址判讀 ──────────────────────────────────────────────────── */
+function slugFromUrl(){
+  const m = location.pathname.match(/^\/blog\/([^\/?#]+)\/?$/);
+  if(m) return decodeURIComponent(m[1]);
+  try{
+    const q = new URLSearchParams(location.search).get('slug');
+    if(q) return q;
+  }catch(e){}
+  return '';
+}
+/* 預覽：後台與官網不同網域，無法共用登入狀態，所以草稿資料直接放在
+   網址的 # 之後帶過來（# 不會送到伺服器，也不會被記錄）。 */
+function previewFromHash(){
+  const h = location.hash || '';
+  const m = h.match(/[#&]gcpreview=([^&]+)/);
+  if(!m) return null;
+  try{
+    const json = decodeURIComponent(escape(atob(decodeURIComponent(m[1]))));
+    return JSON.parse(json);
+  }catch(e){ console.warn('preview decode failed', e); return null; }
+}
+
+/* ── 區塊渲染 ──────────────────────────────────────────────────── */
+function ratioClass(r){ return r==='4:5' ? 'r45' : (r==='1:1' ? 'r11' : 'r169'); }
+
+function videoEmbed(url){
+  const u = String(url||'');
+  let m = u.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([\w-]{6,})/);
+  if(m) return 'https://www.youtube.com/embed/'+m[1]+'?autoplay=1';
+  m = u.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+  if(m) return 'https://player.vimeo.com/video/'+m[1]+'?autoplay=1';
+  return '';
+}
+
+function capBlock(caption, source){
+  let h = '';
+  if(caption) h += '<div class="po-cap">'+esc(caption)+'</div>';
+  if(source)  h += '<div class="po-src">'+ICON.info+'<span>'+esc(source)+'</span></div>';
+  return h;
+}
+
+function blockHtml(b){
+  if(!b || !b.type) return '';
+  switch(b.type){
+    case 'heading':
+      return (b.level===3 ? '<h3>' : '<h2>') + (b.html ? clean(b.html) : esc(b.text||'')) + (b.level===3 ? '</h3>' : '</h2>');
+    case 'list':{
+      const tag = b.style==='ol' ? 'ol' : 'ul';
+      const items = (b.items||[]).map(x=>'<li>'+clean(x)+'</li>').join('');
+      return items ? '<'+tag+'>'+items+'</'+tag+'>' : '';
+    }
+    case 'quote':
+      return '<blockquote>'+(b.html ? clean(b.html) : esc(b.text||''))
+           + (b.source ? '<cite>'+esc(b.source)+'</cite>' : '') + '</blockquote>';
+    case 'divider':
+      return '<hr>';
+    case 'image':{
+      const u = safeUrl(b.url);
+      if(!u) return '';
+      const ar = (b.w && b.h) ? ' style="aspect-ratio:'+Number(b.w)+'/'+Number(b.h)+'"' : '';
+      return '<figure><img src="'+esc(u)+'" alt="'+esc(b.caption||'')+'" loading="lazy"'+ar+'>'
+           + (b.caption ? '<figcaption>'+esc(b.caption)+'</figcaption>' : '')
+           + (b.source ? '<div class="po-fsrc">'+ICON.info+'<span>'+esc(b.source)+'</span></div>' : '')
+           + '</figure>';
+    }
+    case 'video':{
+      const emb = videoEmbed(b.url);
+      const th = cssUrl(b.thumb);
+      if(!emb && !th) return '';
+      return '<figure><div class="po-carbox r169"><div class="po-slide vid" data-embed="'+esc(emb)+'"'
+           + (th ? ' style="background-image:url(\''+th+'\')"' : '')
+           + '><span class="po-play"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></i></span></div></div>'
+           + (b.caption ? '<figcaption>'+esc(b.caption)+'</figcaption>' : '')
+           + (b.source ? '<div class="po-fsrc">'+ICON.info+'<span>'+esc(b.source)+'</span></div>' : '')
+           + '</figure>';
+    }
+    case 'carousel':
+      return carouselHtml(b.items||[], b.ratio||'16:9', 'inline');
+    default:
+      return '<p>'+clean(b.html||'')+'</p>';
+  }
+}
+
+function carouselHtml(items, ratio, id){
+  const list = (items||[]).filter(x=>x && (safeUrl(x.url) || safeUrl(x.thumb)));
+  if(!list.length) return '';
+  const slides = list.map(x=>{
+    const isVid = x.kind === 'video' || !!x.videoId || (!!x.url && !!videoEmbed(x.url));
+    const bg = cssUrl(isVid ? (x.thumb||x.url) : x.url);
+    const emb = isVid ? videoEmbed(x.url) : '';
+    return '<div class="po-slide'+(isVid?' vid':'')+'"'+(emb?' data-embed="'+esc(emb)+'"':'')
+         + (bg ? ' style="background-image:url(\''+bg+'\')"' : '') + '>'
+         + (isVid ? '<span class="po-play"><i><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></i></span>' : '')
+         + '</div>';
+  }).join('');
+  const many = list.length > 1;
+  const caps = list.map(x=>capBlock(x.caption, x.source));
+  return '<div class="po-carwrap" data-car="'+esc(id)+'">'
+    + '<div class="po-carbox '+ratioClass(ratio)+'">'
+    +   '<div class="po-track">'+slides+'</div>'
+    +   (many ? '<button class="po-arrow prev" data-dir="-1" aria-label="prev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 19l-7-7 7-7"/></svg></button>'
+              + '<button class="po-arrow next" data-dir="1" aria-label="next"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 5l7 7-7 7"/></svg></button>' : '')
+    + '</div>'
+    + (many ? '<div class="po-dots">'+list.map((x,i)=>'<button data-go="'+i+'" class="'+(i===0?'on':'')+'"></button>').join('')+'</div>' : '')
+    + '<div class="po-capbox">'+(caps[0]||'')+'</div>'
+    + '<div style="display:none" class="po-capdata">'+caps.map(c=>'<template>'+c+'</template>').join('')+'</div>'
+    + '</div>';
+}
+
+/* 輪播互動：每一組獨立記自己的位置 */
+function bindCarousels(root){
+  root.querySelectorAll('[data-car]').forEach(w=>{
+    const track = w.querySelector('.po-track');
+    const slides = w.querySelectorAll('.po-slide');
+    const dots = w.querySelectorAll('.po-dots button');
+    const caps = [...w.querySelectorAll('.po-capdata template')].map(t=>t.innerHTML);
+    const capbox = w.querySelector('.po-capbox');
+    let i = 0;
+    const go = n=>{
+      i = (n + slides.length) % slides.length;
+      track.style.transform = 'translateX(-'+(i*100)+'%)';
+      dots.forEach((d,k)=>d.classList.toggle('on', k===i));
+      if(capbox) capbox.innerHTML = caps[i] || '';
+    };
+    w.querySelectorAll('.po-arrow').forEach(b=>b.addEventListener('click', e=>{ e.preventDefault(); go(i + parseInt(b.dataset.dir,10)); }));
+    dots.forEach(d=>d.addEventListener('click', ()=>go(parseInt(d.dataset.go,10))));
+    // 觸控滑動
+    let x0 = null;
+    w.addEventListener('touchstart', e=>{ x0 = e.touches[0].clientX; }, { passive:true });
+    w.addEventListener('touchend', e=>{
+      if(x0 === null) return;
+      const dx = e.changedTouches[0].clientX - x0;
+      if(Math.abs(dx) > 40) go(i + (dx < 0 ? 1 : -1));
+      x0 = null;
+    }, { passive:true });
+  });
+  // 影片點了才載入 iframe，不影響初次載入速度也不預先連到 YouTube
+  root.querySelectorAll('.po-slide.vid').forEach(s=>{
+    s.addEventListener('click', function(){
+      const emb = this.dataset.embed;
+      if(!emb) return;
+      this.innerHTML = '<iframe src="'+esc(emb)+'" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe>';
+      this.classList.remove('vid');
+      if(window.gcTrack) gcTrack('video_play', { item_id: POST ? POST.slug : '' });
+    });
+  });
+}
+
+/* ── 狀態頁 ────────────────────────────────────────────────────── */
+function showState(icon, title, desc, extra){
+  document.getElementById('poArticle').style.display = 'none';
+  const el = document.getElementById('poState');
+  el.style.display = '';
+  el.innerHTML = '<span class="ic">'+icon+'</span><h2>'+esc(title)+'</h2><p>'+esc(desc)+'</p>'
+    + '<a class="btn-primary" href="blog.html'+langQ()+'"><span>'+esc(T().toList)+'</span>'
+    + '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>'
+    + (extra ? '<small>'+esc(extra)+'</small>' : '');
+  document.title = title + ' — GC';
+}
+
+/* ── 主流程 ────────────────────────────────────────────────────── */
+async function load(){
+  const t = T();
+  const pv = previewFromHash();
+  if(pv){
+    IS_PREVIEW = true;
+    POST = pv;
+    const bar = document.getElementById('poPreview');
+    bar.style.display = '';
+    bar.innerHTML = '<b>'+esc(t.preview)+'</b><span>'+esc(t.previewNote)+'</span>';
+    renderPost();
+    loadRelated();
+    return;
+  }
+
+  const slug = slugFromUrl();
+  if(!slug){ showState(ICON.search, t.nfTitle, t.nfDesc); return; }
+
+  // 部署時預渲染的靜態內容：先用它立刻把文章畫出來（爬蟲與讀者都不用等），
+  // 再向資料庫確認一次。這一步很重要 —— 靜態檔是上次 build 的快照，
+  // 如果這篇文章在那之後被下架了，這裡才會即時改顯示「維護中」。
+  const pre = document.getElementById('poPrerender');
+  if(window.GC_POST_BOOTSTRAP){
+    POST = window.GC_POST_BOOTSTRAP;
+    if(pre) pre.remove();
+    renderPost();
+    loadRelated();
+  }else{
+    if(pre) pre.remove();
+    document.getElementById('poState').style.display = '';
+    document.getElementById('poState').innerHTML = '<p>'+esc(t.loading)+'</p>';
+  }
+
+  try{
+    const res = await fetch(REST+'public_blog_posts?slug=eq.'+encodeURIComponent(slug)+'&select=*&limit=1', { headers: SB_HEADERS });
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    const rows = await res.json();
+    if(rows.length){
+      POST = rows[0];
+      document.getElementById('poState').style.display = 'none';
+      renderPost();
+      loadRelated();
+      if(window.gcTrack) gcTrack('view_item', { item_id: POST.slug, item_name: POST.title, item_category: POST.category_name || POST.category || '' });
+      return;
+    }
+    // 不在已發佈清單裡 —— 分辨「下架維護中」與「根本不存在」
+    let status = '';
+    try{
+      const r2 = await fetch(REST+'public_blog_slugs?slug=eq.'+encodeURIComponent(slug)+'&select=status&limit=1', { headers: SB_HEADERS });
+      if(r2.ok){ const j = await r2.json(); if(j.length) status = j[0].status; }
+    }catch(e){}
+    if(status === 'unpublished') showState(ICON.maint, t.maintTitle, t.maintDesc);
+    else showState(ICON.search, t.nfTitle, t.nfDesc);
+  }catch(e){
+    console.error('post load error', e);
+    if(POST) return;                  // 有預渲染內容就讓讀者繼續看，別換成錯誤畫面
+    showState(ICON.warn, t.errTitle, t.errDesc, e.message);
+  }
+}
+
+function renderPost(){
+  const p = POST, t = T();
+  document.getElementById('poState').style.display = 'none';
+  document.getElementById('poArticle').style.display = '';
+
+  const cat = p.category ? (p.category_name || p.category) : '';
+  document.getElementById('poMeta').innerHTML = cat ? '<span class="po-chip">'+esc(cat)+'</span>' : '';
+  document.getElementById('poTitle').textContent = p.title || '';
+
+  const tags = (p.tags||[]);
+  document.getElementById('poTags').innerHTML = tags.map(x=>'<span>#'+esc(x)+'</span>').join('');
+  document.getElementById('poTags').style.display = tags.length ? '' : 'none';
+
+  const sum = document.getElementById('poSum');
+  sum.textContent = p.summary || '';
+  sum.style.display = (p.summary||'').trim() ? '' : 'none';
+
+  // 圖片輪播（統一比例）
+  const carBox = document.getElementById('poCar');
+  const carHtml = carouselHtml(p.gallery||[], p.gallery_ratio||'16:9', 'top');
+  carBox.innerHTML = carHtml;
+  carBox.style.display = carHtml ? '' : 'none';
+
+  // 內文
+  const blocks = (p.content && p.content.blocks) || [];
+  document.getElementById('poBody').innerHTML = blocks.map(blockHtml).join('');
+
+  bindCarousels(document.getElementById('poArticle'));
+
+  // 發布時間
+  const d = p.published_at || p.last_published_at;
+  const upd = p.last_published_at && p.published_at && p.last_published_at.slice(0,10) !== p.published_at.slice(0,10);
+  document.getElementById('poPub').textContent = d
+    ? (upd ? t.pub(fmtDate(p.published_at)) + '　·　' + t.updated(fmtDate(p.last_published_at)) : t.pub(fmtDate(d)))
+    : '';
+
+  renderShare();
+  renderCta();
+
+  // SEO / 分享預覽
+  const title = (p.meta_title || p.title || '') + ' — GC 跨境服務';
+  document.title = title;
+  const canon = SITE + '/blog/' + encodeURIComponent(p.slug) + '/';
+  setMeta('description', p.meta_description || p.summary || '');
+  setProp('og:title', p.meta_title || p.title || '');
+  setProp('og:description', p.meta_description || p.summary || '');
+  setProp('og:url', canon);
+  setProp('og:type', 'article');
+  const cov = safeUrl(p.cover_url);
+  if(cov) setProp('og:image', cov);
+  setName('twitter:title', p.meta_title || p.title || '');
+  setName('twitter:description', p.meta_description || p.summary || '');
+  const c = document.querySelector('link[rel="canonical"]');
+  if(c && !IS_PREVIEW) c.href = canon + langQ();
+  document.getElementById('poBack').href = 'blog.html' + langQ();
+}
+
+function setMeta(n,v){ const e=document.querySelector('meta[name="'+n+'"]'); if(e) e.setAttribute('content', v); }
+function setName(n,v){ setMeta(n,v); }
+function setProp(n,v){ const e=document.querySelector('meta[property="'+n+'"]'); if(e) e.setAttribute('content', v); }
+
+function renderShare(){
+  const t = T();
+  const url = IS_PREVIEW ? SITE+'/blog.html' : SITE + '/blog/' + encodeURIComponent(POST.slug) + '/';
+  const title = POST.title || '';
+  const box = document.getElementById('poShare');
+  box.innerHTML = '<span>'+esc(t.share)+'</span>'
+    + '<button data-sh="line" title="LINE"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.5 3 2 6.6 2 11c0 4 3.6 7.3 8.4 7.9.3.1.8.2.9.5.1.3.1.7 0 1l-.1.9c0 .3-.2 1 .9.6 1.1-.5 6-3.5 8.2-6C21.7 14.3 22 12.7 22 11c0-4.4-4.5-8-10-8zM8 13.5H6.2c-.3 0-.5-.2-.5-.5V9.3c0-.3.2-.5.5-.5s.5.2.5.5v3.2H8c.3 0 .5.2.5.5s-.2.5-.5.5zm2-.5c0 .3-.2.5-.5.5s-.5-.2-.5-.5V9.3c0-.3.2-.5.5-.5s.5.2.5.5V13zm4.4 0c0 .2-.1.4-.3.5h-.2c-.2 0-.3-.1-.4-.2l-1.9-2.5V13c0 .3-.2.5-.5.5s-.5-.2-.5-.5V9.3c0-.2.1-.4.3-.5.2-.1.5 0 .6.2l1.9 2.6V9.3c0-.3.2-.5.5-.5s.5.2.5.5V13zm3.1-2.4c.3 0 .5.2.5.5s-.2.5-.5.5h-1.3v.9h1.3c.3 0 .5.2.5.5s-.2.5-.5.5h-1.8c-.3 0-.5-.2-.5-.5V9.3c0-.3.2-.5.5-.5h1.8c.3 0 .5.2.5.5s-.2.5-.5.5h-1.3v.8h1.3z"/></svg></button>'
+    + '<button data-sh="fb" title="Facebook"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.3v7A10 10 0 0022 12z"/></svg></button>'
+    + '<button data-sh="x" title="X"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.2 2H21l-6.5 7.4L22 22h-6l-4.7-6.2L5.9 22H3l7-8-7.3-12h6.2l4.3 5.7L18.2 2zm-1 18h1.7L7.9 3.8H6.1L17.2 20z"/></svg></button>'
+    + '<button data-sh="copy" title="Copy"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg></button>'
+    + '<span class="po-copied" id="poCopied" style="display:none;">'+esc(t.copied)+'</span>';
+  box.querySelectorAll('button[data-sh]').forEach(b=>b.addEventListener('click', function(){
+    const k = this.dataset.sh;
+    if(window.gcTrack) gcTrack('share', { method:k, item_id: POST.slug });
+    if(k === 'copy'){
+      const done = ()=>{ const c=document.getElementById('poCopied'); c.style.display=''; setTimeout(()=>c.style.display='none', 2200); };
+      if(navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(done).catch(done);
+      else { const ta=document.createElement('textarea'); ta.value=url; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy');}catch(e){} ta.remove(); done(); }
+      return;
+    }
+    const enc = encodeURIComponent(url), et = encodeURIComponent(title);
+    const map = {
+      line:'https://social-plugins.line.me/lineit/share?url='+enc,
+      fb:'https://www.facebook.com/sharer/sharer.php?u='+enc,
+      x:'https://twitter.com/intent/tweet?url='+enc+'&text='+et
+    };
+    window.open(map[k], '_blank', 'noopener,width=600,height=640');
+  }));
+}
+
+function renderCta(){
+  const t = T();
+  document.getElementById('poCtaLabel').textContent = t.ctaLabel;
+  document.getElementById('poCtaTitle').textContent = t.ctaTitle;
+  document.getElementById('poCtaSub').textContent = t.ctaSub;
+  document.getElementById('poCtaBtnTxt').textContent = t.ctaBtn;
+  document.getElementById('poCtaBtn').href = 'gc-form.html' + langQ();
+}
+
+/* 其他熱門文章：同分類最新 3 篇（排除自己），不足時用最新的補齊 */
+async function loadRelated(){
+  try{
+    const cols = 'slug,title,cover_url,category,published_at';
+    const res = await fetch(REST+'public_blog_posts?select='+cols+'&order=is_pinned.desc,published_at.desc&limit=30', { headers: SB_HEADERS });
+    if(!res.ok) return;
+    const all = await res.json();
+    const mine = POST ? POST.slug : '';
+    const same = all.filter(x=>x.slug !== mine && POST && x.category === POST.category);
+    const rest = all.filter(x=>x.slug !== mine && !(POST && x.category === POST.category));
+    RELATED = same.concat(rest).slice(0,3);
+    renderRelated();
+  }catch(e){ /* 熱門文章讀不到不影響本文 */ }
+}
+
+function renderRelated(){
+  if(!RELATED.length) return;
+  const t = T();
+  document.getElementById('poRelTitle').textContent = t.rel;
+  document.getElementById('poRelTitle2').textContent = t.rel;
+  document.getElementById('poSide').style.display = '';
+  document.getElementById('poRelBottom').style.display = '';
+
+  document.getElementById('poRel').innerHTML = RELATED.map(p=>{
+    const u = cssUrl(p.cover_url);
+    return '<a href="'+esc(postUrl(p))+'"><span class="t"'+(u?' style="background-image:url(\''+u+'\')"':'')+'></span>'
+      + '<span class="x"><b>'+esc(p.title||'')+'</b><i>'+esc(fmtDate(p.published_at))+'</i></span></a>';
+  }).join('');
+
+  document.getElementById('poRelGrid').innerHTML = RELATED.map(p=>{
+    const u = cssUrl(p.cover_url);
+    return '<a class="po-card" href="'+esc(postUrl(p))+'"><span class="t"'+(u?' style="background-image:url(\''+u+'\')"':'')+'></span>'
+      + '<span class="x"><b>'+esc(p.title||'')+'</b><i>'+esc(fmtDate(p.published_at))+'</i></span></a>';
+  }).join('');
+}
+
+/* ── 語系 ───────────────────────────────────────────────────────── */
+function poApplyLang(){
+  const t = T();
+  document.getElementById('poBackTxt').textContent = t.back;
+  const note = document.getElementById('poLangNote');
+  if(t.langnote){ document.getElementById('poLangNoteTxt').textContent = t.langnote; note.style.display=''; document.body.classList.add('po-hasnote'); }
+  else { note.style.display='none'; document.body.classList.remove('po-hasnote'); }
+  if(IS_PREVIEW){
+    const bar = document.getElementById('poPreview');
+    bar.innerHTML = '<b>'+esc(t.preview)+'</b><span>'+esc(t.previewNote)+'</span>';
+  }
+  if(POST){ renderPost(); renderRelated(); }
+}
+document.addEventListener('gc:langchange', poApplyLang);
+
+/* ── 導覽列 ─────────────────────────────────────────────────────── */
+function toggleMobileMenu(){
+  document.getElementById('navMobileMenu').classList.toggle('open');
+  document.getElementById('navHamburger').classList.toggle('open');
+  if(!document.getElementById('navMobileMenu').classList.contains('open')) closeMobileAbout();
+}
+function closeMobileMenu(){
+  document.getElementById('navMobileMenu').classList.remove('open');
+  document.getElementById('navHamburger').classList.remove('open');
+  closeMobileAbout();
+}
+function toggleMobileAbout(){
+  const p = document.getElementById('mAccPanel'), b = document.getElementById('mAccBtn');
+  const open = p.classList.toggle('open');
+  b.setAttribute('aria-expanded', open ? 'true' : 'false');
+}
+function closeMobileAbout(){
+  document.getElementById('mAccPanel').classList.remove('open');
+  document.getElementById('mAccBtn').setAttribute('aria-expanded','false');
+}
+(function(){
+  const dd = document.getElementById('navAboutDd');
+  if(!dd) return;
+  const btn = document.getElementById('navAboutBtn');
+  btn.addEventListener('click', function(e){ e.stopPropagation(); dd.classList.toggle('dd-open'); btn.setAttribute('aria-expanded', dd.classList.contains('dd-open')?'true':'false'); });
+  document.addEventListener('click', function(e){ if(!dd.contains(e.target)) dd.classList.remove('dd-open'); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') dd.classList.remove('dd-open'); });
+})();
+window.addEventListener('scroll', function(){
+  document.getElementById('siteNav').classList.toggle('scrolled', window.scrollY > 10);
+}, { passive:true });
+
+/* 網址 # 換了就重新載入（後台按第二次預覽時會用到；正常瀏覽碰不到） */
+window.addEventListener('hashchange', function(){ location.reload(); });
+
+poApplyLang();
+load();
+</script>
+<script src="i18n.js"></script>
+</body>
+</html>

@@ -1,10 +1,35 @@
 # GC 官網 — Netlify 設定
-# 每次部署前先跑 SEO 預渲染：把 Supabase 的公開商品與 JSON-LD 灌進 catalog.html
-# （若你已有 netlify.toml，請把下面 [build] 的 command 併進既有設定即可）
+# 每次部署前先跑預渲染：
+#   build-seo.js  → 把 Supabase 的公開商品與 JSON-LD 灌進 catalog.html
+#   build-blog.js → 產生每篇文章的實體靜態頁、灌列表頁、更新 sitemap
+# 兩支腳本抓不到資料時都會安靜跳過（exit 0），不會讓部署失敗。
 
 [build]
-  command = "node build-seo.js"
+  command = "node build-seo.js && node build-blog.js"
   publish = "."          # ← 網站根目錄；若你的站台檔案不在 repo 根目錄，改成實際資料夾
 
 [build.environment]
   NODE_VERSION = "20"
+
+# ── 文章網址 ─────────────────────────────────────────────────────────
+# 文章的正式網址是 /blog/<網址代稱>/。
+# build-blog.js 會在部署時把每篇文章寫成實體檔案 blog/<slug>/index.html，
+# 而 Netlify 服務實體檔案的優先序高於 redirects，所以：
+#   · 已預渲染的文章 → 直接吃靜態頁，含完整內容與 JSON-LD（SEO 最佳）
+#   · 剛發佈、還沒重建的文章 → 落到下面這條 rewrite，由前端即時載入，不會 404
+# 順序有意義：/blog 與 /blog/ 必須排在萬用字元前面，否則會被它吃掉。
+
+[[redirects]]
+  from = "/blog"
+  to = "/blog.html"
+  status = 200
+
+[[redirects]]
+  from = "/blog/"
+  to = "/blog.html"
+  status = 200
+
+[[redirects]]
+  from = "/blog/*"
+  to = "/blog-post.html"
+  status = 200
