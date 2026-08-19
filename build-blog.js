@@ -111,7 +111,7 @@ function replaceSlot(html, name, payload){
 (async function main(){
   let posts;
   try{
-    const cols = 'id,slug,title,summary,cover_url,cover_source,category,category_name,tags,gallery,gallery_ratio,content,is_pinned,published_at,last_published_at,meta_title,meta_description';
+    const cols = 'id,slug,title,summary,cover_url,cover_source,category,category_name,categories,category_names,tags,gallery,gallery_ratio,content,is_pinned,published_at,last_published_at,meta_title,meta_description';
     const res = await fetch(SB_URL+'/rest/v1/public_blog_posts?select='+cols+'&order=is_pinned.desc,published_at.desc&limit=1000',
       { headers: { apikey: SB_KEY, Authorization: 'Bearer '+SB_KEY } });
     if(!res.ok) throw new Error('HTTP '+res.status+' '+(await res.text()));
@@ -139,7 +139,8 @@ function replaceSlot(html, name, payload){
   };
   const bootstrap = posts.slice(0, LIST_COUNT).map(p=>({
     id:p.id, slug:p.slug, title:p.title, summary:p.summary, cover_url:p.cover_url,
-    category:p.category, category_name:p.category_name, tags:p.tags,
+    category:p.category, category_name:p.category_name,
+    categories:p.categories, category_names:p.category_names, tags:p.tags,
     is_pinned:p.is_pinned, published_at:p.published_at
   }));
   const listPayload =
@@ -180,7 +181,7 @@ function replaceSlot(html, name, payload){
       publisher: { '@type':'Organization', name:'GC 跨境服務', logo:{ '@type':'ImageObject', url: SITE+'/images/logo.png' } },
       author: { '@type':'Organization', name:'GC 跨境服務' },
       keywords: (p.tags||[]).join(', ') || undefined,
-      articleSection: p.category_name || undefined
+      articleSection: ((p.category_names && p.category_names.length) ? p.category_names.join(', ') : p.category_name) || undefined
     };
 
     const head =

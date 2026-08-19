@@ -489,7 +489,7 @@ async function load(){
     list.innerHTML = '<div class="bl-state">'+esc(T().loading)+'</div>';
   }
   try{
-    const cols = 'id,slug,title,summary,cover_url,category,category_name,tags,is_pinned,published_at';
+    const cols = 'id,slug,title,summary,cover_url,category,category_name,categories,category_names,tags,is_pinned,published_at';
     const res = await fetch(REST+'public_blog_posts?select='+cols+'&order=is_pinned.desc,published_at.desc&limit=1000', { headers: SB_HEADERS });
     if(!res.ok) throw new Error('HTTP '+res.status+' '+(await res.text()));
     POSTS = await res.json();
@@ -508,12 +508,23 @@ async function load(){
 
 /* 分類與標籤直接從文章聚合出來，不另外讀 blog_categories ——
    匿名沒有那張表的權限，而且「沒有任何文章的分類」本來就不該出現在官網上。 */
+/* 一篇文章可以有多個分類；舊資料只有 category 時自動退回單一分類 */
+function catSlugs(p){
+  if(Array.isArray(p.categories) && p.categories.length) return p.categories.filter(Boolean);
+  return p.category ? [p.category] : [''];
+}
+function catNames(p){
+  if(Array.isArray(p.category_names) && p.category_names.length) return p.category_names;
+  return p.category ? [p.category_name || p.category] : [];
+}
 function buildFacets(){
   const cm = new Map();
   POSTS.forEach(p=>{
-    const k = p.category || '';
-    if(!cm.has(k)) cm.set(k, { slug:k, name:p.category_name || '', n:0 });
-    cm.get(k).n++;
+    const ss = catSlugs(p), ns = catNames(p);
+    ss.forEach((k,i)=>{
+      if(!cm.has(k)) cm.set(k, { slug:k, name:ns[i] || '', n:0 });
+      cm.get(k).n++;                       // 同一篇會計入它的每一個分類
+    });
   });
   CATS = [...cm.values()].sort((a,b)=>b.n-a.n);
 
@@ -525,10 +536,10 @@ function buildFacets(){
 function filtered(){
   const q = (document.getElementById('blQ').value||'').trim().toLowerCase();
   return POSTS.filter(p=>{
-    if(curCat && (p.category||'') !== curCat) return false;
+    if(curCat && !catSlugs(p).includes(curCat)) return false;
     if(curTag && !(p.tags||[]).includes(curTag)) return false;
     if(q){
-      const hay = ((p.title||'')+' '+(p.summary||'')+' '+(p.tags||[]).join(' ')+' '+(p.category_name||'')).toLowerCase();
+      const hay = ((p.title||'')+' '+(p.summary||'')+' '+(p.tags||[]).join(' ')+' '+catNames(p).join(' ')).toLowerCase();
       if(!hay.includes(q)) return false;
     }
     return true;
@@ -566,7 +577,7 @@ function rowHtml(p){
   const thumb = u
     ? '<span class="bl-thumb" style="background-image:url(\''+u+'\')"></span>'
     : '<span class="bl-thumb none"><span>GC</span></span>';
-  const cat = p.category ? (p.category_name || p.category) : '';
+  const cat = catNames(p).join('・');
   const tags = (p.tags||[]).slice(0,3).map(x=>'<span>#'+esc(x)+'</span>').join('');
   return '<a class="bl-row" href="'+esc(postUrl(p))+'">'
     + thumb

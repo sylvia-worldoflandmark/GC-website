@@ -807,8 +807,12 @@ function renderPost(){
   document.getElementById('poState').style.display = 'none';
   document.getElementById('poArticle').style.display = '';
 
-  const cat = p.category ? (p.category_name || p.category) : '';
-  document.getElementById('poMeta').innerHTML = cat ? '<span class="po-chip">'+esc(cat)+'</span>' : '';
+  /* 一篇文章可以有多個分類；舊資料只有 category 時退回單一 */
+  const catNs = (Array.isArray(p.category_names) && p.category_names.length)
+    ? p.category_names
+    : (p.category ? [p.category_name || p.category] : []);
+  document.getElementById('poMeta').innerHTML =
+    catNs.map(n=>'<span class="po-chip" style="margin-right:6px">'+esc(n)+'</span>').join('');
   document.getElementById('poTitle').textContent = p.title || '';
 
   const tags = (p.tags||[]);
@@ -905,13 +909,18 @@ function renderCta(){
 /* 其他熱門文章：同分類最新 3 篇（排除自己），不足時用最新的補齊 */
 async function loadRelated(){
   try{
-    const cols = 'slug,title,cover_url,category,published_at';
+    const cols = 'slug,title,cover_url,category,categories,published_at';
     const res = await fetch(REST+'public_blog_posts?select='+cols+'&order=is_pinned.desc,published_at.desc&limit=30', { headers: SB_HEADERS });
     if(!res.ok) return;
     const all = await res.json();
     const mine = POST ? POST.slug : '';
-    const same = all.filter(x=>x.slug !== mine && POST && x.category === POST.category);
-    const rest = all.filter(x=>x.slug !== mine && !(POST && x.category === POST.category));
+    const mySlugs = POST ? ((Array.isArray(POST.categories)&&POST.categories.length) ? POST.categories : (POST.category?[POST.category]:[])) : [];
+    const shares = x=>{
+      const xs = (Array.isArray(x.categories)&&x.categories.length) ? x.categories : (x.category?[x.category]:[]);
+      return xs.some(s=>mySlugs.includes(s));        // 只要有一個共同分類就算相關
+    };
+    const same = all.filter(x=>x.slug !== mine && shares(x));
+    const rest = all.filter(x=>x.slug !== mine && !shares(x));
     RELATED = same.concat(rest).slice(0,3);
     renderRelated();
   }catch(e){ /* 熱門文章讀不到不影響本文 */ }
