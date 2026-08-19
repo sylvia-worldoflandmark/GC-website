@@ -42,6 +42,7 @@ function plain(blocks){
     if(b.type === 'paragraph') return String(b.html||'').replace(/<[^>]*>/g,'');
     if(b.type === 'quote')     return b.text || '';
     if(b.type === 'list')      return (b.items||[]).map(x=>String(x).replace(/<[^>]*>/g,'')).join('、');
+    if(b.type === 'callout')   return [String(b.title||'').replace(/<[^>]*>/g,''), plain(b.blocks)].filter(Boolean).join('\n');
     return '';
   }).filter(Boolean).join('\n\n');
 }
@@ -84,6 +85,16 @@ function blockHtml(b){
       return '<blockquote>'+(b.html ? inline(b.html) : esc(b.text||''))
         + (b.source ? '<cite>'+esc(b.source)+'</cite>' : '')+'</blockquote>';
     case 'divider': return '<hr>';
+    case 'callout': {
+      const warn = b.style === 'warn';
+      const inner = (b.blocks||[]).map(x => (x && x.type === 'callout') ? '' : blockHtml(x)).join('');
+      const icon = warn
+        ? '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 4.5l8.5 15h-17z" stroke-linejoin="round"/><path d="M12 10.2v4M12 16.8v.1" stroke-linecap="round"/></svg>'
+        : '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M4.5 6.5h15M4.5 12h15M4.5 17.5h9.5" stroke-linecap="round"/></svg>';
+      const title = b.title ? '<div class="po-calt">'+icon+'<span>'+inline(b.title)+'</span></div>' : '';
+      if(!title && !inner) return '';
+      return '<div class="po-cal'+(warn ? ' warn' : '')+'">'+title+inner+'</div>';
+    }
     case 'image':
       if(!/^https?:\/\//i.test(String(b.url||''))) return '';
       return '<figure><img src="'+esc(b.url)+'" alt="'+esc(b.caption||'')+'" loading="lazy">'

@@ -170,6 +170,18 @@ html[lang="zh-TW"] .po-h1{font-family:'Noto Sans TC',sans-serif;font-weight:700;
 .po-body blockquote{margin:1.8em 0;padding:20px 24px;background:rgba(20,96,168,0.08);border-radius:12px;border:1px solid rgba(59,130,246,0.16);font-size:1.02rem;line-height:1.95;color:#FFFAFA;}
 .po-body blockquote cite{display:block;margin-top:10px;font-style:normal;font-size:0.78rem;color:rgba(255,250,250,0.45);}
 .po-body hr{border:none;height:1px;background:rgba(255,255,255,0.1);margin:2.6em 0;}
+/* 重點框／提醒框：標題＋自由內容（段落、條列都可以） */
+.po-cal{margin:2em 0;padding:22px 26px 18px;border-radius:14px;background:rgba(255,255,255,0.045);border:1px solid rgba(255,255,255,0.1);}
+.po-cal.warn{background:rgba(217,119,6,0.09);border-color:rgba(251,191,36,0.3);}
+.po-calt{font-size:0.98rem;font-weight:700;line-height:1.7;color:#FFFAFA;margin-bottom:0.7em;display:flex;align-items:center;gap:8px;}
+.po-cal.warn .po-calt{color:#fcd34d;}
+.po-calt svg{flex:none;opacity:0.8;}
+.po-cal>*:last-child{margin-bottom:0;}
+.po-cal p{margin:0 0 0.9em;}
+.po-cal ul,.po-cal ol{margin:0 0 0.9em;padding-left:1.4em;}
+.po-cal li{margin-bottom:0.45em;}
+.po-cal h2,.po-cal h3{font-size:1rem;margin:1.2em 0 0.5em;padding-left:0;border-left:none;}
+.po-cal blockquote{margin:0.9em 0;padding:14px 18px;font-size:0.95rem;}
 .po-body a{color:var(--accent-lite2);text-decoration:underline;text-underline-offset:2px;}
 .po-body a:hover{color:#fff;}
 .po-body code{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);border-radius:4px;padding:1px 6px;font-family:Inter,ui-monospace,monospace;font-size:0.9em;}
@@ -461,6 +473,12 @@ const ICON = {
   info: '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="flex:none;margin-top:3px"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8v.1" stroke-linecap="round"/></svg>'
 };
 
+/* 重點框／提醒框標題前面的小圖示 */
+const CAL_ICON = {
+  note: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M4.5 6.5h15M4.5 12h15M4.5 17.5h9.5" stroke-linecap="round"/></svg>',
+  warn: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 4.5l8.5 15h-17z" stroke-linejoin="round"/><path d="M12 10.2v4M12 16.8v.1" stroke-linecap="round"/></svg>'
+};
+
 function LANG(){
   try{
     const v = new URLSearchParams(location.search).get('lang');
@@ -638,6 +656,13 @@ function blockHtml(b){
            + (b.source ? '<cite>'+esc(b.source)+'</cite>' : '') + '</blockquote>';
     case 'divider':
       return '<hr>';
+    case 'callout':{
+      const warn = b.style === 'warn';
+      const inner = (b.blocks||[]).map(x => (x && x.type === 'callout') ? '' : blockHtml(x)).join('');
+      const title = b.title ? '<div class="po-calt">' + (warn ? CAL_ICON.warn : CAL_ICON.note) + '<span>' + clean(b.title) + '</span></div>' : '';
+      if(!title && !inner) return '';
+      return '<div class="po-cal' + (warn ? ' warn' : '') + '">' + title + inner + '</div>';
+    }
     case 'image':{
       const u = safeUrl(b.url);
       if(!u) return '';
