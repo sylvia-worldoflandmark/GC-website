@@ -122,132 +122,234 @@ nav.scrolled{background:rgba(250,250,250,0.96);border-bottom:1px solid rgba(17,2
 .gc-lang-check{color:#1460A8;margin-left:auto;font-size:11px;}
 .gc-lang-sep{height:1px;background:rgba(17,24,39,0.07);}
 
+/* ═══ 洞察文章 · 列表頁版面（2026-08 改版）═════════════════════════
+   電腦版＝雜誌型：最上面一則橫式大圖主打，下面三欄卡片。
+   手機版＝另一套：大圖 → 左小圖右標題的清單 → 各分類左右滑動。
+   兩邊共用同一份資料與同一組篩選狀態，只是排法不同（.bl-d / .bl-m）。
+   ⚠ 封面圖一律 16:9，手機也不再裁成正方形，一張圖兩邊共用。       */
+
+:root{
+  --ink:#111827; --dim:rgba(17,24,39,0.62); --faint:rgba(17,24,39,0.45);
+  --line:rgba(17,24,39,0.1); --line2:rgba(17,24,39,0.06);
+  --accent-soft:rgba(20,96,168,0.08); --cardbg:#fff;
+}
+
 /* ===== 頁首 ===== */
-.bl-head{padding:130px 5vw 30px;max-width:1240px;margin:0 auto;}
-.bl-eyebrow{font-family:'Syne',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent-lite);margin-bottom:0.9rem;}
-.bl-h1{font-family:'Syne',sans-serif;font-size:clamp(2rem,3.6vw,3rem);font-weight:800;line-height:1.12;letter-spacing:-0.03em;color:#111827;}
-.bl-sub{margin-top:0.9rem;font-size:0.95rem;line-height:1.85;color:var(--text-dim);max-width:620px;}
+.bl-head{max-width:1160px;margin:0 auto;padding:118px 5vw 24px;}
+.bl-eyebrow{font-family:'Syne',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.24em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;}
+.bl-h1{font-family:'Syne',sans-serif;font-size:clamp(1.9rem,3.4vw,2.6rem);font-weight:700;letter-spacing:-0.02em;line-height:1.25;color:var(--ink);}
+.bl-sub{margin-top:14px;font-size:0.95rem;line-height:1.9;color:var(--dim);max-width:600px;}
 
-/* ===== 版面：左分類欄 + 右清單 ===== */
-.bl-wrap{max-width:1240px;margin:0 auto;padding:26px 5vw 90px;display:grid;grid-template-columns:210px 1fr;gap:44px;align-items:start;}
-.bl-side{position:sticky;top:92px;}
-.bl-sh{font-family:'Syne',sans-serif;font-size:0.66rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(17,24,39,0.45);margin:0 0 12px;display:flex;align-items:center;gap:8px;}
-.bl-sh::before{content:'';width:14px;height:1px;background:var(--accent);flex:none;}
-.bl-cats{display:flex;flex-direction:column;gap:2px;margin-bottom:34px;}
-.bl-cat{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 11px;border-radius:8px;background:none;border:none;font-family:inherit;font-size:0.87rem;color:rgba(17,24,39,0.66);cursor:pointer;text-align:left;transition:all 0.18s;width:100%;}
-.bl-cat:hover{background:rgba(17,24,39,0.05);color:#111827;}
-.bl-cat.on{background:rgba(20,96,168,0.1);color:#1460A8;font-weight:600;}
-.bl-cat b{font-weight:400;}
-.bl-cat i{font-style:normal;font-size:0.72rem;color:rgba(17,24,39,0.45);font-family:Inter,monospace;}
-.bl-cat.on i{color:var(--accent-lite2);}
-.bl-tagcloud{display:flex;flex-wrap:wrap;gap:6px;}
-.bl-tagcloud button{background:none;border:1px solid rgba(17,24,39,0.12);border-radius:100px;padding:3px 10px;font-family:inherit;font-size:0.72rem;color:rgba(17,24,39,0.6);cursor:pointer;transition:all 0.18s;}
-.bl-tagcloud button:hover{border-color:rgba(17,24,39,0.3);color:#111827;}
-.bl-tagcloud button.on{background:rgba(20,96,168,0.1);border-color:rgba(20,96,168,0.45);color:#1460A8;}
+/* ===== 語系提示 ===== */
+.bl-langnote{max-width:1160px;margin:0 auto;padding:0 5vw 6px;}
+.bl-langnote div{background:var(--accent-soft);border:1px solid rgba(20,96,168,0.22);border-radius:10px;padding:11px 16px;font-size:0.8rem;color:var(--dim);line-height:1.7;}
 
-/* ===== 搜尋 + 計數 ===== */
-.bl-tools{display:flex;align-items:center;gap:12px;margin-bottom:6px;flex-wrap:wrap;}
-.bl-search{position:relative;flex:1 1 260px;min-width:200px;}
-.bl-search input{width:100%;background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:12px 14px 12px 40px;color:var(--text);font-size:0.9rem;font-family:inherit;}
-.bl-search input::placeholder{color:rgba(17,24,39,0.45);}
-.bl-search input:focus{outline:none;border-color:rgba(20,96,168,0.5);box-shadow:0 0 0 3px rgba(20,96,168,0.08);}
-.bl-search svg{position:absolute;left:13px;top:13px;opacity:0.45;}
-.bl-count{font-size:0.8rem;color:var(--text-dim);padding:10px 2px 18px;}
-.bl-count b{color:var(--text);}
-.bl-clear{background:none;border:1px solid rgba(17,24,39,0.14);border-radius:100px;padding:4px 12px;font-family:inherit;font-size:0.74rem;color:rgba(17,24,39,0.62);cursor:pointer;transition:all 0.18s;}
-.bl-clear:hover{border-color:rgba(17,24,39,0.3);color:#111827;}
+/* ===== 版面容器 ===== */
+.bl-wrap{max-width:1160px;margin:0 auto;padding:0 5vw 10px;}
 
-/* ===== 清單列 ===== */
-.bl-list{display:flex;flex-direction:column;}
-.bl-row{display:grid;grid-template-columns:212px 1fr;gap:26px;padding:26px 0;border-top:1px solid rgba(17,24,39,0.08);text-decoration:none;color:inherit;transition:opacity 0.2s;}
-.bl-row:first-child{border-top:none;padding-top:6px;}
-.bl-row:hover .bl-title{color:var(--accent-lite2);}
-.bl-row:hover .bl-thumb{transform:translateY(-2px);}
-.bl-thumb{width:100%;aspect-ratio:16/10;border-radius:12px;background:rgba(17,24,39,0.07) center/cover no-repeat;border:1px solid rgba(17,24,39,0.08);position:relative;overflow:hidden;transition:transform 0.28s;}
-.bl-thumb::after{content:'';position:absolute;inset:0;background:linear-gradient(160deg,rgba(20,96,168,0.1),transparent 60%);}
-.bl-thumb.none{display:flex;align-items:center;justify-content:center;}
-.bl-thumb.none span{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;color:rgba(17,24,39,0.18);letter-spacing:-0.02em;position:relative;z-index:1;}
-.bl-body{min-width:0;}
-.bl-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:9px;}
-.bl-chip{background:rgba(20,96,168,0.1);color:var(--accent-lite2);font-size:0.68rem;padding:2px 9px;border-radius:20px;}
-.bl-pin{background:#fff2e6;color:#c2410c;font-size:0.66rem;font-weight:600;padding:2px 8px;border-radius:20px;}
-.bl-date{font-family:Inter,monospace;font-size:0.72rem;color:rgba(17,24,39,0.45);}
-.bl-title{display:block;font-size:1.12rem;font-weight:700;line-height:1.55;color:#111827;transition:color 0.2s;margin-bottom:8px;}
-.bl-sum{font-size:0.86rem;line-height:1.85;color:rgba(17,24,39,0.6);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
-.bl-tagrow{display:flex;flex-wrap:wrap;gap:5px;margin-top:11px;}
-.bl-tagrow span{border:1px solid rgba(17,24,39,0.1);border-radius:100px;padding:1px 9px;font-size:0.68rem;color:rgba(17,24,39,0.5);}
+/* ===== 篩選列：分類膠囊 + 搜尋（手機改成搜尋 + 右邊下拉）===== */
+.bl-tools{display:flex;align-items:center;gap:16px;padding:6px 0 22px;border-bottom:1px solid var(--line2);flex-wrap:wrap;}
+.bl-cats{display:flex;gap:8px;flex-wrap:wrap;flex:1 1 auto;min-width:0;}
+.bl-cat{display:inline-flex;align-items:center;gap:7px;white-space:nowrap;padding:7px 15px;border-radius:100px;
+  border:1px solid var(--line);background:var(--cardbg);font-family:inherit;font-size:0.84rem;color:var(--dim);cursor:pointer;transition:0.16s;}
+.bl-cat:hover{border-color:rgba(17,24,39,0.24);color:var(--ink);}
+.bl-cat.on{background:var(--accent-soft);border-color:rgba(20,96,168,0.32);color:var(--accent);font-weight:600;}
+.bl-cat i{font-style:normal;font-size:0.72rem;color:var(--faint);}
+.bl-cat.on i{color:var(--accent);}
+.bl-search{position:relative;flex:0 0 260px;}
+.bl-search input{width:100%;height:40px;padding:0 14px 0 38px;border-radius:10px;border:1px solid var(--line);
+  background:var(--cardbg);font-family:inherit;font-size:0.86rem;color:var(--ink);}
+.bl-search input::placeholder{color:var(--faint);}
+.bl-search input:focus{outline:0;border-color:rgba(20,96,168,0.5);box-shadow:0 0 0 3px rgba(20,96,168,0.08);}
+.bl-search svg{position:absolute;left:13px;top:12px;opacity:0.4;}
+
+/* 手機版的分類下拉（放在搜尋框右邊，點了才展開）*/
+.bl-mfilter{position:relative;display:none;}
+.bl-mfilter summary{list-style:none;cursor:pointer;height:40px;display:flex;align-items:center;gap:6px;
+  padding:0 12px;border:1px solid var(--line);border-radius:10px;background:var(--cardbg);
+  font-size:0.84rem;font-weight:600;color:var(--ink);white-space:nowrap;}
+.bl-mfilter summary::-webkit-details-marker{display:none;}
+.bl-mfilter summary svg:last-child{transition:transform 0.2s;opacity:0.5;}
+.bl-mfilter[open] summary{border-color:rgba(20,96,168,0.5);color:var(--accent);}
+.bl-mfilter[open] summary svg:last-child{transform:rotate(180deg);}
+.bl-mfpanel{position:absolute;right:0;top:46px;z-index:40;min-width:206px;max-height:64vh;overflow-y:auto;background:var(--cardbg);
+  border:1px solid var(--line);border-radius:12px;box-shadow:0 16px 36px rgba(17,24,39,0.16);padding:6px;}
+.bl-mfpanel button{display:flex;width:100%;align-items:center;justify-content:space-between;gap:16px;
+  padding:10px 12px;border:none;border-radius:8px;background:none;font-family:inherit;font-size:0.86rem;color:var(--dim);cursor:pointer;text-align:left;}
+.bl-mfpanel button.on{background:var(--accent-soft);color:var(--accent);font-weight:600;}
+.bl-mfpanel i{font-style:normal;font-size:0.76rem;color:var(--faint);}
+.bl-mfpanel button.on i{color:var(--accent);}
+
+.bl-count{font-size:0.8rem;color:var(--dim);padding:14px 2px 4px;}
+.bl-count b{color:var(--ink);}
+.bl-clear{background:none;border:1px solid var(--line);border-radius:100px;padding:4px 12px;font-family:inherit;
+  font-size:0.74rem;color:var(--dim);cursor:pointer;transition:0.18s;margin-left:8px;}
+.bl-clear:hover{border-color:rgba(17,24,39,0.3);color:var(--ink);}
+
+/* ===== 共用小元件 ===== */
+.bl-meta{display:flex;align-items:center;gap:9px;flex-wrap:wrap;font-size:0.74rem;}
+.bl-chip{background:var(--accent-soft);color:var(--accent);padding:3px 10px;border-radius:100px;font-weight:600;white-space:nowrap;}
+.bl-pin{background:#fff2e6;color:#c2410c;padding:3px 10px;border-radius:100px;font-weight:700;white-space:nowrap;}
+.bl-date{color:var(--faint);font-family:Inter,system-ui,sans-serif;white-space:nowrap;}
+.bl-tagrow{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px;}
+.bl-tagrow span{border:1px solid var(--line);border-radius:100px;padding:2px 10px;font-size:0.7rem;color:var(--faint);white-space:nowrap;}
+.bl-more{display:inline-flex;align-items:center;gap:6px;margin-top:18px;font-size:0.85rem;font-weight:600;color:var(--accent);}
+/* 沒有封面圖時的替代底：不要留一塊空白 */
+.bl-ph{position:relative;background:rgba(17,24,39,0.06) center/cover no-repeat;}
+.bl-ph.none::after{content:'GC';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:rgba(17,24,39,0.16);letter-spacing:-0.02em;}
+
+/* ═══ 電腦版：主打 + 三欄卡片 ═══ */
+.bl-m{display:none;}
+.bl-hero{display:grid;grid-template-columns:1.15fr 0.85fr;gap:36px;align-items:center;padding:30px 0 34px;border-bottom:1px solid var(--line2);color:inherit;text-decoration:none;}
+.bl-hero-img{display:block;width:100%;aspect-ratio:16/9;border-radius:16px;border:1px solid var(--line2);transition:transform 0.3s;}
+.bl-hero:hover .bl-hero-img{transform:translateY(-3px);}
+.bl-hero h2{margin-top:14px;font-size:clamp(1.25rem,2vw,1.6rem);font-weight:700;line-height:1.5;color:var(--ink);transition:color 0.2s;}
+.bl-hero:hover h2{color:var(--accent);}
+.bl-hero p{margin-top:12px;font-size:0.9rem;line-height:1.95;color:var(--dim);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+.bl-sec{display:flex;align-items:baseline;gap:12px;padding:30px 0 16px;}
+.bl-sec h3{font-size:1.02rem;font-weight:700;color:var(--ink);}
+.bl-sec span{font-size:0.78rem;color:var(--faint);}
+.bl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px 24px;}
+.bl-card{display:flex;flex-direction:column;background:var(--cardbg);border:1px solid var(--line2);border-radius:14px;overflow:hidden;transition:0.22s;color:inherit;text-decoration:none;}
+.bl-card:hover{border-color:rgba(20,96,168,0.3);transform:translateY(-3px);}
+.bl-card-img{width:100%;aspect-ratio:16/9;}
+.bl-card-body{padding:16px 17px 19px;display:flex;flex-direction:column;flex:1;}
+.bl-card h4{margin-top:11px;font-size:0.98rem;font-weight:700;line-height:1.62;color:var(--ink);transition:color 0.2s;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.bl-card:hover h4{color:var(--accent);}
+.bl-card p{margin-top:9px;font-size:0.82rem;line-height:1.85;color:var(--dim);
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+
+/* ═══ 手機版 ═══ */
+.bl-mhero{display:block;padding:18px 0 4px;color:inherit;text-decoration:none;}
+.bl-mhero .bl-t{display:block;width:100%;aspect-ratio:16/9;border-radius:13px;border:1px solid var(--line2);margin-bottom:14px;}
+.bl-mhero h2{font-size:1.14rem;font-weight:700;line-height:1.55;color:var(--ink);}
+.bl-mhero p{margin-top:9px;font-size:0.86rem;line-height:1.9;color:var(--dim);
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.bl-mlist{margin-top:18px;border-top:1px solid var(--line2);}
+.bl-mrow{display:grid;grid-template-columns:118px 1fr;gap:13px;padding:15px 0;border-bottom:1px solid var(--line2);
+  align-items:start;color:inherit;text-decoration:none;}
+.bl-mrow .bl-t{display:block;width:100%;aspect-ratio:16/10;border-radius:9px;border:1px solid var(--line2);}
+.bl-mrow h4{margin-top:7px;font-size:0.92rem;font-weight:700;line-height:1.62;color:var(--ink);
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+.bl-mrow .bl-meta{font-size:0.7rem;gap:7px;}
+.bl-mcat{padding:24px 0 2px;}
+.bl-mcat-h{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:12px;}
+.bl-mcat-h h3{font-size:1rem;font-weight:700;display:flex;align-items:center;gap:9px;color:var(--ink);}
+.bl-mcat-h h3::before{content:'';width:3px;height:15px;background:var(--accent);border-radius:2px;}
+.bl-mmore{font-size:0.78rem;font-weight:600;color:var(--accent);display:inline-flex;align-items:center;gap:5px;
+  white-space:nowrap;background:none;border:none;font-family:inherit;cursor:pointer;padding:0;}
+/* 卡片列要能滑到螢幕邊緣，所以用負 margin 把 .bl-wrap 的左右留白抵銷掉，
+   再用 padding 補回來。⚠ scroll-snap 會忽略 padding，一定要同時給
+   scroll-padding，否則載入時會自己捲掉 5vw，第一張卡片就貼到螢幕邊。 */
+.bl-mscroll{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+  margin:0 -5vw;padding:0 5vw 4px;scroll-padding:0 5vw;}
+.bl-mscroll::-webkit-scrollbar{display:none;}
+.bl-mcard{flex:0 0 244px;scroll-snap-align:start;color:inherit;text-decoration:none;}
+.bl-mcard .bl-t{display:block;width:100%;aspect-ratio:16/9;border-radius:11px;border:1px solid var(--line2);}
+.bl-mcard h4{margin-top:10px;font-size:0.88rem;font-weight:600;line-height:1.6;color:var(--ink);
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.bl-mcard .bl-date{display:block;margin-top:7px;font-size:0.7rem;}
+.bl-mend{padding:24px 0 6px;}
+.bl-mendbtn{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;padding:13px;
+  border:1px solid var(--line);border-radius:11px;background:var(--cardbg);font-family:inherit;
+  font-size:0.88rem;font-weight:600;color:var(--ink);cursor:pointer;}
 
 /* ===== 狀態 ===== */
-.bl-state{padding:70px 20px;text-align:center;color:var(--text-dim);font-size:0.9rem;line-height:2;}
+.bl-state{padding:64px 20px;text-align:center;color:var(--dim);font-size:0.9rem;line-height:2;}
 .bl-state .bl-ic{display:flex;justify-content:center;margin-bottom:18px;}
-.bl-state .bl-ic i{width:62px;height:62px;border-radius:50%;border:1px solid rgba(17,24,39,0.1);background:rgba(17,24,39,0.03);display:flex;align-items:center;justify-content:center;color:rgba(17,24,39,0.45);}
-.bl-state b{display:block;color:#111827;font-size:1.05rem;font-weight:600;margin-bottom:6px;}
+.bl-state .bl-ic i{width:62px;height:62px;border-radius:50%;border:1px solid var(--line);background:rgba(17,24,39,0.03);
+  display:flex;align-items:center;justify-content:center;color:var(--faint);}
+.bl-state b{display:block;color:var(--ink);font-size:1.05rem;font-weight:600;margin-bottom:6px;}
 .bl-state small{display:block;font-size:0.78rem;opacity:0.6;margin-top:8px;}
 
 /* ===== 分頁 ===== */
-.bl-pager{display:flex;align-items:center;gap:6px;justify-content:center;padding:34px 0 0;flex-wrap:wrap;}
-.bl-pager button{min-width:34px;height:34px;padding:0 9px;background:var(--panel);border:1px solid var(--border);border-radius:8px;color:var(--text-dim);font-family:inherit;font-size:0.82rem;cursor:pointer;transition:all 0.18s;}
-.bl-pager button:hover:not(:disabled){border-color:rgba(17,24,39,0.28);color:#111827;}
-.bl-pager button.active{background:var(--accent);border-color:var(--accent);color:#fff;}
-.bl-pager button:disabled{opacity:0.3;cursor:default;}
-.bl-pager .bl-pinfo{font-size:0.76rem;color:rgba(17,24,39,0.45);margin-left:8px;}
+.bl-pager{display:flex;align-items:center;gap:6px;justify-content:center;padding:34px 0 20px;flex-wrap:wrap;}
+.bl-pager button{min-width:36px;height:36px;padding:0 10px;border-radius:9px;border:1px solid var(--line);
+  background:var(--cardbg);font-family:inherit;font-size:0.82rem;color:var(--dim);cursor:pointer;transition:0.18s;}
+.bl-pager button:hover:not(:disabled){border-color:rgba(17,24,39,0.28);color:var(--ink);}
+.bl-pager button.active{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600;}
+.bl-pager button:disabled{opacity:0.35;cursor:default;}
+.bl-pager .bl-pinfo{font-size:0.76rem;color:var(--faint);margin-left:8px;}
 
-/* ===== 頁尾 ===== */
-footer{background:rgba(250,250,250,0.94);padding:2.8rem 5vw;border-top:1px solid rgba(17,24,39,0.07);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
-.footer-copy{font-size:0.78rem;color:rgba(17,24,39,0.55);}
-.footer-links{display:flex;gap:1.2rem;align-items:center;}
-.footer-links a{font-size:0.78rem;color:rgba(17,24,39,0.45);text-decoration:none;}
-.footer-links a:hover{color:rgba(17,24,39,0.8);}
-
-/* ===== 語系提示 ===== */
-.bl-langnote{max-width:1240px;margin:0 auto;padding:0 5vw;}
-.bl-langnote div{background:rgba(20,96,168,0.1);border:1px solid rgba(20,96,168,0.22);border-radius:10px;padding:11px 16px;font-size:0.8rem;color:var(--text-dim);line-height:1.7;}
-
+/* ═══ 平板 ═══ */
+@media(max-width:1000px){
+  .bl-grid{grid-template-columns:repeat(2,1fr);}
+  .bl-hero{grid-template-columns:1fr;gap:0;}
+  .bl-hero-img{margin-bottom:14px;}
+}
+/* ═══ 手機 ═══ */
 @media(max-width:900px){
   .nav-links{display:none;}
   nav{justify-content:flex-start;}
   .nav-right{display:flex;}
   .nav-hamburger{display:flex;}
   .gc-lang-switcher{margin-left:auto;margin-right:0.4rem;}
-  .bl-head{padding:104px 5vw 20px;}
-  .bl-wrap{grid-template-columns:1fr;gap:22px;padding:18px 5vw 70px;}
-  .bl-side{position:static;}
-  .bl-cats{flex-direction:row;overflow-x:auto;gap:6px;margin-bottom:18px;padding-bottom:4px;-webkit-overflow-scrolling:touch;}
-  .bl-cat{width:auto;flex:none;border:1px solid rgba(17,24,39,0.12);border-radius:100px;padding:6px 13px;font-size:0.8rem;white-space:nowrap;}
-  .bl-cat.on{border-color:rgba(20,96,168,0.45);}
-  .bl-sh{display:none;}
-  .bl-tagcloud{display:none;}
-  .bl-row{grid-template-columns:104px 1fr;gap:14px;padding:20px 0;}
-  .bl-thumb{aspect-ratio:1/1;border-radius:9px;}
-  .bl-title{font-size:0.98rem;margin-bottom:6px;}
-  .bl-sum{font-size:0.8rem;-webkit-line-clamp:2;}
-  .bl-tagrow{display:none;}
-  footer{flex-direction:column;align-items:flex-start;padding:2rem 5vw;}
+  .bl-head{padding:100px 5vw 18px;}
 }
+@media(max-width:640px){
+  .bl-d{display:none;}
+  .bl-m{display:block;}
+  /* 篩選列固定一行：左邊搜尋吃滿、右邊分類下拉 */
+  .bl-tools{flex-wrap:nowrap;gap:10px;padding-bottom:16px;}
+  .bl-cats{display:none;}
+  .bl-search{flex:1 1 auto;min-width:0;}
+  .bl-mfilter{display:block;flex:0 0 auto;}
+  .bl-count{padding:12px 2px 0;}
+}
+
+/* ═══ 中文斷句 ════════════════════════════════════════════════════
+   中文沒有空格，瀏覽器預設可以在任何一個字後面斷行，就會出現
+   「對接／通路與服務商」這種把詞拆開的位置。
+   做法：用 Intl.Segmenter 依「詞」插入 <wbr>，再用 keep-all 只允許
+   在這些位置斷行。keep-all 只在 gcSegment 跑完（加上 .gc-seg）之後
+   才生效，避免還沒插 <wbr> 就完全不能斷行而爆版。               */
+.gc-seg{word-break:keep-all;}
+p,li,h1,h2,h3,h4,.bl-sub,.bl-sum{text-wrap:pretty;}
+.nb{white-space:nowrap;}
+
 </style>
 <style>
-/* ── 全站共用頁尾 ───────────────────────────────────────────────
-   class 一律用 gcf- 前綴，避免撞到各頁既有的樣式。
-   footer.gc-footer 用「元素＋class」提高優先序，蓋掉舊的 footer{display:flex}。 */
-footer.gc-footer{display:block;background:rgba(17,24,39,0.03);border-top:1px solid rgba(17,24,39,0.07);padding:3.4rem 5vw 1.8rem;}
-.gcf-top{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:minmax(210px,1.3fr) repeat(3,minmax(0,1fr));gap:38px;align-items:start;}
-.gcf-brand img{width:56px;height:56px;display:block;border-radius:12px;margin-bottom:1.6rem;}
-.gcf-social{display:flex;gap:10px;}
-.gcf-social a{width:36px;height:36px;border-radius:50%;border:1px solid rgba(17,24,39,0.12);display:flex;align-items:center;justify-content:center;color:rgba(17,24,39,0.6);transition:all 0.2s;text-decoration:none;}
-.gcf-social a:hover{background:rgba(17,24,39,0.08);color:#111827;border-color:rgba(17,24,39,0.3);transform:translateY(-2px);}
-.gcf-col h4{font-family:inherit;font-size:0.82rem;font-weight:600;color:#111827;margin:0 0 0.9rem;letter-spacing:0.02em;}
-.gcf-col a{display:block;font-size:0.82rem;line-height:1.6;color:rgba(17,24,39,0.55);text-decoration:none;padding:0.34rem 0;transition:color 0.18s;}
-.gcf-col a:hover{color:#111827;}
-.gcf-bottom{max-width:1240px;margin:2.4rem auto 0;padding-top:1.4rem;border-top:1px solid rgba(17,24,39,0.06);display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
-.gcf-copy{font-size:0.76rem;color:rgba(17,24,39,0.45);}
-@media(max-width:900px){
-  .gcf-top{grid-template-columns:1fr 1fr;gap:30px 26px;}
-  .gcf-brand{grid-column:1 / -1;}
+/* ── 全站頁尾 F3：電腦三欄、手機每欄收成可點開的摺疊列 ──────────
+   class 一律用 gcf3- 前綴，避免撞到各頁既有的樣式。
+   footer.gc-footer 用「元素＋class」提高優先序，蓋掉舊的 footer{display:flex}。
+   ⚠ 公司資訊只留「公司名」與 support@worldoflandmark.com（統編、地址不放）。 */
+footer.gc-footer{display:block;background:rgba(17,24,39,0.03);border-top:1px solid rgba(17,24,39,0.06);padding:0;margin-top:20px;}
+.gcf3-top{max-width:1160px;margin:0 auto;padding:46px 5vw 28px;
+  display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:40px;align-items:start;}
+.gcf3-brand img{width:50px;height:50px;border-radius:12px;margin-bottom:16px;}
+.gcf3-brand p{font-size:0.82rem;line-height:1.9;color:rgba(17,24,39,0.62);max-width:300px;}
+.gcf3-social{display:flex;gap:10px;margin-top:16px;}
+.gcf3-social a{width:36px;height:36px;border-radius:50%;border:1px solid rgba(17,24,39,0.1);
+  display:flex;align-items:center;justify-content:center;color:rgba(17,24,39,0.62);transition:0.18s;text-decoration:none;}
+.gcf3-social a:hover{background:#111827;border-color:#111827;color:#FAFAFA;transform:translateY(-2px);}
+.gcf3-col summary{list-style:none;font-size:0.8rem;font-weight:700;color:#111827;margin-bottom:12px;
+  display:flex;align-items:center;justify-content:space-between;cursor:default;}
+.gcf3-col summary::-webkit-details-marker{display:none;}
+.gcf3-col summary svg{display:none;}
+.gcf3-col a{display:block;font-size:0.82rem;line-height:1.6;color:rgba(17,24,39,0.62);text-decoration:none;padding:0.32rem 0;transition:color 0.18s;}
+.gcf3-col a:hover{color:var(--accent);}
+.gcf3-info{max-width:1160px;margin:0 auto;padding:20px 5vw;border-top:1px solid rgba(17,24,39,0.06);
+  display:flex;gap:12px 46px;flex-wrap:wrap;font-size:0.78rem;color:rgba(17,24,39,0.45);}
+.gcf3-info b{font-weight:600;color:rgba(17,24,39,0.62);margin-right:8px;}
+.gcf3-info a{color:var(--accent);text-decoration:none;}
+.gcf3-copy{border-top:1px solid rgba(17,24,39,0.06);padding:16px 5vw;text-align:center;
+  font-size:0.75rem;color:rgba(17,24,39,0.45);}
+@media(max-width:1000px){
+  .gcf3-top{grid-template-columns:1fr 1fr;gap:32px;}
+  .gcf3-brand{grid-column:1/-1;}
 }
-@media(max-width:520px){
-  footer.gc-footer{padding:2.6rem 5vw 1.5rem;}
-  .gcf-top{grid-template-columns:1fr;gap:24px;}
-  .gcf-bottom{flex-direction:column;align-items:flex-start;gap:0.5rem;}
+@media(max-width:640px){
+  .gcf3-top{grid-template-columns:1fr;gap:4px;padding-top:34px;}
+  .gcf3-brand{grid-column:auto;margin-bottom:14px;}
+  .gcf3-col{border-top:1px solid rgba(17,24,39,0.06);}
+  .gcf3-col summary{cursor:pointer;padding:15px 0;margin:0;font-size:0.86rem;}
+  .gcf3-col summary svg{display:block;transition:transform 0.2s;opacity:0.45;}
+  .gcf3-col[open] summary svg{transform:rotate(180deg);}
+  .gcf3-col a{padding:0.42rem 0 0.42rem 2px;}
+  .gcf3-col>div{padding-bottom:12px;}
+  .gcf3-info{flex-direction:column;gap:8px;}
 }
 </style>
 </head>
@@ -324,75 +426,177 @@ footer.gc-footer{display:block;background:rgba(17,24,39,0.03);border-top:1px sol
 <div class="bl-langnote" id="blLangNote" style="display:none;"><div id="blLangNoteTxt"></div></div>
 
 <div class="bl-wrap">
-  <aside class="bl-side">
-    <div class="bl-sh" id="blShCat">分類</div>
+  <div class="bl-tools">
     <div class="bl-cats" id="blCats"></div>
-    <div class="bl-sh" id="blShTag" style="display:none;">熱門標籤</div>
-    <div class="bl-tagcloud" id="blTags"></div>
-  </aside>
-
-  <main class="bl-main">
-    <div class="bl-tools">
-      <div class="bl-search">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-        <input id="blQ" type="search" autocomplete="off">
-      </div>
-      <button class="bl-clear" id="blClear" style="display:none;" onclick="blResetFilters()"></button>
+    <div class="bl-search">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/></svg>
+      <input id="blQ" type="search" autocomplete="off">
     </div>
-    <div class="bl-count" id="blCount"></div>
-    <div class="bl-list" id="blList"><div class="bl-state" id="blLoading">載入中…</div></div>
-    <div class="bl-pager" id="blPager"></div>
-  </main>
+    <details class="bl-mfilter" id="blMF">
+      <summary>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M7 12h10M10 18h4" stroke-linecap="round"/></svg>
+        <span id="blMFLabel">全部</span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </summary>
+      <div class="bl-mfpanel" id="blMFPanel"></div>
+    </details>
+  </div>
+
+  <div class="bl-count" id="blCount"></div>
+
+  <!-- 電腦版：主打 + 三欄卡片 -->
+  <div class="bl-d" id="blDesk"><div class="bl-state" id="blLoading">載入中…</div></div>
+  <!-- 手機版：大圖 + 清單 + 分類左右滑動 -->
+  <div class="bl-m" id="blMob"></div>
+
+  <div class="bl-pager" id="blPager"></div>
 </div>
 
 <footer class="gc-footer">
-  <div class="gcf-top">
-    <div class="gcf-brand">
+  <div class="gcf3-top">
+    <div class="gcf3-brand">
       <a href="index.html"><img src="images/logo.png" alt="GC 跨境服務"></a>
-      <div class="gcf-social">
+      <p id="gcfBrand">GC 跨境服務顧問團隊，協助品牌評估市場、對接通路與服務商，讓您把貨真正賣進去！</p>
+      <div class="gcf3-social">
         <a href="https://www.facebook.com/gcosc.co" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.3v7A10 10 0 0022 12z"/></svg></a>
         <a href="https://www.instagram.com/gcosc.co" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3.5" y="3.5" width="17" height="17" rx="4.6"/><circle cx="12" cy="12" r="3.8"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg></a>
         <a href="https://www.threads.com/@gcosc.co" target="_blank" rel="noopener" aria-label="Threads" title="Threads"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.291 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.96-.065-1.19.408-2.285 1.33-3.082.88-.76 2.119-1.207 3.583-1.291a13.853 13.853 0 0 1 3.02.142c-.126-.742-.375-1.332-.75-1.757-.513-.586-1.308-.883-2.359-.89h-.029c-.844 0-1.992.232-2.721 1.32L7.734 7.42c.98-1.454 2.568-2.256 4.478-2.256h.044c3.194.02 5.097 1.975 5.287 5.388.108.046.216.094.321.142 1.49.7 2.58 1.761 3.154 3.07.797 1.82.871 4.79-1.548 7.158-1.85 1.81-4.094 2.628-7.277 2.65Zm1.003-11.69c-.242 0-.487.007-.739.021-1.836.103-2.98.946-2.916 2.143.067 1.256 1.452 1.839 2.784 1.767 1.224-.065 2.818-.543 3.086-3.71a10.5 10.5 0 0 0-2.215-.221z"/></svg></a>
       </div>
     </div>
-    <div class="gcf-col">
-      <h4 data-i18n="nav.about">關於 GC</h4>
+    <details class="gcf3-col" open>
+      <summary><span data-i18n="nav.about">關於 GC</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+      <div>
         <a href="index.html#why" data-i18n="nav.why">為何選擇我們</a>
         <a href="index.html#services" data-i18n="nav.services">顧問服務</a>
         <a href="index.html#partners" data-i18n="nav.partners">服務商介紹</a>
         <a href="index.html#process" data-i18n="nav.process">合作流程</a>
         <a href="index.html#faq" data-i18n="nav.faq">常見問題</a>
-    </div>
-    <div class="gcf-col">
-      <h4 data-i18n="footer.col.services">服務與資源</h4>
+      </div>
+    </details>
+    <details class="gcf3-col" open>
+      <summary><span data-i18n="footer.col.services">服務與資源</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+      <div>
         <a href="catalog.html" data-i18n="nav.catalog">商品貨盤</a>
         <a href="partner.html" data-i18n="nav.become">成為服務商</a>
         <a href="blog.html" data-i18n="nav.blog">洞察文章</a>
-    </div>
-    <div class="gcf-col">
-      <h4 data-i18n="footer.col.start">開始合作</h4>
+      </div>
+    </details>
+    <details class="gcf3-col" open>
+      <summary><span data-i18n="footer.col.start">開始合作</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+      <div>
         <a href="gc-form.html" data-i18n="nav.cta">立即諮詢</a>
         <a href="privacy.html" data-i18n="footer.privacy">隱私權政策</a>
-    </div>
+      </div>
+    </details>
   </div>
-  <div class="gcf-bottom">
-    <span class="gcf-copy" data-i18n="footer.copy">© 2026 GC Cross-Border Services. All rights reserved.</span>
+  <div class="gcf3-info">
+    <div><b id="gcfCoLbl">公司</b><span id="gcfCoName">世界之地標有限公司</span></div>
+    <div><b id="gcfMailLbl">信箱</b><a href="mailto:support@worldoflandmark.com">support@worldoflandmark.com</a></div>
   </div>
+  <div class="gcf3-copy">Copyright © 2026 GC跨境服務顧問 世界之地標有限公司</div>
 </footer>
 
 <script>
+/* ── 中文斷句：依「詞」給斷行機會，不要把詞拆開 ────────────────────
+   中文沒有空格，瀏覽器預設可以在任何一個字後面斷行，才會出現
+   「協助品牌評估市場、對／接通路與服務商」這種怪位置。
+   ⚠ CSS 的 word-break:auto-phrase 目前只對日文有效，中文沒作用，
+     所以改用 Intl.Segmenter 依詞插入 <wbr>，再用 keep-all 只允許
+     在這些位置斷行。<wbr> 不會被複製、也不影響 SEO 取字。
+   ⚠ Segmenter 的中文詞庫會把「跨境」「對接」「服務商」這類詞切開，
+     所以再加一份 GC 常用詞表，落在詞中間的斷點一律拿掉。
+     這是通用規則，不是針對某一句話手動鎖斷行。                    */
+(function(){
+  if (!window.Intl || !Intl.Segmenter) return;          // 舊瀏覽器就維持原本行為
+  var seg = new Intl.Segmenter('zh-Hant', { granularity:'word' });
+
+  /* 不可以從中間斷開的詞（長的排前面，比對時先吃長的） */
+  var GLUE = [
+    '跨境服務顧問','跨境服務','跨境電商','跨境物流','跨境',
+    '國際物流','國際運費','國際運送','國際',
+    '直播帶貨','海外拓銷','海外倉','海外','實體通路','通路',
+    '服務商','服務','顧問團隊','顧問','團隊',
+    '對接','評估','市場','品牌','電商','物流','帶貨','拓銷','貨盤','出海',
+    '報關','清關','認證','標示','申報','稅務','金流','客服','退貨','上架',
+    '文章','洞察','分類','標籤','搜尋','篩選','發佈','摘要','封面','目錄',
+    '真正','進去','費用','成本','流程','文件','條件','規範','實務','趨勢','法規',
+    '諮詢','合作','資源','公司','信箱','隱私','政策','常見問題','相關文章','熱門文章'
+  ].sort(function(a,b){ return b.length - a.length; });
+
+  // 這些符號不能出現在行首（中文的禁則處理），所以它前面不放斷點
+  var NO_BREAK_BEFORE = /^[，、。．・：；！？）〕］｝」』〉》”’…—～%]/;
+
+  /* 回傳「可以斷行的位置」（字串索引），已經扣掉落在常用詞中間的 */
+  function breakPoints(text){
+    var pts = {}, i = 0;
+    Array.from(seg.segment(text)).forEach(function(s){
+      i += s.segment.length;
+      if (i < text.length && !NO_BREAK_BEFORE.test(text.slice(i))) pts[i] = 1;
+    });
+    GLUE.forEach(function(w){
+      var from = 0, at;
+      while ((at = text.indexOf(w, from)) >= 0){
+        for (var k = at + 1; k < at + w.length; k++) delete pts[k];
+        from = at + 1;
+      }
+    });
+    return pts;
+  }
+
+  window.gcSegment = function(root){
+    if (!root) return;
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null), nodes = [], t;
+    while ((t = walker.nextNode())) nodes.push(t);
+    nodes.forEach(function(n){
+      if (!/[一-鿿]/.test(n.nodeValue)) return;   // 沒有中文就不動
+      // .nb 是「這幾個字絕對不能拆開」的手動鎖定；<wbr> 會蓋掉 nowrap，所以要跳過
+      if (n.parentNode && n.parentNode.closest && n.parentNode.closest('code,pre,.nb')) return;
+      var text = n.nodeValue, pts = breakPoints(text), keys = Object.keys(pts);
+      if (!keys.length) return;
+      var frag = document.createDocumentFragment(), last = 0;
+      keys.map(Number).sort(function(a,b){ return a-b; }).forEach(function(p){
+        frag.appendChild(document.createTextNode(text.slice(last, p)));
+        frag.appendChild(document.createElement('wbr'));
+        last = p;
+      });
+      frag.appendChild(document.createTextNode(text.slice(last)));
+      n.parentNode.replaceChild(frag, n);
+    });
+    root.classList.add('gc-seg');
+  };
+})();
+
 /* ══════════════════════════════════════════════════════════════════════
    洞察文章 — 列表頁
    資料來源：Supabase view public_blog_posts（只含已發佈的文章，匿名可讀）
    文章本文目前只有中文一種；切換語系時，介面會翻譯，文章維持原文，
    並在上方顯示一行說明，避免外語訪客以為頁面壞掉。
+
+   版面（2026-08 改版）：
+   ・電腦版＝雜誌型：一則橫式大圖主打 + 三欄卡片。
+   ・手機版＝另一套：大圖 → 左小圖右標題清單 → 各分類左右滑動；
+     分類篩選收在搜尋框右邊的下拉，沒有文章的分類自動隱藏。
+   ・兩邊共用同一份資料與同一組篩選狀態，DOM 各畫一份，用 CSS 切換，
+     這樣改其中一邊不會影響另一邊。
    ══════════════════════════════════════════════════════════════════════ */
 
 const SB_URL = 'https://rtzfeoahpsutyikutsys.supabase.co';
 const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ0emZlb2FocHN1dHlpa3V0c3lzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA5ODU2NTAsImV4cCI6MjA5NjU2MTY1MH0.1ouoDmHrmetOc_qsvPrXiKsKx8eDEebbsXr2Fk2Sy-o';
 const REST = SB_URL + '/rest/v1/';
 const SB_HEADERS = { apikey: SB_KEY, Authorization: 'Bearer ' + SB_KEY };
-const PAGE_SIZE = 10;
+
+/* 一頁 13 篇：電腦版是「1 則主打 + 12 張卡片」，卡片正好排滿 4 列 × 3 欄。 */
+const PAGE_SIZE = 13;
+/* 手機版首頁：大圖 1 則 + 底下清單 5 則，再往下才是各分類的滑動區 */
+const M_ROWS = 5;
+/* 手機版分類區的排序（sylvia 指定）。沒有文章的分類會自動不出現。
+   不在這份名單裡的分類排在後面，資料有就顯示。 */
+const M_CAT_ORDER = ['國際物流','直播帶貨','跨境電商','海外拓銷','實體通路'];
+/* 「熱門」不另外開一區 —— 最上面的大圖與清單本來就是照置頂與時間排的，
+   熱門的文章已經在第一區出現過了，再開一區只是同一批文章看兩次。
+   （電腦版的分類膠囊與手機版的下拉篩選仍然有「熱門」可以篩。）    */
+const M_CAT_HIDE = ['熱門'];
+const M_CARDS = 8;
 
 /* 狀態頁的圖示。全站都用線條 SVG，不用 emoji。 */
 const ICON = {
@@ -400,6 +604,7 @@ const ICON = {
   search: '<i><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M20 20l-4.7-4.7" stroke-linecap="round"/></svg></i>',
   warn: '<i><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 4.5l8.5 15h-17z" stroke-linejoin="round"/><path d="M12 10v4M12 16.6v.1" stroke-linecap="round"/></svg></i>'
 };
+const ARROW = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h13M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
 /* 語言：網址 ?lang= 優先，這樣「把日文版連結寄給客戶」才會真的打開日文版。
    （catalog.html 只讀 localStorage，深連結會失效；這裡刻意修正。） */
@@ -418,7 +623,9 @@ const UI = {
     search:'搜尋標題、摘要或標籤…', catTitle:'分類', tagTitle:'熱門標籤', all:'全部',
     uncat:'未分類', clear:'清除篩選', pinLabel:'置頂',
     count:n=>'共 '+n+' 篇文章', countF:n=>'篩選出 '+n+' 篇文章',
-    loading:'載入文章中…',
+    loading:'載入文章中…', readMore:'閱讀全文',
+    latest:'最新文章', latestSub:'依發佈時間排序',
+    more:'更多', viewAll:n=>'看全部 '+n+' 篇文章',
     emptyTitle:'我們正在努力探索中', emptyDesc:'第一篇洞察文章正在整理，很快就會跟你見面。',
     noneTitle:'沒有符合條件的文章', noneDesc:'換個關鍵字或分類再試試看。',
     errTitle:'文章載入失敗', errDesc:'請稍後重新整理頁面；若持續發生，再麻煩告訴我們。',
@@ -431,7 +638,9 @@ const UI = {
     search:'Search title, summary or tags…', catTitle:'Categories', tagTitle:'Popular tags', all:'All',
     uncat:'Uncategorised', clear:'Clear filters', pinLabel:'Featured',
     count:n=>n+' article'+(n===1?'':'s'), countF:n=>n+' article'+(n===1?'':'s')+' found',
-    loading:'Loading articles…',
+    loading:'Loading articles…', readMore:'Read the article',
+    latest:'Latest articles', latestSub:'Newest first',
+    more:'More', viewAll:n=>'See all '+n+' articles',
     emptyTitle:'We are still exploring', emptyDesc:'The first insight article is being prepared and will be here shortly.',
     noneTitle:'No matching articles', noneDesc:'Try a different keyword or category.',
     errTitle:'Could not load articles', errDesc:'Please refresh in a moment. If it keeps happening, do let us know.',
@@ -444,7 +653,9 @@ const UI = {
     search:'タイトル・要約・タグを検索…', catTitle:'カテゴリー', tagTitle:'人気のタグ', all:'すべて',
     uncat:'未分類', clear:'条件をクリア', pinLabel:'注目',
     count:n=>'全 '+n+' 件', countF:n=>'該当 '+n+' 件',
-    loading:'記事を読み込み中…',
+    loading:'記事を読み込み中…', readMore:'記事を読む',
+    latest:'最新の記事', latestSub:'公開順',
+    more:'もっと見る', viewAll:n=>'全 '+n+' 件を見る',
     emptyTitle:'ただいま準備中です', emptyDesc:'最初のインサイト記事を準備しています。もう少しお待ちください。',
     noneTitle:'該当する記事がありません', noneDesc:'キーワードやカテゴリーを変えてお試しください。',
     errTitle:'記事を読み込めませんでした', errDesc:'しばらくしてから再読み込みしてください。繰り返す場合はご連絡ください。',
@@ -456,6 +667,8 @@ function T(){ return UI[LANG()] || UI.zh; }
 
 let POSTS = [], CATS = [], TAGS = [];
 let curCat = '', curTag = '', curPage = 1;
+/* 手機版「看全部」：按下之後就從首頁式排版切成單純的清單 */
+let mAll = false;
 
 /* 逸出：資料一律不直接塞進 HTML。
    注意 onclick="fn('…')" 這種寫法即使把單引號轉成 &#39; 也擋不住，
@@ -468,6 +681,12 @@ function safeUrl(u){
   return v;
 }
 function cssUrl(u){ return safeUrl(u).replace(/[()'"\\\s]/g, c=>'%'+c.charCodeAt(0).toString(16).padStart(2,'0')); }
+/* 封面：有圖就當背景，沒有圖就給一塊灰底加 GC 字樣，版面高度才不會忽高忽低 */
+function coverAttr(p){
+  const u = cssUrl(p.cover_url);
+  return u ? ' class="{C} bl-ph" style="background-image:url(\''+u+'\')"' : ' class="{C} bl-ph none"';
+}
+function cover(p, cls){ return coverAttr(p).replace('{C}', cls); }
 
 function fmtDate(iso){
   if(!iso) return '';
@@ -488,14 +707,13 @@ function postUrl(p){
 
 /* ── 讀取 ───────────────────────────────────────────────────────── */
 async function load(){
-  const list = document.getElementById('blList');
   // 部署時預渲染的第一頁資料：先畫出來，畫面不會空白閃一下，
   // 接著仍會向資料庫要最新清單（剛發佈、剛下架的文章才不會慢半拍）。
   if(Array.isArray(window.GC_POSTS_BOOTSTRAP) && window.GC_POSTS_BOOTSTRAP.length){
     POSTS = window.GC_POSTS_BOOTSTRAP;
     buildFacets(); render();
   }else{
-    list.innerHTML = '<div class="bl-state">'+esc(T().loading)+'</div>';
+    document.getElementById('blDesk').innerHTML = '<div class="bl-state">'+esc(T().loading)+'</div>';
   }
   try{
     const cols = 'id,slug,title,summary,cover_url,category,category_name,categories,category_names,tags,is_pinned,published_at';
@@ -508,8 +726,10 @@ async function load(){
     console.error('blog load error', e);
     if(POSTS.length) return;          // 已經有預渲染的內容就別把它換成錯誤訊息
     const t = T();
-    list.innerHTML = '<div class="bl-state"><span class="bl-ic">'+ICON.warn+'</span><b>'+esc(t.errTitle)+'</b>'+esc(t.errDesc)
+    const h = '<div class="bl-state"><span class="bl-ic">'+ICON.warn+'</span><b>'+esc(t.errTitle)+'</b>'+esc(t.errDesc)
       + '<small>'+esc(e.message)+'</small></div>';
+    document.getElementById('blDesk').innerHTML = h;
+    document.getElementById('blMob').innerHTML = '';
     document.getElementById('blPager').innerHTML = '';
     document.getElementById('blCount').textContent = '';
   }
@@ -541,9 +761,20 @@ function buildFacets(){
   POSTS.forEach(p=>(p.tags||[]).forEach(t=>tm.set(t,(tm.get(t)||0)+1)));
   TAGS = [...tm.entries()].sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0])).slice(0,12).map(x=>x[0]);
 }
+function catLabel(c){ return c.slug ? (c.name || c.slug) : T().uncat; }
+/* 手機版分類區的順序：先照 sylvia 指定的五個，剩下的接在後面 */
+function mCats(){
+  const hide = c=>M_CAT_HIDE.indexOf(catLabel(c)) >= 0;
+  const rest = CATS.filter(c=>c.slug && M_CAT_ORDER.indexOf(catLabel(c)) < 0 && !hide(c));
+  const named = M_CAT_ORDER
+    .map(n=>CATS.find(c=>catLabel(c) === n))
+    .filter(Boolean);
+  return named.concat(rest).filter(c=>c.n > 0 && !hide(c));
+}
 
+function searchQ(){ return (document.getElementById('blQ').value||'').trim().toLowerCase(); }
 function filtered(){
-  const q = (document.getElementById('blQ').value||'').trim().toLowerCase();
+  const q = searchQ();
   return POSTS.filter(p=>{
     if(curCat && !catSlugs(p).includes(curCat)) return false;
     if(curTag && !(p.tags||[]).includes(curTag)) return false;
@@ -554,54 +785,101 @@ function filtered(){
     return true;
   });
 }
-function hasFilter(){ return !!(curCat || curTag || (document.getElementById('blQ').value||'').trim()); }
+function byCat(slug){ return POSTS.filter(p=>catSlugs(p).includes(slug)); }
+function hasFilter(){ return !!(curCat || curTag || searchQ()); }
+/* 手機版是否走「首頁式」排版：沒有任何篩選、也還沒按過「看全部」 */
+function mBrowse(){ return !hasFilter() && !mAll; }
 
-/* ── 畫面 ───────────────────────────────────────────────────────── */
+/* ── 畫面：篩選列 ───────────────────────────────────────────────── */
 function renderFacets(){
   const t = T();
   const total = POSTS.length;
+
+  // 電腦版：一排膠囊
   let h = '<button class="bl-cat'+(curCat===''?' on':'')+'" data-cat=""><b>'+esc(t.all)+'</b><i>'+total+'</i></button>';
   CATS.forEach(c=>{
-    const label = c.slug ? (c.name || c.slug) : t.uncat;
-    h += '<button class="bl-cat'+(curCat===c.slug?' on':'')+'" data-cat="'+esc(c.slug)+'"><b>'+esc(label)+'</b><i>'+c.n+'</i></button>';
+    h += '<button class="bl-cat'+(curCat===c.slug?' on':'')+'" data-cat="'+esc(c.slug)+'"><b>'+esc(catLabel(c))+'</b><i>'+c.n+'</i></button>';
   });
   const box = document.getElementById('blCats');
   box.innerHTML = h;
-  box.querySelectorAll('.bl-cat').forEach(b=>b.addEventListener('click', function(){
-    curCat = this.dataset.cat; curPage = 1; render();
-    if(window.gcTrack) gcTrack('filter_apply',{ item_list_name:'blog', filter_category:curCat });
-  }));
+  box.querySelectorAll('.bl-cat').forEach(b=>b.addEventListener('click', function(){ pickCat(this.dataset.cat); }));
 
-  document.getElementById('blShTag').style.display = TAGS.length ? '' : 'none';
-  const tb = document.getElementById('blTags');
-  tb.innerHTML = TAGS.map(x=>'<button data-tag="'+esc(x)+'" class="'+(curTag===x?'on':'')+'">#'+esc(x)+'</button>').join('');
-  tb.querySelectorAll('button').forEach(b=>b.addEventListener('click', function(){
-    curTag = (curTag === this.dataset.tag) ? '' : this.dataset.tag;
-    curPage = 1; render();
+  // 手機版：搜尋框右邊的下拉
+  let m = '<button class="'+(curCat===''?'on':'')+'" data-cat=""><span>'+esc(t.all)+'</span><i>'+total+'</i></button>';
+  CATS.forEach(c=>{
+    m += '<button class="'+(curCat===c.slug?'on':'')+'" data-cat="'+esc(c.slug)+'"><span>'+esc(catLabel(c))+'</span><i>'+c.n+'</i></button>';
+  });
+  const mp = document.getElementById('blMFPanel');
+  mp.innerHTML = m;
+  mp.querySelectorAll('button').forEach(b=>b.addEventListener('click', function(){
+    document.getElementById('blMF').open = false;
+    pickCat(this.dataset.cat);
   }));
+  const cur = CATS.find(c=>c.slug === curCat);
+  document.getElementById('blMFLabel').textContent = cur ? catLabel(cur) : t.all;
+}
+function pickCat(slug){
+  curCat = slug; curPage = 1;
+  mAll = false;                       // 選了分類就直接看該分類的清單
+  render();
+  if(window.gcTrack) gcTrack('filter_apply',{ item_list_name:'blog', filter_category:curCat });
 }
 
-function rowHtml(p){
-  const u = cssUrl(p.cover_url);
-  const thumb = u
-    ? '<span class="bl-thumb" style="background-image:url(\''+u+'\')"></span>'
-    : '<span class="bl-thumb none"><span>GC</span></span>';
+/* ── 畫面：卡片 ─────────────────────────────────────────────────── */
+function metaHtml(p, withPin){
   const cat = catNames(p).join('・');
+  return '<span class="bl-meta">'
+    + (withPin && p.is_pinned ? '<span class="bl-pin">'+esc(T().pinLabel)+'</span>' : '')
+    + (cat ? '<span class="bl-chip">'+esc(cat)+'</span>' : '')
+    + '<span class="bl-date">'+esc(fmtDate(p.published_at))+'</span>'
+    + '</span>';
+}
+function heroHtml(p){
   const tags = (p.tags||[]).slice(0,3).map(x=>'<span>#'+esc(x)+'</span>').join('');
-  return '<a class="bl-row" href="'+esc(postUrl(p))+'">'
-    + thumb
-    + '<span class="bl-body">'
-    +   '<span class="bl-meta">'
-    +     (p.is_pinned ? '<span class="bl-pin">'+esc(T().pinLabel)+'</span>' : '')
-    +     (cat ? '<span class="bl-chip">'+esc(cat)+'</span>' : '')
-    +     '<span class="bl-date">'+esc(fmtDate(p.published_at))+'</span>'
-    +   '</span>'
-    +   '<span class="bl-title">'+esc(p.title||'')+'</span>'
-    +   '<span class="bl-sum">'+esc(p.summary||'')+'</span>'
+  return '<a class="bl-hero" href="'+esc(postUrl(p))+'">'
+    + '<span'+cover(p,'bl-hero-img')+'></span>'
+    + '<span>' + metaHtml(p, true)
+    +   '<h2>'+esc(p.title||'')+'</h2>'
+    +   '<p>'+esc(p.summary||'')+'</p>'
     +   (tags ? '<span class="bl-tagrow">'+tags+'</span>' : '')
+    +   '<span class="bl-more">'+esc(T().readMore)+ARROW+'</span>'
     + '</span></a>';
 }
+function cardHtml(p){
+  return '<a class="bl-card" href="'+esc(postUrl(p))+'">'
+    + '<span'+cover(p,'bl-card-img')+'></span>'
+    + '<span class="bl-card-body">' + metaHtml(p, true)
+    +   '<h4>'+esc(p.title||'')+'</h4>'
+    +   '<p>'+esc(p.summary||'')+'</p>'
+    + '</span></a>';
+}
+function mHeroHtml(p){
+  return '<a class="bl-mhero" href="'+esc(postUrl(p))+'">'
+    + '<span'+cover(p,'bl-t')+'></span>'
+    + metaHtml(p, true)
+    + '<h2>'+esc(p.title||'')+'</h2>'
+    + '<p>'+esc(p.summary||'')+'</p>'
+    + '</a>';
+}
+function mRowHtml(p){
+  return '<a class="bl-mrow" href="'+esc(postUrl(p))+'">'
+    + '<span'+cover(p,'bl-t')+'></span>'
+    + '<span>' + metaHtml(p, true) + '<h4>'+esc(p.title||'')+'</h4></span>'
+    + '</a>';
+}
+function mCardHtml(p){
+  return '<a class="bl-mcard" href="'+esc(postUrl(p))+'">'
+    + '<span'+cover(p,'bl-t')+'></span>'
+    + '<h4>'+esc(p.title||'')+'</h4>'
+    + '<span class="bl-date">'+esc(fmtDate(p.published_at))+'</span>'
+    + '</a>';
+}
 
+function stateHtml(icon, title, desc){
+  return '<div class="bl-state"><span class="bl-ic">'+icon+'</span><b>'+esc(title)+'</b>'+esc(desc)+'</div>';
+}
+
+/* ── 畫面：主流程 ───────────────────────────────────────────────── */
 function render(){
   const t = T();
   renderFacets();
@@ -612,30 +890,88 @@ function render(){
   if(curPage > pages) curPage = pages;
   if(curPage < 1) curPage = 1;
 
-  const cl = document.getElementById('blClear');
-  cl.style.display = hasFilter() ? '' : 'none';
-  cl.textContent = t.clear;
-
-  const box = document.getElementById('blList');
-  const cnt = document.getElementById('blCount');
+  const desk = document.getElementById('blDesk');
+  const mob  = document.getElementById('blMob');
+  const cnt  = document.getElementById('blCount');
+  const pgr  = document.getElementById('blPager');
 
   if(!POSTS.length){
     cnt.textContent = '';
-    box.innerHTML = '<div class="bl-state"><span class="bl-ic">'+ICON.empty+'</span><b>'+esc(t.emptyTitle)+'</b>'+esc(t.emptyDesc)+'</div>';
-    document.getElementById('blPager').innerHTML = '';
+    desk.innerHTML = stateHtml(ICON.empty, t.emptyTitle, t.emptyDesc);
+    mob.innerHTML  = '';
+    pgr.innerHTML  = ''; pgr.className = 'bl-pager';
     return;
   }
   if(!total){
     cnt.innerHTML = '';
-    box.innerHTML = '<div class="bl-state"><span class="bl-ic">'+ICON.search+'</span><b>'+esc(t.noneTitle)+'</b>'+esc(t.noneDesc)+'</div>';
-    document.getElementById('blPager').innerHTML = '';
+    desk.innerHTML = stateHtml(ICON.search, t.noneTitle, t.noneDesc);
+    mob.innerHTML  = stateHtml(ICON.search, t.noneTitle, t.noneDesc);
+    pgr.innerHTML  = ''; pgr.className = 'bl-pager';
+    renderCount(total);
     return;
   }
 
-  cnt.innerHTML = hasFilter() ? esc(t.countF(total)) : esc(t.count(total));
-  box.innerHTML = list.slice((curPage-1)*PAGE_SIZE, curPage*PAGE_SIZE).map(rowHtml).join('');
+  const page = list.slice((curPage-1)*PAGE_SIZE, curPage*PAGE_SIZE);
+
+  /* 電腦版：第一則當主打，其餘排三欄 */
+  let dh = heroHtml(page[0]);
+  if(page.length > 1){
+    dh += '<div class="bl-sec"><h3>'+esc(t.latest)+'</h3><span>'+esc(t.latestSub)+'</span></div>'
+        + '<div class="bl-grid">' + page.slice(1).map(cardHtml).join('') + '</div>';
+  }
+  desk.innerHTML = dh;
+
+  /* 手機版 */
+  mob.innerHTML = mBrowse() ? mBrowseHtml(list) : mListHtml(page);
+  mob.querySelectorAll('[data-mcat]').forEach(b=>b.addEventListener('click', function(){ pickCat(this.dataset.mcat); scrollTop(); }));
+  const va = mob.querySelector('[data-viewall]');
+  if(va) va.addEventListener('click', function(){ mAll = true; curPage = 1; render(); scrollTop(); });
+
+  renderCount(total);
+  /* 手機版在「首頁式」排版時不分頁（已經有看全部按鈕），所以整條分頁列只留給電腦版 */
+  pgr.className = 'bl-pager' + (mBrowse() ? ' bl-d' : '');
   renderPager(total, pages);
+  if(window.gcSegment) gcSegment(document.querySelector('.bl-wrap'));
   queueListView();
+}
+
+function renderCount(total){
+  const t = T();
+  const cnt = document.getElementById('blCount');
+  cnt.innerHTML = (hasFilter() ? esc(t.countF(total)) : esc(t.count(total)))
+    + (hasFilter() ? '<button class="bl-clear" id="blClear">'+esc(t.clear)+'</button>' : '');
+  const cl = document.getElementById('blClear');
+  if(cl) cl.addEventListener('click', blResetFilters);
+}
+
+/* 手機版首頁：大圖 → 清單 → 各分類左右滑動 → 看全部 */
+function mBrowseHtml(list){
+  const t = T();
+  let h = mHeroHtml(list[0]);
+  const rows = list.slice(1, 1 + M_ROWS);
+  if(rows.length) h += '<div class="bl-mlist">' + rows.map(mRowHtml).join('') + '</div>';
+
+  mCats().forEach(c=>{
+    const items = byCat(c.slug).slice(0, M_CARDS);
+    if(!items.length) return;                       // 暫時沒有文章的分類先隱藏
+    h += '<section class="bl-mcat">'
+      +   '<div class="bl-mcat-h"><h3>'+esc(catLabel(c))+'</h3>'
+      +     '<button class="bl-mmore" data-mcat="'+esc(c.slug)+'">'+esc(t.more)+ARROW+'</button></div>'
+      +   '<div class="bl-mscroll">' + items.map(mCardHtml).join('') + '</div>'
+      + '</section>';
+  });
+
+  h += '<div class="bl-mend"><button class="bl-mendbtn" data-viewall="1">'+esc(t.viewAll(POSTS.length))+ARROW+'</button></div>';
+  return h;
+}
+/* 手機版清單（有篩選或按過看全部時） */
+function mListHtml(page){
+  return '<div class="bl-mlist" style="margin-top:6px;border-top:none">' + page.map(mRowHtml).join('') + '</div>';
+}
+
+function scrollTop(){
+  const w = document.querySelector('.bl-wrap');
+  if(w) window.scrollTo({ top: w.offsetTop - 80, behavior:'smooth' });
 }
 
 function renderPager(total, pages){
@@ -656,13 +992,12 @@ function renderPager(total, pages){
     if(this.disabled) return;
     curPage = parseInt(this.dataset.go,10) || 1;
     render();
-    const w = document.querySelector('.bl-wrap');
-    window.scrollTo({ top: w.offsetTop - 80, behavior:'smooth' });
+    scrollTop();
   }));
 }
 
 function blResetFilters(){
-  curCat=''; curTag=''; curPage=1;
+  curCat=''; curTag=''; curPage=1; mAll=false;
   document.getElementById('blQ').value='';
   render();
 }
@@ -688,8 +1023,6 @@ function blApplyLang(){
   document.getElementById('blH1').textContent = t.h1;
   document.getElementById('blSub').textContent = t.sub;
   document.getElementById('blQ').placeholder = t.search;
-  document.getElementById('blShCat').textContent = t.catTitle;
-  document.getElementById('blShTag').textContent = t.tagTitle;
   document.title = (LANG()==='zh' ? '洞察文章 — GC 跨境服務'
                  : LANG()==='en' ? 'Insights — GC Cross-Border Services'
                  : 'インサイト記事 — GCクロスボーダーサービス');
@@ -697,6 +1030,7 @@ function blApplyLang(){
   if(t.langnote){ document.getElementById('blLangNoteTxt').textContent = t.langnote; note.style.display=''; }
   else note.style.display='none';
   if(POSTS.length) render();
+  else if(window.gcSegment) gcSegment(document.querySelector('.bl-head'));
 }
 document.addEventListener('gc:langchange', blApplyLang);
 
@@ -732,10 +1066,61 @@ window.addEventListener('scroll', function(){
   document.getElementById('siteNav').classList.toggle('scrolled', window.scrollY > 10);
 }, { passive:true });
 
+/* 點外面就把手機版的分類下拉收起來 */
+document.addEventListener('click', function(e){
+  const mf = document.getElementById('blMF');
+  if(mf && mf.open && !mf.contains(e.target)) mf.open = false;
+});
+
 /* ── 啟動 ───────────────────────────────────────────────────────── */
-document.getElementById('blQ').addEventListener('input', function(){ curPage=1; render(); });
+document.getElementById('blQ').addEventListener('input', function(){ curPage=1; mAll=false; render(); });
 blApplyLang();
 load();
+
+/* ── 頁尾 F3 行為 ────────────────────────────────────────────────
+   電腦版：三欄一直展開，點標題不會收起來（<details> 預設會 toggle，要擋掉）。
+   手機版：預設收起來，點一下才展開。
+   文案：品牌那句話與「公司／信箱」的標籤跟著語系走；沒有做手動斷行，
+        讓瀏覽器自己依詞斷句（配合 gcSegment）。                      */
+(function(){
+  var FT = {
+    zh:{ brand:'GC 跨境服務顧問團隊，協助品牌評估市場、對接通路與服務商，讓您把貨真正賣進去！',
+         co:'公司', mail:'信箱', coName:'世界之地標有限公司' },
+    en:{ brand:'The GC cross-border advisory team helps brands size up markets and connect with the right channels and service providers — so your products actually get sold.',
+         co:'Company', mail:'Email', coName:'World of Landmark Co., Ltd.' },
+    ja:{ brand:'GCクロスボーダー顧問チームが、市場の見極めから販路・サービス事業者との接続までを支援し、御社の商品を実際に売り場へ届けます。',
+         co:'会社', mail:'メール', coName:'World of Landmark Co., Ltd.' }
+  };
+  function lang(){
+    try{
+      var v = new URLSearchParams(location.search).get('lang');
+      if(v==='zh'||v==='en'||v==='ja') return v;
+    }catch(e){}
+    return localStorage.getItem('gc_lang') || 'zh';
+  }
+  function txt(id, v){ var el = document.getElementById(id); if(el) el.textContent = v; }
+  function applyFooterLang(){
+    var t = FT[lang()] || FT.zh;
+    txt('gcfBrand', t.brand);
+    txt('gcfCoLbl', t.co);
+    txt('gcfMailLbl', t.mail);
+    txt('gcfCoName', t.coName);
+    if(window.gcSegment) gcSegment(document.querySelector('footer.gc-footer'));
+  }
+  document.addEventListener('gc:langchange', applyFooterLang);
+
+  var cols = [].slice.call(document.querySelectorAll('.gcf3-col'));
+  var mq = window.matchMedia('(max-width:640px)');
+  function sync(){ cols.forEach(function(d){ d.open = !mq.matches; }); }
+  cols.forEach(function(d){
+    d.querySelector('summary').addEventListener('click', function(e){
+      if(!mq.matches) e.preventDefault();     // 電腦版不給收
+    });
+  });
+  if(mq.addEventListener) mq.addEventListener('change', sync); else mq.addListener(sync);
+  sync();
+  applyFooterLang();
+})();
 </script>
 <script src="i18n.js"></script>
 </body>
