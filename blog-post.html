@@ -357,10 +357,12 @@ footer{background:rgba(250,250,250,0.94);padding:2.8rem 5vw;border-top:1px solid
   .po-relbottom-in{padding:28px 5vw 40px;}
 }
 
-/* ═══ 中文斷行（做法與列表頁相同）═══════════════════════════════
-   整段不鎖 keep-all，右邊維持切齊；只有 gcSegment 標出來的詞
-   （跨境、對接、服務商…）用 .nb 鎖住不拆開。                    */
-p,li,h1,h2,h3,h4,.po-sum,.po-cap{text-wrap:pretty;}
+
+/* .nb：手動鎖住不想被拆開的字（內容裡幾乎用不到，留著備用）。
+   ⚠ 2026-08-20 已移除「自動偵測詞彙斷行」：中文本來就可以在任何字後面
+     斷行，右邊才會切齊。之前為了不讓「對接」被拆開而自動插 <span class="nb">，
+     結果反而讓每一行右邊留下一兩個字的空白，讀起來很奇怪（sylvia 回報）。
+     現在完全交給瀏覽器，跟一般中文文章一樣。                          */
 .nb{white-space:nowrap;}
 </style>
 <style>
@@ -1211,65 +1213,6 @@ window.addEventListener('hashchange', function(){
   if(isPv(location.hash) || isPv(before)) location.reload();   // 目錄的 #sec-x 不重載
 });
 
-/* ── 中文斷行：只鎖住「不能被拆開的詞」，其餘照中文習慣自由斷 ──────
-   中文沒有空格，本來就可以在任何一個字後面斷行，右邊會切得很齊，
-   長段落這樣讀最自然。問題只出在少數幾個詞被拆開會很刺眼，例如
-   「對接／通路」「跨／境電商」。
-
-   做法：把這些詞用 <span class="nb"> 包起來（white-space:nowrap），
-   其他地方完全不動。這樣右邊維持切齊，最多只有在「被鎖住的詞剛好
-   卡在行尾」時空一個字，不會像整段 word-break:keep-all 那樣每一行
-   都留一大塊空白。（sylvia 2026-08-20：要 B，但盡量接近 A）
-
-   ⚠ 所以詞表請盡量維持 2～4 個字。詞越長，卡在行尾時留白就越多。 */
-(function(){
-  var GLUE = [
-    /* 品牌與服務 */
-    '跨境電商','跨境物流','跨境服務','跨境',
-    '國際物流','國際運費','國際運送','國際',
-    '直播帶貨','海外拓銷','實體通路','海外倉','海外',
-    '服務商','顧問團隊','顧問','團隊','通路','對接',
-    /* 商務常用 */
-    '評估','市場','品牌','電商','物流','帶貨','拓銷','貨盤','出海',
-    '報關','清關','認證','標示','申報','稅務','金流','客服','退貨','上架',
-    '費用','成本','流程','文件','條件','規範','實務','趨勢','法規',
-    '諮詢','合作','資源','公司','信箱','隱私','政策',
-    /* 站上介面 */
-    '文章','洞察','分類','標籤','搜尋','篩選','發佈','摘要','封面','目錄'
-  ].sort(function(a,b){ return b.length - a.length; });   // 長的先比對
-
-  var RX = new RegExp('(' + GLUE.join('|') + ')', 'g');
-
-  /* 名字沿用 gcSegment，兩個頁面呼叫的地方不用改 */
-  window.gcSegment = function(root){
-    if (!root) return;
-    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null), nodes = [], t;
-    while ((t = walker.nextNode())) nodes.push(t);
-    nodes.forEach(function(n){
-      var text = n.nodeValue;
-      if (!/[一-鿿]/.test(text)) return;                  // 沒有中文就不動
-      var pa = n.parentNode;
-      if (!pa || !pa.closest) return;
-      if (pa.closest('code,pre,.nb')) return;             // 程式碼與已鎖住的不重複處理
-      RX.lastIndex = 0;
-      if (!RX.test(text)) return;
-      RX.lastIndex = 0;
-      var frag = document.createDocumentFragment(), last = 0, m;
-      while ((m = RX.exec(text))){
-        if (m.index > last) frag.appendChild(document.createTextNode(text.slice(last, m.index)));
-        var s = document.createElement('span');
-        s.className = 'nb';
-        s.textContent = m[0];
-        frag.appendChild(s);
-        last = m.index + m[0].length;
-      }
-      if (last < text.length) frag.appendChild(document.createTextNode(text.slice(last)));
-      pa.replaceChild(frag, n);
-    });
-    root.classList.add('gc-seg');
-  };
-})();
-
 
 /* ═══ 改版新增：閱讀進度、自動目錄、點圖放大（2026-08）═══════════ */
 
@@ -1415,18 +1358,14 @@ function poBindZoom(){
 function poAfterRender(){
   poBuildToc();
   poBindZoom();
-  if(window.gcSegment){
-    gcSegment(document.getElementById('poArticle'));
-    gcSegment(document.querySelector('footer.gc-footer'));
-  }
   if(window.poProgTick) poProgTick();
 }
 
 /* ── 頁尾 F3 行為 ────────────────────────────────────────────────
    電腦版：三欄一直展開，點標題不會收起來（<details> 預設會 toggle，要擋掉）。
    手機版：預設收起來，點一下才展開。
-   文案：品牌那句話與「公司／信箱」的標籤跟著語系走；沒有做手動斷行，
-        讓瀏覽器自己依詞斷句（配合 gcSegment）。                      */
+   文案：品牌那句話與「公司／信箱」的標籤跟著語系走；斷行完全交給瀏覽器，
+        沒有任何手動斷行或詞彙偵測。                                  */
 (function(){
   var FT = {
     zh:{ brand:'GC 跨境服務顧問團隊，協助品牌評估市場、對接通路與服務商，讓您把貨真正賣進去！',
@@ -1450,7 +1389,6 @@ function poAfterRender(){
     txt('gcfCoLbl', t.co);
     txt('gcfMailLbl', t.mail);
     txt('gcfCoName', t.coName);
-    if(window.gcSegment) gcSegment(document.querySelector('footer.gc-footer'));
   }
   document.addEventListener('gc:langchange', applyFooterLang);
 
