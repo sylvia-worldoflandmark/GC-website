@@ -299,13 +299,11 @@ nav.scrolled{background:rgba(250,250,250,0.96);border-bottom:1px solid rgba(17,2
   .bl-count{padding:12px 2px 0;}
 }
 
-/* ═══ 中文斷句 ════════════════════════════════════════════════════
-   中文沒有空格，瀏覽器預設可以在任何一個字後面斷行，就會出現
-   「對接／通路與服務商」這種把詞拆開的位置。
-   做法：用 Intl.Segmenter 依「詞」插入 <wbr>，再用 keep-all 只允許
-   在這些位置斷行。keep-all 只在 gcSegment 跑完（加上 .gc-seg）之後
-   才生效，避免還沒插 <wbr> 就完全不能斷行而爆版。               */
-.gc-seg{word-break:keep-all;}
+/* ═══ 中文斷行 ════════════════════════════════════════════════════
+   中文本來就可以在任何一個字後面斷行，右邊會切得很齊，這樣讀最自然，
+   所以整段不做 word-break:keep-all（那會讓每一行右邊都留一塊空白）。
+   只有少數拆開會很刺眼的詞（跨境、對接、服務商…）由 gcSegment 用
+   .nb 個別鎖起來，其餘照瀏覽器預設。                              */
 p,li,h1,h2,h3,h4,.bl-sub,.bl-sum{text-wrap:pretty;}
 .nb{white-space:nowrap;}
 
@@ -497,70 +495,60 @@ footer.gc-footer{display:block;background:rgba(17,24,39,0.03);border-top:1px sol
 </footer>
 
 <script>
-/* ── 中文斷句：依「詞」給斷行機會，不要把詞拆開 ────────────────────
-   中文沒有空格，瀏覽器預設可以在任何一個字後面斷行，才會出現
-   「協助品牌評估市場、對／接通路與服務商」這種怪位置。
-   ⚠ CSS 的 word-break:auto-phrase 目前只對日文有效，中文沒作用，
-     所以改用 Intl.Segmenter 依詞插入 <wbr>，再用 keep-all 只允許
-     在這些位置斷行。<wbr> 不會被複製、也不影響 SEO 取字。
-   ⚠ Segmenter 的中文詞庫會把「跨境」「對接」「服務商」這類詞切開，
-     所以再加一份 GC 常用詞表，落在詞中間的斷點一律拿掉。
-     這是通用規則，不是針對某一句話手動鎖斷行。                    */
+/* ── 中文斷行：只鎖住「不能被拆開的詞」，其餘照中文習慣自由斷 ──────
+   中文沒有空格，本來就可以在任何一個字後面斷行，右邊會切得很齊，
+   長段落這樣讀最自然。問題只出在少數幾個詞被拆開會很刺眼，例如
+   「對接／通路」「跨／境電商」。
+
+   做法：把這些詞用 <span class="nb"> 包起來（white-space:nowrap），
+   其他地方完全不動。這樣右邊維持切齊，最多只有在「被鎖住的詞剛好
+   卡在行尾」時空一個字，不會像整段 word-break:keep-all 那樣每一行
+   都留一大塊空白。（sylvia 2026-08-20：要 B，但盡量接近 A）
+
+   ⚠ 所以詞表請盡量維持 2～4 個字。詞越長，卡在行尾時留白就越多。 */
 (function(){
-  if (!window.Intl || !Intl.Segmenter) return;          // 舊瀏覽器就維持原本行為
-  var seg = new Intl.Segmenter('zh-Hant', { granularity:'word' });
-
-  /* 不可以從中間斷開的詞（長的排前面，比對時先吃長的） */
   var GLUE = [
-    '跨境服務顧問','跨境服務','跨境電商','跨境物流','跨境',
+    /* 品牌與服務 */
+    '跨境電商','跨境物流','跨境服務','跨境',
     '國際物流','國際運費','國際運送','國際',
-    '直播帶貨','海外拓銷','海外倉','海外','實體通路','通路',
-    '服務商','服務','顧問團隊','顧問','團隊',
-    '對接','評估','市場','品牌','電商','物流','帶貨','拓銷','貨盤','出海',
+    '直播帶貨','海外拓銷','實體通路','海外倉','海外',
+    '服務商','顧問團隊','顧問','團隊','通路','對接',
+    /* 商務常用 */
+    '評估','市場','品牌','電商','物流','帶貨','拓銷','貨盤','出海',
     '報關','清關','認證','標示','申報','稅務','金流','客服','退貨','上架',
-    '文章','洞察','分類','標籤','搜尋','篩選','發佈','摘要','封面','目錄',
-    '真正','進去','費用','成本','流程','文件','條件','規範','實務','趨勢','法規',
-    '諮詢','合作','資源','公司','信箱','隱私','政策','常見問題','相關文章','熱門文章'
-  ].sort(function(a,b){ return b.length - a.length; });
+    '費用','成本','流程','文件','條件','規範','實務','趨勢','法規',
+    '諮詢','合作','資源','公司','信箱','隱私','政策',
+    /* 站上介面 */
+    '文章','洞察','分類','標籤','搜尋','篩選','發佈','摘要','封面','目錄'
+  ].sort(function(a,b){ return b.length - a.length; });   // 長的先比對
 
-  // 這些符號不能出現在行首（中文的禁則處理），所以它前面不放斷點
-  var NO_BREAK_BEFORE = /^[，、。．・：；！？）〕］｝」』〉》”’…—～%]/;
+  var RX = new RegExp('(' + GLUE.join('|') + ')', 'g');
 
-  /* 回傳「可以斷行的位置」（字串索引），已經扣掉落在常用詞中間的 */
-  function breakPoints(text){
-    var pts = {}, i = 0;
-    Array.from(seg.segment(text)).forEach(function(s){
-      i += s.segment.length;
-      if (i < text.length && !NO_BREAK_BEFORE.test(text.slice(i))) pts[i] = 1;
-    });
-    GLUE.forEach(function(w){
-      var from = 0, at;
-      while ((at = text.indexOf(w, from)) >= 0){
-        for (var k = at + 1; k < at + w.length; k++) delete pts[k];
-        from = at + 1;
-      }
-    });
-    return pts;
-  }
-
+  /* 名字沿用 gcSegment，兩個頁面呼叫的地方不用改 */
   window.gcSegment = function(root){
     if (!root) return;
     var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null), nodes = [], t;
     while ((t = walker.nextNode())) nodes.push(t);
     nodes.forEach(function(n){
-      if (!/[一-鿿]/.test(n.nodeValue)) return;   // 沒有中文就不動
-      // .nb 是「這幾個字絕對不能拆開」的手動鎖定；<wbr> 會蓋掉 nowrap，所以要跳過
-      if (n.parentNode && n.parentNode.closest && n.parentNode.closest('code,pre,.nb')) return;
-      var text = n.nodeValue, pts = breakPoints(text), keys = Object.keys(pts);
-      if (!keys.length) return;
-      var frag = document.createDocumentFragment(), last = 0;
-      keys.map(Number).sort(function(a,b){ return a-b; }).forEach(function(p){
-        frag.appendChild(document.createTextNode(text.slice(last, p)));
-        frag.appendChild(document.createElement('wbr'));
-        last = p;
-      });
-      frag.appendChild(document.createTextNode(text.slice(last)));
-      n.parentNode.replaceChild(frag, n);
+      var text = n.nodeValue;
+      if (!/[一-鿿]/.test(text)) return;                  // 沒有中文就不動
+      var pa = n.parentNode;
+      if (!pa || !pa.closest) return;
+      if (pa.closest('code,pre,.nb')) return;             // 程式碼與已鎖住的不重複處理
+      RX.lastIndex = 0;
+      if (!RX.test(text)) return;
+      RX.lastIndex = 0;
+      var frag = document.createDocumentFragment(), last = 0, m;
+      while ((m = RX.exec(text))){
+        if (m.index > last) frag.appendChild(document.createTextNode(text.slice(last, m.index)));
+        var s = document.createElement('span');
+        s.className = 'nb';
+        s.textContent = m[0];
+        frag.appendChild(s);
+        last = m.index + m[0].length;
+      }
+      if (last < text.length) frag.appendChild(document.createTextNode(text.slice(last)));
+      pa.replaceChild(frag, n);
     });
     root.classList.add('gc-seg');
   };
