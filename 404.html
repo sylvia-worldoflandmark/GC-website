@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-page="404">
+<head>
+<!-- Google tag (gtag.js) — GA4 G-WMDKSQRC81 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WMDKSQRC81"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-WMDKSQRC81');
+</script>
+
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="找不到這個頁面。網址可能打錯了，或是這個頁面已經搬家。">
+<!-- 404 不該被收錄，也不該把權重傳出去 -->
+<meta name="robots" content="noindex, follow">
+<meta name="author" content="GC 跨境服務">
+<title>找不到這個頁面 — GC 跨境服務</title>
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Syne:wght@600;700;800&family=Noto+Sans+TC:wght@400;500;700&family=M+PLUS+1p:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+/* ⚠ 這一頁的所有連結與資源都必須用「/」開頭的絕對路徑。
+   Netlify 服務 404 時會保留使用者輸入的網址（例如 /a/b/c），
+   相對路徑會以那個不存在的目錄為基準去解析，圖片與連結全部會壞掉。 */
+:root{
+  --bg:#06080e;
+  --border:rgba(255,255,255,0.12);
+  --accent:#1460A8;
+  --accent-lite:#4A9FE8;
+  --text:#FFFAFA;
+  --text-dim:rgba(255,250,250,0.72);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:'Noto Sans TC',sans-serif;font-weight:400;
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:40px 5vw;text-align:center;
+  /* 極淡的格線，跟官網其他頁的底一致，不然純黑底會太空 */
+  background-image:linear-gradient(rgba(255,255,255,0.035) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(255,255,255,0.035) 1px,transparent 1px);
+  background-size:72px 72px;
+}
+html[lang="en"] body{font-family:'Inter',sans-serif;}
+html[lang="ja"] body{font-family:'M PLUS 1p',sans-serif;}
+
+.nf-logo{display:block;margin-bottom:34px;}
+.nf-logo img{width:56px;height:56px;border-radius:12px;display:block;}
+
+.nf-code{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:clamp(4.5rem,17vw,8.5rem);line-height:1;
+  letter-spacing:-0.05em;
+  background:linear-gradient(135deg,#FFFAFA 0%,#4A9FE8 55%,#1460A8 100%);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+  margin-bottom:18px;
+}
+.nf-title{
+  font-family:'Syne',sans-serif;font-weight:700;
+  font-size:clamp(1.15rem,4vw,1.6rem);letter-spacing:-0.01em;
+  margin-bottom:14px;
+}
+html[lang="ja"] .nf-title,html[lang="zh-TW"] .nf-title{font-family:inherit;font-weight:700;}
+.nf-desc{
+  font-size:0.95rem;line-height:1.95;color:var(--text-dim);
+  max-width:30rem;margin-bottom:36px;
+}
+
+.nf-actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;}
+.nf-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:0.72rem 1.5rem;border-radius:7px;
+  font-size:0.9rem;font-weight:600;text-decoration:none;
+  border:1px solid var(--border);color:var(--text);
+  transition:border-color 0.18s,background 0.18s,transform 0.18s;
+}
+.nf-btn:hover{border-color:rgba(255,255,255,0.3);background:rgba(255,255,255,0.05);transform:translateY(-1px);}
+.nf-btn.primary{background:var(--accent);border-color:var(--accent);}
+.nf-btn.primary:hover{background:#1a72c4;border-color:#1a72c4;}
+.nf-btn:focus-visible{outline:2px solid var(--accent-lite);outline-offset:3px;}
+.nf-btn svg{width:15px;height:15px;flex-shrink:0;}
+
+.nf-path{
+  margin-top:34px;font-size:0.76rem;color:rgba(255,250,250,0.4);
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  max-width:90vw;overflow-wrap:anywhere;
+}
+
+@media(max-width:480px){
+  .nf-actions{flex-direction:column;width:100%;max-width:20rem;}
+  .nf-btn{justify-content:center;}
+}
+</style>
+</head>
+<body>
+
+<a href="/" class="nf-logo" aria-label="GC 跨境服務">
+  <img src="/images/logo.png" alt="GC 跨境服務" width="56" height="56" decoding="async">
+</a>
+
+<p class="nf-code" aria-hidden="true">404</p>
+<h1 class="nf-title" data-i18n="nf.title">這個頁面不存在</h1>
+<p class="nf-desc" data-i18n="nf.desc">網址可能打錯了，或是這個頁面已經搬家。下面幾個入口可以帶你回到正軌。</p>
+
+<div class="nf-actions">
+  <a class="nf-btn primary" href="/" data-i18n="nf.home">回到首頁</a>
+  <a class="nf-btn" href="/blog.html" data-i18n="nf.blog">看看洞察文章</a>
+  <a class="nf-btn" href="/gc-form.html" data-i18n="nf.contact">直接聯絡我們</a>
+</div>
+
+<p class="nf-path" id="nfPath"></p>
+
+<script>
+/* 把使用者實際打錯的網址顯示出來——常常一眼就看得出是少了字或多了字。
+   用 textContent 寫入，網址裡的任何字元都不會被當成 HTML。 */
+(function(){
+  try{
+    var el = document.getElementById('nfPath');
+    if(el) el.textContent = location.pathname + (location.search || '');
+  }catch(e){}
+})();
+</script>
+<script src="/i18n.js"></script>
+</body>
+</html>

@@ -2,10 +2,11 @@
 # 每次部署前先跑預渲染：
 #   build-seo.js  → 把 Supabase 的公開商品與 JSON-LD 灌進 catalog.html
 #   build-blog.js → 產生每篇文章的實體靜態頁、灌列表頁、更新 sitemap
+#   build-schema.js → 依首頁實際的常見問題與服務區塊產生 Organization/FAQPage 等結構化資料
 # 兩支腳本抓不到資料時都會安靜跳過（exit 0），不會讓部署失敗。
 
 [build]
-  command = "node build-seo.js && node build-blog.js"
+  command = "node build-seo.js && node build-blog.js && node build-schema.js"
   publish = "."          # ← 網站根目錄；若你的站台檔案不在 repo 根目錄，改成實際資料夾
 
 [build.environment]

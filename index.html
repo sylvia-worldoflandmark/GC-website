@@ -15,7 +15,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="GC 是一站式全球跨境拓銷服務平台，協助品牌快速媒合市場拓展、品牌行銷、電商營運等專業服務商，讓出海之路順暢無阻。">
 <meta name="keywords" content="跨境電商,出海,全球市場拓銷,品牌行銷,海外市場,服務商媒合,GC">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <meta name="author" content="GC 跨境服務">
 <meta property="og:type" content="website">
 <meta property="og:title" content="GC 跨境服務 — 全球市場拓銷顧問平台">
@@ -34,7 +34,9 @@
 <link rel="alternate" hreflang="x-default" href="https://worldoflandmark.com/">
 <meta property="og:url" content="https://worldoflandmark.com/">
 <title>GC 跨境服務 — 全球市場拓銷顧問平台</title>
-<meta property="og:image" content="https://worldoflandmark.com/images/logo.png">
+<meta property="og:image" content="https://worldoflandmark.com/images/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="1200">
 <meta property="og:image:type" content="image/png">
 <link rel="icon" type="image/png" sizes="32x32" href="images/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -684,7 +686,7 @@ footer.gc-footer{display:block;background:rgba(6,8,14,0.94);border-top:1px solid
 .gcf-social{display:flex;gap:10px;}
 .gcf-social a{width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;color:rgba(255,250,250,0.6);transition:all 0.2s;text-decoration:none;}
 .gcf-social a:hover{background:rgba(255,255,255,0.08);color:#FFFAFA;border-color:rgba(255,255,255,0.3);transform:translateY(-2px);}
-.gcf-col h4{font-family:inherit;font-size:0.82rem;font-weight:600;color:#FFFAFA;margin:0 0 0.9rem;letter-spacing:0.02em;}
+.gcf-col h2{font-family:inherit;font-size:0.82rem;font-weight:600;color:#FFFAFA;margin:0 0 0.9rem;letter-spacing:0.02em;}
 .gcf-col a{display:block;font-size:0.82rem;line-height:1.6;color:rgba(236,238,242,0.55);text-decoration:none;padding:0.34rem 0;transition:color 0.18s;}
 .gcf-col a:hover{color:#FFFAFA;}
 .gcf-bottom{max-width:1240px;margin:2.4rem auto 0;padding-top:1.4rem;border-top:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
@@ -699,11 +701,15 @@ footer.gc-footer{display:block;background:rgba(6,8,14,0.94);border-top:1px solid
   .gcf-bottom{flex-direction:column;align-items:flex-start;gap:0.5rem;}
 }
 </style>
+<!-- 結構化資料（Organization / WebSite / FAQPage / 服務清單）
+     部署時 build-schema.js 會依 index.html 實際的常見問題與顧問服務區塊重新產生這段，
+     所以改文案不必回來手動同步。下面這份是建置沒跑到時的保底版本。 -->
+<!-- GC_SCHEMA_START --><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://worldoflandmark.com/#organization","name":"GC 跨境服務","alternateName":["GC Cross-Border Services","GC 跨境電商顧問"],"legalName":"世界之地標有限公司","taxID":"52341471","url":"https://worldoflandmark.com/","logo":{"@type":"ImageObject","url":"https://worldoflandmark.com/images/og-image.png","width":1200,"height":1200},"image":"https://worldoflandmark.com/images/og-image.png","email":"support@worldoflandmark.com","description":"GC 是一站式全球跨境拓銷服務平台，協助品牌、企業及創業團隊快速找到適合的專業服務商，涵蓋市場拓展、品牌行銷、電商營運、通路開發與數位推廣。採「統包管理＋專業服務商執行」模式，由 GC 負責專案管理與品質把關。","address":{"@type":"PostalAddress","streetAddress":"民族東路 679 之 1 號 6 樓","addressLocality":"松山區","addressRegion":"臺北市","postalCode":"105001","addressCountry":"TW"},"areaServed":[{"@type":"Place","name":"台灣"},{"@type":"Place","name":"日本"},{"@type":"Place","name":"東南亞"},{"@type":"Place","name":"北美"}],"knowsAbout":["跨境電商","海外拓銷","國際物流","品牌在地化","通路開發","市場調研","供應鏈整合","數位行銷"],"sameAs":["https://www.facebook.com/gcosc.co","https://www.instagram.com/gcosc.co","https://www.threads.com/@gcosc.co"]},{"@type":"WebSite","@id":"https://worldoflandmark.com/#website","url":"https://worldoflandmark.com/","name":"GC 跨境服務","inLanguage":"zh-Hant","publisher":{"@id":"https://worldoflandmark.com/#organization"}}]}</script><!-- GC_SCHEMA_END -->
 </head>
 <body>
 
 <nav>
-  <a href="index.html" class="nav-logo"><img src="images/logo.png" alt="GC 跨境服務" style="width:50px;height:50px;display:block;"></a>
+  <a href="index.html" class="nav-logo"><img src="images/logo.png" alt="GC 跨境服務" width="50" height="50" decoding="async" style="width:50px;height:50px;display:block;"></a>
   <ul class="nav-links">
     <li class="nav-dd" id="navAboutDd">
       <button type="button" class="nav-dd-btn" id="navAboutBtn" aria-haspopup="true" aria-expanded="false">
@@ -1072,7 +1078,7 @@ function render(){
   if(p.logoUrl){
     lw.style.cssText='background:none;border:none;padding:0;';
     lw.style.display='flex';
-    lw.innerHTML='<img src="'+p.logoUrl+'" alt="logo" style="max-height:68px;max-width:100%;width:auto;height:auto;object-fit:contain;display:block;">';
+    lw.innerHTML='<img src="'+p.logoUrl+'" alt="logo" loading="lazy" decoding="async" style="max-height:68px;max-width:100%;width:auto;height:auto;object-fit:contain;display:block;">';
   } else {
     lw.style.cssText='display:none';
     lw.innerHTML='';
@@ -1366,7 +1372,7 @@ window._gcPtnrRender=render;
 <footer class="gc-footer">
   <div class="gcf-top">
     <div class="gcf-brand">
-      <a href="index.html"><img src="images/logo.png" alt="GC 跨境服務"></a>
+      <a href="index.html"><img src="images/logo.png" alt="GC 跨境服務" width="56" height="56" loading="lazy" decoding="async"></a>
       <div class="gcf-social">
         <a href="https://www.facebook.com/gcosc.co" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.3v7A10 10 0 0022 12z"/></svg></a>
         <a href="https://www.instagram.com/gcosc.co" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3.5" y="3.5" width="17" height="17" rx="4.6"/><circle cx="12" cy="12" r="3.8"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg></a>
@@ -1374,7 +1380,7 @@ window._gcPtnrRender=render;
       </div>
     </div>
     <div class="gcf-col">
-      <h4 data-i18n="nav.about">關於 GC</h4>
+      <h2 data-i18n="nav.about">關於 GC</h2>
         <a href="#why" data-i18n="nav.why">為何選擇我們</a>
         <a href="#services" data-i18n="nav.services">顧問服務</a>
         <a href="#partners" data-i18n="nav.partners">服務商介紹</a>
@@ -1382,13 +1388,13 @@ window._gcPtnrRender=render;
         <a href="#faq" data-i18n="nav.faq">常見問題</a>
     </div>
     <div class="gcf-col">
-      <h4 data-i18n="footer.col.services">服務與資源</h4>
+      <h2 data-i18n="footer.col.services">服務與資源</h2>
         <a href="catalog.html" data-i18n="nav.catalog">商品貨盤</a>
         <a href="partner.html" data-i18n="nav.become">成為服務商</a>
         <a href="blog.html" data-i18n="nav.blog">洞察文章</a>
     </div>
     <div class="gcf-col">
-      <h4 data-i18n="footer.col.start">開始合作</h4>
+      <h2 data-i18n="footer.col.start">開始合作</h2>
         <a href="gc-form.html" data-i18n="nav.cta">立即諮詢</a>
         <a href="privacy.html" data-i18n="footer.privacy">隱私權政策</a>
     </div>

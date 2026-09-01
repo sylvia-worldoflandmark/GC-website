@@ -190,7 +190,7 @@ function replaceSlot(html, name, payload){
     const url = SITE+'/blog/'+encodeURIComponent(p.slug)+'/';
     const title = (p.meta_title || p.title || '') + ' — GC 跨境服務';
     const desc = (p.meta_description || p.summary || plain((p.content||{}).blocks).slice(0,120)).replace(/\s+/g,' ').trim();
-    const img = /^https?:\/\//i.test(String(p.cover_url||'')) ? p.cover_url : SITE+'/images/logo.png';
+    const img = /^https?:\/\//i.test(String(p.cover_url||'')) ? p.cover_url : SITE+'/images/og-image.png';
 
     const ld = {
       '@context':'https://schema.org', '@type':'BlogPosting',
@@ -199,14 +199,29 @@ function replaceSlot(html, name, payload){
       dateModified: p.last_published_at || p.published_at || undefined,
       inLanguage: 'zh-Hant',
       mainEntityOfPage: { '@type':'WebPage', '@id': url },
-      publisher: { '@type':'Organization', name:'GC 跨境服務', logo:{ '@type':'ImageObject', url: SITE+'/images/logo.png' } },
-      author: { '@type':'Organization', name:'GC 跨境服務' },
+      publisher: { '@type':'Organization', '@id': SITE+'/#organization',
+                   name:'GC 跨境服務', url: SITE+'/',
+                   logo:{ '@type':'ImageObject', url: SITE+'/images/og-image.png' } },
+      isPartOf: { '@type':'WebSite', '@id': SITE+'/#website', name:'GC 跨境服務', url: SITE+'/' },
+      wordCount: plain((p.content||{}).blocks).replace(/\s+/g,'').length || undefined,
+      author: { '@type':'Organization', '@id': SITE+'/#organization', name:'GC 跨境服務', url: SITE+'/' },
       keywords: (p.tags||[]).join(', ') || undefined,
       articleSection: ((p.category_names && p.category_names.length) ? p.category_names.join(', ') : p.category_name) || undefined
     };
 
+    // 麵包屑：讓搜尋引擎與 AI 知道這篇文章在站台裡的位置（首頁 › 洞察文章 › 本篇）
+    const crumbs = {
+      '@context':'https://schema.org', '@type':'BreadcrumbList',
+      itemListElement: [
+        { '@type':'ListItem', position:1, name:'首頁', item: SITE+'/' },
+        { '@type':'ListItem', position:2, name:'洞察文章', item: SITE+'/blog.html' },
+        { '@type':'ListItem', position:3, name: p.title || '', item: url }
+      ]
+    };
+
     const head =
       '<script type="application/ld+json">'+JSON.stringify(ld)+'</script>'
+      + '<script type="application/ld+json">'+JSON.stringify(crumbs)+'</script>'
       + '<script>window.GC_POST_BOOTSTRAP='+JSON.stringify(p).replace(/</g,'\\u003c')+';</script>';
 
     // 靜態內文：讓不執行 JS 的爬蟲也讀得到全文；前端載入後會整段換掉
@@ -218,6 +233,18 @@ function replaceSlot(html, name, payload){
       + '</div>';
 
     let h = tpl;
+
+    /* ⚠ 這一份輸出的實體位置是 blog/<slug>/index.html（在子目錄裡），
+       但範本的導覽列／頁尾用的是相對連結（index.html、catalog.html…）。
+       執行期有 <base> 幫忙校正，然而 Netlify 的 Pretty URLs 後處理是在
+       「部署時、以檔案實際位置」重新解析相對連結的，看不到 <base>，
+       於是 href="index.html" 會被改寫成這篇文章自己的網址
+       → 點左上角 logo（與「關於 GC」五個錨點）等於原地重新整理。
+       產生靜態頁時一律換成根目錄絕對路徑，就不受檔案位置與後處理影響；
+       blog-post.html 本身仍維持相對連結（後台預覽／本機雙擊開啟才會對）。 */
+    h = h.replace(/(href|src)="(index|catalog|partner|blog|gc-form|privacy)\.html(#[^"]*)?"/g,
+                  (m, at, f, hash) => at + '="/' + f + '.html' + (hash || '') + '"');
+    h = h.replace(/(href|src)="(images\/[^"]+|i18n\.js)"/g, (m, at, f) => at + '="/' + f + '"');
     h = replaceSlot(h, 'GC_BLOGPOST', head);
     h = h.replace(/<title>[\s\S]*?<\/title>/, '<title>'+esc(title)+'</title>');
     h = h.replace(/(<meta name="description" content=")[^"]*(")/, '$1'+esc(desc)+'$2');
@@ -225,6 +252,10 @@ function replaceSlot(html, name, payload){
     h = h.replace(/(<meta property="og:description" content=")[^"]*(")/, '$1'+esc(desc)+'$2');
     h = h.replace(/(<meta property="og:url" content=")[^"]*(")/, '$1'+esc(url)+'$2');
     h = h.replace(/(<meta property="og:image" content=")[^"]*(")/, '$1'+esc(img)+'$2');
+    // 文章有自己的封面時，範本上那組 1200×1200 的尺寸標註就不成立了，拿掉
+    if(img !== SITE+'/images/og-image.png'){
+      h = h.replace(/\n<meta property="og:image:width"[^>]*>\n<meta property="og:image:height"[^>]*>/, '');
+    }
     h = h.replace(/(<meta name="twitter:title" content=")[^"]*(")/, '$1'+esc(p.meta_title||p.title||'')+'$2');
     h = h.replace(/(<meta name="twitter:description" content=")[^"]*(")/, '$1'+esc(desc)+'$2');
     h = h.replace(/<link rel="canonical" href="[^"]*">/,

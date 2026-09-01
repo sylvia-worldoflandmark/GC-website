@@ -15,7 +15,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="填寫 GC 需求診斷表，讓我們精準了解您的品牌現況、目標市場與拓銷方向，3 個工作天內安排顧問線上會議。">
 <meta name="keywords" content="跨境服務,需求診斷,品牌出海,GC顧問,市場拓銷">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <meta name="author" content="GC 跨境服務">
 <meta property="og:type" content="website">
 <meta property="og:title" content="GC 跨境服務需求診斷表">
@@ -35,7 +35,9 @@
 <link rel="alternate" hreflang="x-default" href="https://worldoflandmark.com/gc-form.html">
 <meta property="og:url" content="https://worldoflandmark.com/gc-form.html">
 <title>GC 跨境服務需求診斷表 — 填寫需求開始合作</title>
-<meta property="og:image" content="https://worldoflandmark.com/images/logo.png">
+<meta property="og:image" content="https://worldoflandmark.com/images/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="1200">
 <meta property="og:image:type" content="image/png">
 <link rel="icon" type="image/png" sizes="32x32" href="images/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -152,6 +154,13 @@ nav {
   font-size: 0.7rem; letter-spacing: 0.14em; color: var(--blue-electric);
   text-transform: uppercase; margin-bottom: 0.6rem; font-weight: 500;
 }
+/* 只給螢幕閱讀器看的文字：整頁唯一的 h1。
+   六個步驟各有標題，但同一時間只顯示一個，所以步驟標題是 h2，
+   頁面層級的 h1 另外放一個視覺上隱藏的。 */
+/* 選項晶片用鍵盤操作時要看得見焦點在哪 */
+.chip:focus-visible, .privacy-check:focus-visible { outline:2px solid #1460A8; outline-offset:2px; }
+.sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
 .step-title { font-family: 'Syne', sans-serif; font-size: 1.7rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
 .step-desc { font-size: 0.88rem; color: var(--white-dim); line-height: 1.75; }
 
@@ -435,7 +444,7 @@ select { appearance: none; -webkit-appearance: none; background-image: url("data
 
 /* SUMMARY */
 .summary-block { background: #FAFAFA; border: 1px solid rgba(0,0,0,0.1); border-radius: 10px; padding: 1.8rem; margin-bottom: 1.5rem; }
-.summary-block h4 { font-family: 'Syne', sans-serif; font-size: 0.85rem; font-weight: 700; color: var(--accent); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 1rem; }
+.summary-block h3 { font-family: 'Syne', sans-serif; font-size: 0.85rem; font-weight: 700; color: var(--accent); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 1rem; }
 .summary-row { display: flex; gap: 1rem; padding: 0.55rem 0; border-bottom: 1px solid rgba(0,0,0,0.08); font-size: 0.85rem; }
 .summary-row:last-child { border: none; }
 .summary-key { color: rgba(30,41,59,0.55); flex-shrink: 0; width: 140px; }
@@ -576,12 +585,13 @@ html[lang="ja"] body { font-family: 'M PLUS 1p', 'Noto Sans TC', sans-serif; }
 html[lang="ja"] h1, html[lang="ja"] h2, html[lang="ja"] h3,
 html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-serif; }
 </style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://worldoflandmark.com/"},{"@type":"ListItem","position":2,"name":"需求診斷表","item":"https://worldoflandmark.com/gc-form.html"}]}</script>
 </head>
 <body>
 
 
 <nav>
-  <a href="index.html" class="nav-logo"><img src="images/logo.png" alt="GC 跨境服務" style="width:50px;height:50px;"></a>
+  <a href="index.html" class="nav-logo"><img src="images/logo.png" alt="GC 跨境服務" width="50" height="50" decoding="async" style="width:50px;height:50px;"></a>
   <a href="index.html" class="nav-back" style="margin-left:auto;"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg><span data-i18n="form.nav.back">返回官網</span></a>
   <div id="gcLangSwitcher" class="gc-lang-switcher" style="margin-left:16px;">
     <button id="gcLangBtn" class="gc-lang-btn" onclick="gcToggleLangMenu()">
@@ -639,18 +649,19 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
 
   <!-- MAIN -->
   <main class="main-content">
+    <h1 class="sr-only" data-i18n="form.page.h1">GC 跨境服務需求診斷表</h1>
     <div class="progress-bar-wrap"><div class="progress-bar" id="progressBar" style="width:16.6%"></div></div>
 
     <!-- STEP 1 -->
     <div class="step-page active" id="step-1">
       <div class="step-header">
         <div class="step-badge">Step 1 / 6</div>
-        <h1 class="step-title" data-i18n="form.step1.title">公司與品牌資料</h1>
+        <h2 class="step-title" data-i18n="form.step1.title">公司與品牌資料</h2>
         <p class="step-desc" data-i18n="form.step1.desc">請填寫基本的公司聯絡與品牌資訊，以便 GC 顧問為您提供精準的服務評估。</p>
       </div>
 
       <div class="field-group">
-        <label data-i18n="form.lbl.referrer">介紹人（選填）</label>
+        <label data-i18n="form.lbl.referrer" for="ss_referrer_input">介紹人（選填）</label>
         <!-- hidden real input for form submission -->
         <input type="hidden" id="f_referrer" value="">
         <div class="searchable-select" id="ss_referrer">
@@ -678,21 +689,21 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
         <input type="text" id="f_referral" name="referral_code" tabindex="-1" autocomplete="off">
       </div>
       <div class="field-group">
-        <label><span data-i18n="form.lbl.company">公司名稱</span><span class="required-star">*</span></label>
+        <label for="f_company"><span data-i18n="form.lbl.company">公司名稱</span><span class="required-star">*</span></label>
         <input type="text" id="f_company" maxlength="100" data-i18n-ph="form.ph.company" placeholder="請輸入公司名稱">
         <div class="error-msg" data-i18n="form.err.company" id="e_company">請填寫公司名稱</div>
       </div>
       <div class="field-group">
-        <label><span data-i18n="form.lbl.contact">聯絡人姓名</span><span class="required-star">*</span></label>
+        <label for="f_contact"><span data-i18n="form.lbl.contact">聯絡人姓名</span><span class="required-star">*</span></label>
         <input type="text" id="f_contact" maxlength="50" data-i18n-ph="form.ph.contact" placeholder="請輸入聯絡人姓名">
         <div class="error-msg" id="e_contact" data-i18n="form.err.contact">請填寫聯絡人姓名</div>
       </div>
       <div class="field-group">
-        <label data-i18n="form.lbl.jobtitle">職稱</label>
+        <label data-i18n="form.lbl.jobtitle" for="f_title">職稱</label>
         <input type="text" id="f_title" maxlength="50" data-i18n-ph="form.ph.jobtitle" placeholder="例如：品牌總監、業務經理">
       </div>
       <div class="field-group">
-        <label><span data-i18n="form.lbl.email">電子信箱</span><span class="required-star">*</span></label>
+        <label for="f_email"><span data-i18n="form.lbl.email">電子信箱</span><span class="required-star">*</span></label>
         <input type="email" id="f_email" placeholder="example@company.com">
         <div class="error-msg" id="e_email" data-i18n="form.err.email">請填寫有效的電子信箱</div>
       </div>
@@ -707,7 +718,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
         </div>
         <div class="conditional" id="cond_other_contact">
           <div class="field-group" style="margin:0">
-            <label><span data-i18n="form.lbl.contact_acc">聯絡帳號 / 號碼</span><span class="required-star">*</span></label>
+            <label for="f_other_contact_val"><span data-i18n="form.lbl.contact_acc">聯絡帳號 / 號碼</span><span class="required-star">*</span></label>
             <input type="text" id="f_other_contact_val" data-i18n-ph="form.ph.contact_acc" placeholder="請輸入帳號或號碼">
             <div class="error-msg" id="e_other_contact_val" data-i18n="form.err.other_contact">請填寫帳號或號碼</div>
           </div>
@@ -728,7 +739,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
         <div class="error-msg" id="e_country" data-i18n="form.err.country">請選擇公司登記地</div>
         <div class="conditional" id="cond_country">
           <div class="field-group" style="margin:0">
-            <label><span data-i18n="form.lbl.reg_other">請說明登記地</span><span class="required-star">*</span></label>
+            <label for="f_country_other"><span data-i18n="form.lbl.reg_other">請說明登記地</span><span class="required-star">*</span></label>
             <input type="text" id="f_country_other" data-i18n-ph="form.ph.reg_other" placeholder="請填寫公司登記地">
             <div class="error-msg" id="e_country_other" data-i18n="form.err.country_other">請填寫登記地說明</div>
           </div>
@@ -736,9 +747,9 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
       </div>
 
       <div class="field-group">
-        <label><span data-i18n="form.lbl.brands">品牌名稱（最多 5 個）</span><span class="required-star">*</span></label>
+        <label for="f_brand1"><span data-i18n="form.lbl.brands">品牌名稱（最多 5 個）</span><span class="required-star">*</span></label>
         <div class="brand-list" id="brandList">
-          <div class="brand-row"><input type="text" class="brand-input" data-i18n-ph="form.ph.brand1" placeholder="品牌名稱 1" maxlength="100"></div>
+          <div class="brand-row"><input type="text" id="f_brand1" class="brand-input" data-i18n-ph="form.ph.brand1" placeholder="品牌名稱 1" maxlength="100"></div>
         </div>
         <button type="button" class="btn-add-brand" id="addBrandBtn" onclick="addBrand()">
           <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>新增品牌
@@ -759,7 +770,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
         </div>
         <div class="conditional" id="cond_source_other">
           <div class="field-group" style="margin:0">
-            <label data-i18n="form.lbl.source_other">請說明得知管道</label>
+            <label data-i18n="form.lbl.source_other" for="f_source_other">請說明得知管道</label>
             <input type="text" id="f_source_other" data-i18n-ph="form.ph.source_other" placeholder="請簡述您得知 GC 服務的管道">
           </div>
         </div>
@@ -775,7 +786,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
     <div class="step-page" id="step-2">
       <div class="step-header">
         <div class="step-badge">Step 2 / 6</div>
-        <h1 class="step-title" data-i18n="form.step2.title">產品類別與商品特性</h1>
+        <h2 class="step-title" data-i18n="form.step2.title">產品類別與商品特性</h2>
         <p class="step-desc" data-i18n="form.step2.desc">選擇您的產品類別、商品特性標籤與預計出口國，協助我們了解您的商品條件。</p>
       </div>
 
@@ -816,7 +827,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
         <div class="error-msg" id="e_cat" data-i18n="form.err.cat">請至少選擇一個產品類別</div>
         <div class="conditional" id="cond_cat_other">
           <div class="field-group" style="margin:0">
-            <label><span data-i18n="form.lbl.cat_other">其他類別說明</span><span class="required-star">*</span></label>
+            <label for="f_cat_other"><span data-i18n="form.lbl.cat_other">其他類別說明</span><span class="required-star">*</span></label>
             <input type="text" id="f_cat_other" data-i18n-ph="form.ph.cat_other" placeholder="請說明產品類別">
             <div class="error-msg" id="e_cat_other" data-i18n="form.err.cat_other">請填寫類別說明</div>
           </div>
@@ -857,7 +868,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
         <div class="error-msg" id="e_export" data-i18n="form.err.export">請至少選擇一個出口國</div>
         <div class="conditional" id="cond_export_other">
           <div class="field-group" style="margin:0">
-            <label>其他出口國說明<span class="required-star">*</span></label>
+            <label for="f_export_other">其他出口國說明<span class="required-star">*</span></label>
             <input type="text" id="f_export_other" data-i18n-ph="form.ph.export_other" placeholder="請填寫出口國">
             <div class="error-msg" id="e_export_other" data-i18n="form.err.export_other">請填寫出口國說明</div>
           </div>
@@ -865,7 +876,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
       </div>
 
       <div class="field-group">
-        <label data-i18n="form.lbl.product_desc">產品整體說明</label>
+        <label data-i18n="form.lbl.product_desc" for="f_product_desc">產品整體說明</label>
         <textarea id="f_product_desc" maxlength="5000" data-i18n-ph="form.ph.product_desc" placeholder="簡要描述您的產品特色、目標客群或其他需要補充的資訊（最多 5,000 字）" rows="4"></textarea>
       </div>
 
@@ -879,7 +890,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
     <div class="step-page" id="step-3">
       <div class="step-header">
         <div class="step-badge">Step 3 / 6</div>
-        <h1 class="step-title" data-i18n="form.step3.title">現況評估</h1>
+        <h2 class="step-title" data-i18n="form.step3.title">現況評估</h2>
         <p class="step-desc" data-i18n="form.step3.desc">了解您目前的外銷經驗、產品 SKU 規模與現有銷售定價。</p>
       </div>
 
@@ -892,12 +903,12 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
         <div class="error-msg" id="e_export_exp" data-i18n="form.err.export_exp">請選擇是否有外銷經驗</div>
         <div class="conditional" id="cond_export_exp">
           <div class="field-group">
-            <label><span data-i18n="form.lbl.exp_countries">過去主要外銷國家</span><span class="required-star">*</span></label>
+            <label for="f_exp_countries"><span data-i18n="form.lbl.exp_countries">過去主要外銷國家</span><span class="required-star">*</span></label>
             <input type="text" id="f_exp_countries" maxlength="500" data-i18n-ph="form.ph.exp_countries" placeholder="例如：日本、新加坡、馬來西亞">
             <div class="error-msg" id="e_exp_countries" data-i18n="form.err.exp_countries">請填寫外銷國家</div>
           </div>
           <div class="field-group">
-            <label><span data-i18n="form.lbl.exp_products">過去外銷主力產品</span><span class="required-star">*</span></label>
+            <label for="f_exp_products"><span data-i18n="form.lbl.exp_products">過去外銷主力產品</span><span class="required-star">*</span></label>
             <input type="text" id="f_exp_products" maxlength="500" data-i18n-ph="form.ph.exp_products" placeholder="請描述主力出口的產品">
             <div class="error-msg" id="e_exp_products" data-i18n="form.err.exp_products">請填寫主力產品</div>
           </div>
@@ -960,7 +971,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
     <div class="step-page" id="step-4">
       <div class="step-header">
         <div class="step-badge">Step 4 / 6</div>
-        <h1 class="step-title" data-i18n="form.step4.title">目標市場與銷售條件</h1>
+        <h2 class="step-title" data-i18n="form.step4.title">目標市場與銷售條件</h2>
         <p class="step-desc" data-i18n="form.step4.desc">選擇您希望進入的目標市場，並提供預算與營收目標相關資訊。</p>
       </div>
 
@@ -1007,7 +1018,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
           </div>
           <div class="conditional" id="cond_market_other">
             <div class="field-group" style="margin:0;margin-top:0.8rem">
-              <label><span data-i18n="form.lbl.market_other">其他地區說明</span><span class="required-star">*</span></label>
+              <label for="f_market_other"><span data-i18n="form.lbl.market_other">其他地區說明</span><span class="required-star">*</span></label>
               <input type="text" id="f_market_other" data-i18n-ph="form.ph.market_other" placeholder="請填寫目標地區">
               <div class="error-msg" id="e_market_other" data-i18n="form.err.market_other">請填寫目標地區說明</div>
             </div>
@@ -1095,7 +1106,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
     <div class="step-page" id="step-5">
       <div class="step-header">
         <div class="step-badge">Step 5 / 6</div>
-        <h1 class="step-title" data-i18n="form.step5.title">拓銷方式與進階問題</h1>
+        <h2 class="step-title" data-i18n="form.step5.title">拓銷方式與進階問題</h2>
         <p class="step-desc" data-i18n="form.step5.desc">選擇您希望的拓銷方式，系統將顯示對應的進階問題。</p>
       </div>
 
@@ -1144,7 +1155,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
           <div class="error-msg" id="e_overseas_exp" data-i18n="form.err.overseas_exp">請選擇</div>
           <div class="conditional" id="cond_overseas_exp">
             <div class="field-group" style="margin:0">
-              <label><span data-i18n="form.lbl.overseas_ctry">參展國家</span><span class="required-star">*</span></label>
+              <label for="f_overseas_countries"><span data-i18n="form.lbl.overseas_ctry">參展國家</span><span class="required-star">*</span></label>
               <input type="text" id="f_overseas_countries" data-i18n-ph="form.ph.overseas_ctry" placeholder="例如：日本、泰國">
               <div class="error-msg" id="e_overseas_countries" data-i18n="form.err.overseas_ctry">請填寫參展國家</div>
             </div>
@@ -1172,7 +1183,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
           <div class="error-msg" id="e_ecom_exp" data-i18n="form.err.ecom_exp">請選擇</div>
           <div class="conditional" id="cond_ecom_exp">
             <div class="field-group" style="margin:0">
-              <label><span data-i18n="form.lbl.ecom_plats">曾經營的電商平台</span><span class="required-star">*</span></label>
+              <label for="f_ecom_platforms"><span data-i18n="form.lbl.ecom_plats">曾經營的電商平台</span><span class="required-star">*</span></label>
               <input type="text" id="f_ecom_platforms" data-i18n-ph="form.ph.ecom_plats" placeholder="例如：蝦皮、Lazada、Amazon">
               <div class="error-msg" id="e_ecom_platforms" data-i18n="form.err.ecom_platforms">請填寫電商平台</div>
             </div>
@@ -1208,12 +1219,12 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
           <div class="error-msg" id="e_retail_exp" data-i18n="form.err.retail_exp">請選擇</div>
           <div class="conditional" id="cond_retail_exp">
             <div class="field-group">
-              <label><span data-i18n="form.lbl.retail_ctry">曾進入的國家</span><span class="required-star">*</span></label>
+              <label for="f_retail_countries"><span data-i18n="form.lbl.retail_ctry">曾進入的國家</span><span class="required-star">*</span></label>
               <input type="text" id="f_retail_countries" data-i18n-ph="form.ph.retail_ctry" placeholder="例如：日本、新加坡">
               <div class="error-msg" id="e_retail_countries" data-i18n="form.err.retail_countries">請填寫</div>
             </div>
             <div class="field-group" style="margin:0">
-              <label><span data-i18n="form.lbl.retail_chan">曾合作的通路</span><span class="required-star">*</span></label>
+              <label for="f_retail_channels"><span data-i18n="form.lbl.retail_chan">曾合作的通路</span><span class="required-star">*</span></label>
               <input type="text" id="f_retail_channels" data-i18n-ph="form.ph.retail_chan" placeholder="例如：唐吉訶德、屈臣氏、LOFT">
               <div class="error-msg" id="e_retail_channels" data-i18n="form.err.retail_channels">請填寫</div>
             </div>
@@ -1236,7 +1247,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
           <div class="error-msg" id="e_consign" data-i18n="form.err.consign">請選擇</div>
           <div class="conditional" id="cond_consign">
             <div class="field-group" style="margin:0">
-              <label><span data-i18n="form.lbl.consign_qty">可提供寄賣數量</span><span class="required-star">*</span></label>
+              <label for="f_consign_qty"><span data-i18n="form.lbl.consign_qty">可提供寄賣數量</span><span class="required-star">*</span></label>
               <input type="text" id="f_consign_qty" data-i18n-ph="form.ph.consign_qty" placeholder="例如：每款 50 件">
               <div class="error-msg" id="e_consign_qty" data-i18n="form.err.consign_qty">請填寫寄賣數量</div>
             </div>
@@ -1247,7 +1258,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
       <hr class="field-divider">
 
       <div class="field-group">
-        <label data-i18n="form.lbl.other_notes">其他相關困難點或補充說明</label>
+        <label data-i18n="form.lbl.other_notes" for="f_other_notes">其他相關困難點或補充說明</label>
         <textarea id="f_other_notes" maxlength="5000" data-i18n-ph="form.ph.other_notes" placeholder="請描述目前面臨的困難或其他需要補充的資訊（最多 5,000 字）" rows="4"></textarea>
       </div>
 
@@ -1261,13 +1272,13 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
     <div class="step-page" id="step-6">
       <div class="step-header">
         <div class="step-badge">Step 6 / 6</div>
-        <h1 class="step-title" data-i18n="form.step6.title">診斷結果與送出確認</h1>
+        <h2 class="step-title" data-i18n="form.step6.title">診斷結果與送出確認</h2>
         <p class="step-desc" data-i18n="form.step6.desc">請確認您填寫的資料，確認無誤後勾選隱私同意並提交。</p>
       </div>
 
       <!-- STEP 1 -->
       <div class="summary-block">
-        <h4 data-i18n="form.sum.basic">基本資料</h4>
+        <h3 data-i18n="form.sum.basic">基本資料</h3>
         <div class="summary-row"><div class="summary-key" data-i18n="form.sum.k.referrer">介紹方</div><div class="summary-val" id="sum_referrer">—</div></div>
         <div class="summary-row"><div class="summary-key" data-i18n="form.sum.k.company">公司名稱</div><div class="summary-val" id="sum_company">—</div></div>
         <div class="summary-row"><div class="summary-key" data-i18n="form.sum.k.contact">聯絡人</div><div class="summary-val" id="sum_contact">—</div></div>
@@ -1281,7 +1292,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
 
       <!-- STEP 2 -->
       <div class="summary-block">
-        <h4 data-i18n="form.sum.product">產品類別與商品特性</h4>
+        <h3 data-i18n="form.sum.product">產品類別與商品特性</h3>
         <div class="summary-row"><div class="summary-key" data-i18n="form.sum.k.cats">產品類別</div><div class="summary-val" id="sum_cats">—</div></div>
         <div class="summary-row"><div class="summary-key" data-i18n="form.sum.k.cat_other">類別補充說明</div><div class="summary-val" id="sum_cat_other">—</div></div>
         <div class="summary-row"><div class="summary-key" data-i18n="form.sum.k.tags">商品特性</div><div class="summary-val" id="sum_tags">—</div></div>
@@ -1291,7 +1302,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
 
       <!-- STEP 3 -->
       <div class="summary-block">
-        <h4 data-i18n="form.sum.current">現況評估</h4>
+        <h3 data-i18n="form.sum.current">現況評估</h3>
         <div class="summary-row"><div class="summary-key" data-i18n="form.sum.k.exp">外銷經驗</div><div class="summary-val" id="sum_exp">—</div></div>
         <div class="summary-row"><div class="summary-key" data-i18n="form.sum.k.exp_countries">過去外銷國家</div><div class="summary-val" id="sum_exp_countries">—</div></div>
         <div class="summary-row"><div class="summary-key" data-i18n="form.sum.k.exp_products">過去外銷主力產品</div><div class="summary-val" id="sum_exp_products">—</div></div>
@@ -1303,7 +1314,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
 
       <!-- STEP 4 -->
       <div class="summary-block">
-        <h4 data-i18n="form.sum.market">目標市場與銷售條件</h4>
+        <h3 data-i18n="form.sum.market">目標市場與銷售條件</h3>
         <div class="summary-row"><div class="summary-key" data-i18n="form.sum.k.markets">目標市場</div><div class="summary-val" id="sum_markets">—</div></div>
         <div class="summary-row"><div class="summary-key" data-i18n="form.sum.k.distributor">已有經銷商 / 進口商</div><div class="summary-val" id="sum_distributor">—</div></div>
         <div class="summary-row"><div class="summary-key" data-i18n="form.sum.k.opex">每月可負擔營運成本</div><div class="summary-val" id="sum_opex">—</div></div>
@@ -1315,7 +1326,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
 
       <!-- STEP 5 -->
       <div class="summary-block">
-        <h4 data-i18n="form.sum.channels">拓銷方式與進階問題</h4>
+        <h3 data-i18n="form.sum.channels">拓銷方式與進階問題</h3>
         <div class="summary-row"><div class="summary-key" data-i18n="form.sum.k.channels">希望拓銷方式</div><div class="summary-val" id="sum_channels">—</div></div>
         <div class="summary-row" id="sum_row_live_exp"><div class="summary-key" data-i18n="form.sum.k.live_exp">直播帶貨經驗</div><div class="summary-val" id="sum_live_exp">—</div></div>
         <div class="summary-row" id="sum_row_live_rep"><div class="summary-key" data-i18n="form.sum.k.live_rep">廠商代表（直播）</div><div class="summary-val" id="sum_live_rep">—</div></div>
@@ -1351,7 +1362,7 @@ html[lang="ja"] h4, html[lang="ja"] h5 { font-family: 'M PLUS 1p', 'Syne', sans-
     <div id="step-success">
       <div class="success-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
       <div class="step-badge" data-i18n="form.done.badge">提交成功</div>
-      <h1 class="step-title" style="margin-bottom:0.3rem" data-i18n="form.done.title">診斷表單已送出</h1>
+      <h2 class="step-title" style="margin-bottom:0.3rem" data-i18n="form.done.title">診斷表單已送出</h2>
       <p style="font-size:0.9rem;color:var(--white-dim);line-height:1.8;max-width:520px;margin-bottom:0.5rem" data-i18n="form.done.desc">感謝您提交 GC 跨境服務需求診斷表。GC 顧問團隊將於 3 個工作天內透過電子信箱或您提供的聯絡方式與您聯繫。</p>
       <ul class="timeline-list">
         <li><div class="tl-num">1</div><div data-i18n="form.done.step1">GC 團隊審閱診斷資料</div></li>
@@ -1957,6 +1968,65 @@ document.addEventListener('DOMContentLoaded', function(){
       items=Array.from(list.querySelectorAll('li:not(.ss-placeholder)'));
     }catch(e){ console.warn('referrers load error', e); }
   })();
+})();
+</script>
+<script>
+/* ═══ 選項晶片的鍵盤與螢幕閱讀器支援 ══════════════════════════════
+   .chip 原本是純 <div> + onclick：滑鼠點得到，但鍵盤 Tab 不到、
+   螢幕閱讀器也不知道那是一組選項、更不知道哪個被選了。
+   這裡完全不動 HTML，載入後統一補上 role / tabindex / aria-checked，
+   並讓 Enter 與空白鍵等同點擊；aria-checked 用 MutationObserver 跟著
+   .selected class 走，所以之後不管誰改了選取邏輯都不會失準。        */
+(function(){
+  function labelOf(g){
+    var p = g.previousElementSibling;
+    while(p){ if(p.tagName === 'LABEL') return p; p = p.previousElementSibling; }
+    var par = g.parentElement;
+    if(par){
+      p = par.previousElementSibling;
+      while(p){ if(p.tagName === 'LABEL') return p; p = p.previousElementSibling; }
+      var own = par.querySelector(':scope > label');
+      if(own) return own;
+    }
+    return null;
+  }
+  var n = 0;
+  document.querySelectorAll('.radio-group, .checkbox-group, .tag-group, .cat-grid').forEach(function(g){
+    var single = g.classList.contains('radio-group');       // 單選才是 radiogroup
+    g.setAttribute('role', single ? 'radiogroup' : 'group');
+    var lb = labelOf(g);
+    if(lb){ if(!lb.id) lb.id = 'gclbl-' + (++n); g.setAttribute('aria-labelledby', lb.id); }
+    g.querySelectorAll('.chip').forEach(function(c){
+      c.setAttribute('role', single ? 'radio' : 'checkbox');
+      c.setAttribute('tabindex', '0');
+      c.setAttribute('aria-checked', c.classList.contains('selected') ? 'true' : 'false');
+    });
+  });
+  var pc = document.getElementById('privacyCheck');
+  if(pc) pc.setAttribute('tabindex', '0');
+
+  document.addEventListener('keydown', function(e){
+    if(e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Spacebar') return;
+    var t = e.target;
+    if(!t || !t.closest) return;
+    var c = t.closest('.chip');
+    if(c){ e.preventDefault(); c.click(); return; }
+    // 隱私權同意的自訂勾選框：裡面有真的 checkbox，交給它自己處理，不重複觸發
+    if(t.id === 'privacyCheck'){ e.preventDefault(); t.click(); }
+  });
+
+  if(window.MutationObserver){
+    var mo = new MutationObserver(function(ms){
+      ms.forEach(function(m){
+        var t = m.target;
+        if(t.classList && t.classList.contains('chip') && t.hasAttribute('aria-checked'))
+          t.setAttribute('aria-checked', t.classList.contains('selected') ? 'true' : 'false');
+      });
+    });
+    document.querySelectorAll('.step-page').forEach(function(sp){
+      mo.observe(sp, { attributes:true, attributeFilter:['class'], subtree:true });
+    });
+  }
 })();
 </script>
 <script src="i18n.js"></script>

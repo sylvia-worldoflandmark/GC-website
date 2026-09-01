@@ -60,8 +60,16 @@ const GC_I18N = {
     'page.title.partner': '成為 GC 服務商夥伴 — 共同拓展全球市場',
     'page.title.index':   'GC 跨境服務 — 全球市場拓銷顧問平台',
     'page.title.form':    'GC 跨境服務需求診斷表 — 填寫需求開始合作',
+    'form.page.h1':       'GC 跨境服務需求診斷表',
     'page.title.blog':    '洞察文章 — GC 跨境服務',
     'page.title.blogpost':'洞察文章 — GC 跨境服務',
+    /* 404 找不到頁面 */
+    'page.title.404':     '找不到這個頁面 — GC 跨境服務',
+    'nf.title':           '這個頁面不存在',
+    'nf.desc':            '網址可能打錯了，或是這個頁面已經搬家。下面幾個入口可以帶你回到正軌。',
+    'nf.home':            '回到首頁',
+    'nf.blog':            '看看洞察文章',
+    'nf.contact':         '直接聯絡我們',
 
     // 導覽列
     'nav.about':   '關於 GC',
@@ -550,8 +558,16 @@ const GC_I18N = {
     'page.title.partner': 'Become a GC Partner — Expanding Global Markets Together',
     'page.title.index':   'GC Cross-Border Services — Global Market Expansion Consulting Platform',
     'page.title.form':    'GC Cross-Border Service Diagnostic Form — Start Your Partnership',
+    'form.page.h1':       'GC Cross-Border Service Diagnostic Form',
     'page.title.blog':    'Insights — GC Cross-Border Services',
     'page.title.blogpost':'Insights — GC Cross-Border Services',
+    /* 404 */
+    'page.title.404':     'Page Not Found — GC Cross-Border Services',
+    'nf.title':           'This page doesn\u2019t exist',
+    'nf.desc':            'The address may be mistyped, or the page has moved. Here are a few ways back.',
+    'nf.home':            'Back to home',
+    'nf.blog':            'Read our insights',
+    'nf.contact':         'Contact us',
 
     'nav.about':   'About GC',
     'nav.why':     'Why GC',
@@ -1038,8 +1054,16 @@ const GC_I18N = {
     'page.title.partner': 'GCサービスパートナーになる — 共にグローバル市場を拓く',
     'page.title.index':   'GCクロスボーダーサービス — グローバル市場開拓コンサルティングプラットフォーム',
     'page.title.form':    'GCクロスボーダーサービス診断フォーム — ニーズを記入して協業を始める',
+    'form.page.h1':       'GCクロスボーダーサービス診断フォーム',
     'page.title.blog':    'インサイト記事 — GCクロスボーダーサービス',
     'page.title.blogpost':'インサイト記事 — GCクロスボーダーサービス',
+    /* 404 */
+    'page.title.404':     'ページが見つかりません — GCクロスボーダーサービス',
+    'nf.title':           'このページは存在しません',
+    'nf.desc':            'URLが間違っているか、ページが移動した可能性があります。以下からお戻りください。',
+    'nf.home':            'ホームへ戻る',
+    'nf.blog':            'インサイト記事を見る',
+    'nf.contact':         'お問い合わせ',
 
     'nav.about':   'GCについて',
     'nav.why':     'なぜGCか',

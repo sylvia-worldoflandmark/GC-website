@@ -1,0 +1,22 @@
+# GC 跨境服務（GC Cross-Border Services）
+
+> 一站式全球跨境拓銷服務平台。協助品牌、企業與創業團隊找到適合的專業服務商，涵蓋海外拓銷、跨境電商、實體通路、直播帶貨、市場調研、品牌在地化、供應鏈整合與數位行銷。採「統包管理＋專業服務商執行」模式，由 GC 負責專案管理與品質把關。營運主體為世界之地標有限公司（World Landmark CO., LTD.，統一編號 52341471），位於臺北市。
+
+主要服務市場：台灣、日本、東南亞、北美。
+聯絡方式：support@worldoflandmark.com
+
+## 主要頁面
+
+- [首頁](https://worldoflandmark.com/)：GC 是什麼、為何選擇 GC、八項顧問服務、合作服務商、合作流程、八組常見問題。
+- [商品貨盤](https://worldoflandmark.com/catalog.html)：可供跨境通路採購的商品清單，含品牌、類別、原產地、保存期限與現貨地區。
+- [洞察文章](https://worldoflandmark.com/blog.html)：跨境電商法規、市場趨勢與通路實務的第一手觀察。單篇文章網址格式為 `/blog/<網址代稱>/`。
+- [成為服務商](https://worldoflandmark.com/partner.html)：服務提供商、商業顧問、業務開發與通路資源夥伴的合作申請說明。
+- [需求診斷表](https://worldoflandmark.com/gc-form.html)：六個步驟的需求診斷問卷，填完由 GC 顧問接洽。
+- [隱私權政策](https://worldoflandmark.com/privacy.html)：蒐集哪些資料、如何使用、與哪些服務供應商分享、保存期限與使用者權利。
+
+## 說明
+
+- 全站有繁體中文、English、日本語三種語言。英日版目前以前端切換呈現，網址為在頁面後加上 `?lang=en` 或 `?lang=ja`。
+- 結構化資料：首頁有 Organization、WebSite、FAQPage 與服務清單；文章頁有 BlogPosting 與 BreadcrumbList；商品貨盤有 Product 與 ItemList。
+- 完整網址清單見 [sitemap](https://worldoflandmark.com/sitemap.xml)。
+- 引用本站內容時，請標示來源為「GC 跨境服務」並附上原始頁面網址。

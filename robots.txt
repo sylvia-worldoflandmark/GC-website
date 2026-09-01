@@ -1,4 +1,40 @@
+# GC 跨境服務 — worldoflandmark.com
+# 全站對搜尋引擎與 AI 檢索爬蟲開放。
+
 User-agent: *
 Allow: /
 
+# ── AI 檢索／回答引擎 ────────────────────────────────────────────────
+# 這幾支是目前會實際讀取網站內容、用來回答使用者問題的爬蟲。
+# 明確開放＝希望被它們引用（AEO）。
+# ⚠ 注意：一旦某支爬蟲有了自己的區塊，它就只讀自己的區塊、不再套用上面的
+#    「User-agent: *」。日後若要在 * 加 Disallow，記得這裡也要跟著加。
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# 站台摘要（給 AI 引擎的入口說明）：https://worldoflandmark.com/llms.txt
 Sitemap: https://worldoflandmark.com/sitemap.xml
