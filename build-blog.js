@@ -42,6 +42,7 @@ function plain(blocks){
     if(b.type === 'paragraph') return String(b.html||'').replace(/<[^>]*>/g,'');
     if(b.type === 'quote')     return b.text || '';
     if(b.type === 'list')      return (b.items||[]).map(x=>String(x).replace(/<[^>]*>/g,'')).join('、');
+    if(b.type === 'todo')      return (b.items||[]).map(x=>String((x&&x.html!=null)?x.html:x).replace(/<[^>]*>/g,'')).join('、');   // 舊資料可能是 {html} 物件
     if(b.type === 'callout')   return [String(b.title||'').replace(/<[^>]*>/g,''), plain(b.blocks)].filter(Boolean).join('\n');
     return '';
   }).filter(Boolean).join('\n\n');
@@ -81,17 +82,26 @@ function blockHtml(b){
       const items = (b.items||[]).map(x=>'<li>'+inline(x)+'</li>').join('');
       return items ? '<'+t+'>'+items+'</'+t+'>' : '';
     }
+    case 'todo': {
+      const items = (b.items||[]).map(x=>{
+        const h = (x && typeof x === 'object') ? (x.html||'') : String(x==null?'':x);
+        return '<li>'+inline(h)+'</li>';
+      }).join('');
+      return items ? '<ul class="po-todo">'+items+'</ul>' : '';
+    }
     case 'quote':
       return '<blockquote>'+(b.html ? inline(b.html) : esc(b.text||''))
         + (b.source ? '<cite>'+esc(b.source)+'</cite>' : '')+'</blockquote>';
     case 'divider': return '<hr>';
     case 'callout': {
       const warn = b.style === 'warn';
+      // 標題開頭已經有 emoji（Notion 匯進來的框）就不再畫內建圖示
+      const hasEmo = /^(?:(?:[\uD800-\uDBFF][\uDC00-\uDFFF])|[©®‼⁉™ℹ←-⇿⌀-⏿Ⓜ▪-◾☀-➿⬀-⯿〰〽㊗㊙])/.test(String(b.title||'').replace(/<[^>]*>/g,'').replace(/^[\s\u00A0]+/,''));
       const inner = (b.blocks||[]).map(x => (x && x.type === 'callout') ? '' : blockHtml(x)).join('');
       const icon = warn
         ? '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 4.5l8.5 15h-17z" stroke-linejoin="round"/><path d="M12 10.2v4M12 16.8v.1" stroke-linecap="round"/></svg>'
         : '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M4.5 6.5h15M4.5 12h15M4.5 17.5h9.5" stroke-linecap="round"/></svg>';
-      const title = b.title ? '<div class="po-calt">'+icon+'<span>'+inline(b.title)+'</span></div>' : '';
+      const title = b.title ? '<div class="po-calt">'+(hasEmo ? '' : icon)+'<span>'+inline(b.title)+'</span></div>' : '';
       if(!title && !inner) return '';
       return '<div class="po-cal'+(warn ? ' warn' : '')+'">'+title+inner+'</div>';
     }

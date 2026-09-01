@@ -176,6 +176,11 @@ html[lang="zh-TW"] .po-h1{font-family:'Noto Sans TC',sans-serif;font-weight:700;
 .po-body ul,.po-body ol{margin:0 0 1.35em;padding-left:1.5em;}
 .po-body li{margin-bottom:0.55em;}
 .po-body li::marker{color:var(--accent-lite);}
+/* 核取方塊清單：方框是 li 的 ::before 畫的，純展示、沒有打勾狀態 */
+.po-body ul.po-todo{list-style:none;margin:0 0 1.35em;padding-left:0;}
+.po-body ul.po-todo>li{position:relative;padding-left:31px;margin-bottom:0.5em;}
+.po-body ul.po-todo>li::before{content:'';position:absolute;left:0;top:0.34em;width:18px;height:18px;border-radius:5px;border:1.5px solid rgba(17,24,39,0.26);background:#fff;box-sizing:border-box;}
+.po-cal ul.po-todo{margin:0 0 0.9em;padding-left:0;}
 .po-body blockquote{margin:1.8em 0;padding:20px 24px;background:rgba(20,96,168,0.06);border-radius:12px;border:1px solid rgba(20,96,168,0.18);font-size:1.02rem;line-height:1.95;color:#111827;}
 .po-body blockquote cite{display:block;margin-top:10px;font-style:normal;font-size:0.78rem;color:rgba(17,24,39,0.45);}
 .po-body hr{border:none;height:1px;background:rgba(17,24,39,0.1);margin:2.6em 0;}
@@ -609,6 +614,11 @@ const ICON = {
 };
 
 /* 重點框／提醒框標題前面的小圖示 */
+/* 從 Notion 匯進來的重點框，標題最前面本來就有 emoji（💡⚠️…）。
+   這時候不要再畫內建圖示，不然會變成兩個圖示並排。 */
+const CAL_EMO = /^(?:(?:[\uD800-\uDBFF][\uDC00-\uDFFF])|[©®‼⁉™ℹ←-⇿⌀-⏿Ⓜ▪-◾☀-➿⬀-⯿〰〽㊗㊙])/;
+const calHasEmo = t => CAL_EMO.test(String(t||'').replace(/<[^>]*>/g,'').replace(/^[\s\u00A0]+/,''));
+
 const CAL_ICON = {
   note: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M4.5 6.5h15M4.5 12h15M4.5 17.5h9.5" stroke-linecap="round"/></svg>',
   warn: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 4.5l8.5 15h-17z" stroke-linejoin="round"/><path d="M12 10.2v4M12 16.8v.1" stroke-linecap="round"/></svg>'
@@ -812,6 +822,13 @@ function blockHtml(b){
       const items = (b.items||[]).map(x=>'<li>'+clean(x)+'</li>').join('');
       return items ? '<'+tag+'>'+items+'</'+tag+'>' : '';
     }
+    case 'todo':{
+      const items = (b.items||[]).map(x=>{
+        const h = (x && typeof x === 'object') ? (x.html||'') : String(x==null?'':x);
+        return '<li>'+clean(h)+'</li>';
+      }).join('');
+      return items ? '<ul class="po-todo">'+items+'</ul>' : '';
+    }
     case 'quote':
       return '<blockquote>'+(b.html ? clean(b.html) : esc(b.text||''))
            + (b.source ? '<cite>'+esc(b.source)+'</cite>' : '') + '</blockquote>';
@@ -820,7 +837,8 @@ function blockHtml(b){
     case 'callout':{
       const warn = b.style === 'warn';
       const inner = (b.blocks||[]).map(x => (x && x.type === 'callout') ? '' : blockHtml(x)).join('');
-      const title = b.title ? '<div class="po-calt">' + (warn ? CAL_ICON.warn : CAL_ICON.note) + '<span>' + clean(b.title) + '</span></div>' : '';
+      const ico = calHasEmo(b.title) ? '' : (warn ? CAL_ICON.warn : CAL_ICON.note);
+      const title = b.title ? '<div class="po-calt">' + ico + '<span>' + clean(b.title) + '</span></div>' : '';
       if(!title && !inner) return '';
       return '<div class="po-cal' + (warn ? ' warn' : '') + '">' + title + inner + '</div>';
     }
