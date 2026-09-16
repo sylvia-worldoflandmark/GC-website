@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en" data-page="privacy">
+<head>
+<!-- GA4 只在訪客同意分析後由 consent.js 載入。 -->
+<script src="../consent.js"></script>
+
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Learn what personal data GC collects, how it is used and shared, how long it is retained, and how to exercise your privacy rights.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="author" content="GC 跨境服務">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Privacy Policy — GC Cross-Border Services">
+<meta property="og:description" content="Learn what personal data GC collects, how it is used and shared, how long it is retained, and how to exercise your privacy rights.">
+<meta property="og:site_name" content="GC 跨境服務">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://worldoflandmark.com/images/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="1200">
+<!-- 語言版本由 build-locales.js 產生於 /en/ 與 /ja/；此頁為繁中版本。 -->
+<link rel="canonical" href="https://worldoflandmark.com/en/privacy.html">
+<link rel="alternate" hreflang="zh-Hant" href="https://worldoflandmark.com/privacy.html">
+<link rel="alternate" hreflang="en" href="https://worldoflandmark.com/en/privacy.html">
+<link rel="alternate" hreflang="ja" href="https://worldoflandmark.com/ja/privacy.html">
+<link rel="alternate" hreflang="x-default" href="https://worldoflandmark.com/privacy.html">
+<meta property="og:url" content="https://worldoflandmark.com/en/privacy.html">
+<title>Privacy Policy — GC Cross-Border Services</title>
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Noto+Sans+TC:wght@300;400;500;700&family=M+PLUS+1p:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --bg:#06080e;
+  --bg-2:#06080e;
+  --bg-3:#06080e;
+  --border:rgba(255,255,255,0.12);
+  --accent:#1460A8;
+  --text:#FFFAFA;
+  --text-dim:rgba(255,250,250,0.78);
+  --grid:rgba(255,255,255,0.04);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;scroll-padding-top:68px;}
+body{background:var(--bg);color:var(--text);font-family:'Noto Sans TC',sans-serif;font-weight:400;overflow-x:hidden;}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 5vw;height:68px;
+  background:rgba(30,41,59,0.92);backdrop-filter:blur(24px);
+  border-bottom:1px solid rgba(255,255,255,0.07);
+}
+.nav-logo{display:flex;align-items:center;text-decoration:none;}
+.nav-logo img{height:30px;display:block;border-radius:8px;}
+.nav-links{display:flex;gap:2.2rem;list-style:none;align-items:center;margin-left:auto;}
+.nav-links a{color:rgba(255,250,250,0.5);text-decoration:none;font-size:0.87rem;letter-spacing:0.03em;transition:color 0.2s;position:relative;}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--accent);transform:scaleX(0);transition:transform 0.25s;}
+.nav-links a:hover{color:#FFFAFA;}
+.nav-links a:hover::after{transform:scaleX(1);}
+.nav-cta{background:#FFFAFA!important;color:#06080e!important;padding:0.45rem 1.2rem;border-radius:5px;font-weight:600;}
+.nav-cta::after{display:none!important;}
+.nav-cta:hover{background:rgba(255,255,255,0.85)!important;}
+.nav-active{color:#FFFAFA!important;}
+.nav-active::after{transform:scaleX(1)!important;}
+
+/* HAMBURGER */
+.nav-right{display:none;align-items:center;gap:0.8rem;}
+.nav-hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;width:38px;height:38px;cursor:pointer;background:none;border:none;padding:4px;}
+.nav-hamburger span{display:block;width:22px;height:2px;background:#FFFAFA;border-radius:2px;transition:all 0.28s ease;transform-origin:center;}
+.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.nav-mobile-menu{display:none;position:fixed;top:68px;left:0;right:0;z-index:99;background:rgba(20,24,36,0.97);backdrop-filter:blur(24px);border-bottom:1px solid rgba(255,255,255,0.08);padding:1.2rem 5vw 1.6rem;flex-direction:column;gap:0;}
+.nav-mobile-menu.open{display:flex;}
+.nav-mobile-menu a{display:block;padding:0.85rem 0;color:rgba(255,250,250,0.6);text-decoration:none;font-size:0.95rem;border-bottom:1px solid rgba(255,255,255,0.06);transition:color 0.2s;}
+.nav-mobile-menu a:last-child{border:none;margin-top:0.6rem;}
+.nav-mobile-menu a:hover{color:#FFFAFA;}
+.nav-mobile-menu .m-cta{display:inline-flex;margin-top:0.8rem;background:#FFFAFA;color:#06080e!important;padding:0.7rem 1.4rem;border-radius:6px;font-weight:600;font-size:0.9rem;text-align:center;justify-content:center;}
+
+@media(max-width:900px){
+  .nav-links{display:none;}
+  .nav-right{display:flex;}
+  .nav-hamburger{display:flex;}
+}
+
+
+.gc-lang-switcher{display:flex;align-items:center;}
+@media(max-width:900px){
+  /* Lang switcher: push right next to CTA, same as index.html */
+  .gc-lang-switcher{margin-left:auto;margin-right:0.4rem;}
+}
+
+.gc-lang-switcher{position:relative;}
+.gc-lang-btn{
+  display:flex;align-items:center;gap:4px;
+  background:transparent;border:none;
+  padding:4px 6px;border-radius:4px;
+  cursor:pointer;color:rgba(255,255,255,0.55);font-size:14px;font-weight:600;letter-spacing:0.03em;
+  transition:all 0.15s;font-family:inherit;
+}
+.gc-lang-btn:hover,.gc-lang-btn.gc-btn-active{color:#fff;background:rgba(255,255,255,0.08);}
+.gc-lang-chev{transition:transform 0.18s;}
+.gc-chev-open{transform:rotate(180deg);}
+.gc-lang-dropdown{
+  position:absolute;top:calc(100% + 8px);right:0;min-width:160px;
+  background:#1e2535;border:1px solid rgba(255,255,255,0.12);border-radius:8px;
+  box-shadow:0 8px 24px rgba(0,0,0,0.3);overflow:hidden;
+  display:none;z-index:200;
+  animation:gcFadeIn 0.12s ease;
+}
+.gc-lang-dropdown.gc-open{display:block;}
+@keyframes gcFadeIn{from{opacity:0;transform:translateY(-4px);}to{opacity:1;transform:none;}}
+.gc-lang-option{
+  display:flex;align-items:center;gap:8px;padding:10px 14px;
+  font-size:12px;font-weight:500;cursor:pointer;transition:background 0.1s;
+  color:rgba(255,255,255,0.6);
+}
+.gc-lang-option:hover{background:rgba(255,255,255,0.07);color:#fff;}
+.gc-lang-option.gc-lang-active{color:#fff;}
+.gc-lang-name{font-weight:600;}
+.gc-lang-sub{font-size:10px;opacity:0.5;margin-left:2px;}
+.gc-lang-check{color:#4a9eff;margin-left:auto;font-size:11px;}
+.gc-lang-sep{height:1px;background:rgba(255,255,255,0.07);}
+
+/* ── 隱私政策頁 ── */
+.pp-wrap{max-width:860px;margin:0 auto;padding:120px 5vw 80px;}
+.pp-title{font-family:'Syne',Inter,sans-serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;letter-spacing:-0.02em;margin-bottom:0.6rem;}
+.pp-meta{font-size:0.82rem;color:rgba(255,250,250,0.45);margin-bottom:2.4rem;line-height:1.9;}
+.pp-body{font-size:0.94rem;line-height:2;color:rgba(255,250,250,0.82);}
+.pp-body h2{font-size:1.12rem;font-weight:700;color:#FFFAFA;margin:2.6rem 0 0.9rem;padding-bottom:0.5rem;border-bottom:1px solid rgba(255,255,255,0.10);}
+.pp-body h3{font-size:0.98rem;font-weight:600;color:rgba(255,250,250,0.94);margin:1.5rem 0 0.5rem;}
+.pp-body p{margin-bottom:0.95rem;}
+.pp-body ul{margin:0 0 1rem 1.15rem;}
+.pp-body li{margin-bottom:0.42rem;}
+.pp-body a{color:#4a9eff;text-decoration:none;}
+.pp-body a:hover{text-decoration:underline;}
+.pp-body strong{color:#FFFAFA;font-weight:600;}
+.pp-card{background:rgba(255,255,255,0.035);border:1px solid rgba(255,255,255,0.09);border-radius:10px;padding:1.1rem 1.3rem;margin:1rem 0 1.4rem;font-size:0.9rem;line-height:1.95;}
+.pp-table{width:100%;border-collapse:collapse;margin:0.8rem 0 1.4rem;font-size:0.87rem;}
+.pp-table th,.pp-table td{text-align:left;padding:0.6rem 0.7rem;border-bottom:1px solid rgba(255,255,255,0.09);vertical-align:top;}
+.pp-table th{color:#FFFAFA;font-weight:600;background:rgba(255,255,255,0.04);white-space:nowrap;}
+.pp-table td{color:rgba(255,250,250,0.78);}
+[data-policy-lang]{display:none;}
+[data-policy-lang].pp-on{display:block;}
+@media(max-width:600px){.pp-wrap{padding:100px 6vw 60px;}.pp-table{font-size:0.8rem;}}
+
+</style>
+<style>
+/* ── 全站共用頁尾 ───────────────────────────────────────────────
+   class 一律用 gcf- 前綴，避免撞到各頁既有的樣式。
+   footer.gc-footer 用「元素＋class」提高優先序，蓋掉舊的 footer{display:flex}。 */
+footer.gc-footer{display:block;background:rgba(6,8,14,0.94);border-top:1px solid rgba(255,255,255,0.07);padding:3.4rem 5vw 1.8rem;}
+.gcf-top{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:minmax(210px,1.3fr) repeat(3,minmax(0,1fr));gap:38px;align-items:start;}
+.gcf-brand img{width:56px;height:56px;display:block;border-radius:12px;margin-bottom:1.6rem;}
+.gcf-social{display:flex;gap:10px;}
+.gcf-social a{width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;color:rgba(255,250,250,0.6);transition:all 0.2s;text-decoration:none;}
+.gcf-social a:hover{background:rgba(255,255,255,0.08);color:#FFFAFA;border-color:rgba(255,255,255,0.3);transform:translateY(-2px);}
+.gcf-col h2{font-family:inherit;font-size:0.82rem;font-weight:600;color:#FFFAFA;margin:0 0 0.9rem;letter-spacing:0.02em;}
+.gcf-col a{display:block;font-size:0.82rem;line-height:1.6;color:rgba(236,238,242,0.55);text-decoration:none;padding:0.34rem 0;transition:color 0.18s;}
+.gcf-col a:hover{color:#FFFAFA;}
+.gcf-bottom{max-width:1240px;margin:2.4rem auto 0;padding-top:1.4rem;border-top:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
+.gcf-copy{font-size:0.76rem;color:rgba(236,238,242,0.4);}
+@media(max-width:900px){
+  .gcf-top{grid-template-columns:1fr 1fr;gap:30px 26px;}
+  .gcf-brand{grid-column:1 / -1;}
+}
+@media(max-width:520px){
+  footer.gc-footer{padding:2.6rem 5vw 1.5rem;}
+  .gcf-top{grid-template-columns:1fr;gap:24px;}
+  .gcf-bottom{flex-direction:column;align-items:flex-start;gap:0.5rem;}
+}
+</style>
+
+<script src="../local-preview.js"></script>
+</head>
+<body>
+
+<nav>
+  <a href="/en/" class="nav-logo"><img src="/images/logo.png" alt="GC 跨境服務" width="50" height="50" decoding="async" style="width:50px;height:50px;"></a>
+  <a href="/en/" style="margin-left:auto;display:inline-flex;align-items:center;gap:6px;color:rgba(255,250,250,0.8);text-decoration:none;font-size:0.9rem;font-weight:500;">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    <span data-i18n="form.nav.back">Back to Website</span>
+  </a>
+  <div id="gcLangSwitcher" class="gc-lang-switcher" style="margin-left:12px;">
+    <button id="gcLangBtn" class="gc-lang-btn" onclick="gcToggleLangMenu()">
+        <span id="gcLangLabel">EN</span>
+      <svg id="gcLangChev" class="gc-lang-chev" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+    <div id="gcLangDropdown" class="gc-lang-dropdown">
+      <div class="gc-lang-option gc-lang-active" data-lang="zh" onclick="gcSetLang('zh')">
+        <span class="gc-lang-name">繁體中文</span>
+        <span class="gc-lang-check">✓</span>
+      </div>
+      <div class="gc-lang-sep"></div>
+      <div class="gc-lang-option" data-lang="en" onclick="gcSetLang('en')">
+        <span class="gc-lang-name">English</span>
+        <span class="gc-lang-check" style="display:none">✓</span>
+      </div>
+      <div class="gc-lang-sep"></div>
+      <div class="gc-lang-option" data-lang="ja" onclick="gcSetLang('ja')">
+        <span class="gc-lang-name">日本語</span>
+        <span class="gc-lang-check" style="display:none">✓</span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<main class="pp-wrap">
+  <h1 class="pp-title" data-i18n="privacy.title">Privacy Policy</h1>
+  <div class="pp-meta">
+    <span data-i18n="privacy.updated">Last updated</span>：2026-09-16
+  </div>
+
+  <div class="pp-body">
+    
+    <div data-policy-lang="en" class="pp-on">
+<h2>1. About This Policy</h2>
+<p>World Landmark CO., LTD. ("we", "us", or "GC") takes the protection of your personal data seriously. This policy explains what information we collect through this website (worldoflandmark.com), how we use it, who we share it with, how long we keep it, and what rights you have.</p>
+<p>This policy applies to all pages and forms on this website, including the <strong>Product Catalog inquiry</strong>, the <strong>Cross-Border Service Diagnostic Form</strong>, and the <strong>Service Partner application</strong>.</p>
+
+<h2>2. What We Collect</h2>
+<p>We only collect information that you actively submit through our forms. You may browse all content on this website without providing any personal data.</p>
+<h3>2.1 Product catalog inquiry</h3>
+<ul>
+  <li>Company name, contact person's name, email address</li>
+  <li>Other contact method (LINE / WhatsApp / phone, optional)</li>
+  <li>Your message and the list of products you selected</li>
+</ul>
+<h3>2.2 Cross-border service diagnostic form</h3>
+<ul>
+  <li>Company name, contact person's name, job title, email, other contact method</li>
+  <li>Referrer and how you heard about us</li>
+  <li>Country of company registration, brand names, product categories and characteristics</li>
+  <li>Target markets, export and overseas experience, e-commerce and retail channel experience</li>
+  <li>Revenue targets, launch timeline, current challenges and additional notes</li>
+</ul>
+<h3>2.3 Service partner application</h3>
+<ul>
+  <li>Company name, name of the company representative, contact person's name</li>
+  <li>Phone number, email address, other contact method</li>
+  <li>Services you can provide</li>
+</ul>
+<h3>2.4 Technical data collected automatically</h3>
+<p>Our hosting provider records server access logs for operational and security purposes, including your IP address, browser type and time of access. We do not cross-reference these logs with the data you submit through forms. Google Analytics collects device and browser information, approximate location, pages viewed and interaction events only after you consent. We do not send names, email addresses, company names or free-text form responses to Google Analytics.</p>
+
+<h2>3. Purposes and Legal Basis</h2>
+<p>We collect the above data in order to:</p>
+<ul>
+  <li>Assess your cross-border service needs and arrange for a consultant to contact you</li>
+  <li>Provide product quotations and partnership terms</li>
+  <li>Match you with suitable service partners</li>
+  <li>Establish and maintain client and partner relationships, and carry out necessary accounting</li>
+</ul>
+<p>Our legal basis under Taiwan's Personal Data Protection Act is the existence of a contractual or quasi-contractual relationship, together with the consent you give when submitting a form. If you are located in the European Economic Area, we rely on GDPR Article 6(1)(a) consent and 6(1)(b) steps taken at your request prior to entering into a contract.</p>
+
+<h2>4. Sharing and Processing by Third Parties</h2>
+<p><strong>We do not sell, rent or trade your personal data to any third party.</strong></p>
+<p>We use the following service providers to operate our services. They may process your data only on our instructions:</p>
+<table class="pp-table">
+  <tr><th>Provider</th><th>Purpose</th><th>Data location</th></tr>
+  <tr><td>Supabase</td><td>Database and file storage</td><td>Overseas cloud</td></tr>
+  <tr><td>Netlify</td><td>Website hosting and server logs</td><td>Overseas cloud</td></tr>
+  <tr><td>Formspree</td><td>Forwarding of service partner applications</td><td>United States</td></tr>
+  <tr><td>Google Workspace / Apps Script</td><td>Notification emails and PDF generation</td><td>Overseas cloud</td></tr>
+  <tr><td>Google Analytics</td><td>Website traffic and interaction analytics after you consent</td><td>Overseas cloud</td></tr>
+  <tr><td>Google Fonts</td><td>Web font delivery (transmits your IP address to Google)</td><td>Overseas cloud</td></tr>
+</table>
+<p>We may also disclose your data where required by law, a court or a competent authority; where necessary to exercise or defend legal claims; or where you have separately consented.</p>
+
+<h2>5. International Transfers</h2>
+<p>The service providers listed above operate servers outside Taiwan. When you submit a form, your data is transferred to and stored on those providers' systems. We select providers that maintain industry-standard security measures and require them to process data only for the purposes we specify.</p>
+
+<h2>6. Retention Period</h2>
+<div class="pp-card">
+  <strong>Clients and partners with an established relationship</strong>: transaction and accounting records are retained for <strong>5 years</strong> as required by Taiwan's Business Entity Accounting Act.<br>
+  <strong>Inquiries and diagnostic submissions that do not lead to a relationship</strong>: retained for <strong>2 years</strong> from the date of last contact, then deleted.
+</div>
+<p>You may ask us to delete your data earlier at any time, except for accounting records we are legally required to keep.</p>
+
+<h2>7. Your Rights</h2>
+<p>Under Article 3 of Taiwan's Personal Data Protection Act, you may:</p>
+<ul>
+  <li>Enquire about and request to review your data</li>
+  <li>Request a copy of your data</li>
+  <li>Request correction or completion of your data</li>
+  <li>Request that we cease collecting, processing or using your data</li>
+  <li>Request deletion of your data</li>
+</ul>
+<p>If you are located in the European Economic Area, you additionally have the right to data portability, the right to object to processing, and the right to lodge a complaint with a supervisory authority.</p>
+<p>To exercise these rights, please email the address at the bottom of this page. We will respond within <strong>15 business days</strong> of receiving your request. We may need to verify your identity first in order to protect your data.</p>
+
+<h2>8. Cookies and Tracking</h2>
+<div class="pp-card">
+  <strong>Google Analytics loads only after you explicitly choose “Allow analytics.”</strong> If you choose “Essential only,” this website does not load Google Analytics. We do not use Facebook Pixel or serve personalised advertising.
+</div>
+<p>We use browser local storage to remember your <strong>language preference</strong> and <strong>analytics consent choice</strong>. You can change your choice at any time through “Privacy settings” at the bottom-right of each page, or clear it through your browser settings. Withdrawing consent does not affect processing that took place before withdrawal.</p>
+
+<h2>9. Data Security</h2>
+<p>We apply reasonable technical and organisational measures to protect your data, including site-wide HTTPS encryption, database-level access control so that only authorised personnel can read the data, role-based permissions in our administration system, and least-privilege access for public-facing services.</p>
+<p>Please note that no transmission over the internet can be guaranteed to be completely secure. In the event of a data breach that materially affects your rights, we will notify you and the competent authority as required by law.</p>
+
+<h2>10. Minors</h2>
+<p>This website provides business-to-business services and is not directed at minors. We do not knowingly collect personal data from anyone under the age of 18.</p>
+
+<h2>11. Changes to This Policy</h2>
+<p>If we revise this policy, we will update the "last updated" date on this page. Where changes are material, we will notify you by email or by a notice on this website.</p>
+
+<h2>12. Contact Us</h2>
+<p>If you have any question about this policy or about your personal data, please contact us:</p>
+<div class="pp-card" id="pp-contact-en"></div>
+</div>
+    </div>
+</main>
+
+<footer class="gc-footer">
+  <div class="gcf-top">
+    <div class="gcf-brand">
+      <a href="/en/"><img src="/images/logo.png" alt="GC 跨境服務" width="56" height="56" loading="lazy" decoding="async"></a>
+      <div class="gcf-social">
+        <a href="https://www.facebook.com/gcosc.co" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.3v7A10 10 0 0022 12z"/></svg></a>
+        <a href="https://www.instagram.com/gcosc.co" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3.5" y="3.5" width="17" height="17" rx="4.6"/><circle cx="12" cy="12" r="3.8"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://www.threads.com/@gcosc.co" target="_blank" rel="noopener" aria-label="Threads" title="Threads"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.291 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.96-.065-1.19.408-2.285 1.33-3.082.88-.76 2.119-1.207 3.583-1.291a13.853 13.853 0 0 1 3.02.142c-.126-.742-.375-1.332-.75-1.757-.513-.586-1.308-.883-2.359-.89h-.029c-.844 0-1.992.232-2.721 1.32L7.734 7.42c.98-1.454 2.568-2.256 4.478-2.256h.044c3.194.02 5.097 1.975 5.287 5.388.108.046.216.094.321.142 1.49.7 2.58 1.761 3.154 3.07.797 1.82.871 4.79-1.548 7.158-1.85 1.81-4.094 2.628-7.277 2.65Zm1.003-11.69c-.242 0-.487.007-.739.021-1.836.103-2.98.946-2.916 2.143.067 1.256 1.452 1.839 2.784 1.767 1.224-.065 2.818-.543 3.086-3.71a10.5 10.5 0 0 0-2.215-.221z"/></svg></a>
+      </div>
+    </div>
+    <div class="gcf-col">
+      <h2 data-i18n="nav.about">About GC</h2>
+        <a href="/en/#why" data-i18n="nav.why">Why GC</a>
+        <a href="/en/#services" data-i18n="nav.services">Consulting</a>
+        <a href="/en/#partners" data-i18n="nav.partners">Partners</a>
+        <a href="/en/#process" data-i18n="nav.process">How It Works</a>
+        <a href="/en/#faq" data-i18n="nav.faq">FAQ</a>
+    </div>
+    <div class="gcf-col">
+      <h2 data-i18n="footer.col.services">Services &amp; Resources</h2>
+        <a href="/en/catalog.html" data-i18n="nav.catalog">Catalog</a>
+        <a href="/en/partner.html" data-i18n="nav.become">Become a Partner</a>
+        <a href="/blog.html?lang=en" data-i18n="nav.blog">Insights</a>
+    </div>
+    <div class="gcf-col">
+      <h2 data-i18n="footer.col.start">Get Started</h2>
+        <a href="/en/gc-form.html" data-i18n="nav.cta">Get Started</a>
+        <a href="/en/privacy.html" data-i18n="footer.privacy">Privacy Policy</a>
+    </div>
+  </div>
+  <div class="gcf-bottom">
+    <span class="gcf-copy" data-i18n="footer.copy">© 2026 GC Cross-Border Services. All rights reserved.</span>
+  </div>
+</footer>
+
+<script>
+/* ────────────────────────────────────────────────────────────────
+   公司資料：只要改這裡，三種語言的「聯絡我們」區塊都會同步更新。
+   ──────────────────────────────────────────────────────────────── */
+const GC_LEGAL = {
+  nameZh : '世界之地標有限公司',
+  nameEn : 'World Landmark CO., LTD.',
+  taxId  : '52341471',
+  rep    : '周澐',
+  addrZh : '臺北市松山區民族東路 679 之 1 號 6 樓',
+  addrEn : '6F., No. 679-1, Minzu E. Rd., Songshan Dist., Taipei City 105001, Taiwan (R.O.C.)',
+  email  : 'support@worldoflandmark.com'
+};
+
+(function(){
+  const L = GC_LEGAL;
+  const mail = '<a href="mailto:' + L.email + '">' + L.email + '</a>';
+  const blocks = {
+    zh: '<strong>' + L.nameZh + '</strong>（' + L.nameEn + '）<br>'
+       + '統一編號：' + L.taxId + '　｜　代表人：' + L.rep + '<br>'
+       + '地址：' + L.addrZh + '<br>'
+       + '個人資料保護聯絡信箱：' + mail,
+    en: '<strong>' + L.nameEn + '</strong>（' + L.nameZh + '）<br>'
+       + 'Business ID: ' + L.taxId + '　|　Representative: ' + L.rep + '<br>'
+       + 'Address: ' + L.addrEn + '<br>'
+       + 'Data protection contact: ' + mail,
+    ja: '<strong>' + L.nameZh + '</strong>（' + L.nameEn + '）<br>'
+       + '統一番号：' + L.taxId + '　｜　代表者：' + L.rep + '<br>'
+       + '所在地：' + L.addrEn + '<br>'
+       + '個人情報保護に関するお問い合わせ：' + mail
+  };
+  Object.keys(blocks).forEach(function(k){
+    const el = document.getElementById('pp-contact-' + k);
+    if (el) el.innerHTML = blocks[k];
+  });
+
+  // 依目前語言顯示對應版本的條文
+  function showPolicy(lang){
+    const l = (lang === 'en' || lang === 'ja') ? lang : 'zh';
+    document.querySelectorAll('[data-policy-lang]').forEach(function(el){
+      el.classList.toggle('pp-on', el.getAttribute('data-policy-lang') === l);
+    });
+  }
+  // i18n.js 載入後套用一次；之後跟著語言切換事件更新
+  window.addEventListener('load', function(){
+    showPolicy(typeof GC_LANG !== 'undefined' ? GC_LANG : 'zh');
+  });
+  document.addEventListener('gc:langchange', function(e){
+    showPolicy(e && e.detail && e.detail.lang);
+  });
+})();
+</script>
+<script src="../i18n.js?v=1.7.5-p1"></script>
+</body>
+</html>

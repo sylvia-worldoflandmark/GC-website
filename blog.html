@@ -1,14 +1,8 @@
 <!DOCTYPE html>
 <html lang="zh-TW" data-page="blog">
 <head>
-<!-- Google tag (gtag.js) — GA4 G-WMDKSQRC81 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-WMDKSQRC81"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-WMDKSQRC81');
-</script>
+<!-- GA4 只在訪客同意分析後由 consent.js 載入。 -->
+<script src="consent.js"></script>
 
 <meta charset="UTF-8">
 <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
@@ -27,8 +21,6 @@
 <meta name="twitter:description" content="跨境電商法規、市場趨勢、通路實務與品牌出海的第一手觀察，由 GC 顧問團隊整理發布。">
 <link rel="canonical" href="https://worldoflandmark.com/blog.html">
 <link rel="alternate" hreflang="zh-Hant" href="https://worldoflandmark.com/blog.html">
-<link rel="alternate" hreflang="en" href="https://worldoflandmark.com/blog.html?lang=en">
-<link rel="alternate" hreflang="ja" href="https://worldoflandmark.com/blog.html?lang=ja">
 <link rel="alternate" hreflang="x-default" href="https://worldoflandmark.com/blog.html">
 <meta property="og:url" content="https://worldoflandmark.com/blog.html">
 <title>洞察文章 — GC 跨境服務</title>
@@ -41,7 +33,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@400;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700&family=M+PLUS+1p:wght@300;400;500;700&display=swap" rel="stylesheet">
 
 <!-- 文章清單預渲染插入點（SEO）：build-blog.js 會把文章列表與 JSON-LD 注入這裡 -->
-<!-- GC_BLOGLIST_SLOT -->
+<!-- GC_BLOGLIST_START --><script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"GC 洞察文章","itemListElement":[{"@type":"ListItem","position":1,"url":"https://worldoflandmark.com/blog/shipping-cost-breakdown/","name":"國際運費包含哪些費用？材積重、附加費與雜費一次看懂"},{"@type":"ListItem","position":2,"url":"https://worldoflandmark.com/blog/japan-pmd-act-license/","name":"化妝品、醫材賣進日本，藥機法製造販賣業許可完整解析"},{"@type":"ListItem","position":3,"url":"https://worldoflandmark.com/blog/sea-ecommerce-platforms/","name":"Shopee、Lazada、TikTok Shop 東南亞電商平台該怎麼選"},{"@type":"ListItem","position":4,"url":"https://worldoflandmark.com/blog/us-de-minimis-tariff/","name":"美國取消 800 美元以下小額免稅，跨境賣家現在要多付多少"},{"@type":"ListItem","position":5,"url":"https://worldoflandmark.com/blog/cross-border-challenges/","name":"品牌做海外市場會卡在哪裡？四大關鍵環節一次看懂"},{"@type":"ListItem","position":6,"url":"https://worldoflandmark.com/blog/hs-code-declaration-error/","name":"HS Code 是什麼？填錯一碼，為什麼整批貨卡關三週"},{"@type":"ListItem","position":7,"url":"https://worldoflandmark.com/blog/incoterms-fob-cif-ddp/","name":"FOB、CIF、DDP 差在哪？貿易條件的責任分界一次看懂"}]}</script><script>window.GC_POSTS_BOOTSTRAP=[{"id":1,"slug":"shipping-cost-breakdown","title":"國際運費包含哪些費用？材積重、附加費與雜費一次看懂","summary":"同一批貨向三家業者詢價，得到 65、88、120 三種報價，差別不在價格高低，而在每張報價單涵蓋的範圍不同。本文完整說明國際運費由哪些項目組成：材積重怎麼算、空運與海運的計費差異、附加費與兩端作業費用，以及比價前該確認的三件事。","cover_url":"https://rtzfeoahpsutyikutsys.supabase.co/storage/v1/object/public/blog-images/posts/1/1787300639233_Salford___Co.__2_.png","category":"hot","category_name":"熱門","categories":["hot","logistics"],"category_names":["熱門","國際物流"],"tags":["國際物流","國際運送費用","國際物流報價"],"is_pinned":true,"published_at":"2026-08-19T10:31:57.011+00:00"},{"id":10,"slug":"japan-pmd-act-license","title":"化妝品、醫材賣進日本，藥機法製造販賣業許可完整解析","summary":"品牌將保養品、化妝品成分資料備齊後準備上架日本通路，才被告知台灣工廠不能直接當責任方，得先找到日本境內持有製造販賣業許可的業者做為窗口。本文拆解薬機法的許可制度、化妝品與醫藥品門檻差異，以及沒有許可時實務上該從哪裡開始。","cover_url":"https://rtzfeoahpsutyikutsys.supabase.co/storage/v1/object/public/blog-images/posts/10/1789019561776_Salford___Co.__1_.png","category":"expansion","category_name":"海外拓銷","categories":["expansion"],"category_names":["海外拓銷"],"tags":["海外拓銷","日本法規","日本藥機法"],"is_pinned":false,"published_at":"2026-09-10T10:16:39.145+00:00"},{"id":9,"slug":"sea-ecommerce-platforms","title":"Shopee、Lazada、TikTok Shop 東南亞電商平台該怎麼選","summary":"東南亞電商市場被 Shopee、Lazada、TikTok Shop 三家拿下近乎全部，每個平台在東南亞地區的六個市場排名和成長速度都不一樣。本文整理三平台市占率、客單價與核心優勢，拆解各市場強弱差異，幫助品牌判斷該優先切入哪個平台跟市場。","cover_url":"https://rtzfeoahpsutyikutsys.supabase.co/storage/v1/object/public/blog-images/posts/9/1788853227707_Salford___Co..png","category":"ecommerce","category_name":"跨境電商","categories":["ecommerce"],"category_names":["跨境電商"],"tags":["跨境電商","電商平台比較","東南亞市場"],"is_pinned":false,"published_at":"2026-09-09T08:32:34.14+00:00"},{"id":8,"slug":"us-de-minimis-tariff","title":"美國取消 800 美元以下小額免稅，跨境賣家現在要多付多少","summary":"有品牌收到美國海關的稅單才發現要多繳將近兩千元台幣，這不是算錯，是美國已經取消 800 美元以下包裹免稅，緩衝期也在 2026 年 2 月結束。本文整理免稅取消的時間軸、現在怎麼課稅、快遞公司怎麼收費，以及客單價低的品牌現在該怎麼重新算成本。","cover_url":"https://rtzfeoahpsutyikutsys.supabase.co/storage/v1/object/public/blog-images/posts/8/1788516799124_Salford___Co..png","category":"ecommerce","category_name":"跨境電商","categories":["ecommerce","hot"],"category_names":["跨境電商","熱門"],"tags":["跨境電商","美國關稅","小額免稅"],"is_pinned":false,"published_at":"2026-09-07T08:23:48.943+00:00"},{"id":7,"slug":"cross-border-challenges","title":"品牌做海外市場會卡在哪裡？四大關鍵環節一次看懂","summary":"一個保健食品品牌決定進軍馬來西亞市場，才發現真正要煩惱的是：該選哪種方式拓銷、銷售途中會踩到哪些沒人事先提醒的問題、市場對這個產品到底有沒有興趣。本文整理品牌出海一定會碰到的四個環節與因應方向，並附上已寫過的深入文章連結。","cover_url":"https://rtzfeoahpsutyikutsys.supabase.co/storage/v1/object/public/blog-images/posts/7/1787825701121_Salford___Co..png","category":"expansion","category_name":"海外拓銷","categories":["expansion"],"category_names":["海外拓銷"],"tags":["海外拓銷","跨境佈局","出海卡關"],"is_pinned":false,"published_at":"2026-09-04T06:30:16.368+00:00"},{"id":5,"slug":"hs-code-declaration-error","title":"HS Code 是什麼？填錯一碼，為什麼整批貨卡關三週","summary":"HS Code 是海關用來判定貨物身分、稅率跟能不能進口的分類編碼，填錯一碼就可能讓整批貨卡在海關動彈不得。本文說明 HS Code 是什麼、為什麼各國看到的碼不一樣、填錯會引發哪些後果，以及出貨前怎麼確認碼有沒有抓對。","cover_url":"https://rtzfeoahpsutyikutsys.supabase.co/storage/v1/object/public/blog-images/posts/5/1787300526988_Salford___Co.__1_.png","category":"hot","category_name":"熱門","categories":["hot","logistics"],"category_names":["熱門","國際物流"],"tags":["國際物流","清關作業","HS Code"],"is_pinned":false,"published_at":"2026-08-21T08:21:08.184+00:00"},{"id":3,"slug":"incoterms-fob-cif-ddp","title":"FOB、CIF、DDP 差在哪？貿易條件的責任分界一次看懂","summary":"合約上寫 FOB 或 CIF，責任切在哪個環節？貿易條件規定的是費用誰付、風險誰擔、手續誰辦，三者不一定切在同一點，本文以現行 Incoterms 2020 說明條件分組、五種常用條件的責任分界，以及簽約前該確認的三件事。","cover_url":"https://rtzfeoahpsutyikutsys.supabase.co/storage/v1/object/public/blog-images/posts/3/1787300656383_Salford___Co.__3_.png","category":"hot","category_name":"熱門","categories":["hot","logistics"],"category_names":["熱門","國際物流"],"tags":["國際物流","貿易條件","Incoterms"],"is_pinned":false,"published_at":"2026-08-20T09:01:57.963+00:00"}];</script><!-- GC_BLOGLIST_END -->
 <style>
 /* ═══ 洞察文章＝淺色模式（官網其他頁仍是深色）═══════════════════════
    為什麼只有這兩頁是白底：
@@ -353,6 +345,7 @@ footer.gc-footer{display:block;background:rgba(17,24,39,0.03);border-top:1px sol
 }
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://worldoflandmark.com/"},{"@type":"ListItem","position":2,"name":"洞察文章","item":"https://worldoflandmark.com/blog.html"}]}</script>
+<script src="local-preview.js"></script>
 </head>
 <body>
 
@@ -634,7 +627,10 @@ function fmtDate(iso){
 }
 function postUrl(p){
   const l = LANG();
-  return 'blog/' + encodeURIComponent(p.slug) + '/' + (l==='zh' ? '' : '?lang='+l);
+  // 正式網站使用漂亮網址；直接以 file:// 雙擊本機檔案時，瀏覽器不會
+  // 自動把資料夾導向 index.html，因此必須明確指到檔案。
+  const entry = location.protocol === 'file:' ? 'index.html' : '';
+  return 'blog/' + encodeURIComponent(p.slug) + '/' + entry + (l==='zh' ? '' : '?lang='+l);
 }
 
 /* ── 讀取 ───────────────────────────────────────────────────────── */
@@ -1051,6 +1047,6 @@ load();
   applyFooterLang();
 })();
 </script>
-<script src="i18n.js"></script>
+<script src="i18n.js?v=1.7.5-p1"></script>
 </body>
 </html>

@@ -63,11 +63,14 @@ while ((m = faqRe.exec(html))) {
 /* ── 2. 顧問服務 ─────────────────────────────────────────────── */
 const services = [];
 const svcTitles = {}, svcDescs = {};
+const svcUrls = {};
 let t;
 const tRe = /data-i18n="index\.svc(\d+)\.title">([\s\S]*?)</g;
 while ((t = tRe.exec(html))) svcTitles[t[1]] = plain(t[2]);
 const dRe = /data-i18n="index\.svc(\d+)\.desc">([\s\S]*?)</g;
 while ((t = dRe.exec(html))) svcDescs[t[1]] = plain(t[2]);
+const uRe = /<a href="([^"]+)" class="service-card">[\s\S]*?data-i18n="index\.svc(\d+)\.title"/g;
+while ((t = uRe.exec(html))) svcUrls[t[2]] = new URL(t[1], SITE).href;
 Object.keys(svcTitles).sort((a, b) => a - b).forEach(k => {
   if (!svcTitles[k]) return;
   services.push({
@@ -77,6 +80,7 @@ Object.keys(svcTitles).sort((a, b) => a - b).forEach(k => {
       name: svcTitles[k],
       description: svcDescs[k] || undefined,
       serviceType: svcTitles[k],
+      url: svcUrls[k] || undefined,
       provider: { '@id': SITE + '/#organization' },
       areaServed: [
         { '@type': 'Place', name: '台灣' }, { '@type': 'Place', name: '日本' },

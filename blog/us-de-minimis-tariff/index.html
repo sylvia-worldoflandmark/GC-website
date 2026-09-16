@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-page="blogpost">
+<head>
+<!-- GA4 只在訪客同意分析後由 consent.js 載入。 -->
+<script>
+/* 這一頁會在兩種網址下被服務：
+     /blog-post.html            （轉址 fallback、後台預覽）
+     /blog/<網址代稱>/           （正式文章網址、部署時預渲染的實體檔）
+   兩者的相對路徑基準不同，所以在載入任何資源之前先算出正確的 <base>。
+   連本機直接雙擊開啟預渲染出來的檔案也能正確找到 logo 與 i18n.js。 */
+(function(){
+  var m = location.pathname.match(/^(.*?)\/blog\/[^\/]+\/(?:index\.html)?$/);
+  var b = document.createElement('base');
+  b.href = m ? ((m[1] || '') + '/') : './';
+  document.head.appendChild(b);
+})();
+</script>
+<script src="consent.js"></script>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="有品牌收到美國海關的稅單才發現要多繳將近兩千元台幣，這不是算錯，是美國已經取消 800 美元以下包裹免稅，緩衝期也在 2026 年 2 月結束。本文整理免稅取消的時間軸、現在怎麼課稅、快遞公司怎麼收費，以及客單價低的品牌現在該怎麼重新算成本。">
+<!-- 這是文章範本，不應單獨被索引；build-blog.js 會在實體文章頁改回 index。 -->
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="author" content="GC 跨境服務">
+<meta property="og:type" content="article">
+<meta property="og:title" content="美國取消 800 美元以下小額免稅，跨境賣家現在要多付多少">
+<meta property="og:description" content="有品牌收到美國海關的稅單才發現要多繳將近兩千元台幣，這不是算錯，是美國已經取消 800 美元以下包裹免稅，緩衝期也在 2026 年 2 月結束。本文整理免稅取消的時間軸、現在怎麼課稅、快遞公司怎麼收費，以及客單價低的品牌現在該怎麼重新算成本。">
+<meta property="og:site_name" content="GC 跨境服務">
+<meta property="og:locale" content="zh_TW">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="美國取消 800 美元以下小額免稅，跨境賣家現在要多付多少">
+<meta name="twitter:description" content="有品牌收到美國海關的稅單才發現要多繳將近兩千元台幣，這不是算錯，是美國已經取消 800 美元以下包裹免稅，緩衝期也在 2026 年 2 月結束。本文整理免稅取消的時間軸、現在怎麼課稅、快遞公司怎麼收費，以及客單價低的品牌現在該怎麼重新算成本。">
+<link rel="canonical" href="https://worldoflandmark.com/blog/us-de-minimis-tariff/">
+<link rel="alternate" hreflang="zh-Hant" href="https://worldoflandmark.com/blog/us-de-minimis-tariff/">
+<link rel="alternate" hreflang="x-default" href="https://worldoflandmark.com/blog/us-de-minimis-tariff/">
+<meta property="og:url" content="https://worldoflandmark.com/blog/us-de-minimis-tariff/">
+<title>美國取消 800 美元以下小額免稅，跨境賣家現在要多付多少 — GC 跨境服務</title>
+<meta property="og:image" content="https://rtzfeoahpsutyikutsys.supabase.co/storage/v1/object/public/blog-images/posts/8/1788516799124_Salford___Co..png">
+<meta property="og:image:type" content="image/png">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@400;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700&family=M+PLUS+1p:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<!-- 單篇文章預渲染插入點（SEO）：build-blog.js 產生實體靜態頁時會用到 -->
+<!-- GC_BLOGPOST_START --><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"美國取消 800 美元以下小額免稅，跨境賣家現在要多付多少","description":"有品牌收到美國海關的稅單才發現要多繳將近兩千元台幣，這不是算錯，是美國已經取消 800 美元以下包裹免稅，緩衝期也在 2026 年 2 月結束。本文整理免稅取消的時間軸、現在怎麼課稅、快遞公司怎麼收費，以及客單價低的品牌現在該怎麼重新算成本。","image":"https://rtzfeoahpsutyikutsys.supabase.co/storage/v1/object/public/blog-images/posts/8/1788516799124_Salford___Co..png","datePublished":"2026-09-07T08:23:48.943+00:00","dateModified":"2026-09-07T08:23:48.943+00:00","inLanguage":"zh-Hant","mainEntityOfPage":{"@type":"WebPage","@id":"https://worldoflandmark.com/blog/us-de-minimis-tariff/"},"publisher":{"@type":"Organization","@id":"https://worldoflandmark.com/#organization","name":"GC 跨境服務","url":"https://worldoflandmark.com/","logo":{"@type":"ImageObject","url":"https://worldoflandmark.com/images/og-image.png"}},"isPartOf":{"@type":"WebSite","@id":"https://worldoflandmark.com/#website","name":"GC 跨境服務","url":"https://worldoflandmark.com/"},"wordCount":1941,"author":{"@type":"Organization","@id":"https://worldoflandmark.com/#organization","name":"GC 跨境服務","url":"https://worldoflandmark.com/"},"keywords":"跨境電商, 美國關稅, 小額免稅","articleSection":"跨境電商, 熱門"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://worldoflandmark.com/"},{"@type":"ListItem","position":2,"name":"洞察文章","item":"https://worldoflandmark.com/blog.html"},{"@type":"ListItem","position":3,"name":"美國取消 800 美元以下小額免稅，跨境賣家現在要多付多少","item":"https://worldoflandmark.com/blog/us-de-minimis-tariff/"}]}</script><script>window.GC_POST_BOOTSTRAP={"id":8,"slug":"us-de-minimis-tariff","title":"美國取消 800 美元以下小額免稅，跨境賣家現在要多付多少","summary":"有品牌收到美國海關的稅單才發現要多繳將近兩千元台幣，這不是算錯，是美國已經取消 800 美元以下包裹免稅，緩衝期也在 2026 年 2 月結束。本文整理免稅取消的時間軸、現在怎麼課稅、快遞公司怎麼收費，以及客單價低的品牌現在該怎麼重新算成本。","cover_url":"https://rtzfeoahpsutyikutsys.supabase.co/storage/v1/object/public/blog-images/posts/8/1788516799124_Salford___Co..png","cover_source":null,"category":"ecommerce","category_name":"跨境電商","categories":["ecommerce","hot"],"category_names":["跨境電商","熱門"],"tags":["跨境電商","美國關稅","小額免稅"],"gallery":[],"gallery_ratio":"16:9","content":{"v":1,"blocks":[{"html":"\u003cspan style=\"color:rgb(28, 28, 26)\">曾有品牌透過快遞將一箱保健食品寄到美國，客戶收到貨之前卻先收到一張稅單，要多繳將近兩千元台幣才能領貨，一度以為是海關算錯了，但實際上沒有算錯。\u003c/span>","type":"paragraph"},{"html":"\u003cspan style=\"color:rgb(28, 28, 26)\">美國自 2025 年 8 月底開始，已經正式取消 800 美元以下包裹的免稅門檻，今年 2 月底原本給的半年緩衝期也已經結束，現在不管貨品申報價值多少，寄到美國都要走正式報關流程並繳交關稅，對原本靠小額直發做美國市場的品牌來說，這不只是稅率調整，是整個出貨的成本結構都要重新算。\u003c/span>","type":"paragraph"},{"type":"callout","style":"note","title":"這篇文章會回答：","blocks":[{"type":"list","items":["800 美元免稅門檻是怎麼被取消的，關鍵時間點是哪幾天","現在包裹寄到美國，海關怎麼課稅","快遞公司跟郵政包裹的收費方式有什麼不同","客單價原本低於 800 美元的品牌，現在可以怎麼調整"],"style":"ul"}]},{"html":"以前的規則：800 美元以下包裹怎麼放行","text":"以前的規則：800 美元以下包裹怎麼放行","type":"heading","level":2},{"html":"在 2025 年 8 月以前，規則很簡單，只要一件包裹的申報價值在 800 美元以下，美國海關就直接放行，不需要報關也不用繳稅，這也是許多台灣、東南亞賣家能靠小額直發做美國市場的原因，只要客單價落在門檻以下，貨寄出去之後幾乎不用再想稅的問題。","type":"paragraph"},{"html":"現在的規則：門檻取消後，一律要報關","text":"現在的規則：門檻取消後，一律要報關","type":"heading","level":2},{"html":"800 美元的門檻在 2025 年 8 月底被整個拿掉，現在不管寄的是一瓶保健食品還是一件衣服，都要走正式報關程序，海關會先看這個商品屬於哪一類，業界用一套全球通用的分類代碼判斷 HS Code\u003ca href=\"https://worldoflandmark.com/blog/hs-code-declaration-error/\" rel=\"noopener nofollow\" target=\"_blank\">〔HS Code 是什麼？填錯一碼，為什麼整批貨卡關三週〕\u003c/a>，再依照對應的稅率課徵關稅。","type":"paragraph"},{"html":"緩衝期的半年中，原先海關提供給快遞公司跟外國郵政機構一個「固定稅率」的簡化選項，可以不用一件一件精算，這個選項也已經在緩衝期結束後失效，等於沒有捷徑可以繞。","type":"paragraph"},{"h":360,"w":880,"url":"https://rtzfeoahpsutyikutsys.supabase.co/storage/v1/object/public/blog-images/posts/8/1788768233752_c2-fig1-______.svg","type":"image","source":"","caption":"圖｜800 美元免稅門檻取消前後對比，現在不限申報價值一律報關課稅"},{"html":"關鍵時間軸：從取消到緩衝期結束","text":"關鍵時間軸：從取消到緩衝期結束","type":"heading","level":2},{"html":"整個變化分成兩個時間點，第一個是 2025 年 8 月 29 日，美國正式取消所有國家 800 美元以下包裹的免稅門檻。","type":"paragraph"},{"html":"第二個是 2026 年 2 月 28 日，原本給業者調整的半年緩衝期在這天結束，緩衝期內，外國郵政機構還能選擇固定稅率或依申報價值課稅，快遞公司則一直是全額課稅。","type":"paragraph"},{"html":"緩衝期結束之後，固定稅率的簡化選項也一併失效，現在全部回到正式報關、依 HS Code 課稅的規則。","type":"paragraph"},{"h":280,"w":880,"url":"https://rtzfeoahpsutyikutsys.supabase.co/storage/v1/object/public/blog-images/posts/8/1788768282820_c2-fig2-___.svg","type":"image","source":"","caption":"圖｜美國小額免稅取消時間軸，2025/8/29 取消門檻、2026/2/28 緩衝期結束"},{"html":"誰在收這筆錢：快遞公司跟郵政包裹不一樣","text":"誰在收這筆錢：快遞公司跟郵政包裹不一樣","type":"heading","level":2},{"html":"如果是透過 FedEx、UPS、DHL 這類快遞公司出貨，這些公司現在會在貨還沒送達之前，就會先把關稅跟手續費算好，實際收費方式依合作條件而定，有些會直接跟出貨的品牌收，有些則是等配送時才跟收件人收，而後者風險比較高，因為收件人下單的時候並不知道之後還有一筆稅要繳，貨到才發現拒收與棄單的比例通常會拉高。","type":"paragraph"},{"html":"如果是走外國郵政系統寄送，包裹會在送達美國之後由海關報關課稅，收件人領貨前必須先完稅。","type":"paragraph"},{"h":340,"w":880,"url":"https://rtzfeoahpsutyikutsys.supabase.co/storage/v1/object/public/blog-images/posts/8/1788768355107_c2-fig3-______.svg","type":"image","source":"","caption":"圖｜快遞包裹與郵政包裹的關稅收取流程比較"},{"html":"對品牌的實際影響：客單價低的直發模式首當其衝","text":"對品牌的實際影響：客單價低的直發模式首當其衝","type":"heading","level":2},{"html":"這次變動衝擊最大的，是原本靠「客單價低於 800 美元、可以免稅直發」這個空間做美國市場的品牌，常見的品類包括保健食品、美妝保養、服飾配件。","type":"paragraph"},{"html":"過去這些商品的到岸成本裡沒有關稅這一項，定價、廣告投放的成本試算，多半也是照這個假設在算，門檻取消之後，這筆稅不是由品牌吸收、壓縮毛利，就是轉嫁給消費者，兩種做法都會直接影響原本的定價策略跟轉換率。","type":"paragraph"},{"html":"品牌現在可以怎麼調整","text":"品牌現在可以怎麼調整","type":"heading","level":2},{"html":"面對這個變化，常見的調整方向有幾個：\u003cbr>其一是把關稅試算進定價，重新確認現在的毛利是否還撐得住；\u003cbr>其二是改用 DDP（送到府、稅先幫你付好）模式出貨，讓客戶在下單當下就把稅金算清楚，避免貨到才收到額外帳單、影響信任；\u003cbr>其三是評估改走海外倉，把貨批量報關進倉之後再逐筆出貨給消費者，分攤單件的報關成本，出貨量夠大時通常比較划算。","type":"paragraph"},{"html":"實務上該選哪一種，要看品類、客單價跟出貨量而定，沒有一體適用的答案。","type":"paragraph"},{"type":"divider"},{"type":"callout","style":"note","title":"常見問題","blocks":[{"html":"\u003cb>Q1：台灣賣家用郵局寄的包裹也會被課稅嗎？\u003c/b>","type":"paragraph"},{"html":"會。這次取消的是所有國家、所有寄送管道的 800 美元以下免稅，不限定快遞公司，郵局包裹一樣要報關課稅。","type":"paragraph"},{"html":"\u003cb>Q2：現在還有沒有簡化的固定稅率可以選？\u003c/b>","type":"paragraph"},{"html":"沒有。固定稅率是緩衝期（到 2026 年 2 月底）才有的簡化選項，緩衝期結束後已經失效，現在一律要走正式報關、依 HS Code 課稅。","type":"paragraph"},{"html":"\u003cb>Q3：關稅稅率大概是多少？\u003c/b>","type":"paragraph"},{"html":"依商品的 HS Code 歸類與原產地不同，稅率落差很大，沒有統一數字，建議實際出貨前先確認商品的分類代碼。","type":"paragraph"},{"html":"\u003cb>Q4：這對台灣品牌有什麼具體影響？\u003c/b>","type":"paragraph"},{"html":"如果原本是靠客單價低於 800 美元的優勢直發美國，這個優勢現在已經不存在，成本結構要重新試算，尤其是原本毛利就抓得比較緊的品類。","type":"paragraph"},{"html":"\u003cb>Q5：有什麼方式可以降低衝擊？\u003c/b>","type":"paragraph"},{"html":"常見的做法是把關稅算進定價、改用 DDP 模式讓客戶在下單時就把稅算清楚，或評估海外倉批量報關分攤成本，實際做法要看品類與出貨量。","type":"paragraph"},{"html":"\u003cb>Q6：想進一步了解，要怎麼開始？\u003c/b>","type":"paragraph"},{"html":"可以填寫官網的\u003ca href=\"https://worldoflandmark.com/gc-form\" rel=\"noopener nofollow\" target=\"_blank\">諮詢表單\u003c/a>，GC 收到後會協助評估現在的出貨成本受到多大影響，並提供調整方向。","type":"paragraph"}]},{"html":"\u003cspan style=\"color:rgb(137, 135, 129)\">＊本文整理自 2026 年 9 月公開資訊，美國海關相關規定與稅率請以 CBP（美國海關暨邊境保護局）最新公告為準。\u003c/span>","type":"paragraph"}]},"is_pinned":false,"published_at":"2026-09-07T08:23:48.943+00:00","last_published_at":"2026-09-07T08:23:48.943+00:00","meta_title":null,"meta_description":null};</script><!-- GC_BLOGPOST_END -->
+<style>
+/* ═══ 洞察文章＝淺色模式（官網其他頁仍是深色）═══════════════════════
+   為什麼只有這兩頁是白底：
+   1. 文章是要讓人長時間閱讀的，白底比較不累。
+   2. 深底上「用滑鼠把文字選起來」幾乎看不到，讀者做筆記很痛苦。
+   改色規則：底色 #FAFAFA（中性灰白，不偏暖也不偏冷；純白 #ffffff 太刺眼）、
+   文字 #111827、次要文字 rgba(17,24,39,α)；卡片與頁尾一律用半透明深色疊在底色上，
+   色溫才會跟著底色走，不會變成「暖色底＋冷灰卡片」。
+   ⚠ 例外：疊在圖片上的控制項（影片播放鍵、輪播左右箭頭）刻意維持深色半透明，
+     否則遇到淺色圖片會整個消失。改色時不要順手把它們一起翻白。          */
+:root{
+  --bg:#FAFAFA; --panel:rgba(17,24,39,0.04); --panel-2:rgba(17,24,39,0.09);
+  --border:rgba(17,24,39,0.12);
+  --accent:#1460A8; --accent-2:#003D79; --accent-lite:#2563eb; --accent-lite2:#1460A8;
+  --text:#111827; --text-dim:rgba(17,24,39,0.78);
+  --grid:rgba(17,24,39,0.03);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;scroll-padding-top:68px;}
+body{background:var(--bg);color:var(--text);font-family:'Noto Sans TC',sans-serif;font-weight:400;overflow-x:hidden;}
+html[lang="en"] body{font-family:'Inter','Noto Sans TC',sans-serif;}
+html[lang="en"] .nav-logo,html[lang="en"] h1,html[lang="en"] h2,html[lang="en"] h3{font-family:'Inter','Syne',sans-serif;}
+html[lang="ja"] body{font-family:'M PLUS 1p','Noto Sans TC',sans-serif;}
+html[lang="ja"] h1,html[lang="ja"] h2,html[lang="ja"] h3{font-family:'M PLUS 1p','Syne',sans-serif;}
+img{max-width:100%;display:block;}
+
+/* ===== NAV ===== */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;height:68px;background:rgba(250,250,250,0.85);backdrop-filter:blur(24px);border-bottom:1px solid rgba(17,24,39,0.07);transition:background 0.4s,border-color 0.4s;}
+nav.scrolled{background:rgba(250,250,250,0.96);border-bottom:1px solid rgba(17,24,39,0.1);}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.7rem;letter-spacing:-0.03em;color:#111827;}
+.nav-logo img{border-radius:8px;}
+.nav-links{display:flex;gap:2.2rem;list-style:none;align-items:center;margin-left:auto;}
+.nav-links a{color:rgba(17,24,39,0.72);text-decoration:none;font-size:0.87rem;letter-spacing:0.03em;transition:color 0.2s;position:relative;}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;background:var(--accent);transform:scaleX(0);transition:transform 0.25s;border-radius:2px;}
+.nav-links a:hover{color:#111827;}
+.nav-active{color:#111827!important;}.nav-active::after{transform:scaleX(1)!important;}
+.nav-links a:hover::after{transform:scaleX(1);}
+.nav-cta{background:#111827!important;color:#FFFAFA!important;padding:0.45rem 1.2rem;border-radius:5px;font-weight:600;border:none!important;}
+.nav-cta::after{display:none!important;}
+.nav-cta:hover{background:#1f2937!important;}
+.nav-dd{position:relative;}
+.nav-dd-btn{display:inline-flex;align-items:center;gap:5px;background:none;border:none;padding:0;cursor:pointer;color:rgba(17,24,39,0.72);font-family:inherit;font-size:0.87rem;letter-spacing:0.03em;transition:color 0.2s;position:relative;}
+.nav-dd-btn::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;background:var(--accent);transform:scaleX(0);transition:transform 0.25s;border-radius:2px;}
+.nav-dd:hover .nav-dd-btn,.nav-dd.dd-open .nav-dd-btn{color:#111827;}
+.nav-dd:hover .nav-dd-btn::after,.nav-dd.dd-open .nav-dd-btn::after{transform:scaleX(1);}
+.nav-dd-btn svg{transition:transform 0.25s;opacity:0.8;}
+.nav-dd:hover .nav-dd-btn svg,.nav-dd.dd-open .nav-dd-btn svg{transform:rotate(180deg);}
+.nav-dd-panel{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%) translateY(-6px);min-width:186px;background:#FAFAFA;border:1px solid rgba(17,24,39,0.1);border-radius:10px;box-shadow:0 14px 34px rgba(17,24,39,0.14);padding:6px;opacity:0;visibility:hidden;transition:opacity 0.18s ease,transform 0.18s ease,visibility 0.18s;z-index:110;}
+.nav-dd-panel::before{content:'';position:absolute;top:-14px;left:0;right:0;height:14px;}
+.nav-dd:hover .nav-dd-panel,.nav-dd.dd-open .nav-dd-panel{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);}
+.nav-dd-panel a{display:block;padding:9px 13px;border-radius:6px;color:rgba(17,24,39,0.68);text-decoration:none;font-size:0.83rem;letter-spacing:0.02em;white-space:nowrap;transition:all 0.15s;}
+.nav-dd-panel a::after{display:none;}
+.nav-dd-panel a:hover{background:rgba(17,24,39,0.05);color:#111827;}
+.nav-right{display:none;align-items:center;gap:0.5rem;}
+.nav-hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;width:38px;height:38px;cursor:pointer;background:none;border:none;padding:4px;}
+.nav-hamburger span{display:block;width:22px;height:2px;background:#111827;border-radius:2px;transition:all 0.28s ease;transform-origin:center;}
+.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.nav-mobile-menu{display:none;position:fixed;top:68px;left:0;right:0;z-index:99;background:rgba(250,250,250,0.97);backdrop-filter:blur(24px);border-bottom:1px solid rgba(17,24,39,0.08);padding:1.2rem 5vw 1.6rem;flex-direction:column;gap:0;}
+.nav-mobile-menu.open{display:flex;}
+.nav-mobile-menu a{display:block;padding:0.85rem 0;color:rgba(17,24,39,0.82);text-decoration:none;font-size:0.95rem;border-bottom:1px solid rgba(17,24,39,0.06);transition:color 0.2s;}
+.m-acc-btn{display:flex;align-items:center;justify-content:space-between;width:100%;padding:0.85rem 0;background:none;border:none;border-bottom:1px solid rgba(17,24,39,0.06);color:rgba(17,24,39,0.82);font-family:inherit;font-size:0.95rem;cursor:pointer;}
+.m-acc-btn svg{transition:transform 0.25s;opacity:0.7;}
+.m-acc-btn[aria-expanded="true"] svg{transform:rotate(180deg);}
+.m-acc-panel{display:none;padding-left:0.9rem;}
+.m-acc-panel.open{display:block;}
+@keyframes gcFadeIn{from{opacity:0;transform:translateY(-4px);}to{opacity:1;transform:none;}}
+.gc-lang-switcher{display:flex;align-items:center;margin-left:12px;}
+.gc-lang-btn{display:flex;align-items:center;gap:4px;background:transparent;border:none;padding:4px 6px;border-radius:4px;cursor:pointer;color:rgba(17,24,39,0.55);font-size:14px;font-weight:600;letter-spacing:0.03em;transition:all 0.15s;font-family:inherit;}
+.gc-lang-btn:hover,.gc-lang-btn.gc-btn-active{color:#111827;background:rgba(17,24,39,0.06);}
+.gc-lang-chev{transition:transform 0.18s;}
+.gc-chev-open{transform:rotate(180deg);}
+.gc-lang-dropdown{position:absolute;top:calc(100% + 8px);right:0;min-width:160px;background:#FAFAFA;border:1px solid rgba(17,24,39,0.1);border-radius:8px;box-shadow:0 8px 24px rgba(17,24,39,0.12);overflow:hidden;display:none;z-index:200;animation:gcFadeIn 0.12s ease;}
+.gc-lang-dropdown.gc-open{display:block;}
+.gc-lang-option{display:flex;align-items:center;gap:8px;padding:10px 14px;font-size:12px;font-weight:500;cursor:pointer;transition:background 0.1s;color:rgba(17,24,39,0.6);}
+.gc-lang-option:hover{background:rgba(17,24,39,0.05);color:#111827;}
+.gc-lang-option.gc-lang-active{color:#111827;}
+.gc-lang-name{font-weight:600;}
+.gc-lang-check{color:#1460A8;margin-left:auto;font-size:11px;}
+.gc-lang-sep{height:1px;background:rgba(17,24,39,0.07);}
+
+/* ===== 版面 ===== */
+.po-wrap{max-width:1180px;margin:0 auto;padding:118px 5vw 20px;display:grid;grid-template-columns:minmax(0,1fr) 268px;gap:56px;align-items:start;}
+.po-main{min-width:0;}
+.po-back{display:inline-flex;align-items:center;gap:7px;color:rgba(17,24,39,0.55);text-decoration:none;font-size:0.83rem;margin-bottom:22px;transition:color 0.2s;}
+.po-back:hover{color:#111827;}
+
+/* 標題 → 標籤 → 摘要 */
+.po-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px;}
+.po-chip{background:rgba(20,96,168,0.1);color:var(--accent-lite2);font-size:0.7rem;padding:3px 11px;border-radius:20px;}
+.po-h1{font-family:'Syne',sans-serif;font-size:clamp(1.7rem,3.2vw,2.55rem);font-weight:800;line-height:1.28;letter-spacing:-0.02em;color:#111827;}
+html[lang="zh-TW"] .po-h1{font-family:'Noto Sans TC',sans-serif;font-weight:700;letter-spacing:-0.01em;}
+.po-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px;}
+.po-tags span{border:1px solid rgba(17,24,39,0.13);border-radius:100px;padding:3px 11px;font-size:0.74rem;color:rgba(17,24,39,0.58);}
+.po-sum{margin-top:20px;padding:18px 22px;background:rgba(17,24,39,0.035);border:1px solid rgba(17,24,39,0.07);border-radius:10px;font-size:0.95rem;line-height:1.95;color:var(--text-dim);}
+
+/* 輪播 */
+.po-car{margin:34px 0 10px;position:relative;}
+.po-carbox{position:relative;border-radius:14px;overflow:hidden;background:rgba(17,24,39,0.07);border:1px solid rgba(17,24,39,0.08);}
+.po-carbox.r169{aspect-ratio:16/9;}
+.po-carbox.r45{aspect-ratio:4/5;}
+.po-carbox.r11{aspect-ratio:1/1;}
+.po-track{display:flex;height:100%;transition:transform 0.42s cubic-bezier(0.4,0,0.2,1);}
+.po-slide{flex:0 0 100%;height:100%;background:rgba(17,24,39,0.07) center/cover no-repeat;position:relative;}
+.po-slide.vid{cursor:pointer;}
+.po-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
+.po-play i{width:62px;height:62px;border-radius:50%;background:rgba(6,8,14,0.62);border:1px solid rgba(255,255,255,0.28);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px);transition:all 0.2s;}
+.po-slide.vid:hover .po-play i{background:rgba(20,96,168,0.85);transform:scale(1.06);}
+.po-slide iframe{width:100%;height:100%;border:0;display:block;}
+.po-arrow{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,0.2);background:rgba(6,8,14,0.55);backdrop-filter:blur(8px);color:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:3;transition:all 0.2s;}
+.po-arrow:hover{background:rgba(20,96,168,0.92);color:#fff;border-color:transparent;}
+.po-arrow.prev{left:12px;} .po-arrow.next{right:12px;}
+.po-dots{display:flex;justify-content:center;gap:6px;margin-top:12px;}
+.po-dots button{width:7px;height:7px;border-radius:50%;border:none;background:rgba(17,24,39,0.22);cursor:pointer;padding:0;transition:all 0.22s;}
+.po-dots button.on{width:20px;border-radius:20px;background:var(--accent-lite);}
+.po-cap{margin-top:11px;font-size:0.8rem;line-height:1.8;color:rgba(17,24,39,0.55);}
+.po-src{margin-top:4px;font-size:0.74rem;color:rgba(17,24,39,0.45);display:flex;align-items:flex-start;gap:5px;}
+.po-src svg{flex:none;opacity:0.55;}
+
+/* 內文 */
+.po-body{margin-top:36px;font-size:0.95rem;line-height:2.05;color:rgba(17,24,39,0.82);}
+.po-body p{margin:0 0 1.35em;}
+.po-body h2{font-size:1.32rem;font-weight:700;line-height:1.6;color:#111827;margin:2.1em 0 0.85em;padding-left:14px;border-left:3px solid var(--accent);}
+.po-body h3{font-size:1.08rem;font-weight:700;line-height:1.65;color:#111827;margin:1.8em 0 0.7em;}
+.po-body ul,.po-body ol{margin:0 0 1.35em;padding-left:1.5em;}
+.po-body li{margin-bottom:0.55em;}
+/* 表格（後台 1.6.3 起）。欄位多的時候讓它自己橫向捲，不要撐破版面。 */
+.po-body .po-tblbox{overflow-x:auto;margin:0 0 1.35em;-webkit-overflow-scrolling:touch;}
+.po-body table.po-tbl{border-collapse:collapse;width:100%;min-width:max-content;font-size:0.94em;}
+.po-body table.po-tbl th,.po-body table.po-tbl td{border:1px solid var(--po-line,rgba(17,24,39,0.10));padding:8px 12px;text-align:left;vertical-align:top;}
+.po-body table.po-tbl th{background:rgba(17,24,39,0.035);font-weight:700;white-space:nowrap;}
+/* 摺疊區塊（後台 1.6.3 起）。用原生 <details>，不用寫 JS。 */
+.po-body details.po-tog{margin:0 0 1.35em;border:1px solid var(--po-line,rgba(17,24,39,0.10));border-radius:12px;background:#fff;padding:0;}
+.po-body details.po-tog>summary{list-style:none;cursor:pointer;padding:14px 18px;font-weight:700;position:relative;padding-left:40px;}
+.po-body details.po-tog>summary::-webkit-details-marker{display:none;}
+.po-body details.po-tog>summary::before{content:'';position:absolute;left:18px;top:50%;width:7px;height:7px;margin-top:-4px;border-right:2px solid var(--accent);border-bottom:2px solid var(--accent);transform:rotate(-45deg);transition:transform .18s;}
+.po-body details.po-tog[open]>summary::before{transform:rotate(45deg);margin-top:-6px;}
+.po-body details.po-tog .po-togb{padding:0 18px 4px 40px;}
+.po-body details.po-tog .po-togb>*:last-child{margin-bottom:14px;}
+/* 巢狀清單的第二層：跟後台編輯器一樣只做兩層 */
+.po-body li>ul,.po-body li>ol{margin:0.45em 0 0;padding-left:1.35em;}
+.po-body li>ul{list-style:circle;}
+.po-body li>ol{list-style:lower-alpha;}
+.po-body ul.po-todo li>ul.po-todo{padding-left:0;}
+.po-body li::marker{color:var(--accent-lite);}
+/* 核取方塊清單：方框是 li 的 ::before 畫的，純展示、沒有打勾狀態 */
+.po-body ul.po-todo{list-style:none;margin:0 0 1.35em;padding-left:0;}
+.po-body ul.po-todo>li{position:relative;padding-left:31px;margin-bottom:0.5em;}
+.po-body ul.po-todo>li::before{content:'';position:absolute;left:0;top:0.34em;width:18px;height:18px;border-radius:5px;border:1.5px solid rgba(17,24,39,0.26);background:#fff;box-sizing:border-box;}
+.po-cal ul.po-todo{margin:0 0 0.9em;padding-left:0;}
+.po-body blockquote{margin:1.8em 0;padding:20px 24px;background:rgba(20,96,168,0.06);border-radius:12px;border:1px solid rgba(20,96,168,0.18);font-size:1.02rem;line-height:1.95;color:#111827;}
+.po-body blockquote cite{display:block;margin-top:10px;font-style:normal;font-size:0.78rem;color:rgba(17,24,39,0.45);}
+.po-body hr{border:none;height:1px;background:rgba(17,24,39,0.1);margin:2.6em 0;}
+/* 重點框／提醒框：標題＋自由內容（段落、條列都可以） */
+.po-cal{margin:2em 0;padding:22px 26px 18px;border-radius:14px;background:rgba(17,24,39,0.035);border:1px solid rgba(17,24,39,0.09);}
+.po-cal.warn{background:#fffbeb;border-color:#fcd34d;}
+.po-calt{font-size:0.98rem;font-weight:700;line-height:1.7;color:#111827;margin-bottom:0.7em;display:flex;align-items:center;gap:8px;}
+.po-cal.warn .po-calt{color:#b45309;}
+.po-calt svg{flex:none;opacity:0.8;}
+.po-cal>*:last-child{margin-bottom:0;}
+.po-cal p{margin:0 0 0.9em;}
+.po-cal ul,.po-cal ol{margin:0 0 0.9em;padding-left:1.4em;}
+.po-cal li{margin-bottom:0.45em;}
+.po-cal h2,.po-cal h3{font-size:1rem;margin:1.2em 0 0.5em;padding-left:0;border-left:none;}
+.po-cal blockquote{margin:0.9em 0;padding:14px 18px;font-size:0.95rem;}
+.po-body a{color:var(--accent-lite2);text-decoration:underline;text-underline-offset:2px;}
+.po-body a:hover{color:#0b3d6b;}
+.po-body code{background:rgba(17,24,39,0.06);border:1px solid rgba(17,24,39,0.1);border-radius:4px;padding:1px 6px;font-family:Inter,ui-monospace,monospace;font-size:0.9em;}
+.po-body s{opacity:0.65;}
+.po-body figure{margin:2em 0;}
+.po-body figure img{width:100%;border-radius:12px;border:1px solid rgba(17,24,39,0.08);}
+.po-body figcaption{margin-top:11px;font-size:0.8rem;line-height:1.8;color:rgba(17,24,39,0.55);}
+.po-body .po-fsrc{margin-top:4px;font-size:0.74rem;color:rgba(17,24,39,0.45);display:flex;align-items:flex-start;gap:5px;}
+.po-body .po-fsrc svg{flex:none;opacity:0.55;}
+
+/* 發布時間 + 分享 */
+.po-foot{margin-top:44px;padding-top:22px;border-top:1px solid rgba(17,24,39,0.09);display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+.po-pub{font-size:0.8rem;color:rgba(17,24,39,0.45);}
+.po-share{display:flex;align-items:center;gap:8px;}
+.po-share span{font-size:0.78rem;color:rgba(17,24,39,0.45);margin-right:2px;}
+.po-share button{width:36px;height:36px;border-radius:50%;border:1px solid rgba(17,24,39,0.14);background:rgba(17,24,39,0.04);color:rgba(17,24,39,0.7);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.2s;padding:0;}
+.po-share button:hover{background:#1460A8;color:#fff;border-color:transparent;}
+.po-copied{font-size:0.74rem;color:#16a34a;}
+
+/* CTA */
+#po-cta{position:relative;overflow:hidden;background:rgba(17,24,39,0.035);text-align:center;padding:82px 5vw;margin-top:60px;border-top:1px solid rgba(17,24,39,0.08);}
+.cta-bg{position:absolute;inset:0;background:radial-gradient(ellipse 65% 80% at 50% 50%,rgba(20,96,168,0.07) 0%,transparent 70%);}
+.cta-grid{position:absolute;inset:0;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:64px 64px;}
+.cta-content{position:relative;z-index:2;}
+.section-label{font-family:'Syne',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent-lite);margin-bottom:1rem;}
+.cta-title{font-family:'Syne',sans-serif;font-size:clamp(1.6rem,3vw,2.5rem);font-weight:800;line-height:1.2;margin-bottom:1.1rem;letter-spacing:-0.03em;color:#111827;}
+html[lang="zh-TW"] .cta-title{font-family:'Noto Sans TC',sans-serif;font-weight:700;}
+.cta-sub{font-size:0.95rem;color:var(--text-dim);max-width:560px;margin:0 auto 2.2rem;line-height:1.78;}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:#111827;color:#FFFAFA;padding:0.85rem 1.8rem;border-radius:5px;text-decoration:none;font-size:0.9rem;font-weight:600;transition:all 0.25s;}
+.btn-primary:hover{transform:translateY(-2px);background:#1f2937;}
+
+/* 其他熱門文章 */
+.po-side{position:sticky;top:92px;}
+.po-sh{font-family:'Syne',sans-serif;font-size:0.66rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(17,24,39,0.45);margin:0 0 14px;display:flex;align-items:center;gap:8px;}
+.po-sh::before{content:'';width:14px;height:1px;background:var(--accent);flex:none;}
+.po-rel{display:flex;flex-direction:column;gap:2px;}
+.po-rel a{display:flex;gap:11px;padding:11px 10px;border-radius:10px;text-decoration:none;color:inherit;transition:background 0.18s;}
+.po-rel a:hover{background:rgba(17,24,39,0.05);}
+.po-rel .t{width:56px;height:44px;border-radius:7px;flex:none;background:rgba(17,24,39,0.07) center/cover no-repeat;border:1px solid rgba(17,24,39,0.08);}
+.po-rel .x{min-width:0;}
+.po-rel .x b{display:block;font-size:0.82rem;font-weight:500;line-height:1.6;color:rgba(17,24,39,0.86);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.po-rel a:hover .x b{color:var(--accent-lite2);}
+.po-rel .x i{font-style:normal;display:block;margin-top:4px;font-family:Inter,monospace;font-size:0.68rem;color:rgba(17,24,39,0.45);}
+.po-relbottom{max-width:1180px;margin:0 auto;padding:0 5vw 80px;display:none;}
+.po-relbottom .po-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px;}
+.po-relbottom .po-card{background:rgba(17,24,39,0.035);border:1px solid rgba(17,24,39,0.08);border-radius:12px;overflow:hidden;text-decoration:none;color:inherit;transition:all 0.22s;}
+.po-relbottom .po-card:hover{border-color:rgba(20,96,168,0.45);transform:translateY(-2px);}
+.po-relbottom .po-card .t{width:100%;aspect-ratio:16/9;background:rgba(17,24,39,0.07) center/cover no-repeat;}
+.po-relbottom .po-card .x{padding:14px 15px 17px;}
+.po-relbottom .po-card b{display:block;font-size:0.88rem;font-weight:500;line-height:1.65;color:rgba(17,24,39,0.9);}
+.po-relbottom .po-card i{font-style:normal;display:block;margin-top:7px;font-family:Inter,monospace;font-size:0.7rem;color:rgba(17,24,39,0.45);}
+
+/* 狀態頁（維護中／找不到／載入中） */
+.po-state{max-width:640px;margin:0 auto;padding:150px 5vw 110px;text-align:center;}
+.po-state .ic{display:flex;justify-content:center;margin-bottom:20px;}
+.po-state .ic i{width:62px;height:62px;border-radius:50%;border:1px solid rgba(17,24,39,0.1);background:rgba(17,24,39,0.03);display:flex;align-items:center;justify-content:center;color:rgba(17,24,39,0.45);}
+.po-state h2{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:#111827;margin-bottom:12px;}
+html[lang="zh-TW"] .po-state h2{font-family:'Noto Sans TC',sans-serif;font-weight:700;}
+.po-state p{font-size:0.92rem;line-height:1.95;color:var(--text-dim);margin-bottom:26px;}
+.po-state small{display:block;margin-top:14px;font-size:0.75rem;opacity:0.55;}
+
+/* 預覽橫幅 */
+.po-preview{position:sticky;top:68px;z-index:90;background:#d97706;color:#fff;padding:9px 5vw;font-size:0.8rem;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.po-preview b{font-weight:700;}
+.po-langnote{max-width:1180px;margin:0 auto;padding:100px 5vw 0;}
+body.po-hasnote .po-wrap{padding-top:24px;}
+body.po-hasnote .po-state{padding-top:60px;}
+.po-langnote div{background:rgba(20,96,168,0.1);border:1px solid rgba(20,96,168,0.22);border-radius:10px;padding:11px 16px;font-size:0.8rem;color:var(--text-dim);line-height:1.7;}
+
+/* 頁尾 */
+footer{background:rgba(250,250,250,0.94);padding:2.8rem 5vw;border-top:1px solid rgba(17,24,39,0.07);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.footer-copy{font-size:0.78rem;color:rgba(17,24,39,0.55);}
+.footer-links{display:flex;gap:1.2rem;align-items:center;}
+.footer-links a{font-size:0.78rem;color:rgba(17,24,39,0.45);text-decoration:none;}
+.footer-links a:hover{color:rgba(17,24,39,0.8);}
+
+@media(max-width:1000px){
+  .po-wrap{grid-template-columns:minmax(0,1fr);gap:0;}
+  .po-side{display:none;}
+  .po-relbottom{display:block;}
+}
+@media(max-width:900px){
+  .nav-links{display:none;}
+  nav{justify-content:flex-start;}
+  .nav-right{display:flex;}
+  .nav-hamburger{display:flex;}
+  .gc-lang-switcher{margin-left:auto;margin-right:0.4rem;}
+  .po-wrap{padding:96px 5vw 10px;}
+  .po-body{font-size:0.92rem;line-height:1.95;}
+  .po-body h2{font-size:1.16rem;}
+  #po-cta{padding:60px 5vw;margin-top:40px;}
+  .po-relbottom .po-grid{grid-template-columns:1fr;}
+  footer{flex-direction:column;align-items:flex-start;padding:2rem 5vw;}
+}
+
+/* ═══ 改版新增：閱讀進度、目錄、點圖放大、中文斷句（2026-08）═══════ */
+:root{
+  --ink:#111827; --dim:rgba(17,24,39,0.62); --faint:rgba(17,24,39,0.45);
+  --line:rgba(17,24,39,0.1); --line2:rgba(17,24,39,0.06);
+  --accent-soft:rgba(20,96,168,0.08); --cardbg:#fff;
+}
+
+/* 閱讀進度條：貼在導覽列底下，捲到哪一段一目了然 */
+.po-prog{position:fixed;top:68px;left:0;right:0;height:3px;z-index:95;pointer-events:none;}
+.po-prog i{display:block;height:100%;width:0;background:var(--accent);transition:width 0.08s linear;}
+
+/* 右側欄：目錄 + 熱門文章 */
+.po-side{position:sticky;top:92px;display:flex;flex-direction:column;gap:30px;}
+.po-toc a{display:block;font-size:0.83rem;line-height:1.65;color:var(--dim);text-decoration:none;
+  padding:7px 0 7px 13px;border-left:2px solid var(--line);transition:0.16s;}
+.po-toc a:hover{color:var(--ink);border-left-color:rgba(17,24,39,0.3);}
+.po-toc a.on{color:var(--accent);border-left-color:var(--accent);font-weight:600;}
+
+/* 手機／平板：目錄改成可收合的一列，放在摘要下面 */
+.po-tocm{display:none;margin-top:22px;border:1px solid var(--line2);border-radius:12px;background:var(--cardbg);overflow:hidden;}
+.po-tocm summary{list-style:none;cursor:pointer;padding:14px 18px;font-size:0.88rem;font-weight:600;color:var(--ink);
+  display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.po-tocm summary::-webkit-details-marker{display:none;}
+.po-tocm summary svg{transition:transform 0.2s;opacity:0.45;}
+.po-tocm[open] summary{border-bottom:1px solid var(--line2);}
+.po-tocm[open] summary svg{transform:rotate(180deg);}
+.po-tocm .po-toc{padding:10px 18px 16px;}
+
+/* H2 要留出被錨點捲到時的上緣空間，才不會被導覽列蓋住 */
+.po-body h2{scroll-margin-top:96px;}
+
+/* 點圖放大 */
+.po-body figure img,.po-slide.zoomable{cursor:zoom-in;}
+.po-lb{position:fixed;inset:0;z-index:200;background:rgba(9,12,20,0.9);backdrop-filter:blur(6px);
+  display:none;align-items:center;justify-content:center;flex-direction:column;gap:16px;padding:clamp(16px,5vw,56px);}
+.po-lb.on{display:flex;}
+.po-lb img{max-width:min(1180px,94vw);max-height:78vh;width:auto;border-radius:12px;object-fit:contain;
+  box-shadow:0 24px 60px rgba(0,0,0,0.5);}
+.po-lbcap{max-width:min(1180px,94vw);font-size:0.84rem;line-height:1.8;color:rgba(255,255,255,0.78);text-align:center;}
+.po-lbx{position:absolute;top:clamp(12px,3vw,24px);right:clamp(12px,3vw,24px);width:42px;height:42px;
+  border-radius:50%;border:1px solid rgba(255,255,255,0.24);background:rgba(255,255,255,0.12);
+  color:#fff;display:grid;place-items:center;cursor:pointer;padding:0;}
+.po-lbx:hover{background:rgba(255,255,255,0.22);}
+.po-lbhint{position:absolute;bottom:clamp(12px,3vw,22px);left:0;right:0;text-align:center;
+  font-size:0.74rem;color:rgba(255,255,255,0.5);}
+
+/* CTA 下方的「其他相關文章」：改成整寬的一段底色，內容再置中。
+   ⚠ display 交給上面原本的規則管（電腦版藏起來、平板以下才出現），
+     這裡只改外觀，不要動 display。 */
+.po-relbottom{max-width:none;padding:0;background:rgba(17,24,39,0.02);border-top:1px solid var(--line2);}
+.po-relbottom-in{max-width:1180px;margin:0 auto;padding:34px 5vw 46px;}
+/* 修：卡片是 <a>、縮圖與文字區是 <span>，都是行內元素 —— 吃不到 width
+   與 aspect-ratio，所以封面圖一直沒出現，圖與文字也接不成一張卡。
+   三個都補上 display:block 才會是完整的一張卡。 */
+.po-relbottom .po-card{display:block;}
+.po-relbottom .po-card .t{display:block;width:100%;}
+.po-relbottom .po-card .x{display:block;}
+
+@media(max-width:1000px){
+  .po-tocm{display:block;}
+  /* ⚠ 這條一定要留著。上面的 .po-side{display:flex} 寫在原本
+     @media(max-width:1000px){.po-side{display:none}} 的後面，同樣的
+     具體度、後面的贏，會把它蓋掉 —— 側欄就會掉到文章最下面再出現一次
+     （目錄＋熱門文章重複）。所以在這裡把 display:none 補回來。 */
+  .po-side{display:none;}
+}
+@media(max-width:900px){
+  .po-prog{top:68px;}
+  .po-relbottom-in{padding:28px 5vw 40px;}
+}
+
+
+/* .nb：手動鎖住不想被拆開的字（內容裡幾乎用不到，留著備用）。
+   ⚠ 2026-08-20 已移除「自動偵測詞彙斷行」：中文本來就可以在任何字後面
+     斷行，右邊才會切齊。之前為了不讓「對接」被拆開而自動插 <span class="nb">，
+     結果反而讓每一行右邊留下一兩個字的空白，讀起來很奇怪（sylvia 回報）。
+     現在完全交給瀏覽器，跟一般中文文章一樣。                          */
+.nb{white-space:nowrap;}
+</style>
+<style>
+/* ── 全站頁尾 F3：電腦三欄、手機每欄收成可點開的摺疊列 ──────────
+   class 一律用 gcf3- 前綴，避免撞到各頁既有的樣式。
+   footer.gc-footer 用「元素＋class」提高優先序，蓋掉舊的 footer{display:flex}。
+   ⚠ 公司資訊只留「公司名」與 support@worldoflandmark.com（統編、地址不放）。 */
+footer.gc-footer{display:block;background:rgba(17,24,39,0.03);border-top:1px solid rgba(17,24,39,0.06);padding:0;margin-top:20px;}
+.gcf3-top{max-width:1160px;margin:0 auto;padding:46px 5vw 28px;
+  display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:40px;align-items:start;}
+.gcf3-brand img{width:50px;height:50px;border-radius:12px;margin-bottom:16px;}
+.gcf3-brand p{font-size:0.82rem;line-height:1.9;color:rgba(17,24,39,0.62);max-width:300px;}
+.gcf3-social{display:flex;gap:10px;margin-top:16px;}
+.gcf3-social a{width:36px;height:36px;border-radius:50%;border:1px solid rgba(17,24,39,0.1);
+  display:flex;align-items:center;justify-content:center;color:rgba(17,24,39,0.62);transition:0.18s;text-decoration:none;}
+.gcf3-social a:hover{background:#111827;border-color:#111827;color:#FAFAFA;transform:translateY(-2px);}
+.gcf3-col summary{list-style:none;font-size:0.8rem;font-weight:700;color:#111827;margin-bottom:12px;
+  display:flex;align-items:center;justify-content:space-between;cursor:default;}
+.gcf3-col summary::-webkit-details-marker{display:none;}
+.gcf3-col summary svg{display:none;}
+.gcf3-col a{display:block;font-size:0.82rem;line-height:1.6;color:rgba(17,24,39,0.62);text-decoration:none;padding:0.32rem 0;transition:color 0.18s;}
+.gcf3-col a:hover{color:var(--accent);}
+.gcf3-info{max-width:1160px;margin:0 auto;padding:20px 5vw;border-top:1px solid rgba(17,24,39,0.06);
+  display:flex;gap:12px 46px;flex-wrap:wrap;font-size:0.78rem;color:rgba(17,24,39,0.45);}
+.gcf3-info b{font-weight:600;color:rgba(17,24,39,0.62);margin-right:8px;}
+.gcf3-info a{color:var(--accent);text-decoration:none;}
+.gcf3-copy{border-top:1px solid rgba(17,24,39,0.06);padding:16px 5vw;text-align:center;
+  font-size:0.75rem;color:rgba(17,24,39,0.45);}
+@media(max-width:1000px){
+  .gcf3-top{grid-template-columns:1fr 1fr;gap:32px;}
+  .gcf3-brand{grid-column:1/-1;}
+}
+@media(max-width:640px){
+  .gcf3-top{grid-template-columns:1fr;gap:4px;padding-top:34px;}
+  .gcf3-brand{grid-column:auto;margin-bottom:14px;}
+  .gcf3-col{border-top:1px solid rgba(17,24,39,0.06);}
+  .gcf3-col summary{cursor:pointer;padding:15px 0;margin:0;font-size:0.86rem;}
+  .gcf3-col summary svg{display:block;transition:transform 0.2s;opacity:0.45;}
+  .gcf3-col[open] summary svg{transform:rotate(180deg);}
+  .gcf3-col a{padding:0.42rem 0 0.42rem 2px;}
+  .gcf3-col>div{padding-bottom:12px;}
+  .gcf3-info{flex-direction:column;gap:8px;}
+}
+</style>
+<script src="local-preview.js"></script>
+</head>
+<body>
+
+<nav id="siteNav">
+  <a href="/index.html" class="nav-logo"><img src="images/logo.png" alt="GC 跨境服務" width="50" height="50" decoding="async" style="width:50px;height:50px;display:block;"></a>
+  <ul class="nav-links">
+    <li class="nav-dd" id="navAboutDd">
+      <button type="button" class="nav-dd-btn" id="navAboutBtn" aria-haspopup="true" aria-expanded="false">
+        <span data-i18n="nav.about">關於 GC</span>
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="nav-dd-panel">
+        <a href="/index.html#why" data-i18n="nav.why">為何選擇我們</a>
+        <a href="/index.html#services" data-i18n="nav.services">顧問服務</a>
+        <a href="/index.html#partners" data-i18n="nav.partners">服務商介紹</a>
+        <a href="/index.html#process" data-i18n="nav.process">合作流程</a>
+        <a href="/index.html#faq" data-i18n="nav.faq">常見問題</a>
+      </div>
+    </li>
+    <li><a href="/catalog.html" data-i18n="nav.catalog">商品貨盤</a></li>
+    <li><a href="/partner.html" data-i18n="nav.become">成為服務商</a></li>
+    <li><a href="/blog.html" class="nav-active" data-i18n="nav.blog">洞察文章</a></li>
+    <li><a href="/gc-form.html" class="nav-cta" data-i18n="nav.cta">立即諮詢</a></li>
+  </ul>
+  <div id="gcLangSwitcher" class="gc-lang-switcher" style="position:relative;">
+    <button id="gcLangBtn" class="gc-lang-btn" onclick="gcToggleLangMenu()">
+      <span id="gcLangLabel">繁中</span>
+      <svg id="gcLangChev" class="gc-lang-chev" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+    <div id="gcLangDropdown" class="gc-lang-dropdown">
+      <div class="gc-lang-option gc-lang-active" data-lang="zh" onclick="gcSetLang('zh')"><span class="gc-lang-name">繁體中文</span><span class="gc-lang-check">✓</span></div>
+      <div class="gc-lang-sep"></div>
+      <div class="gc-lang-option" data-lang="en" onclick="gcSetLang('en')"><span class="gc-lang-name">English</span><span class="gc-lang-check" style="display:none">✓</span></div>
+      <div class="gc-lang-sep"></div>
+      <div class="gc-lang-option" data-lang="ja" onclick="gcSetLang('ja')"><span class="gc-lang-name">日本語</span><span class="gc-lang-check" style="display:none">✓</span></div>
+    </div>
+  </div>
+  <div class="nav-right">
+    <a href="/gc-form.html" class="nav-cta" data-i18n="nav.cta" style="text-decoration:none;padding:0.45rem 1.2rem;border-radius:5px;font-size:0.87rem;font-weight:600;">立即諮詢</a>
+    <button class="nav-hamburger" id="navHamburger" onclick="toggleMobileMenu()" aria-label="選單"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="nav-mobile-menu" id="navMobileMenu">
+  <button type="button" class="m-acc-btn" id="mAccBtn" onclick="toggleMobileAbout()" aria-expanded="false">
+    <span data-i18n="nav.about">關於 GC</span>
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="m-acc-panel" id="mAccPanel">
+    <a href="/index.html#why" onclick="closeMobileMenu()" data-i18n="nav.why">為何選擇我們</a>
+    <a href="/index.html#services" onclick="closeMobileMenu()" data-i18n="nav.services">顧問服務</a>
+    <a href="/index.html#partners" onclick="closeMobileMenu()" data-i18n="nav.partners">服務商介紹</a>
+    <a href="/index.html#process" onclick="closeMobileMenu()" data-i18n="nav.process">合作流程</a>
+    <a href="/index.html#faq" onclick="closeMobileMenu()" data-i18n="nav.faq">常見問題</a>
+  </div>
+  <a href="/catalog.html" onclick="closeMobileMenu()" data-i18n="nav.catalog">商品貨盤</a>
+  <a href="/partner.html" onclick="closeMobileMenu()" data-i18n="nav.become">成為服務商</a>
+  <a href="/blog.html" onclick="closeMobileMenu()" data-i18n="nav.blog">洞察文章</a>
+  <div style="border-top:1px solid rgba(17,24,39,0.1);margin-top:0.6rem;padding-top:0.8rem;display:flex;gap:0.5rem;">
+    <div class="gc-lang-option" data-lang="zh" onclick="gcSetLang('zh');closeMobileMenu()" style="flex:1;justify-content:center;border:1px solid rgba(17,24,39,0.12);border-radius:6px;"><span class="gc-lang-name">繁中</span><span class="gc-lang-check" style="display:none">✓</span></div>
+    <div class="gc-lang-option" data-lang="en" onclick="gcSetLang('en');closeMobileMenu()" style="flex:1;justify-content:center;border:1px solid rgba(17,24,39,0.12);border-radius:6px;"><span class="gc-lang-name">EN</span><span class="gc-lang-check" style="display:none">✓</span></div>
+    <div class="gc-lang-option" data-lang="ja" onclick="gcSetLang('ja');closeMobileMenu()" style="flex:1;justify-content:center;border:1px solid rgba(17,24,39,0.12);border-radius:6px;"><span class="gc-lang-name">日本語</span><span class="gc-lang-check" style="display:none">✓</span></div>
+  </div>
+</div>
+
+<div class="po-prog"><i id="poProg"></i></div>
+
+<div id="poPreview" class="po-preview" style="display:none;"></div>
+<div class="po-langnote" id="poLangNote" style="display:none;"><div id="poLangNoteTxt"></div></div>
+
+<div id="poState" class="po-state" style="display:none;"></div>
+<div id="poPrerender" style="max-width:1180px;margin:0 auto;padding:118px 5vw 40px;"><h1 class="po-h1">美國取消 800 美元以下小額免稅，跨境賣家現在要多付多少</h1><div class="po-tags"><span>#跨境電商</span><span>#美國關稅</span><span>#小額免稅</span></div><div class="po-sum">有品牌收到美國海關的稅單才發現要多繳將近兩千元台幣，這不是算錯，是美國已經取消 800 美元以下包裹免稅，緩衝期也在 2026 年 2 月結束。本文整理免稅取消的時間軸、現在怎麼課稅、快遞公司怎麼收費，以及客單價低的品牌現在該怎麼重新算成本。</div><div class="po-body"><p><span style="color:rgb(28, 28, 26)">曾有品牌透過快遞將一箱保健食品寄到美國，客戶收到貨之前卻先收到一張稅單，要多繳將近兩千元台幣才能領貨，一度以為是海關算錯了，但實際上沒有算錯。</span></p><p><span style="color:rgb(28, 28, 26)">美國自 2025 年 8 月底開始，已經正式取消 800 美元以下包裹的免稅門檻，今年 2 月底原本給的半年緩衝期也已經結束，現在不管貨品申報價值多少，寄到美國都要走正式報關流程並繳交關稅，對原本靠小額直發做美國市場的品牌來說，這不只是稅率調整，是整個出貨的成本結構都要重新算。</span></p><div class="po-cal"><div class="po-calt"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M4.5 6.5h15M4.5 12h15M4.5 17.5h9.5" stroke-linecap="round"/></svg><span>這篇文章會回答：</span></div><ul><li>800 美元免稅門檻是怎麼被取消的，關鍵時間點是哪幾天</li><li>現在包裹寄到美國，海關怎麼課稅</li><li>快遞公司跟郵政包裹的收費方式有什麼不同</li><li>客單價原本低於 800 美元的品牌，現在可以怎麼調整</li></ul></div><h2>以前的規則：800 美元以下包裹怎麼放行</h2><p>在 2025 年 8 月以前，規則很簡單，只要一件包裹的申報價值在 800 美元以下，美國海關就直接放行，不需要報關也不用繳稅，這也是許多台灣、東南亞賣家能靠小額直發做美國市場的原因，只要客單價落在門檻以下，貨寄出去之後幾乎不用再想稅的問題。</p><h2>現在的規則：門檻取消後，一律要報關</h2><p>800 美元的門檻在 2025 年 8 月底被整個拿掉，現在不管寄的是一瓶保健食品還是一件衣服，都要走正式報關程序，海關會先看這個商品屬於哪一類，業界用一套全球通用的分類代碼判斷 HS Code<a href="https://worldoflandmark.com/blog/hs-code-declaration-error/" rel="noopener nofollow" target="_blank">〔HS Code 是什麼？填錯一碼，為什麼整批貨卡關三週〕</a>，再依照對應的稅率課徵關稅。</p><p>緩衝期的半年中，原先海關提供給快遞公司跟外國郵政機構一個「固定稅率」的簡化選項，可以不用一件一件精算，這個選項也已經在緩衝期結束後失效，等於沒有捷徑可以繞。</p><figure><img src="https://rtzfeoahpsutyikutsys.supabase.co/storage/v1/object/public/blog-images/posts/8/1788768233752_c2-fig1-______.svg" alt="圖｜800 美元免稅門檻取消前後對比，現在不限申報價值一律報關課稅" loading="lazy"><figcaption>圖｜800 美元免稅門檻取消前後對比，現在不限申報價值一律報關課稅</figcaption></figure><h2>關鍵時間軸：從取消到緩衝期結束</h2><p>整個變化分成兩個時間點，第一個是 2025 年 8 月 29 日，美國正式取消所有國家 800 美元以下包裹的免稅門檻。</p><p>第二個是 2026 年 2 月 28 日，原本給業者調整的半年緩衝期在這天結束，緩衝期內，外國郵政機構還能選擇固定稅率或依申報價值課稅，快遞公司則一直是全額課稅。</p><p>緩衝期結束之後，固定稅率的簡化選項也一併失效，現在全部回到正式報關、依 HS Code 課稅的規則。</p><figure><img src="https://rtzfeoahpsutyikutsys.supabase.co/storage/v1/object/public/blog-images/posts/8/1788768282820_c2-fig2-___.svg" alt="圖｜美國小額免稅取消時間軸，2025/8/29 取消門檻、2026/2/28 緩衝期結束" loading="lazy"><figcaption>圖｜美國小額免稅取消時間軸，2025/8/29 取消門檻、2026/2/28 緩衝期結束</figcaption></figure><h2>誰在收這筆錢：快遞公司跟郵政包裹不一樣</h2><p>如果是透過 FedEx、UPS、DHL 這類快遞公司出貨，這些公司現在會在貨還沒送達之前，就會先把關稅跟手續費算好，實際收費方式依合作條件而定，有些會直接跟出貨的品牌收，有些則是等配送時才跟收件人收，而後者風險比較高，因為收件人下單的時候並不知道之後還有一筆稅要繳，貨到才發現拒收與棄單的比例通常會拉高。</p><p>如果是走外國郵政系統寄送，包裹會在送達美國之後由海關報關課稅，收件人領貨前必須先完稅。</p><figure><img src="https://rtzfeoahpsutyikutsys.supabase.co/storage/v1/object/public/blog-images/posts/8/1788768355107_c2-fig3-______.svg" alt="圖｜快遞包裹與郵政包裹的關稅收取流程比較" loading="lazy"><figcaption>圖｜快遞包裹與郵政包裹的關稅收取流程比較</figcaption></figure><h2>對品牌的實際影響：客單價低的直發模式首當其衝</h2><p>這次變動衝擊最大的，是原本靠「客單價低於 800 美元、可以免稅直發」這個空間做美國市場的品牌，常見的品類包括保健食品、美妝保養、服飾配件。</p><p>過去這些商品的到岸成本裡沒有關稅這一項，定價、廣告投放的成本試算，多半也是照這個假設在算，門檻取消之後，這筆稅不是由品牌吸收、壓縮毛利，就是轉嫁給消費者，兩種做法都會直接影響原本的定價策略跟轉換率。</p><h2>品牌現在可以怎麼調整</h2><p>面對這個變化，常見的調整方向有幾個：<br>其一是把關稅試算進定價，重新確認現在的毛利是否還撐得住；<br>其二是改用 DDP（送到府、稅先幫你付好）模式出貨，讓客戶在下單當下就把稅金算清楚，避免貨到才收到額外帳單、影響信任；<br>其三是評估改走海外倉，把貨批量報關進倉之後再逐筆出貨給消費者，分攤單件的報關成本，出貨量夠大時通常比較划算。</p><p>實務上該選哪一種，要看品類、客單價跟出貨量而定，沒有一體適用的答案。</p><hr><div class="po-cal"><div class="po-calt"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M4.5 6.5h15M4.5 12h15M4.5 17.5h9.5" stroke-linecap="round"/></svg><span>常見問題</span></div><p><b>Q1：台灣賣家用郵局寄的包裹也會被課稅嗎？</b></p><p>會。這次取消的是所有國家、所有寄送管道的 800 美元以下免稅，不限定快遞公司，郵局包裹一樣要報關課稅。</p><p><b>Q2：現在還有沒有簡化的固定稅率可以選？</b></p><p>沒有。固定稅率是緩衝期（到 2026 年 2 月底）才有的簡化選項，緩衝期結束後已經失效，現在一律要走正式報關、依 HS Code 課稅。</p><p><b>Q3：關稅稅率大概是多少？</b></p><p>依商品的 HS Code 歸類與原產地不同，稅率落差很大，沒有統一數字，建議實際出貨前先確認商品的分類代碼。</p><p><b>Q4：這對台灣品牌有什麼具體影響？</b></p><p>如果原本是靠客單價低於 800 美元的優勢直發美國，這個優勢現在已經不存在，成本結構要重新試算，尤其是原本毛利就抓得比較緊的品類。</p><p><b>Q5：有什麼方式可以降低衝擊？</b></p><p>常見的做法是把關稅算進定價、改用 DDP 模式讓客戶在下單時就把稅算清楚，或評估海外倉批量報關分攤成本，實際做法要看品類與出貨量。</p><p><b>Q6：想進一步了解，要怎麼開始？</b></p><p>可以填寫官網的<a href="https://worldoflandmark.com/gc-form" rel="noopener nofollow" target="_blank">諮詢表單</a>，GC 收到後會協助評估現在的出貨成本受到多大影響，並提供調整方向。</p></div><p><span style="color:rgb(137, 135, 129)">＊本文整理自 2026 年 9 月公開資訊，美國海關相關規定與稅率請以 CBP（美國海關暨邊境保護局）最新公告為準。</span></p></div></div>
+
+<div id="poArticle" style="display:none;">
+  <div class="po-wrap">
+    <main class="po-main">
+      <a class="po-back" href="/blog.html" id="poBack">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        <span id="poBackTxt">回到洞察文章</span>
+      </a>
+      <div class="po-meta" id="poMeta"></div>
+      <h1 class="po-h1" id="poTitle"></h1>
+      <div class="po-tags" id="poTags"></div>
+      <div class="po-sum" id="poSum"></div>
+      <details class="po-tocm" id="poTocM" open style="display:none;">
+        <summary><span id="poTocMTitle">目錄</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+        <div class="po-toc" id="poTocMList"></div>
+      </details>
+      <div class="po-car" id="poCar" style="display:none;"></div>
+      <div class="po-body" id="poBody"></div>
+      <div class="po-foot">
+        <div class="po-pub" id="poPub"></div>
+        <div class="po-share" id="poShare"></div>
+      </div>
+    </main>
+    <aside class="po-side" id="poSide">
+      <div id="poTocBox" style="display:none;">
+        <div class="po-sh" id="poTocTitle">目錄</div>
+        <div class="po-toc" id="poToc"></div>
+      </div>
+      <div id="poRelBox" style="display:none;">
+        <div class="po-sh" id="poRelTitle">其他熱門文章</div>
+        <div class="po-rel" id="poRel"></div>
+      </div>
+    </aside>
+  </div>
+
+  <section id="po-cta">
+    <div class="cta-bg"></div><div class="cta-grid"></div>
+    <div class="cta-content">
+      <div class="section-label" id="poCtaLabel">Get Started Today</div>
+      <h2 class="cta-title" id="poCtaTitle">正在尋找可靠且高效的跨境解決方案嗎？</h2>
+      <p class="cta-sub" id="poCtaSub">立即填寫需求診斷表，GC 顧問將為您量身規劃最適合的全球拓銷策略。</p>
+      <a href="/gc-form.html" class="btn-primary" id="poCtaBtn">
+        <span id="poCtaBtnTxt">立即填寫需求診斷表</span>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <div class="po-relbottom" id="poRelBottom" style="display:none;">
+    <div class="po-relbottom-in">
+      <div class="po-sh" id="poRelTitle2">其他相關文章</div>
+      <div class="po-grid" id="poRelGrid"></div>
+    </div>
+  </div>
+</div>
+
+<footer class="gc-footer">
+  <div class="gcf3-top">
+    <div class="gcf3-brand">
+      <a href="/index.html"><img src="images/logo.png" alt="GC 跨境服務" width="50" height="50" loading="lazy" decoding="async"></a>
+      <p id="gcfBrand">GC 跨境服務顧問團隊，協助品牌評估市場、對接通路與服務商，讓您把貨真正賣進去！</p>
+      <div class="gcf3-social">
+        <a href="https://www.facebook.com/gcosc.co" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.3v7A10 10 0 0022 12z"/></svg></a>
+        <a href="https://www.instagram.com/gcosc.co" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3.5" y="3.5" width="17" height="17" rx="4.6"/><circle cx="12" cy="12" r="3.8"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://www.threads.com/@gcosc.co" target="_blank" rel="noopener" aria-label="Threads" title="Threads"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.291 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.96-.065-1.19.408-2.285 1.33-3.082.88-.76 2.119-1.207 3.583-1.291a13.853 13.853 0 0 1 3.02.142c-.126-.742-.375-1.332-.75-1.757-.513-.586-1.308-.883-2.359-.89h-.029c-.844 0-1.992.232-2.721 1.32L7.734 7.42c.98-1.454 2.568-2.256 4.478-2.256h.044c3.194.02 5.097 1.975 5.287 5.388.108.046.216.094.321.142 1.49.7 2.58 1.761 3.154 3.07.797 1.82.871 4.79-1.548 7.158-1.85 1.81-4.094 2.628-7.277 2.65Zm1.003-11.69c-.242 0-.487.007-.739.021-1.836.103-2.98.946-2.916 2.143.067 1.256 1.452 1.839 2.784 1.767 1.224-.065 2.818-.543 3.086-3.71a10.5 10.5 0 0 0-2.215-.221z"/></svg></a>
+      </div>
+    </div>
+    <details class="gcf3-col" open>
+      <summary><span data-i18n="nav.about">關於 GC</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+      <div>
+        <a href="/index.html#why" data-i18n="nav.why">為何選擇我們</a>
+        <a href="/index.html#services" data-i18n="nav.services">顧問服務</a>
+        <a href="/index.html#partners" data-i18n="nav.partners">服務商介紹</a>
+        <a href="/index.html#process" data-i18n="nav.process">合作流程</a>
+        <a href="/index.html#faq" data-i18n="nav.faq">常見問題</a>
+      </div>
+    </details>
+    <details class="gcf3-col" open>
+      <summary><span data-i18n="footer.col.services">服務與資源</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+      <div>
+        <a href="/catalog.html" data-i18n="nav.catalog">商品貨盤</a>
+        <a href="/partner.html" data-i18n="nav.become">成為服務商</a>
+        <a href="/blog.html" data-i18n="nav.blog">洞察文章</a>
+      </div>
+    </details>
+    <details class="gcf3-col" open>
+      <summary><span data-i18n="footer.col.start">開始合作</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+      <div>
+        <a href="/gc-form.html" data-i18n="nav.cta">立即諮詢</a>
+        <a href="/privacy.html" data-i18n="footer.privacy">隱私權政策</a>
+      </div>
+    </details>
+  </div>
+  <div class="gcf3-info">
+    <div><b id="gcfCoLbl">公司</b><span id="gcfCoName">世界之地標有限公司</span></div>
+    <div><b id="gcfMailLbl">信箱</b><a href="mailto:support@worldoflandmark.com">support@worldoflandmark.com</a></div>
+  </div>
+  <div class="gcf3-copy">Copyright © 2026 GC跨境服務顧問 世界之地標有限公司</div>
+</footer>
+
+<div class="po-lb" id="poLb">
+  <button class="po-lbx" id="poLbX" aria-label="關閉"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg></button>
+  <img id="poLbImg" alt="">
+  <div class="po-lbcap" id="poLbCap"></div>
+  <div class="po-lbhint" id="poLbHint">點擊任一處或按 Esc 關閉</div>
+</div>
+
+<script>
+/* ══════════════════════════════════════════════════════════════════════
+   洞察文章 — 單篇內頁
+   網址：/blog/<slug>/    （netlify.toml 把 /blog/* rewrite 到這一頁）
+   內容順序（依規格）：
+     標題 → 標籤 → 摘要 → 圖片輪播 → 內文 → 發布時間 → 分享 → CTA → 熱門文章
+   封面圖只用在列表縮圖與分享預覽，內頁不重複顯示。
+   ══════════════════════════════════════════════════════════════════════ */
+
+const SB_URL = 'https://rtzfeoahpsutyikutsys.supabase.co';
+const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ0emZlb2FocHN1dHlpa3V0c3lzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA5ODU2NTAsImV4cCI6MjA5NjU2MTY1MH0.1ouoDmHrmetOc_qsvPrXiKsKx8eDEebbsXr2Fk2Sy-o';
+const REST = SB_URL + '/rest/v1/';
+const SB_HEADERS = { apikey: SB_KEY, Authorization: 'Bearer ' + SB_KEY };
+const SITE = 'https://worldoflandmark.com';
+
+/* 狀態頁與來源標記的圖示。全站都用線條 SVG，不用 emoji。 */
+const ICON = {
+  search: '<i><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M20 20l-4.7-4.7" stroke-linecap="round"/></svg></i>',
+  maint: '<i><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a3.8 3.8 0 004.9 4.9l-8.4 8.4a1.9 1.9 0 01-2.7 0l-2.2-2.2a1.9 1.9 0 010-2.7z"/><path d="M17.2 3.8l3 3" stroke-linecap="round"/></svg></i>',
+  warn: '<i><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 4.5l8.5 15h-17z" stroke-linejoin="round"/><path d="M12 10v4M12 16.6v.1" stroke-linecap="round"/></svg></i>',
+  info: '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="flex:none;margin-top:3px"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8v.1" stroke-linecap="round"/></svg>'
+};
+
+/* 重點框／提醒框標題前面的小圖示 */
+/* 從 Notion 匯進來的重點框，標題最前面本來就有 emoji（💡⚠️…）。
+   這時候不要再畫內建圖示，不然會變成兩個圖示並排。 */
+const CAL_EMO = /^(?:(?:[\uD800-\uDBFF][\uDC00-\uDFFF])|[©®‼⁉™ℹ←-⇿⌀-⏿Ⓜ▪-◾☀-➿⬀-⯿〰〽㊗㊙])/;
+const calHasEmo = t => CAL_EMO.test(String(t||'').replace(/<[^>]*>/g,'').replace(/^[\s\u00A0]+/,''));
+
+const CAL_ICON = {
+  note: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M4.5 6.5h15M4.5 12h15M4.5 17.5h9.5" stroke-linecap="round"/></svg>',
+  warn: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 4.5l8.5 15h-17z" stroke-linejoin="round"/><path d="M12 10.2v4M12 16.8v.1" stroke-linecap="round"/></svg>'
+};
+
+function LANG(){
+  try{
+    const v = new URLSearchParams(location.search).get('lang');
+    if (v === 'zh' || v === 'en' || v === 'ja') return v;
+  }catch(e){}
+  return localStorage.getItem('gc_lang') || 'zh';
+}
+
+const UI = {
+  zh:{
+    back:'回到洞察文章', rel:'其他熱門文章', relBottom:'其他相關文章', toc:'目錄', previewLink:'預覽連結', previewLinkNote:'這篇文章尚未發佈，這是給指定對象檢視用的連結，不會出現在官網上。', lbHint:'點擊任一處或按 Esc 關閉', pub:d=>'發布於 '+d, updated:d=>'更新於 '+d,
+    share:'分享這篇', copied:'已複製連結',
+    ctaLabel:'Get Started Today',
+    ctaTitle:'正在尋找可靠且高效的跨境解決方案嗎？',
+    ctaSub:'立即填寫需求診斷表，GC 顧問將為您量身規劃最適合的全球拓銷策略。',
+    ctaBtn:'立即填寫需求診斷表',
+    loading:'載入文章中…',
+    maintTitle:'這篇文章維護中，下次再來看看吧！',
+    maintDesc:'我們正在補充與修正內容，很快就會重新上架。這段期間可以先看看其他文章。',
+    nfTitle:'找不到這篇文章', nfDesc:'網址可能有誤，或這篇文章已經被移除了。',
+    errTitle:'文章載入失敗', errDesc:'請稍後重新整理頁面；若持續發生，再麻煩告訴我們。',
+    toList:'瀏覽所有文章', preview:'預覽模式', previewNote:'這是後台預覽，內容尚未對外發布。',
+    langnote:''
+  },
+  en:{
+    back:'Back to Insights', rel:'More popular articles', relBottom:'Related articles', toc:'Contents', previewLink:'Preview link', previewLinkNote:'This article is not published yet. This link is for review only and does not appear on the site.', lbHint:'Click anywhere or press Esc to close', pub:d=>'Published '+d, updated:d=>'Updated '+d,
+    share:'Share', copied:'Link copied',
+    ctaLabel:'Get Started Today',
+    ctaTitle:'Looking for a reliable, efficient cross-border solution?',
+    ctaSub:'Fill in the needs assessment form and a GC advisor will map out a global expansion plan tailored to you.',
+    ctaBtn:'Fill in the needs assessment form',
+    loading:'Loading article…',
+    maintTitle:'This article is being updated — do check back soon!',
+    maintDesc:'We are revising the content and it will be back shortly. In the meantime, feel free to browse our other articles.',
+    nfTitle:'Article not found', nfDesc:'The address may be wrong, or this article has been removed.',
+    errTitle:'Could not load the article', errDesc:'Please refresh in a moment. If it keeps happening, do let us know.',
+    toList:'Browse all articles', preview:'Preview mode', previewNote:'This is an admin preview. The content is not published yet.',
+    langnote:'This article is published in Traditional Chinese only. The interface follows your language setting.'
+  },
+  ja:{
+    back:'インサイト記事へ戻る', rel:'その他の人気記事', relBottom:'関連記事', toc:'目次', previewLink:'プレビューリンク', previewLinkNote:'この記事はまだ公開されていません。確認用のリンクで、サイトには表示されません。', lbHint:'どこかをクリックするか Esc で閉じます', pub:d=>d+' 公開', updated:d=>d+' 更新',
+    share:'シェア', copied:'リンクをコピーしました',
+    ctaLabel:'Get Started Today',
+    ctaTitle:'信頼できる越境ソリューションをお探しですか？',
+    ctaSub:'ニーズ診断フォームにご記入ください。GCのコンサルタントが最適なグローバル展開プランをご提案します。',
+    ctaBtn:'ニーズ診断フォームに記入する',
+    loading:'記事を読み込み中…',
+    maintTitle:'この記事は現在メンテナンス中です。またのぞいてみてください！',
+    maintDesc:'内容の追記・修正を行っています。まもなく再公開しますので、それまで他の記事もご覧ください。',
+    nfTitle:'記事が見つかりません', nfDesc:'URLが間違っているか、記事が削除された可能性があります。',
+    errTitle:'記事を読み込めませんでした', errDesc:'しばらくしてから再読み込みしてください。繰り返す場合はご連絡ください。',
+    toList:'すべての記事を見る', preview:'プレビューモード', previewNote:'管理画面のプレビューです。まだ公開されていません。',
+    langnote:'記事本文は繁体字中国語のみで公開しています。画面表示は選択された言語に従います。'
+  }
+};
+function T(){ return UI[LANG()] || UI.zh; }
+
+let POST = null, RELATED = [], IS_PREVIEW = false, CAR_I = 0;
+
+function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function safeUrl(u){
+  const v = String(u==null?'':u).trim();
+  if(!/^https?:\/\//i.test(v)) return '';
+  if(/["'`\\\s<>]/.test(v)) return '';
+  return v;
+}
+function cssUrl(u){ return safeUrl(u).replace(/[()'"\\\s]/g, c=>'%'+c.charCodeAt(0).toString(16).padStart(2,'0')); }
+
+/* 後台存進來的行內 HTML 白名單。後台自己已經過濾過一次，
+   這裡是第二道 —— 官網不該無條件相信資料庫裡的字串。 */
+const OK_TAGS = ['B','STRONG','I','EM','U','S','A','BR','SPAN','CODE'];
+function safeStyle(v){
+  const out = [];
+  String(v||'').split(';').forEach(part=>{
+    const i = part.indexOf(':'); if(i<0) return;
+    const k = part.slice(0,i).trim().toLowerCase();
+    const val = part.slice(i+1).trim();
+    if(k!=='color' && k!=='background-color') return;
+    if(!/^(#[0-9a-f]{3,8}|rgba?\(\s*[\d.\s,%]+\))$/i.test(val)) return;
+    out.push(k+':'+val);
+  });
+  return out.join(';');
+}
+function clean(html){
+  const d = document.createElement('div');
+  d.innerHTML = String(html||'');
+  (function walk(node){
+    [...node.childNodes].forEach(n=>{
+      if(n.nodeType === 3) return;
+      if(n.nodeType !== 1){ n.remove(); return; }
+      const tag = n.tagName;
+      if(['SCRIPT','STYLE','IFRAME','OBJECT','EMBED','TEMPLATE','NOSCRIPT'].includes(tag)){ n.remove(); return; }
+      if(!OK_TAGS.includes(tag)){
+        while(n.firstChild) n.parentNode.insertBefore(n.firstChild, n);
+        n.remove(); return;
+      }
+      const keep = safeStyle(n.getAttribute('style'));
+      const href = tag === 'A' ? safeUrl(n.getAttribute('href')) : '';
+      [...n.attributes].forEach(a=>n.removeAttribute(a.name));
+      if(keep) n.setAttribute('style', keep);
+      if(tag === 'A'){
+        if(href){ n.setAttribute('href', href); n.setAttribute('rel','noopener nofollow'); n.setAttribute('target','_blank'); }
+      }
+      walk(n);
+    });
+  })(d);
+  return d.innerHTML;
+}
+
+function fmtDate(iso){
+  if(!iso) return '';
+  const d = new Date(iso);
+  if(isNaN(d)) return '';
+  const l = LANG();
+  try{
+    return new Intl.DateTimeFormat(l==='en'?'en-US':(l==='ja'?'ja-JP':'zh-TW'), { year:'numeric', month:'long', day:'numeric' }).format(d);
+  }catch(e){ return iso.slice(0,10); }
+}
+function langQ(){ const l = LANG(); return l==='zh' ? '' : '?lang='+l; }
+function postUrl(p){
+  const entry = location.protocol === 'file:' ? 'index.html' : '';
+  return 'blog/' + encodeURIComponent(p.slug) + '/' + entry + langQ();
+}
+
+/* ── 網址判讀 ──────────────────────────────────────────────────── */
+function previewToken(){
+  try{
+    const v = new URLSearchParams(location.search).get('preview') || '';
+    return /^[0-9a-f-]{16,60}$/i.test(v) ? v : '';
+  }catch(e){ return ''; }
+}
+async function loadByToken(tok){
+  try{
+    const res = await fetch(REST+'rpc/blog_preview', {
+      method:'POST',
+      headers: Object.assign({ 'Content-Type':'application/json' }, SB_HEADERS),
+      body: JSON.stringify({ p_token: tok })
+    });
+    if(!res.ok) return null;
+    const j = await res.json();
+    return (j && j.slug) ? j : null;
+  }catch(e){ console.warn('preview fetch failed', e); return null; }
+}
+/* 預覽頁不給搜尋引擎收錄，也不要被拿去當正式網址 */
+function noIndex(){
+  let m = document.querySelector('meta[name="robots"]');
+  if(!m){ m = document.createElement('meta'); m.setAttribute('name','robots'); document.head.appendChild(m); }
+  m.setAttribute('content','noindex, nofollow');
+  const c = document.querySelector('link[rel="canonical"]');
+  if(c) c.remove();
+}
+function slugFromUrl(){
+  // 同時接受正式網址 /blog/<slug>/ 與本機
+  // /.../blog/<slug>/index.html，讓直接雙擊檔案也能讀到預渲染文章。
+  const m = location.pathname.match(/\/blog\/([^\/?#]+)\/(?:index\.html)?$/);
+  if(m) return decodeURIComponent(m[1]);
+  try{
+    const q = new URLSearchParams(location.search).get('slug');
+    if(q) return q;
+  }catch(e){}
+  return '';
+}
+/* 預覽：後台與官網不同網域，無法共用登入狀態，所以草稿資料直接放在
+   網址的 # 之後帶過來（# 不會送到伺服器，也不會被記錄）。 */
+function previewFromHash(){
+  const h = location.hash || '';
+  const m = h.match(/[#&]gcpreview=([^&]+)/);
+  if(!m) return null;
+  try{
+    const json = decodeURIComponent(escape(atob(decodeURIComponent(m[1]))));
+    return JSON.parse(json);
+  }catch(e){ console.warn('preview decode failed', e); return null; }
+}
+
+/* ── 區塊渲染 ──────────────────────────────────────────────────── */
+function ratioClass(r){ return r==='4:5' ? 'r45' : (r==='1:1' ? 'r11' : 'r169'); }
+
+function videoEmbed(url){
+  const u = String(url||'');
+  let m = u.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([\w-]{6,})/);
+  if(m) return 'https://www.youtube.com/embed/'+m[1]+'?autoplay=1';
+  m = u.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+  if(m) return 'https://player.vimeo.com/video/'+m[1]+'?autoplay=1';
+  return '';
+}
+
+function capBlock(caption, source){
+  let h = '';
+  if(caption) h += '<div class="po-cap">'+esc(caption)+'</div>';
+  if(source)  h += '<div class="po-src">'+ICON.info+'<span>'+esc(source)+'</span></div>';
+  return h;
+}
+
+/* 巢狀清單：後台 1.6.3 起，items 可以是字串（＝第一層，舊文章全都是這樣）
+   或 {html, lv}。lv 只有 0/1 兩層 —— 後台也只做兩層。 */
+function listItem(x){
+  if(x && typeof x === 'object'){
+    const lv = parseInt(x.lv, 10);
+    return { html: String(x.html==null ? '' : x.html), lv: (lv > 0 ? 1 : 0) };
+  }
+  return { html: String(x==null ? '' : x), lv: 0 };
+}
+function listHtml(tag, items, cls){
+  const arr = (items||[]).map(listItem).filter(x=>x.html !== '');
+  if(!arr.length) return '';
+  let prev = -1;                       // 層級一次只能深一階，第一項一定是第一層
+  arr.forEach(it=>{ if(it.lv > prev+1) it.lv = prev+1; prev = it.lv; });
+  const c = cls ? ' class="'+cls+'"' : '';
+  let out = '<'+tag+c+'>', lv = 0, openLi = false;
+  arr.forEach(it=>{
+    while(it.lv > lv){ out += '<'+tag+c+'>'; lv++; openLi = false; }
+    while(it.lv < lv){ if(openLi) out += '</li>'; out += '</'+tag+'></li>'; lv--; openLi = false; }
+    if(openLi) out += '</li>';
+    out += '<li>'+clean(it.html);
+    openLi = true;
+  });
+  while(lv > 0){ if(openLi) out += '</li>'; out += '</'+tag+'></li>'; lv--; openLi = false; }
+  if(openLi) out += '</li>';
+  return out + '</'+tag+'>';
+}
+
+function blockHtml(b){
+  if(!b || !b.type) return '';
+  switch(b.type){
+    case 'heading':
+      return (b.level===3 ? '<h3>' : '<h2>') + (b.html ? clean(b.html) : esc(b.text||'')) + (b.level===3 ? '</h3>' : '</h2>');
+    case 'list':
+      return listHtml(b.style==='ol' ? 'ol' : 'ul', b.items, '');
+    case 'todo':
+      // 舊資料可能是 {html,done} 物件，listItem 一樣收得動；一律畫成空方框
+      return listHtml('ul', b.items, 'po-todo');
+    case 'quote':
+      return '<blockquote>'+(b.html ? clean(b.html) : esc(b.text||''))
+           + (b.source ? '<cite>'+esc(b.source)+'</cite>' : '') + '</blockquote>';
+    case 'toggle':{
+      // 後台編輯器裡一律展開（收起來就編不到），只有這裡才真的收合
+      const inner = (b.blocks||[]).map(x => (x && (x.type==='callout' || x.type==='toggle')) ? '' : blockHtml(x)).join('');
+      const tt = b.title ? clean(b.title) : '';
+      if(!tt && !inner) return '';
+      return '<details class="po-tog"'+(b.open ? ' open' : '')+'><summary>'+(tt || '展開')+'</summary>'
+           + '<div class="po-togb">'+inner+'</div></details>';
+    }
+    case 'divider':
+      return '<hr>';
+    case 'table':{
+      const th = (b.head||[]).map(x=>'<th>'+clean(x)+'</th>').join('');
+      const tr = (b.rows||[]).map(r=>'<tr>'+((r||[]).map(x=>'<td>'+clean(x)+'</td>').join(''))+'</tr>').join('');
+      if(!th && !tr) return '';
+      return '<div class="po-tblbox"><table class="po-tbl">'
+           + (th ? '<thead><tr>'+th+'</tr></thead>' : '')
+           + (tr ? '<tbody>'+tr+'</tbody>' : '')
+           + '</table></div>';
+    }
+    case 'callout':{
+      const warn = b.style === 'warn';
+      const inner = (b.blocks||[]).map(x => (x && x.type === 'callout') ? '' : blockHtml(x)).join('');
+      const ico = calHasEmo(b.title) ? '' : (warn ? CAL_ICON.warn : CAL_ICON.note);
+      const title = b.title ? '<div class="po-calt">' + ico + '<span>' + clean(b.title) + '</span></div>' : '';
+      if(!title && !inner) return '';
+      return '<div class="po-cal' + (warn ? ' warn' : '') + '">' + title + inner + '</div>';
+    }
+    case 'image':{
+      const u = safeUrl(b.url);
+      if(!u) return '';
+      const ar = (b.w && b.h) ? ' style="aspect-ratio:'+Number(b.w)+'/'+Number(b.h)+'"' : '';
+      return '<figure><img src="'+esc(u)+'" alt="'+esc(b.caption||'')+'" loading="lazy"'+ar+'>'
+           + (b.caption ? '<figcaption>'+esc(b.caption)+'</figcaption>' : '')
+           + (b.source ? '<div class="po-fsrc">'+ICON.info+'<span>'+esc(b.source)+'</span></div>' : '')
+           + '</figure>';
+    }
+    case 'video':{
+      const emb = videoEmbed(b.url);
+      const th = cssUrl(b.thumb);
+      if(!emb && !th) return '';
+      return '<figure><div class="po-carbox r169"><div class="po-slide vid" data-embed="'+esc(emb)+'"'
+           + (th ? ' style="background-image:url(\''+th+'\')"' : '')
+           + '><span class="po-play"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></i></span></div></div>'
+           + (b.caption ? '<figcaption>'+esc(b.caption)+'</figcaption>' : '')
+           + (b.source ? '<div class="po-fsrc">'+ICON.info+'<span>'+esc(b.source)+'</span></div>' : '')
+           + '</figure>';
+    }
+    case 'carousel':
+      return carouselHtml(b.items||[], b.ratio||'16:9', 'inline');
+    default:
+      return '<p>'+clean(b.html||'')+'</p>';
+  }
+}
+
+function carouselHtml(items, ratio, id){
+  const list = (items||[]).filter(x=>x && (safeUrl(x.url) || safeUrl(x.thumb)));
+  if(!list.length) return '';
+  const slides = list.map(x=>{
+    const isVid = x.kind === 'video' || !!x.videoId || (!!x.url && !!videoEmbed(x.url));
+    const bg = cssUrl(isVid ? (x.thumb||x.url) : x.url);
+    const emb = isVid ? videoEmbed(x.url) : '';
+    return '<div class="po-slide'+(isVid?' vid':'')+'"'+(emb?' data-embed="'+esc(emb)+'"':'')
+         + (bg ? ' style="background-image:url(\''+bg+'\')"' : '') + '>'
+         + (isVid ? '<span class="po-play"><i><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></i></span>' : '')
+         + '</div>';
+  }).join('');
+  const many = list.length > 1;
+  const caps = list.map(x=>capBlock(x.caption, x.source));
+  return '<div class="po-carwrap" data-car="'+esc(id)+'">'
+    + '<div class="po-carbox '+ratioClass(ratio)+'">'
+    +   '<div class="po-track">'+slides+'</div>'
+    +   (many ? '<button class="po-arrow prev" data-dir="-1" aria-label="prev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 19l-7-7 7-7"/></svg></button>'
+              + '<button class="po-arrow next" data-dir="1" aria-label="next"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 5l7 7-7 7"/></svg></button>' : '')
+    + '</div>'
+    + (many ? '<div class="po-dots">'+list.map((x,i)=>'<button data-go="'+i+'" class="'+(i===0?'on':'')+'"></button>').join('')+'</div>' : '')
+    + '<div class="po-capbox">'+(caps[0]||'')+'</div>'
+    + '<div style="display:none" class="po-capdata">'+caps.map(c=>'<template>'+c+'</template>').join('')+'</div>'
+    + '</div>';
+}
+
+/* 輪播互動：每一組獨立記自己的位置 */
+function bindCarousels(root){
+  root.querySelectorAll('[data-car]').forEach(w=>{
+    const track = w.querySelector('.po-track');
+    const slides = w.querySelectorAll('.po-slide');
+    const dots = w.querySelectorAll('.po-dots button');
+    const caps = [...w.querySelectorAll('.po-capdata template')].map(t=>t.innerHTML);
+    const capbox = w.querySelector('.po-capbox');
+    let i = 0;
+    const go = n=>{
+      i = (n + slides.length) % slides.length;
+      track.style.transform = 'translateX(-'+(i*100)+'%)';
+      dots.forEach((d,k)=>d.classList.toggle('on', k===i));
+      if(capbox) capbox.innerHTML = caps[i] || '';
+    };
+    w.querySelectorAll('.po-arrow').forEach(b=>b.addEventListener('click', e=>{ e.preventDefault(); go(i + parseInt(b.dataset.dir,10)); }));
+    dots.forEach(d=>d.addEventListener('click', ()=>go(parseInt(d.dataset.go,10))));
+    // 觸控滑動
+    let x0 = null;
+    w.addEventListener('touchstart', e=>{ x0 = e.touches[0].clientX; }, { passive:true });
+    w.addEventListener('touchend', e=>{
+      if(x0 === null) return;
+      const dx = e.changedTouches[0].clientX - x0;
+      if(Math.abs(dx) > 40) go(i + (dx < 0 ? 1 : -1));
+      x0 = null;
+    }, { passive:true });
+  });
+  // 影片點了才載入 iframe，不影響初次載入速度也不預先連到 YouTube
+  root.querySelectorAll('.po-slide.vid').forEach(s=>{
+    s.addEventListener('click', function(){
+      const emb = this.dataset.embed;
+      if(!emb) return;
+      this.innerHTML = '<iframe src="'+esc(emb)+'" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe>';
+      this.classList.remove('vid');
+      if(window.gcTrack) gcTrack('video_play', { item_id: POST ? POST.slug : '' });
+    });
+  });
+}
+
+/* ── 狀態頁 ────────────────────────────────────────────────────── */
+function showState(icon, title, desc, extra){
+  document.getElementById('poArticle').style.display = 'none';
+  const el = document.getElementById('poState');
+  el.style.display = '';
+  el.innerHTML = '<span class="ic">'+icon+'</span><h2>'+esc(title)+'</h2><p>'+esc(desc)+'</p>'
+    + '<a class="btn-primary" href="blog.html'+langQ()+'"><span>'+esc(T().toList)+'</span>'
+    + '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>'
+    + (extra ? '<small>'+esc(extra)+'</small>' : '');
+  document.title = title + ' — GC';
+}
+
+/* ── 主流程 ────────────────────────────────────────────────────── */
+async function load(){
+  const t = T();
+  const pv = previewFromHash();
+  if(pv){
+    IS_PREVIEW = true;
+    POST = pv;
+    const bar = document.getElementById('poPreview');
+    bar.style.display = '';
+    bar.innerHTML = '<b>'+esc(t.preview)+'</b><span>'+esc(t.previewNote)+'</span>';
+    renderPost();
+    loadRelated();
+    return;
+  }
+
+  // 未發佈文章的預覽連結：?preview=<token>
+  // 憑 token 向 Supabase 的 blog_preview 函式換一篇還沒發佈的文章。
+  // 這種頁面一律 noindex，也不記事件；token 不對就當作沒帶，照一般流程走。
+  const pvTok = previewToken();
+  if(pvTok){
+    const one = await loadByToken(pvTok);
+    if(one){
+      IS_PREVIEW = true;
+      POST = one;
+      noIndex();
+      const bar = document.getElementById('poPreview');
+      bar.style.display = '';
+      bar.innerHTML = '<b>'+esc(t.previewLink)+'</b><span>'+esc(t.previewLinkNote)+'</span>';
+      const pre0 = document.getElementById('poPrerender');
+      if(pre0) pre0.remove();
+      renderPost();
+      loadRelated();
+      return;
+    }
+  }
+
+  const slug = slugFromUrl();
+  if(!slug){ showState(ICON.search, t.nfTitle, t.nfDesc); return; }
+
+  // 部署時預渲染的靜態內容：先用它立刻把文章畫出來（爬蟲與讀者都不用等），
+  // 再向資料庫確認一次。這一步很重要 —— 靜態檔是上次 build 的快照，
+  // 如果這篇文章在那之後被下架了，這裡才會即時改顯示「維護中」。
+  const pre = document.getElementById('poPrerender');
+  if(window.GC_POST_BOOTSTRAP){
+    POST = window.GC_POST_BOOTSTRAP;
+    if(pre) pre.remove();
+    renderPost();
+    loadRelated();
+  }else{
+    if(pre) pre.remove();
+    document.getElementById('poState').style.display = '';
+    document.getElementById('poState').innerHTML = '<p>'+esc(t.loading)+'</p>';
+  }
+
+  try{
+    const res = await fetch(REST+'public_blog_posts?slug=eq.'+encodeURIComponent(slug)+'&select=*&limit=1', { headers: SB_HEADERS });
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    const rows = await res.json();
+    if(rows.length){
+      POST = rows[0];
+      document.getElementById('poState').style.display = 'none';
+      renderPost();
+      loadRelated();
+      if(window.gcTrack) gcTrack('view_item', { item_id: POST.slug, item_name: POST.title, item_category: POST.category_name || POST.category || '' });
+      return;
+    }
+    // 不在已發佈清單裡 —— 分辨「下架維護中」與「根本不存在」
+    let status = '';
+    try{
+      const r2 = await fetch(REST+'public_blog_slugs?slug=eq.'+encodeURIComponent(slug)+'&select=status&limit=1', { headers: SB_HEADERS });
+      if(r2.ok){ const j = await r2.json(); if(j.length) status = j[0].status; }
+    }catch(e){}
+    if(status === 'unpublished') showState(ICON.maint, t.maintTitle, t.maintDesc);
+    else showState(ICON.search, t.nfTitle, t.nfDesc);
+  }catch(e){
+    console.error('post load error', e);
+    if(POST) return;                  // 有預渲染內容就讓讀者繼續看，別換成錯誤畫面
+    showState(ICON.warn, t.errTitle, t.errDesc, e.message);
+  }
+}
+
+function renderPost(){
+  const p = POST, t = T();
+  document.getElementById('poState').style.display = 'none';
+  document.getElementById('poArticle').style.display = '';
+
+  /* 一篇文章可以有多個分類；舊資料只有 category 時退回單一 */
+  const catNs = (Array.isArray(p.category_names) && p.category_names.length)
+    ? p.category_names
+    : (p.category ? [p.category_name || p.category] : []);
+  document.getElementById('poMeta').innerHTML =
+    catNs.map(n=>'<span class="po-chip" style="margin-right:6px">'+esc(n)+'</span>').join('');
+  document.getElementById('poTitle').textContent = p.title || '';
+
+  const tags = (p.tags||[]);
+  document.getElementById('poTags').innerHTML = tags.map(x=>'<span>#'+esc(x)+'</span>').join('');
+  document.getElementById('poTags').style.display = tags.length ? '' : 'none';
+
+  const sum = document.getElementById('poSum');
+  sum.textContent = p.summary || '';
+  sum.style.display = (p.summary||'').trim() ? '' : 'none';
+
+  // 圖片輪播（統一比例）
+  const carBox = document.getElementById('poCar');
+  const carHtml = carouselHtml(p.gallery||[], p.gallery_ratio||'16:9', 'top');
+  carBox.innerHTML = carHtml;
+  carBox.style.display = carHtml ? '' : 'none';
+
+  // 內文
+  const blocks = (p.content && p.content.blocks) || [];
+  document.getElementById('poBody').innerHTML = blocks.map(blockHtml).join('');
+
+  bindCarousels(document.getElementById('poArticle'));
+
+  // 發布時間
+  const d = p.published_at || p.last_published_at;
+  const upd = p.last_published_at && p.published_at && p.last_published_at.slice(0,10) !== p.published_at.slice(0,10);
+  document.getElementById('poPub').textContent = d
+    ? (upd ? t.pub(fmtDate(p.published_at)) + '　·　' + t.updated(fmtDate(p.last_published_at)) : t.pub(fmtDate(d)))
+    : '';
+
+  renderShare();
+  renderCta();
+
+  // SEO / 分享預覽
+  const title = (p.meta_title || p.title || '') + ' — GC 跨境服務';
+  document.title = title;
+  const canon = SITE + '/blog/' + encodeURIComponent(p.slug) + '/';
+  setMeta('description', p.meta_description || p.summary || '');
+  setProp('og:title', p.meta_title || p.title || '');
+  setProp('og:description', p.meta_description || p.summary || '');
+  setProp('og:url', canon);
+  setProp('og:type', 'article');
+  const cov = safeUrl(p.cover_url);
+  if(cov) setProp('og:image', cov);
+  setName('twitter:title', p.meta_title || p.title || '');
+  setName('twitter:description', p.meta_description || p.summary || '');
+  const c = document.querySelector('link[rel="canonical"]');
+  if(c && !IS_PREVIEW) c.href = canon + langQ();
+  if(IS_PREVIEW) document.title = '［預覽］' + title;
+  document.getElementById('poBack').href = 'blog.html' + langQ();
+  poAfterRender();
+}
+
+function setMeta(n,v){ const e=document.querySelector('meta[name="'+n+'"]'); if(e) e.setAttribute('content', v); }
+function setName(n,v){ setMeta(n,v); }
+function setProp(n,v){ const e=document.querySelector('meta[property="'+n+'"]'); if(e) e.setAttribute('content', v); }
+
+function renderShare(){
+  const t = T();
+  const url = IS_PREVIEW ? SITE+'/blog.html' : SITE + '/blog/' + encodeURIComponent(POST.slug) + '/';
+  const title = POST.title || '';
+  const box = document.getElementById('poShare');
+  box.innerHTML = '<span>'+esc(t.share)+'</span>'
+    + '<button data-sh="line" title="LINE"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.5 3 2 6.6 2 11c0 4 3.6 7.3 8.4 7.9.3.1.8.2.9.5.1.3.1.7 0 1l-.1.9c0 .3-.2 1 .9.6 1.1-.5 6-3.5 8.2-6C21.7 14.3 22 12.7 22 11c0-4.4-4.5-8-10-8zM8 13.5H6.2c-.3 0-.5-.2-.5-.5V9.3c0-.3.2-.5.5-.5s.5.2.5.5v3.2H8c.3 0 .5.2.5.5s-.2.5-.5.5zm2-.5c0 .3-.2.5-.5.5s-.5-.2-.5-.5V9.3c0-.3.2-.5.5-.5s.5.2.5.5V13zm4.4 0c0 .2-.1.4-.3.5h-.2c-.2 0-.3-.1-.4-.2l-1.9-2.5V13c0 .3-.2.5-.5.5s-.5-.2-.5-.5V9.3c0-.2.1-.4.3-.5.2-.1.5 0 .6.2l1.9 2.6V9.3c0-.3.2-.5.5-.5s.5.2.5.5V13zm3.1-2.4c.3 0 .5.2.5.5s-.2.5-.5.5h-1.3v.9h1.3c.3 0 .5.2.5.5s-.2.5-.5.5h-1.8c-.3 0-.5-.2-.5-.5V9.3c0-.3.2-.5.5-.5h1.8c.3 0 .5.2.5.5s-.2.5-.5.5h-1.3v.8h1.3z"/></svg></button>'
+    + '<button data-sh="fb" title="Facebook"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.3v7A10 10 0 0022 12z"/></svg></button>'
+    + '<button data-sh="x" title="X"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.2 2H21l-6.5 7.4L22 22h-6l-4.7-6.2L5.9 22H3l7-8-7.3-12h6.2l4.3 5.7L18.2 2zm-1 18h1.7L7.9 3.8H6.1L17.2 20z"/></svg></button>'
+    + '<button data-sh="copy" title="Copy"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg></button>'
+    + '<span class="po-copied" id="poCopied" style="display:none;">'+esc(t.copied)+'</span>';
+  box.querySelectorAll('button[data-sh]').forEach(b=>b.addEventListener('click', function(){
+    const k = this.dataset.sh;
+    if(window.gcTrack) gcTrack('share', { method:k, item_id: POST.slug });
+    if(k === 'copy'){
+      const done = ()=>{ const c=document.getElementById('poCopied'); c.style.display=''; setTimeout(()=>c.style.display='none', 2200); };
+      if(navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(done).catch(done);
+      else { const ta=document.createElement('textarea'); ta.value=url; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy');}catch(e){} ta.remove(); done(); }
+      return;
+    }
+    const enc = encodeURIComponent(url), et = encodeURIComponent(title);
+    const map = {
+      line:'https://social-plugins.line.me/lineit/share?url='+enc,
+      fb:'https://www.facebook.com/sharer/sharer.php?u='+enc,
+      x:'https://twitter.com/intent/tweet?url='+enc+'&text='+et
+    };
+    window.open(map[k], '_blank', 'noopener,width=600,height=640');
+  }));
+}
+
+function renderCta(){
+  const t = T();
+  document.getElementById('poCtaLabel').textContent = t.ctaLabel;
+  document.getElementById('poCtaTitle').textContent = t.ctaTitle;
+  document.getElementById('poCtaSub').textContent = t.ctaSub;
+  document.getElementById('poCtaBtnTxt').textContent = t.ctaBtn;
+  document.getElementById('poCtaBtn').href = 'gc-form.html' + langQ();
+}
+
+/* 其他熱門文章：同分類最新 3 篇（排除自己），不足時用最新的補齊 */
+async function loadRelated(){
+  try{
+    const cols = 'slug,title,cover_url,category,categories,published_at';
+    const res = await fetch(REST+'public_blog_posts?select='+cols+'&order=is_pinned.desc,published_at.desc&limit=30', { headers: SB_HEADERS });
+    if(!res.ok) return;
+    const all = await res.json();
+    const mine = POST ? POST.slug : '';
+    const mySlugs = POST ? ((Array.isArray(POST.categories)&&POST.categories.length) ? POST.categories : (POST.category?[POST.category]:[])) : [];
+    const shares = x=>{
+      const xs = (Array.isArray(x.categories)&&x.categories.length) ? x.categories : (x.category?[x.category]:[]);
+      return xs.some(s=>mySlugs.includes(s));        // 只要有一個共同分類就算相關
+    };
+    const same = all.filter(x=>x.slug !== mine && shares(x));
+    const rest = all.filter(x=>x.slug !== mine && !shares(x));
+    RELATED = same.concat(rest).slice(0,3);
+    renderRelated();
+  }catch(e){ /* 熱門文章讀不到不影響本文 */ }
+}
+
+function renderRelated(){
+  if(!RELATED.length) return;
+  const t = T();
+  document.getElementById('poRelTitle').textContent = t.rel;
+  document.getElementById('poRelTitle2').textContent = t.relBottom;
+  document.getElementById('poRelBox').style.display = '';
+  document.getElementById('poRelBottom').style.display = '';
+
+  document.getElementById('poRel').innerHTML = RELATED.map(p=>{
+    const u = cssUrl(p.cover_url);
+    return '<a href="'+esc(postUrl(p))+'"><span class="t"'+(u?' style="background-image:url(\''+u+'\')"':'')+'></span>'
+      + '<span class="x"><b>'+esc(p.title||'')+'</b><i>'+esc(fmtDate(p.published_at))+'</i></span></a>';
+  }).join('');
+
+  document.getElementById('poRelGrid').innerHTML = RELATED.map(p=>{
+    const u = cssUrl(p.cover_url);
+    return '<a class="po-card" href="'+esc(postUrl(p))+'"><span class="t"'+(u?' style="background-image:url(\''+u+'\')"':'')+'></span>'
+      + '<span class="x"><b>'+esc(p.title||'')+'</b><i>'+esc(fmtDate(p.published_at))+'</i></span></a>';
+  }).join('');
+}
+
+/* ── 語系 ───────────────────────────────────────────────────────── */
+function poApplyLang(){
+  const t = T();
+  document.getElementById('poBackTxt').textContent = t.back;
+  ['poTocTitle','poTocMTitle'].forEach(function(id){ var e=document.getElementById(id); if(e) e.textContent = t.toc; });
+  var _lh = document.getElementById('poLbHint'); if(_lh) _lh.textContent = t.lbHint;
+  const note = document.getElementById('poLangNote');
+  if(t.langnote){ document.getElementById('poLangNoteTxt').textContent = t.langnote; note.style.display=''; document.body.classList.add('po-hasnote'); }
+  else { note.style.display='none'; document.body.classList.remove('po-hasnote'); }
+  if(IS_PREVIEW){
+    const bar = document.getElementById('poPreview');
+    bar.innerHTML = '<b>'+esc(t.preview)+'</b><span>'+esc(t.previewNote)+'</span>';
+  }
+  if(POST){ renderPost(); renderRelated(); }
+}
+document.addEventListener('gc:langchange', poApplyLang);
+
+/* ── 導覽列 ─────────────────────────────────────────────────────── */
+function toggleMobileMenu(){
+  document.getElementById('navMobileMenu').classList.toggle('open');
+  document.getElementById('navHamburger').classList.toggle('open');
+  if(!document.getElementById('navMobileMenu').classList.contains('open')) closeMobileAbout();
+}
+function closeMobileMenu(){
+  document.getElementById('navMobileMenu').classList.remove('open');
+  document.getElementById('navHamburger').classList.remove('open');
+  closeMobileAbout();
+}
+function toggleMobileAbout(){
+  const p = document.getElementById('mAccPanel'), b = document.getElementById('mAccBtn');
+  const open = p.classList.toggle('open');
+  b.setAttribute('aria-expanded', open ? 'true' : 'false');
+}
+function closeMobileAbout(){
+  document.getElementById('mAccPanel').classList.remove('open');
+  document.getElementById('mAccBtn').setAttribute('aria-expanded','false');
+}
+(function(){
+  const dd = document.getElementById('navAboutDd');
+  if(!dd) return;
+  const btn = document.getElementById('navAboutBtn');
+  btn.addEventListener('click', function(e){ e.stopPropagation(); dd.classList.toggle('dd-open'); btn.setAttribute('aria-expanded', dd.classList.contains('dd-open')?'true':'false'); });
+  document.addEventListener('click', function(e){ if(!dd.contains(e.target)) dd.classList.remove('dd-open'); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') dd.classList.remove('dd-open'); });
+})();
+window.addEventListener('scroll', function(){
+  document.getElementById('siteNav').classList.toggle('scrolled', window.scrollY > 10);
+}, { passive:true });
+
+/* 網址 # 換了就重新載入（後台按第二次預覽時會用到；正常瀏覽碰不到） */
+let _lastHash = location.hash;
+window.addEventListener('hashchange', function(){
+  const isPv = h => h.indexOf('#gcpreview=') === 0;
+  const before = _lastHash; _lastHash = location.hash;
+  if(isPv(location.hash) || isPv(before)) location.reload();   // 目錄的 #sec-x 不重載
+});
+
+
+/* ═══ 改版新增：閱讀進度、自動目錄、點圖放大（2026-08）═══════════ */
+
+/* ── 閱讀進度條 ─────────────────────────────────────────────────
+   量的是「本文」的捲動比例，不是整頁；不然頁尾一長，讀完本文
+   進度條卻只走到七成，會覺得怪。                                */
+(function(){
+  var bar = document.getElementById('poProg');
+  if(!bar) return;
+  var raf = 0;
+  function tick(){
+    raf = 0;
+    var body = document.getElementById('poBody');
+    if(!body || !body.offsetHeight){ bar.style.width = '0%'; return; }
+    var top = body.getBoundingClientRect().top + window.scrollY;
+    var len = body.offsetHeight - window.innerHeight * 0.4;
+    var p = len > 0 ? (window.scrollY - top + window.innerHeight * 0.4) / len : 1;
+    bar.style.width = Math.max(0, Math.min(1, p)) * 100 + '%';
+  }
+  window.addEventListener('scroll', function(){ if(!raf) raf = requestAnimationFrame(tick); }, { passive:true });
+  window.addEventListener('resize', tick);
+  window.poProgTick = tick;
+})();
+
+/* ── 自動目錄：抓本文的 H2 ───────────────────────────────────────
+   標題沒有 id 就自己補一個（用序號，不用標題文字，中文轉出來的
+   錨點又長又難讀，而且改標題就會換網址）。                        */
+function poBuildToc(){
+  var body = document.getElementById('poBody');
+  var side = document.getElementById('poTocBox');
+  var mob  = document.getElementById('poTocM');
+  if(!body || !side) return;
+  var hs = [].slice.call(body.querySelectorAll('h2'));
+  if(hs.length < 2){                      // 只有一段的文章不需要目錄
+    side.style.display = 'none';
+    if(mob) mob.style.display = 'none';
+    return;
+  }
+  side.style.display = '';
+  if(mob) mob.style.display = '';
+  var html = hs.map(function(h,i){
+    if(!h.id) h.id = 'sec-' + (i+1);
+    return '<a href="#'+h.id+'" data-toc="'+h.id+'">'+esc(h.textContent||'')+'</a>';
+  }).join('');
+  document.getElementById('poToc').innerHTML = html;
+  var mt = document.getElementById('poTocMList');
+  if(mt) mt.innerHTML = html;
+
+  /* ⚠ 兩件事都要自己處理：
+     1. 這一頁有 <base>（同一支檔案會在 /blog-post.html 與 /blog/<slug>/ 兩種
+        網址下被服務），href="#sec-1" 會被 base 解析成「首頁 + #sec-1」，
+        點下去會跳離這篇文章。
+     2. 交給瀏覽器捲的話，落點會隨「原本捲到哪裡」而不同（已經看得到的段落
+        有時候就不捲了，有時候又捲過頭）。所以自己算位置，落點才會一致。   */
+  document.querySelectorAll('[data-toc]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      var d = document.getElementById('poTocM');
+      if(d) d.open = false;                      // 手機版點完就把目錄收起來
+      var el = document.getElementById(a.dataset.toc);
+      if(!el) return;
+      var y = el.getBoundingClientRect().top + window.scrollY - 96;   // 68 導覽列 + 28 留白
+      window.scrollTo({ top: Math.max(0, y), behavior:'smooth' });
+      // 用 replaceState 換網址列的錨點：不觸發 hashchange，也不受 <base> 影響
+      try{ history.replaceState(null, '', location.pathname + location.search + '#' + a.dataset.toc); }catch(err){}
+    });
+  });
+  poSpy(hs);
+}
+
+/* 捲到哪一段，目錄就亮哪一條 */
+var _spyHs = [], _spyRaf = 0;
+function poSpy(hs){
+  _spyHs = hs;
+  if(poSpy._bound) { poSpyTick(); return; }
+  poSpy._bound = true;
+  window.addEventListener('scroll', function(){ if(!_spyRaf) _spyRaf = requestAnimationFrame(poSpyTick); }, { passive:true });
+}
+function poSpyTick(){
+  _spyRaf = 0;
+  if(!_spyHs.length) return;
+  var cur = _spyHs[0].id;
+  _spyHs.forEach(function(h){ if(h.getBoundingClientRect().top <= 120) cur = h.id; });
+  document.querySelectorAll('[data-toc]').forEach(function(a){
+    a.classList.toggle('on', a.dataset.toc === cur);
+  });
+}
+
+/* ── 點圖放大 ───────────────────────────────────────────────────
+   只放大「圖片」：內文的 figure 圖，以及輪播裡的圖片格
+   （影片格不處理，點下去要播影片）。                              */
+function poOpenLb(src, cap){
+  var lb = document.getElementById('poLb');
+  if(!lb || !src) return;
+  document.getElementById('poLbImg').src = src;
+  var c = document.getElementById('poLbCap');
+  c.textContent = cap || '';
+  c.style.display = cap ? '' : 'none';
+  lb.classList.add('on');
+  document.body.style.overflow = 'hidden';
+}
+function poCloseLb(){
+  var lb = document.getElementById('poLb');
+  if(!lb) return;
+  lb.classList.remove('on');
+  document.getElementById('poLbImg').src = '';
+  document.body.style.overflow = '';
+}
+function poBindZoom(){
+  var art = document.getElementById('poArticle');
+  if(!art) return;
+  art.querySelectorAll('.po-body figure img').forEach(function(img){
+    if(img.dataset.zoom) return;
+    img.dataset.zoom = '1';
+    img.addEventListener('click', function(){
+      var fig = img.closest('figure');
+      var cap = fig ? (fig.querySelector('figcaption') || {}).textContent : '';
+      poOpenLb(img.currentSrc || img.src, cap);
+    });
+  });
+  // 輪播：背景圖是寫在 style 裡，取出網址就好
+  art.querySelectorAll('.po-slide:not(.vid)').forEach(function(s){
+    if(s.dataset.zoom) return;
+    s.dataset.zoom = '1';
+    var m = /url\(["']?(.*?)["']?\)/.exec(s.style.backgroundImage || '');
+    if(!m) return;
+    s.classList.add('zoomable');
+    s.addEventListener('click', function(){
+      var box = s.closest('.po-car');
+      var cap = box ? (box.querySelector('.po-cap') || {}).textContent : '';
+      poOpenLb(m[1], cap);
+    });
+  });
+}
+(function(){
+  var lb = document.getElementById('poLb');
+  if(!lb) return;
+  lb.addEventListener('click', function(e){ if(e.target === lb || e.target.id === 'poLbX' || e.target.closest('#poLbX')) poCloseLb(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') poCloseLb(); });
+})();
+
+/* 每次重畫文章之後都要重跑一次（換語系會整篇重畫） */
+function poAfterRender(){
+  poBuildToc();
+  poBindZoom();
+  if(window.poProgTick) poProgTick();
+}
+
+/* ── 頁尾 F3 行為 ────────────────────────────────────────────────
+   電腦版：三欄一直展開，點標題不會收起來（<details> 預設會 toggle，要擋掉）。
+   手機版：預設收起來，點一下才展開。
+   文案：品牌那句話與「公司／信箱」的標籤跟著語系走；斷行完全交給瀏覽器，
+        沒有任何手動斷行或詞彙偵測。                                  */
+(function(){
+  var FT = {
+    zh:{ brand:'GC 跨境服務顧問團隊，協助品牌評估市場、對接通路與服務商，讓您把貨真正賣進去！',
+         co:'公司', mail:'信箱', coName:'世界之地標有限公司' },
+    en:{ brand:'The GC cross-border advisory team helps brands size up markets and connect with the right channels and service providers — so your products actually get sold.',
+         co:'Company', mail:'Email', coName:'World of Landmark Co., Ltd.' },
+    ja:{ brand:'GCクロスボーダー顧問チームが、市場の見極めから販路・サービス事業者との接続までを支援し、御社の商品を実際に売り場へ届けます。',
+         co:'会社', mail:'メール', coName:'World of Landmark Co., Ltd.' }
+  };
+  function lang(){
+    try{
+      var v = new URLSearchParams(location.search).get('lang');
+      if(v==='zh'||v==='en'||v==='ja') return v;
+    }catch(e){}
+    return localStorage.getItem('gc_lang') || 'zh';
+  }
+  function txt(id, v){ var el = document.getElementById(id); if(el) el.textContent = v; }
+  function applyFooterLang(){
+    var t = FT[lang()] || FT.zh;
+    txt('gcfBrand', t.brand);
+    txt('gcfCoLbl', t.co);
+    txt('gcfMailLbl', t.mail);
+    txt('gcfCoName', t.coName);
+  }
+  document.addEventListener('gc:langchange', applyFooterLang);
+
+  var cols = [].slice.call(document.querySelectorAll('.gcf3-col'));
+  var mq = window.matchMedia('(max-width:640px)');
+  function sync(){ cols.forEach(function(d){ d.open = !mq.matches; }); }
+  cols.forEach(function(d){
+    d.querySelector('summary').addEventListener('click', function(e){
+      if(!mq.matches) e.preventDefault();     // 電腦版不給收
+    });
+  });
+  if(mq.addEventListener) mq.addEventListener('change', sync); else mq.addListener(sync);
+  sync();
+  applyFooterLang();
+})();
+
+poApplyLang();
+load();
+</script>
+<script src="i18n.js?v=1.7.5-p1"></script>
+</body>
+</html>

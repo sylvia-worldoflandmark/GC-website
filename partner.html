@@ -1,14 +1,8 @@
 <!DOCTYPE html>
 <html lang="zh-TW" data-page="partner">
 <head>
-<!-- Google tag (gtag.js) — GA4 G-WMDKSQRC81 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-WMDKSQRC81"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-WMDKSQRC81');
-</script>
+<!-- GA4 只在訪客同意分析後由 consent.js 載入。 -->
+<script src="consent.js"></script>
 
 <meta charset="UTF-8">
 <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
@@ -19,18 +13,17 @@
 <meta name="author" content="GC 跨境服務">
 <meta property="og:type" content="website">
 <meta property="og:title" content="成為 GC 服務商夥伴 — 共同拓展全球市場">
-<meta property="og:description" content="加入 GC 合作夥伴網絡，與優質品牌客戶合作，共同拓展全球市場業務。">
+<meta property="og:description" content="加入 GC 合作夥伴網絡，與優質品牌客戶合作，拓展業務版圖。GC 提供資源對接、專案支援與品質把關。">
 <meta property="og:site_name" content="GC 跨境服務">
 <meta property="og:locale" content="zh_TW">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="成為 GC 服務商夥伴 — 共同拓展全球市場">
-<meta name="twitter:description" content="加入 GC 合作夥伴網絡，與優質品牌客戶合作，共同拓展全球市場業務。">
-<!-- 語言版本：查詢字串 ?lang= 讓每個語言有各自的網址（可分享、可被索引）。
-     canonical 由 i18n.js 依目前語言即時更新；此處為預設（繁中）版本。 -->
+<meta name="twitter:description" content="加入 GC 合作夥伴網絡，與優質品牌客戶合作，拓展業務版圖。GC 提供資源對接、專案支援與品質把關。">
+<!-- 語言版本由 build-locales.js 產生於 /en/ 與 /ja/；此頁為繁中版本。 -->
 <link rel="canonical" href="https://worldoflandmark.com/partner.html">
 <link rel="alternate" hreflang="zh-Hant" href="https://worldoflandmark.com/partner.html">
-<link rel="alternate" hreflang="en" href="https://worldoflandmark.com/partner.html?lang=en">
-<link rel="alternate" hreflang="ja" href="https://worldoflandmark.com/partner.html?lang=ja">
+<link rel="alternate" hreflang="en" href="https://worldoflandmark.com/en/partner.html">
+<link rel="alternate" hreflang="ja" href="https://worldoflandmark.com/ja/partner.html">
 <link rel="alternate" hreflang="x-default" href="https://worldoflandmark.com/partner.html">
 <meta property="og:url" content="https://worldoflandmark.com/partner.html">
 <title>成為 GC 服務商夥伴 — 共同拓展全球市場</title>
@@ -330,6 +323,7 @@ footer.gc-footer{display:block;background:rgba(6,8,14,0.94);border-top:1px solid
 }
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://worldoflandmark.com/"},{"@type":"ListItem","position":2,"name":"成為服務商","item":"https://worldoflandmark.com/partner.html"}]}</script>
+<script src="local-preview.js"></script>
 </head>
 <body>
 
@@ -666,6 +660,6 @@ form.addEventListener('submit', async function(e){
   }
 });
 </script>
-<script src="i18n.js"></script>
+<script src="i18n.js?v=1.7.5-p1"></script>
 </body>
 </html>

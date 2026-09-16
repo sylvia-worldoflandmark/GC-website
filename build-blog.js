@@ -6,8 +6,8 @@
    做三件事：
      1. 把每篇已發佈文章產成實體靜態頁 blog/<slug>/index.html
         （Netlify 服務實體檔案的優先序高於 redirects，所以這些網址會直接
-         吃到含完整內容與 JSON-LD 的 HTML；還沒重建的新文章則會落到
-         netlify.toml 的 /blog/* rewrite，由前端即時載入，不會 404）
+         吃到含完整內容與 JSON-LD 的 HTML；不存在的文章由 Netlify
+         回傳真正的 404，避免產生 soft 404）
      2. 把列表頁 blog.html 的第一頁文章與 ItemList JSON-LD 灌進去
      3. 更新 sitemap.xml（在標記之間重寫，可重複執行）
 
@@ -29,7 +29,6 @@ const POST_FILE = process.env.GC_BLOG_POST || 'blog-post.html';
 const OUT_DIR   = process.env.GC_BLOG_DIR  || 'blog';
 const SITEMAP   = process.env.GC_SITEMAP   || 'sitemap.xml';
 const LIST_COUNT = 10;   // 與 blog.html 的 PAGE_SIZE 一致，預渲染剛好是第一頁
-
 const esc = s => String(s == null ? '' : s)
   .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
   .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
@@ -41,9 +40,11 @@ function plain(blocks){
     if(b.type === 'heading')   return b.text || '';
     if(b.type === 'paragraph') return String(b.html||'').replace(/<[^>]*>/g,'');
     if(b.type === 'quote')     return b.text || '';
-    if(b.type === 'list')      return (b.items||[]).map(x=>String(x).replace(/<[^>]*>/g,'')).join('、');
+    if(b.type === 'list')      return (b.items||[]).map(x=>String((x&&x.html!=null)?x.html:x).replace(/<[^>]*>/g,'')).join('、');   // 1.6.3 起子項是 {html,lv} 物件
     if(b.type === 'todo')      return (b.items||[]).map(x=>String((x&&x.html!=null)?x.html:x).replace(/<[^>]*>/g,'')).join('、');   // 舊資料可能是 {html} 物件
     if(b.type === 'callout')   return [String(b.title||'').replace(/<[^>]*>/g,''), plain(b.blocks)].filter(Boolean).join('\n');
+    if(b.type === 'toggle')    return [String(b.title||'').replace(/<[^>]*>/g,''), plain(b.blocks)].filter(Boolean).join('\n');   // 摺疊裡的字 SEO 也要看得到
+    if(b.type === 'table')     return [(b.head||[]), ...(b.rows||[])].map(r=>(r||[]).map(x=>String(x).replace(/<[^>]*>/g,'')).filter(Boolean).join('、')).filter(Boolean).join('\n');   // 少了這行整張表的字會從 meta description 消失
     return '';
   }).filter(Boolean).join('\n\n');
 }
@@ -70,6 +71,34 @@ function inline(html){
   });
 }
 
+/* 巢狀清單：後台 1.6.3 起，items 可以是字串（＝第一層，舊文章全都是這樣）
+   或 {html, lv}。規則與 blog-post.html 的那一份一模一樣，改一邊要改兩邊。 */
+function listItem(x){
+  if(x && typeof x === 'object'){
+    const lv = parseInt(x.lv, 10);
+    return { html: String(x.html==null ? '' : x.html), lv: (lv > 0 ? 1 : 0) };
+  }
+  return { html: String(x==null ? '' : x), lv: 0 };
+}
+function listHtml(tag, items, cls){
+  const arr = (items||[]).map(listItem).filter(x=>x.html !== '');
+  if(!arr.length) return '';
+  let prev = -1;
+  arr.forEach(it=>{ if(it.lv > prev+1) it.lv = prev+1; prev = it.lv; });
+  const c = cls ? ' class="'+cls+'"' : '';
+  let out = '<'+tag+c+'>', lv = 0, openLi = false;
+  arr.forEach(it=>{
+    while(it.lv > lv){ out += '<'+tag+c+'>'; lv++; openLi = false; }
+    while(it.lv < lv){ if(openLi) out += '</li>'; out += '</'+tag+'></li>'; lv--; openLi = false; }
+    if(openLi) out += '</li>';
+    out += '<li>'+inline(it.html);
+    openLi = true;
+  });
+  while(lv > 0){ if(openLi) out += '</li>'; out += '</'+tag+'></li>'; lv--; openLi = false; }
+  if(openLi) out += '</li>';
+  return out + '</'+tag+'>';
+}
+
 function blockHtml(b){
   if(!b || !b.type) return '';
   switch(b.type){
@@ -77,22 +106,31 @@ function blockHtml(b){
       const t = b.level === 3 ? 'h3' : 'h2';
       return '<'+t+'>'+(b.html ? inline(b.html) : esc(b.text||''))+'</'+t+'>';
     }
-    case 'list': {
-      const t = b.style === 'ol' ? 'ol' : 'ul';
-      const items = (b.items||[]).map(x=>'<li>'+inline(x)+'</li>').join('');
-      return items ? '<'+t+'>'+items+'</'+t+'>' : '';
-    }
-    case 'todo': {
-      const items = (b.items||[]).map(x=>{
-        const h = (x && typeof x === 'object') ? (x.html||'') : String(x==null?'':x);
-        return '<li>'+inline(h)+'</li>';
-      }).join('');
-      return items ? '<ul class="po-todo">'+items+'</ul>' : '';
-    }
+    case 'list':
+      return listHtml(b.style === 'ol' ? 'ol' : 'ul', b.items, '');
+    case 'todo':
+      // 舊資料可能是 {html,done} 物件，listItem 一樣收得動；一律畫成空方框
+      return listHtml('ul', b.items, 'po-todo');
     case 'quote':
       return '<blockquote>'+(b.html ? inline(b.html) : esc(b.text||''))
         + (b.source ? '<cite>'+esc(b.source)+'</cite>' : '')+'</blockquote>';
     case 'divider': return '<hr>';
+    case 'table': {
+      const th = (b.head||[]).map(x=>'<th>'+inline(x)+'</th>').join('');
+      const tr = (b.rows||[]).map(r=>'<tr>'+((r||[]).map(x=>'<td>'+inline(x)+'</td>').join(''))+'</tr>').join('');
+      if(!th && !tr) return '';
+      return '<div class="po-tblbox"><table class="po-tbl">'
+        + (th ? '<thead><tr>'+th+'</tr></thead>' : '')
+        + (tr ? '<tbody>'+tr+'</tbody>' : '')
+        + '</table></div>';
+    }
+    case 'toggle': {
+      const inner = (b.blocks||[]).map(x => (x && (x.type==='callout' || x.type==='toggle')) ? '' : blockHtml(x)).join('');
+      const tt = b.title ? inline(b.title) : '';
+      if(!tt && !inner) return '';
+      return '<details class="po-tog"'+(b.open ? ' open' : '')+'><summary>'+(tt || '展開')+'</summary>'
+        + '<div class="po-togb">'+inner+'</div></details>';
+    }
     case 'callout': {
       const warn = b.style === 'warn';
       // 標題開頭已經有 emoji（Notion 匯進來的框）就不再畫內建圖示
@@ -204,6 +242,7 @@ function replaceSlot(html, name, payload){
                    logo:{ '@type':'ImageObject', url: SITE+'/images/og-image.png' } },
       isPartOf: { '@type':'WebSite', '@id': SITE+'/#website', name:'GC 跨境服務', url: SITE+'/' },
       wordCount: plain((p.content||{}).blocks).replace(/\s+/g,'').length || undefined,
+      // 官網文章採品牌編輯模式，作者固定為 GC 組織。
       author: { '@type':'Organization', '@id': SITE+'/#organization', name:'GC 跨境服務', url: SITE+'/' },
       keywords: (p.tags||[]).join(', ') || undefined,
       articleSection: ((p.category_names && p.category_names.length) ? p.category_names.join(', ') : p.category_name) || undefined
@@ -229,8 +268,7 @@ function replaceSlot(html, name, payload){
       + '<h1 class="po-h1">'+esc(p.title||'')+'</h1>'
       + ((p.tags||[]).length ? '<div class="po-tags">'+(p.tags||[]).map(x=>'<span>#'+esc(x)+'</span>').join('')+'</div>' : '')
       + (p.summary ? '<div class="po-sum">'+esc(p.summary)+'</div>' : '')
-      + '<div class="po-body">'+((p.content||{}).blocks||[]).map(blockHtml).join('')+'</div>'
-      + '</div>';
+      + '<div class="po-body">'+((p.content||{}).blocks||[]).map(blockHtml).join('')+'</div></div>';
 
     let h = tpl;
 
@@ -240,14 +278,15 @@ function replaceSlot(html, name, payload){
        「部署時、以檔案實際位置」重新解析相對連結的，看不到 <base>，
        於是 href="index.html" 會被改寫成這篇文章自己的網址
        → 點左上角 logo（與「關於 GC」五個錨點）等於原地重新整理。
-       產生靜態頁時一律換成根目錄絕對路徑，就不受檔案位置與後處理影響；
-       blog-post.html 本身仍維持相對連結（後台預覽／本機雙擊開啟才會對）。 */
+       導覽連結在靜態頁換成根目錄絕對路徑；圖片等資源維持相對路徑並
+       交由 <base> 解析，正式站與本機雙擊預覽都能載入同一份 Logo。 */
     h = h.replace(/(href|src)="(index|catalog|partner|blog|gc-form|privacy)\.html(#[^"]*)?"/g,
                   (m, at, f, hash) => at + '="/' + f + '.html' + (hash || '') + '"');
-    h = h.replace(/(href|src)="(images\/[^"]+|i18n\.js)"/g, (m, at, f) => at + '="/' + f + '"');
     h = replaceSlot(h, 'GC_BLOGPOST', head);
     h = h.replace(/<title>[\s\S]*?<\/title>/, '<title>'+esc(title)+'</title>');
     h = h.replace(/(<meta name="description" content=")[^"]*(")/, '$1'+esc(desc)+'$2');
+    h = h.replace(/<meta name="robots" content="[^"]*">/,
+      '<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">');
     h = h.replace(/(<meta property="og:title" content=")[^"]*(")/, '$1'+esc(p.meta_title||p.title||'')+'$2');
     h = h.replace(/(<meta property="og:description" content=")[^"]*(")/, '$1'+esc(desc)+'$2');
     h = h.replace(/(<meta property="og:url" content=")[^"]*(")/, '$1'+esc(url)+'$2');
@@ -258,11 +297,10 @@ function replaceSlot(html, name, payload){
     }
     h = h.replace(/(<meta name="twitter:title" content=")[^"]*(")/, '$1'+esc(p.meta_title||p.title||'')+'$2');
     h = h.replace(/(<meta name="twitter:description" content=")[^"]*(")/, '$1'+esc(desc)+'$2');
+    // 文章正文目前只有繁中。未完成全文翻譯前，不宣告不存在的英／日文版本。
     h = h.replace(/<link rel="canonical" href="[^"]*">/,
       '<link rel="canonical" href="'+esc(url)+'">\n'
       + '<link rel="alternate" hreflang="zh-Hant" href="'+esc(url)+'">\n'
-      + '<link rel="alternate" hreflang="en" href="'+esc(url)+'?lang=en">\n'
-      + '<link rel="alternate" hreflang="ja" href="'+esc(url)+'?lang=ja">\n'
       + '<link rel="alternate" hreflang="x-default" href="'+esc(url)+'">');
     h = h.replace('<div id="poState" class="po-state" style="display:none;"></div>',
                   '<div id="poState" class="po-state" style="display:none;"></div>\n'+body);
@@ -284,8 +322,6 @@ function replaceSlot(html, name, payload){
           + '    <loc>'+u+'</loc>\n'
           + (lm ? '    <lastmod>'+lm+'</lastmod>\n' : '')
           + '    <xhtml:link rel="alternate" hreflang="zh-Hant" href="'+u+'"/>\n'
-          + '    <xhtml:link rel="alternate" hreflang="en" href="'+u+'?lang=en"/>\n'
-          + '    <xhtml:link rel="alternate" hreflang="ja" href="'+u+'?lang=ja"/>\n'
           + '    <xhtml:link rel="alternate" hreflang="x-default" href="'+u+'"/>\n'
           + '    <changefreq>monthly</changefreq>\n'
           + '    <priority>0.7</priority>\n'

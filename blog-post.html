@@ -1,15 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-TW" data-page="blogpost">
 <head>
-<!-- Google tag (gtag.js) — GA4 G-WMDKSQRC81 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-WMDKSQRC81"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-WMDKSQRC81');
-</script>
-
+<!-- GA4 只在訪客同意分析後由 consent.js 載入。 -->
 <script>
 /* 這一頁會在兩種網址下被服務：
      /blog-post.html            （轉址 fallback、後台預覽）
@@ -23,11 +15,13 @@
   document.head.appendChild(b);
 })();
 </script>
+<script src="consent.js"></script>
 <meta charset="UTF-8">
 <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="GC 洞察文章：跨境電商法規、市場趨勢與通路實務的第一手觀察。">
-<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<!-- 這是文章範本，不應單獨被索引；build-blog.js 會在實體文章頁改回 index。 -->
+<meta name="robots" content="noindex, follow">
 <meta name="author" content="GC 跨境服務">
 <meta property="og:type" content="article">
 <meta property="og:title" content="洞察文章 — GC 跨境服務">
@@ -177,6 +171,24 @@ html[lang="zh-TW"] .po-h1{font-family:'Noto Sans TC',sans-serif;font-weight:700;
 .po-body h3{font-size:1.08rem;font-weight:700;line-height:1.65;color:#111827;margin:1.8em 0 0.7em;}
 .po-body ul,.po-body ol{margin:0 0 1.35em;padding-left:1.5em;}
 .po-body li{margin-bottom:0.55em;}
+/* 表格（後台 1.6.3 起）。欄位多的時候讓它自己橫向捲，不要撐破版面。 */
+.po-body .po-tblbox{overflow-x:auto;margin:0 0 1.35em;-webkit-overflow-scrolling:touch;}
+.po-body table.po-tbl{border-collapse:collapse;width:100%;min-width:max-content;font-size:0.94em;}
+.po-body table.po-tbl th,.po-body table.po-tbl td{border:1px solid var(--po-line,rgba(17,24,39,0.10));padding:8px 12px;text-align:left;vertical-align:top;}
+.po-body table.po-tbl th{background:rgba(17,24,39,0.035);font-weight:700;white-space:nowrap;}
+/* 摺疊區塊（後台 1.6.3 起）。用原生 <details>，不用寫 JS。 */
+.po-body details.po-tog{margin:0 0 1.35em;border:1px solid var(--po-line,rgba(17,24,39,0.10));border-radius:12px;background:#fff;padding:0;}
+.po-body details.po-tog>summary{list-style:none;cursor:pointer;padding:14px 18px;font-weight:700;position:relative;padding-left:40px;}
+.po-body details.po-tog>summary::-webkit-details-marker{display:none;}
+.po-body details.po-tog>summary::before{content:'';position:absolute;left:18px;top:50%;width:7px;height:7px;margin-top:-4px;border-right:2px solid var(--accent);border-bottom:2px solid var(--accent);transform:rotate(-45deg);transition:transform .18s;}
+.po-body details.po-tog[open]>summary::before{transform:rotate(45deg);margin-top:-6px;}
+.po-body details.po-tog .po-togb{padding:0 18px 4px 40px;}
+.po-body details.po-tog .po-togb>*:last-child{margin-bottom:14px;}
+/* 巢狀清單的第二層：跟後台編輯器一樣只做兩層 */
+.po-body li>ul,.po-body li>ol{margin:0.45em 0 0;padding-left:1.35em;}
+.po-body li>ul{list-style:circle;}
+.po-body li>ol{list-style:lower-alpha;}
+.po-body ul.po-todo li>ul.po-todo{padding-left:0;}
 .po-body li::marker{color:var(--accent-lite);}
 /* 核取方塊清單：方框是 li 的 ::before 畫的，純展示、沒有打勾狀態 */
 .po-body ul.po-todo{list-style:none;margin:0 0 1.35em;padding-left:0;}
@@ -414,6 +426,7 @@ footer.gc-footer{display:block;background:rgba(17,24,39,0.03);border-top:1px sol
   .gcf3-info{flex-direction:column;gap:8px;}
 }
 </style>
+<script src="local-preview.js"></script>
 </head>
 <body>
 
@@ -745,7 +758,10 @@ function fmtDate(iso){
   }catch(e){ return iso.slice(0,10); }
 }
 function langQ(){ const l = LANG(); return l==='zh' ? '' : '?lang='+l; }
-function postUrl(p){ return 'blog/' + encodeURIComponent(p.slug) + '/' + langQ(); }
+function postUrl(p){
+  const entry = location.protocol === 'file:' ? 'index.html' : '';
+  return 'blog/' + encodeURIComponent(p.slug) + '/' + entry + langQ();
+}
 
 /* ── 網址判讀 ──────────────────────────────────────────────────── */
 function previewToken(){
@@ -775,7 +791,9 @@ function noIndex(){
   if(c) c.remove();
 }
 function slugFromUrl(){
-  const m = location.pathname.match(/^\/blog\/([^\/?#]+)\/?$/);
+  // 同時接受正式網址 /blog/<slug>/ 與本機
+  // /.../blog/<slug>/index.html，讓直接雙擊檔案也能讀到預渲染文章。
+  const m = location.pathname.match(/\/blog\/([^\/?#]+)\/(?:index\.html)?$/);
   if(m) return decodeURIComponent(m[1]);
   try{
     const q = new URLSearchParams(location.search).get('slug');
@@ -814,28 +832,66 @@ function capBlock(caption, source){
   return h;
 }
 
+/* 巢狀清單：後台 1.6.3 起，items 可以是字串（＝第一層，舊文章全都是這樣）
+   或 {html, lv}。lv 只有 0/1 兩層 —— 後台也只做兩層。 */
+function listItem(x){
+  if(x && typeof x === 'object'){
+    const lv = parseInt(x.lv, 10);
+    return { html: String(x.html==null ? '' : x.html), lv: (lv > 0 ? 1 : 0) };
+  }
+  return { html: String(x==null ? '' : x), lv: 0 };
+}
+function listHtml(tag, items, cls){
+  const arr = (items||[]).map(listItem).filter(x=>x.html !== '');
+  if(!arr.length) return '';
+  let prev = -1;                       // 層級一次只能深一階，第一項一定是第一層
+  arr.forEach(it=>{ if(it.lv > prev+1) it.lv = prev+1; prev = it.lv; });
+  const c = cls ? ' class="'+cls+'"' : '';
+  let out = '<'+tag+c+'>', lv = 0, openLi = false;
+  arr.forEach(it=>{
+    while(it.lv > lv){ out += '<'+tag+c+'>'; lv++; openLi = false; }
+    while(it.lv < lv){ if(openLi) out += '</li>'; out += '</'+tag+'></li>'; lv--; openLi = false; }
+    if(openLi) out += '</li>';
+    out += '<li>'+clean(it.html);
+    openLi = true;
+  });
+  while(lv > 0){ if(openLi) out += '</li>'; out += '</'+tag+'></li>'; lv--; openLi = false; }
+  if(openLi) out += '</li>';
+  return out + '</'+tag+'>';
+}
+
 function blockHtml(b){
   if(!b || !b.type) return '';
   switch(b.type){
     case 'heading':
       return (b.level===3 ? '<h3>' : '<h2>') + (b.html ? clean(b.html) : esc(b.text||'')) + (b.level===3 ? '</h3>' : '</h2>');
-    case 'list':{
-      const tag = b.style==='ol' ? 'ol' : 'ul';
-      const items = (b.items||[]).map(x=>'<li>'+clean(x)+'</li>').join('');
-      return items ? '<'+tag+'>'+items+'</'+tag+'>' : '';
-    }
-    case 'todo':{
-      const items = (b.items||[]).map(x=>{
-        const h = (x && typeof x === 'object') ? (x.html||'') : String(x==null?'':x);
-        return '<li>'+clean(h)+'</li>';
-      }).join('');
-      return items ? '<ul class="po-todo">'+items+'</ul>' : '';
-    }
+    case 'list':
+      return listHtml(b.style==='ol' ? 'ol' : 'ul', b.items, '');
+    case 'todo':
+      // 舊資料可能是 {html,done} 物件，listItem 一樣收得動；一律畫成空方框
+      return listHtml('ul', b.items, 'po-todo');
     case 'quote':
       return '<blockquote>'+(b.html ? clean(b.html) : esc(b.text||''))
            + (b.source ? '<cite>'+esc(b.source)+'</cite>' : '') + '</blockquote>';
+    case 'toggle':{
+      // 後台編輯器裡一律展開（收起來就編不到），只有這裡才真的收合
+      const inner = (b.blocks||[]).map(x => (x && (x.type==='callout' || x.type==='toggle')) ? '' : blockHtml(x)).join('');
+      const tt = b.title ? clean(b.title) : '';
+      if(!tt && !inner) return '';
+      return '<details class="po-tog"'+(b.open ? ' open' : '')+'><summary>'+(tt || '展開')+'</summary>'
+           + '<div class="po-togb">'+inner+'</div></details>';
+    }
     case 'divider':
       return '<hr>';
+    case 'table':{
+      const th = (b.head||[]).map(x=>'<th>'+clean(x)+'</th>').join('');
+      const tr = (b.rows||[]).map(r=>'<tr>'+((r||[]).map(x=>'<td>'+clean(x)+'</td>').join(''))+'</tr>').join('');
+      if(!th && !tr) return '';
+      return '<div class="po-tblbox"><table class="po-tbl">'
+           + (th ? '<thead><tr>'+th+'</tr></thead>' : '')
+           + (tr ? '<tbody>'+tr+'</tbody>' : '')
+           + '</table></div>';
+    }
     case 'callout':{
       const warn = b.style === 'warn';
       const inner = (b.blocks||[]).map(x => (x && x.type === 'callout') ? '' : blockHtml(x)).join('');
@@ -1428,6 +1484,6 @@ function poAfterRender(){
 poApplyLang();
 load();
 </script>
-<script src="i18n.js"></script>
+<script src="i18n.js?v=1.7.5-p1"></script>
 </body>
 </html>

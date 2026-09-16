@@ -1,14 +1,8 @@
 <!DOCTYPE html>
 <html lang="zh-TW" data-page="index">
 <head>
-<!-- Google tag (gtag.js) — GA4 G-WMDKSQRC81 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-WMDKSQRC81"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-WMDKSQRC81');
-</script>
+<!-- GA4 只在訪客同意分析後由 consent.js 載入。 -->
+<script src="consent.js"></script>
 
 <meta charset="UTF-8">
 <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
@@ -19,18 +13,17 @@
 <meta name="author" content="GC 跨境服務">
 <meta property="og:type" content="website">
 <meta property="og:title" content="GC 跨境服務 — 全球市場拓銷顧問平台">
-<meta property="og:description" content="一站式全球跨境拓銷服務平台。填寫需求診斷表，GC 為您精準媒合最適合的海外市場服務商。">
+<meta property="og:description" content="GC 是一站式全球跨境拓銷服務平台，協助品牌快速媒合市場拓展、品牌行銷、電商營運等專業服務商，讓出海之路順暢無阻。">
 <meta property="og:site_name" content="GC 跨境服務">
 <meta property="og:locale" content="zh_TW">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="GC 跨境服務 — 全球市場拓銷顧問平台">
-<meta name="twitter:description" content="一站式全球跨境拓銷服務平台。填寫需求診斷表，GC 為您精準媒合最適合的海外市場服務商。">
-<!-- 語言版本：查詢字串 ?lang= 讓每個語言有各自的網址（可分享、可被索引）。
-     canonical 由 i18n.js 依目前語言即時更新；此處為預設（繁中）版本。 -->
+<meta name="twitter:description" content="GC 是一站式全球跨境拓銷服務平台，協助品牌快速媒合市場拓展、品牌行銷、電商營運等專業服務商，讓出海之路順暢無阻。">
+<!-- 語言版本由 build-locales.js 產生於 /en/ 與 /ja/；此頁為繁中版本。 -->
 <link rel="canonical" href="https://worldoflandmark.com/">
 <link rel="alternate" hreflang="zh-Hant" href="https://worldoflandmark.com/">
-<link rel="alternate" hreflang="en" href="https://worldoflandmark.com/?lang=en">
-<link rel="alternate" hreflang="ja" href="https://worldoflandmark.com/?lang=ja">
+<link rel="alternate" hreflang="en" href="https://worldoflandmark.com/en/">
+<link rel="alternate" hreflang="ja" href="https://worldoflandmark.com/ja/">
 <link rel="alternate" hreflang="x-default" href="https://worldoflandmark.com/">
 <meta property="og:url" content="https://worldoflandmark.com/">
 <title>GC 跨境服務 — 全球市場拓銷顧問平台</title>
@@ -245,6 +238,7 @@ section{padding:110px 5vw;}
 
 @media(max-width:900px){.why-row{grid-template-columns:1fr 1fr;}}
 @media(max-width:520px){.why-row{grid-template-columns:1fr 1fr;}}
+.why-evidence{max-width:900px;margin:1.2rem auto 0;color:rgba(30,41,59,.62);font-size:.72rem;line-height:1.65;text-align:center;}
 
 /* SERVICES */
 #services{background:var(--bg-3);position:relative;}
@@ -257,6 +251,7 @@ section{padding:110px 5vw;}
   padding:1.6rem 1.5rem;
   transition:all 0.3s;
   position:relative;overflow:hidden;
+  display:block;color:inherit;text-decoration:none;
 }
 .service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#003D79,#1460A8);transform:scaleX(0);transform-origin:left;transition:transform 0.38s;}
 .service-card:hover::before{transform:scaleX(1);}
@@ -704,7 +699,8 @@ footer.gc-footer{display:block;background:rgba(6,8,14,0.94);border-top:1px solid
 <!-- 結構化資料（Organization / WebSite / FAQPage / 服務清單）
      部署時 build-schema.js 會依 index.html 實際的常見問題與顧問服務區塊重新產生這段，
      所以改文案不必回來手動同步。下面這份是建置沒跑到時的保底版本。 -->
-<!-- GC_SCHEMA_START --><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://worldoflandmark.com/#organization","name":"GC 跨境服務","alternateName":["GC Cross-Border Services","GC 跨境電商顧問"],"legalName":"世界之地標有限公司","taxID":"52341471","url":"https://worldoflandmark.com/","logo":{"@type":"ImageObject","url":"https://worldoflandmark.com/images/og-image.png","width":1200,"height":1200},"image":"https://worldoflandmark.com/images/og-image.png","email":"support@worldoflandmark.com","description":"GC 是一站式全球跨境拓銷服務平台，協助品牌、企業及創業團隊快速找到適合的專業服務商，涵蓋市場拓展、品牌行銷、電商營運、通路開發與數位推廣。採「統包管理＋專業服務商執行」模式，由 GC 負責專案管理與品質把關。","address":{"@type":"PostalAddress","streetAddress":"民族東路 679 之 1 號 6 樓","addressLocality":"松山區","addressRegion":"臺北市","postalCode":"105001","addressCountry":"TW"},"areaServed":[{"@type":"Place","name":"台灣"},{"@type":"Place","name":"日本"},{"@type":"Place","name":"東南亞"},{"@type":"Place","name":"北美"}],"knowsAbout":["跨境電商","海外拓銷","國際物流","品牌在地化","通路開發","市場調研","供應鏈整合","數位行銷"],"sameAs":["https://www.facebook.com/gcosc.co","https://www.instagram.com/gcosc.co","https://www.threads.com/@gcosc.co"]},{"@type":"WebSite","@id":"https://worldoflandmark.com/#website","url":"https://worldoflandmark.com/","name":"GC 跨境服務","inLanguage":"zh-Hant","publisher":{"@id":"https://worldoflandmark.com/#organization"}}]}</script><!-- GC_SCHEMA_END -->
+<!-- GC_SCHEMA_START --><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://worldoflandmark.com/#organization","name":"GC 跨境服務","alternateName":["GC Cross-Border Services","GC 跨境電商顧問"],"legalName":"世界之地標有限公司","taxID":"52341471","url":"https://worldoflandmark.com/","logo":{"@type":"ImageObject","url":"https://worldoflandmark.com/images/og-image.png","width":1200,"height":1200},"image":"https://worldoflandmark.com/images/og-image.png","email":"support@worldoflandmark.com","description":"GC 是一站式全球跨境拓銷服務平台，協助品牌、企業及創業團隊快速找到適合的專業服務商，涵蓋市場拓展、品牌行銷、電商營運、通路開發與數位推廣。採「統包管理＋專業服務商執行」模式，由 GC 負責專案管理與品質把關。","address":{"@type":"PostalAddress","streetAddress":"民族東路 679 之 1 號 6 樓","addressLocality":"松山區","addressRegion":"臺北市","postalCode":"105001","addressCountry":"TW"},"areaServed":[{"@type":"Place","name":"台灣"},{"@type":"Place","name":"日本"},{"@type":"Place","name":"東南亞"},{"@type":"Place","name":"北美"}],"knowsAbout":["跨境電商","海外拓銷","國際物流","品牌在地化","通路開發","市場調研","供應鏈整合","數位行銷"],"sameAs":["https://www.facebook.com/gcosc.co","https://www.instagram.com/gcosc.co","https://www.threads.com/@gcosc.co"],"hasOfferCatalog":{"@type":"OfferCatalog","name":"GC 顧問服務","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"直播帶貨","description":"透過 KOL、主播、直播活動協助品牌進行即時銷售，快速打入目標市場。","serviceType":"直播帶貨","url":"https://worldoflandmark.com/services/live-commerce/","provider":{"@id":"https://worldoflandmark.com/#organization"},"areaServed":[{"@type":"Place","name":"台灣"},{"@type":"Place","name":"日本"},{"@type":"Place","name":"東南亞"},{"@type":"Place","name":"北美"}]}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"海外拓銷","description":"開發代理商、經銷商、批發商與買手，建立穩固的海外銷售網絡。","serviceType":"海外拓銷","url":"https://worldoflandmark.com/services/export-promotion/","provider":{"@id":"https://worldoflandmark.com/#organization"},"areaServed":[{"@type":"Place","name":"台灣"},{"@type":"Place","name":"日本"},{"@type":"Place","name":"東南亞"},{"@type":"Place","name":"北美"}]}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"跨境電商","description":"協助品牌上架並經營海外主流電商平台，提升線上銷售業績與品牌曝光。","serviceType":"跨境電商","url":"https://worldoflandmark.com/services/cross-border-ecommerce/","provider":{"@id":"https://worldoflandmark.com/#organization"},"areaServed":[{"@type":"Place","name":"台灣"},{"@type":"Place","name":"日本"},{"@type":"Place","name":"東南亞"},{"@type":"Place","name":"北美"}]}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"實體通路","description":"協助進入超市、藥妝店、選品店、百貨等海外實體零售通路。","serviceType":"實體通路","url":"https://worldoflandmark.com/services/retail-channels/","provider":{"@id":"https://worldoflandmark.com/#organization"},"areaServed":[{"@type":"Place","name":"台灣"},{"@type":"Place","name":"日本"},{"@type":"Place","name":"東南亞"},{"@type":"Place","name":"北美"}]}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"市場調研","description":"深入分析目標市場消費趨勢與競爭環境，為品牌制定精準進入策略。","serviceType":"市場調研","url":"https://worldoflandmark.com/services/market-research/","provider":{"@id":"https://worldoflandmark.com/#organization"},"areaServed":[{"@type":"Place","name":"台灣"},{"@type":"Place","name":"日本"},{"@type":"Place","name":"東南亞"},{"@type":"Place","name":"北美"}]}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"品牌在地化","description":"針對不同市場文化進行品牌包裝、文案與視覺的本土化調整。","serviceType":"品牌在地化","url":"https://worldoflandmark.com/services/brand-localization/","provider":{"@id":"https://worldoflandmark.com/#organization"},"areaServed":[{"@type":"Place","name":"台灣"},{"@type":"Place","name":"日本"},{"@type":"Place","name":"東南亞"},{"@type":"Place","name":"北美"}]}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"供應鏈整合","description":"協助品牌建立高效的跨境物流與倉儲方案，確保商品準時送達。","serviceType":"供應鏈整合","url":"https://worldoflandmark.com/services/supply-chain/","provider":{"@id":"https://worldoflandmark.com/#organization"},"areaServed":[{"@type":"Place","name":"台灣"},{"@type":"Place","name":"日本"},{"@type":"Place","name":"東南亞"},{"@type":"Place","name":"北美"}]}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"數位行銷","description":"整合社群媒體、搜尋廣告與內容行銷，提升品牌在目標市場的知名度。","serviceType":"數位行銷","url":"https://worldoflandmark.com/services/digital-marketing/","provider":{"@id":"https://worldoflandmark.com/#organization"},"areaServed":[{"@type":"Place","name":"台灣"},{"@type":"Place","name":"日本"},{"@type":"Place","name":"東南亞"},{"@type":"Place","name":"北美"}]}}]}},{"@type":"WebSite","@id":"https://worldoflandmark.com/#website","url":"https://worldoflandmark.com/","name":"GC 跨境服務","inLanguage":"zh-Hant","publisher":{"@id":"https://worldoflandmark.com/#organization"}},{"@type":"FAQPage","@id":"https://worldoflandmark.com/#faq","inLanguage":"zh-Hant","isPartOf":{"@id":"https://worldoflandmark.com/#website"},"mainEntity":[{"@type":"Question","name":"GC 是什麼樣的服務平台？","acceptedAnswer":{"@type":"Answer","text":"GC 是一站式全球跨境拓銷服務平台，協助品牌、企業及創業團隊快速找到適合的專業服務商，涵蓋市場拓展、品牌行銷、電商營運、通路開發、數位推廣等領域。 透過 GC，您不需要自行尋找多家供應商，只需提出需求，即可獲得整合式解決方案。"}},{"@type":"Question","name":"GC 自己提供服務，還是媒合合作夥伴？","acceptedAnswer":{"@type":"Answer","text":"GC 採用「統包管理＋專業服務商執行」模式。 我們會先了解您的需求，評估最適合的執行方案，再由 GC 或合作服務商共同提供服務，並由 GC 負責專案管理與品質把關。"}},{"@type":"Question","name":"我該如何開始合作？","acceptedAnswer":{"@type":"Answer","text":"流程非常簡單：提交需求、GC 顧問進行需求訪談、提出解決方案與報價、確認合作、專案執行與成果追蹤 您只需要專注於業務發展，其餘由 GC 協助整合。"}},{"@type":"Question","name":"GC 可以協助哪些類型的企業？","acceptedAnswer":{"@type":"Answer","text":"我們服務的對象包含：新創團隊、中小企業、品牌商、電商品牌、傳統產業轉型企業、海外市場拓展企業 無論是首次進軍海外市場，或是擴大既有市場規模，都可以透過 GC 找到合適資源。"}},{"@type":"Question","name":"如果我不知道自己需要什麼服務怎麼辦？","acceptedAnswer":{"@type":"Answer","text":"沒問題。許多客戶一開始只有目標，例如：想增加海外訂單、想進入某個國家市場、想提升品牌曝光、想拓展代理商或經銷商 GC 顧問會協助您分析現況，並規劃最適合的執行方案。"}},{"@type":"Question","name":"GC 如何挑選合作服務商？","acceptedAnswer":{"@type":"Answer","text":"GC 會根據服務能力、專案經驗、產業背景及執行品質進行篩選。 我們希望每位客戶都能獲得穩定且專業的服務，因此合作夥伴都需經過評估與審核機制。"}},{"@type":"Question","name":"專案費用如何計算？","acceptedAnswer":{"@type":"Answer","text":"不同服務內容與專案規模會有不同報價。 GC 會在合作前提供完整報價與執行內容說明，確認雙方需求後才會正式啟動專案，不會有隱藏費用。"}},{"@type":"Question","name":"如果我想成為 GC 的合作夥伴怎麼加入？","acceptedAnswer":{"@type":"Answer","text":"GC 歡迎：專業服務提供商、商業顧問、業務開發夥伴、通路與產業資源夥伴 如果您擁有專業能力或產業資源，希望與 GC 共同拓展市場，歡迎與我們聯繫洽談合作。"}}]}]}</script><!-- GC_SCHEMA_END -->
+<script src="local-preview.js"></script>
 </head>
 <body>
 
@@ -814,38 +810,39 @@ footer.gc-footer{display:block;background:rgba(6,8,14,0.94);border-top:1px solid
   <div class="why-row reveal">
 
     <div class="why-card">
-      <div class="why-card-stat"><div class="why-card-stat-num">15+</div>
+      <div class="why-card-stat"><div class="why-card-stat-num">15+*</div>
       <div class="why-card-stat-lbl" data-i18n="index.why.c1.lbl">覆蓋市場</div></div>
       <div class="why-card-title" data-i18n="index.why.c1.title">多市場覆蓋能力</div>
-      <div class="why-card-desc" data-i18n="index.why.c1.desc">深耕大中華、東南亞、東北亞、歐美等市場，提供精準在地化服務，讓您的品牌找到最合適的切入策略。</div>
+      <div class="why-card-desc" data-i18n="index.why.c1.desc">合作網絡可協助評估大中華、東南亞、東北亞、歐美等市場，實際承接範圍依品類與需求確認。</div>
       <span class="why-card-tag">Global Reach</span>
     </div>
 
     <div class="why-card">
-      <div class="why-card-stat"><div class="why-card-stat-num">3<span data-i18n="stat.days.unit">天</span></div>
+      <div class="why-card-stat"><div class="why-card-stat-num">3<span data-i18n="stat.days.unit">天</span>*</div>
       <div class="why-card-stat-lbl" data-i18n="index.why.c2.lbl">快速回覆</div></div>
       <div class="why-card-title" data-i18n="index.why.c2.title">快速媒合服務</div>
-      <div class="why-card-desc" data-i18n="index.why.c2.desc">提交需求後 3 個工作天內回覆，從合作夥伴庫精選最適合的服務商，省去尋找與篩選的時間成本。</div>
+      <div class="why-card-desc" data-i18n="index.why.c2.desc">一般需求以 3 個工作天內首次回覆為目標，再從合作夥伴庫評估合適服務商；此時程不代表成交或專案完成保證。</div>
       <span class="why-card-tag">Fast Matching</span>
     </div>
 
     <div class="why-card">
-      <div class="why-card-stat"><div class="why-card-stat-num">500+</div>
-      <div class="why-card-stat-lbl" data-i18n="index.why.c3.lbl">服務品牌</div></div>
+      <div class="why-card-stat"><div class="why-card-stat-num">500+*</div>
+      <div class="why-card-stat-lbl" data-i18n="index.why.c3.lbl">網絡經驗</div></div>
       <div class="why-card-title" data-i18n="index.why.c3.title">數家顧問服務商</div>
-      <div class="why-card-desc" data-i18n="index.why.c3.desc">整合多家專業跨境顧問服務商，依品牌需求精準媒合，確保每個合作都由最適合的團隊執行。</div>
+      <div class="why-card-desc" data-i18n="index.why.c3.desc">500+ 為目前合作顧問團隊所提供的累積品牌服務經驗，不等同 GC 直接服務客戶數。</div>
       <span class="why-card-tag">Expert Network</span>
     </div>
 
     <div class="why-card">
-      <div class="why-card-stat"><div class="why-card-stat-num">100%</div>
-      <div class="why-card-stat-lbl" data-i18n="index.why.c4.lbl">資料保密</div></div>
+      <div class="why-card-stat"><div class="why-card-stat-num">Privacy</div>
+      <div class="why-card-stat-lbl" data-i18n="index.why.c4.lbl">隱私優先</div></div>
       <div class="why-card-title" data-i18n="index.why.c4.title">資料安全保障</div>
-      <div class="why-card-desc" data-i18n="index.why.c4.desc">嚴格執行資料保護措施，所有診斷表資料僅供服務媒合使用，確保您的商業機密不外洩。</div>
+      <div class="why-card-desc" data-i18n="index.why.c4.desc">依隱私權政策蒐集與處理必要資料；分析工具僅在訪客同意後載入，診斷資料依所述目的使用。</div>
       <span class="why-card-tag">Secure & Private</span>
     </div>
 
   </div>
+  <p class="why-evidence reveal" data-i18n="index.why.evidence">* 15+ 為目前合作網絡可評估／媒合的市場範圍；500+ 為合作顧問團隊累積服務經驗，並非全數由 GC 直接服務；3 個工作天為一般需求的首次回覆目標，不代表成交或專案完成保證。資料定義最後檢視：2026-09-16。</p>
 </section>
 
 <!-- SERVICES — static grid -->
@@ -856,14 +853,14 @@ footer.gc-footer{display:block;background:rgba(6,8,14,0.94);border-top:1px solid
     <p class="section-sub" data-i18n="index.services.sub">從市場評估到落地執行，GC 提供全方位跨境解決方案。</p>
   </div>
   <div class="services-grid reveal">
-    <div class="service-card"><div class="service-card-num">01</div><h3 data-i18n="index.svc1.title">直播帶貨</h3><p data-i18n="index.svc1.desc">透過 KOL、主播、直播活動協助品牌進行即時銷售，快速打入目標市場。</p><span class="service-tag">LIVE COMMERCE</span></div>
-    <div class="service-card"><div class="service-card-num">02</div><h3 data-i18n="index.svc2.title">海外拓銷</h3><p data-i18n="index.svc2.desc">開發代理商、經銷商、批發商與買手，建立穩固的海外銷售網絡。</p><span class="service-tag">EXPORT PROMOTION</span></div>
-    <div class="service-card"><div class="service-card-num">03</div><h3 data-i18n="index.svc3.title">跨境電商</h3><p data-i18n="index.svc3.desc">協助品牌上架並經營海外主流電商平台，提升線上銷售業績與品牌曝光。</p><span class="service-tag">E-COMMERCE</span></div>
-    <div class="service-card"><div class="service-card-num">04</div><h3 data-i18n="index.svc4.title">實體通路</h3><p data-i18n="index.svc4.desc">協助進入超市、藥妝店、選品店、百貨等海外實體零售通路。</p><span class="service-tag">RETAIL</span></div>
-    <div class="service-card"><div class="service-card-num">05</div><h3 data-i18n="index.svc5.title">市場調研</h3><p data-i18n="index.svc5.desc">深入分析目標市場消費趨勢與競爭環境，為品牌制定精準進入策略。</p><span class="service-tag">RESEARCH</span></div>
-    <div class="service-card"><div class="service-card-num">06</div><h3 data-i18n="index.svc6.title">品牌在地化</h3><p data-i18n="index.svc6.desc">針對不同市場文化進行品牌包裝、文案與視覺的本土化調整。</p><span class="service-tag">LOCALIZATION</span></div>
-    <div class="service-card"><div class="service-card-num">07</div><h3 data-i18n="index.svc7.title">供應鏈整合</h3><p data-i18n="index.svc7.desc">協助品牌建立高效的跨境物流與倉儲方案，確保商品準時送達。</p><span class="service-tag">LOGISTICS</span></div>
-    <div class="service-card"><div class="service-card-num">08</div><h3 data-i18n="index.svc8.title">數位行銷</h3><p data-i18n="index.svc8.desc">整合社群媒體、搜尋廣告與內容行銷，提升品牌在目標市場的知名度。</p><span class="service-tag">MARKETING</span></div>
+    <a href="/services/live-commerce/" class="service-card"><div class="service-card-num">01</div><h3 data-i18n="index.svc1.title">直播帶貨</h3><p data-i18n="index.svc1.desc">透過 KOL、主播、直播活動協助品牌進行即時銷售，快速打入目標市場。</p><span class="service-tag">LIVE COMMERCE</span></a>
+    <a href="/services/export-promotion/" class="service-card"><div class="service-card-num">02</div><h3 data-i18n="index.svc2.title">海外拓銷</h3><p data-i18n="index.svc2.desc">開發代理商、經銷商、批發商與買手，建立穩固的海外銷售網絡。</p><span class="service-tag">EXPORT PROMOTION</span></a>
+    <a href="/services/cross-border-ecommerce/" class="service-card"><div class="service-card-num">03</div><h3 data-i18n="index.svc3.title">跨境電商</h3><p data-i18n="index.svc3.desc">協助品牌上架並經營海外主流電商平台，提升線上銷售業績與品牌曝光。</p><span class="service-tag">E-COMMERCE</span></a>
+    <a href="/services/retail-channels/" class="service-card"><div class="service-card-num">04</div><h3 data-i18n="index.svc4.title">實體通路</h3><p data-i18n="index.svc4.desc">協助進入超市、藥妝店、選品店、百貨等海外實體零售通路。</p><span class="service-tag">RETAIL</span></a>
+    <a href="/services/market-research/" class="service-card"><div class="service-card-num">05</div><h3 data-i18n="index.svc5.title">市場調研</h3><p data-i18n="index.svc5.desc">深入分析目標市場消費趨勢與競爭環境，為品牌制定精準進入策略。</p><span class="service-tag">RESEARCH</span></a>
+    <a href="/services/brand-localization/" class="service-card"><div class="service-card-num">06</div><h3 data-i18n="index.svc6.title">品牌在地化</h3><p data-i18n="index.svc6.desc">針對不同市場文化進行品牌包裝、文案與視覺的本土化調整。</p><span class="service-tag">LOCALIZATION</span></a>
+    <a href="/services/supply-chain/" class="service-card"><div class="service-card-num">07</div><h3 data-i18n="index.svc7.title">供應鏈整合</h3><p data-i18n="index.svc7.desc">協助品牌建立高效的跨境物流與倉儲方案，確保商品準時送達。</p><span class="service-tag">LOGISTICS</span></a>
+    <a href="/services/digital-marketing/" class="service-card"><div class="service-card-num">08</div><h3 data-i18n="index.svc8.title">數位行銷</h3><p data-i18n="index.svc8.desc">整合社群媒體、搜尋廣告與內容行銷，提升品牌在目標市場的知名度。</p><span class="service-tag">MARKETING</span></a>
   </div>
   <div class="services-footer reveal">
     <a href="gc-form.html" class="btn-primary" style="display:inline-flex;margin:0 auto;"><span data-i18n="index.services.cta">立即填寫需求診斷表，開始諮詢</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
@@ -1594,7 +1591,7 @@ steps.forEach(s=>stepObs.observe(s));
   document.addEventListener('keydown', function(e){ if(e.key === 'Escape') close(); });
 })();
 </script>
-<script src="i18n.js"></script>
+<script src="i18n.js?v=1.7.5-p1"></script>
 
 <script>
 /* ── Mobile menu ── */

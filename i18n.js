@@ -150,16 +150,17 @@ const GC_I18N = {
     'index.why.sub':   '深耕跨境市場多年，擁有完整在地資源網絡與數家顧問服務商，為品牌量身打造最適合的出海策略。',
     'index.why.c1.lbl':   '覆蓋市場',
     'index.why.c1.title': '多市場覆蓋能力',
-    'index.why.c1.desc':  '深耕大中華、東南亞、東北亞、歐美等市場，提供精準在地化服務，讓您的品牌找到最合適的切入策略。',
+    'index.why.c1.desc':  '合作網絡可協助評估大中華、東南亞、東北亞、歐美等市場，實際承接範圍依品類與需求確認。',
     'index.why.c2.lbl':   '快速回覆',
     'index.why.c2.title': '快速媒合服務',
-    'index.why.c2.desc':  '提交需求後 3 個工作天內回覆，從合作夥伴庫精選最適合的服務商，省去尋找與篩選的時間成本。',
-    'index.why.c3.lbl':   '服務品牌',
+    'index.why.c2.desc':  '一般需求以 3 個工作天內首次回覆為目標，再從合作夥伴庫評估合適服務商；此時程不代表成交或專案完成保證。',
+    'index.why.c3.lbl':   '網絡經驗',
     'index.why.c3.title': '數家顧問服務商',
-    'index.why.c3.desc':  '整合多家專業跨境顧問服務商，依品牌需求精準媒合，確保每個合作都由最適合的團隊執行。',
-    'index.why.c4.lbl':   '資料保密',
+    'index.why.c3.desc':  '500+ 為目前合作顧問團隊所提供的累積品牌服務經驗，不等同 GC 直接服務客戶數。',
+    'index.why.c4.lbl':   '隱私優先',
     'index.why.c4.title': '資料安全保障',
-    'index.why.c4.desc':  '嚴格執行資料保護措施，所有診斷表資料僅供服務媒合使用，確保您的商業機密不外洩。',
+    'index.why.c4.desc':  '依隱私權政策蒐集與處理必要資料；分析工具僅在訪客同意後載入，診斷資料依所述目的使用。',
+    'index.why.evidence': '* 15+ 為目前合作網絡可評估／媒合的市場範圍；500+ 為合作顧問團隊累積服務經驗，並非全數由 GC 直接服務；3 個工作天為一般需求的首次回覆目標，不代表成交或專案完成保證。資料定義最後檢視：2026-09-16。',
 
     'index.services.label': 'Our Services',
     'index.services.title': '我們的顧問服務',
@@ -646,16 +647,17 @@ const GC_I18N = {
     'index.why.sub':   'Years of cross-border expertise with a complete local resource network and consulting partners — tailoring the best go-global strategy for your brand.',
     'index.why.c1.lbl':   'Markets',
     'index.why.c1.title': 'Multi-Market Coverage',
-    'index.why.c1.desc':  'Deep roots in Greater China, Southeast Asia, Northeast Asia, and Western markets — precise localization to find the best entry strategy for your brand.',
+    'index.why.c1.desc':  'Our partner network can assess opportunities across Greater China, Southeast Asia, Northeast Asia, and Western markets. Actual coverage depends on category and scope.',
     'index.why.c2.lbl':   'Response',
     'index.why.c2.title': 'Fast Matching',
-    'index.why.c2.desc':  'We reply within 3 business days of receiving your brief and handpick the best-fit partners from our network, saving you time on research and vetting.',
-    'index.why.c3.lbl':   'Brands Served',
+    'index.why.c2.desc':  'We target an initial response within 3 business days for standard enquiries, then assess suitable partners. This is not a guarantee of closing or project completion.',
+    'index.why.c3.lbl':   'Network Experience',
     'index.why.c3.title': 'Expert Consultant Network',
-    'index.why.c3.desc':  'We integrate multiple specialized cross-border consultants and match them to your brand\'s exact needs, ensuring every engagement is led by the right team.',
-    'index.why.c4.lbl':   'Confidential',
+    'index.why.c3.desc':  '500+ refers to cumulative brand experience reported by current consulting partners; it is not the number of clients served directly by GC.',
+    'index.why.c4.lbl':   'Privacy First',
     'index.why.c4.title': 'Data Security',
-    'index.why.c4.desc':  'Strict data protection across the board — your diagnostic form information is used solely for service matching, keeping your business secrets safe.',
+    'index.why.c4.desc':  'We collect and process necessary data under our privacy policy. Analytics load only after consent, and diagnostic data is used for the stated purposes.',
+    'index.why.evidence': '* 15+ is the current market range the partner network can assess or match; 500+ is cumulative experience reported by consulting partners, not all direct GC clients; 3 business days is an initial-response target, not a closing or completion guarantee. Definitions reviewed 2026-09-16.',
 
     'index.services.label': 'Our Services',
     'index.services.title': 'Our Consulting Services',
@@ -1142,16 +1144,17 @@ const GC_I18N = {
     'index.why.sub':   '長年の越境市場経験と充実したローカルリソースネットワーク・コンサルティングパートナーで、あなたのブランドに最適な海外展開戦略を設計します。',
     'index.why.c1.lbl':   '対応市場',
     'index.why.c1.title': '多市場カバレッジ',
-    'index.why.c1.desc':  '大中華・東南アジア・東北アジア・欧米市場に深く根ざし、精確なローカライズでブランドに最適な参入戦略を提供します。',
+    'index.why.c1.desc':  'パートナーネットワークは大中華・東南アジア・東北アジア・欧米市場の検討を支援します。実際の対応範囲は商品分野と要件により確認します。',
     'index.why.c2.lbl':   '返信速度',
     'index.why.c2.title': 'スピーディなマッチング',
-    'index.why.c2.desc':  'ご要望受付後3営業日以内に返信し、パートナーネットワークから最適なサービス事業者を厳選。調査や選定にかかる時間を省けます。',
-    'index.why.c3.lbl':   '支援ブランド',
+    'index.why.c2.desc':  '通常のお問い合わせは3営業日以内の初回返信を目標とし、その後適切なパートナーを検討します。成約や完了時期を保証するものではありません。',
+    'index.why.c3.lbl':   'ネットワーク実績',
     'index.why.c3.title': '専門コンサルタントネットワーク',
-    'index.why.c3.desc':  '複数の専門越境コンサルタントを統合し、ブランドのニーズに合わせて精確にマッチング。各プロジェクトを最適なチームが担当します。',
-    'index.why.c4.lbl':   '機密保持',
+    'index.why.c3.desc':  '500+ は現在の提携コンサルタントチームが申告する累積ブランド支援経験であり、すべてが GC の直接顧客ではありません。',
+    'index.why.c4.lbl':   'プライバシー優先',
     'index.why.c4.title': 'データセキュリティ',
-    'index.why.c4.desc':  '厳格なデータ保護を実施。診断フォームの情報はサービスマッチングのみに使用し、ビジネス上の機密を守ります。',
+    'index.why.c4.desc':  'プライバシーポリシーに基づき必要なデータを取り扱います。分析ツールは同意後にのみ読み込まれ、診断データは明示した目的に使用します。',
+    'index.why.evidence': '* 15+ は提携ネットワークが検討・マッチング可能な現在の市場範囲、500+ は提携コンサルタントの累積支援経験であり、すべてが GC の直接顧客ではありません。3営業日は初回返信目標で、成約・完了の保証ではありません。定義確認日：2026-09-16。',
 
     'index.services.label': 'Our Services',
     'index.services.title': 'コンサルティングサービス',
@@ -1500,18 +1503,20 @@ const GC_I18N = {
    Core engine
 ══════════════════════════════════════════ */
 
-/* 語言來源優先序：網址 ?lang= → localStorage → 預設繁中。
-   網址參數優先，是為了讓「寄一個日文版連結給客戶」真的有效 ——
-   對方即使先前看過中文版（localStorage 已存 zh），打開連結仍會看到日文。
-   搜尋引擎也才有各語言各自的網址可以索引。 */
+/* 語言來源優先序：/en/、/ja/ 路徑 → 舊版 ?lang= 相容 → localStorage → 繁中。
+   搜尋引擎使用建置期產生的語言子目錄；查詢參數僅保留舊連結相容性。 */
 const GC_LANGS = ['zh','en','ja'];
+function gcLangFromPath(){
+  const m = location.pathname.match(/^\/(en|ja)(?:\/|$)/);
+  return m ? m[1] : null;
+}
 function gcLangFromUrl(){
   try{
     const v = new URLSearchParams(location.search).get('lang');
     return (v && GC_LANGS.indexOf(v) >= 0) ? v : null;
   }catch(e){ return null; }
 }
-let GC_LANG = gcLangFromUrl() || localStorage.getItem('gc_lang') || 'zh';
+let GC_LANG = gcLangFromPath() || gcLangFromUrl() || localStorage.getItem('gc_lang') || 'zh';
 
 function gcApplyLang(lang) {
   GC_LANG = lang;
@@ -1539,7 +1544,8 @@ function gcApplyLang(lang) {
 
   // Page title
   const pageKey = document.documentElement.getAttribute('data-page');
-  if (pageKey && t['page.title.' + pageKey]) {
+  // 已預渲染的單篇文章有自己的 title；不可再被通用「洞察文章」標題覆蓋。
+  if (pageKey && t['page.title.' + pageKey] && !(pageKey === 'blogpost' && window.GC_POST_BOOTSTRAP)) {
     document.title = t['page.title.' + pageKey];
   }
 
@@ -1547,18 +1553,8 @@ function gcApplyLang(lang) {
   const langMap = { zh: 'zh-TW', en: 'en', ja: 'ja' };
   document.documentElement.lang = langMap[lang] || lang;
 
-  // canonical / og:url / og:locale 跟著目前語言走，
-  // 讓每個語言版本都自我指向正確的網址（避免被判為重複內容）
-  try{
-    const path = location.pathname.replace(/index\.html$/, '');
-    const selfUrl = location.origin + path + (lang === 'zh' ? '' : '?lang=' + lang);
-    const c = document.querySelector('link[rel="canonical"]');
-    if (c) c.href = selfUrl;
-    const ou = document.querySelector('meta[property="og:url"]');
-    if (ou) ou.setAttribute('content', selfUrl);
-    const ol = document.querySelector('meta[property="og:locale"]');
-    if (ol) ol.setAttribute('content', ({ zh:'zh_TW', en:'en_US', ja:'ja_JP' })[lang] || 'zh_TW');
-  }catch(e){}
+  // canonical、hreflang、OG 與 description 由 build-locales.js 在建置時寫入，
+  // 不在瀏覽器端改寫，確保不執行 JavaScript 的爬蟲與連結預覽也讀到正確內容。
 
   // Update switcher label
   const labelEl = document.getElementById('gcLangLabel');
@@ -1588,15 +1584,46 @@ function gcToggleLangMenu() {
 }
 
 function gcSetLang(lang) {
-  gcApplyLang(lang);
-  // 更新網址，讓目前語言可以直接複製分享。
-  // 切回繁中時移除參數，避免 base 與 ?lang=zh 兩個網址內容相同（重複內容）。
+  if (GC_LANGS.indexOf(lang) < 0) return;
+  GC_LANG = lang;
+  localStorage.setItem('gc_lang', lang);
   try{
+    // 本機直接開檔時不能導向 /en/...（那會變成磁碟根目錄）。
+    // 使用 local-preview.js 提供的站台根目錄組出真正的檔案網址。
+    if (location.protocol === 'file:' && window.gcLocalPreviewRoot) {
+      const root = new URL(window.gcLocalPreviewRoot);
+      let relative = location.pathname.indexOf(root.pathname) === 0
+        ? location.pathname.slice(root.pathname.length) : '';
+      relative = decodeURIComponent(relative).replace(/^\/+/, '');
+      const baseFile = relative.replace(/^(?:en|ja)\//, '') || 'index.html';
+      const staticFiles = ['index.html','catalog.html','partner.html','gc-form.html','privacy.html'];
+      if (staticFiles.indexOf(baseFile) >= 0) {
+        const targetFile = lang === 'zh' ? baseFile : lang + '/' + baseFile;
+        location.href = new URL(targetFile, root).href + (location.hash || '');
+        return;
+      }
+      const localPage = new URL(location.href);
+      if (lang === 'zh') localPage.searchParams.delete('lang');
+      else localPage.searchParams.set('lang', lang);
+      location.href = localPage.href;
+      return;
+    }
+    const originalPath = location.pathname;
+    const basePath = originalPath.replace(/^\/(?:en|ja)(?=\/|$)/, '') || '/';
+    const staticPages = ['/', '/index.html', '/catalog.html', '/partner.html', '/gc-form.html', '/privacy.html'];
+    if (staticPages.indexOf(basePath) >= 0) {
+      const targetPath = lang === 'zh' ? basePath : '/' + lang + (basePath === '/' ? '/' : basePath);
+      location.href = targetPath + (location.hash || '');
+      return;
+    }
+    // 洞察文章正文目前只有繁中；語言切換僅翻譯介面，不宣告為可索引翻譯頁。
     const u = new URL(location.href);
+    u.pathname = basePath;
     if (lang === 'zh') u.searchParams.delete('lang');
     else u.searchParams.set('lang', lang);
-    history.replaceState(null, '', u.pathname + (u.search || '') + (u.hash || ''));
-  }catch(e){}
+    location.href = u.pathname + (u.search || '') + (u.hash || '');
+    return;
+  }catch(e){ gcApplyLang(lang); }
   // Desktop dropdown
   const dd   = document.getElementById('gcLangDropdown');
   const btn  = document.getElementById('gcLangBtn');
